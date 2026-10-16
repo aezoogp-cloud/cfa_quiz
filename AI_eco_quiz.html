@@ -204,7 +204,7 @@ function setup(){
    '<p class="muted">ECO에서 틀린 114문제 전부 + 오답 개념과 연결된 ECO 정답 유형 17문제 + Schweser Module Quiz 28문제 + 변형 6문제 (총 165문제). 정답은 ECO 원본·Schweser 해답 기준, 해설은 Schweser 기준으로 작성했습니다.</p>'+
    '<label>범위 <select id="selMod">'+opts+'</select></label>'+
    '<label>출처 <select id="selSrc"><option value="all">전체</option><option value="wrong">ECO 오답만 (114)</option><option value="nowrong">오답 외 문제만</option></select></label>'+
-   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · ← 이전 문제</p>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스(안 푼 문제 넘기기) · ← 이전 문제</p>'+
    '<div class="nav" style="justify-content:flex-start">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">새로 시작</button></div></section>';
   if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
   if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
@@ -230,10 +230,10 @@ function quiz(){
     vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
     '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
-    '<button class="btn primary" id="bNext" '+(r?'':'disabled')+'>'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button></div></section>';
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
   $("view").innerHTML=html;
   Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
-  $("bPrev").onclick=prev; $("bNext").onclick=next;
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
   header();
 }
 function feedback(q,r){
@@ -260,6 +260,14 @@ function answer(L){
 }
 function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
 function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
 
 /* ---------- results ---------- */
 function summarize(){
@@ -289,10 +297,12 @@ function result(){
     '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
     '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
     '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
     '<button class="btn" id="bBack">문제로 돌아가기</button>'+
     '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
   $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
   $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
   $("bExport2").onclick=exportResults;
   header();
 }
@@ -385,6 +395,7 @@ document.addEventListener("keydown",function(e){
   var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
   if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
   else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
   else if(e.key==="ArrowLeft"){ prev(); }
 });
 render();
