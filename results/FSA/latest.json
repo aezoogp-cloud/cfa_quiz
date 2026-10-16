@@ -2,21 +2,21 @@
   "subject": "FSA",
   "date": "2026-10-16",
   "latest": {
-    "totalQuestions": 19,
-    "answered": 19,
-    "correct": 15,
-    "wrong": 4
+    "totalQuestions": 50,
+    "answered": 24,
+    "correct": 11,
+    "wrong": 13
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-16T04:29:12.738Z",
+      "exportedAt": "2026-10-16T04:00:39.595Z",
       "mode": "all",
       "startedAt": "2026-10-13T23:02:36.220Z",
       "totalQuestions": 33,
-      "answered": 33,
-      "correct": 14,
-      "wrong": 19,
-      "accuracy": 0.4242,
+      "answered": 27,
+      "correct": 11,
+      "wrong": 16,
+      "accuracy": 0.4074,
       "questions": [
         {
           "id": "ECO-M2-Q4",
@@ -293,68 +293,68 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "US GAAP pension cost",
           "source": "Schweser MQ",
-          "selected": "B",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-06",
           "module": "Module 2 – Employee Compensation",
           "concept": "IFRS net interest (변형)",
           "source": "변형",
-          "selected": "B",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-07",
           "module": "Module 2 – Employee Compensation",
           "concept": "임금상승률 가정",
           "source": "Schweser MQ",
-          "selected": "C",
+          "selected": null,
           "correctAnswer": "A",
-          "isCorrect": false,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-08",
           "module": "Module 2 – Employee Compensation",
           "concept": "할인율 하락 – funded status (all else equal)",
           "source": "Schweser MQ",
-          "selected": "C",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-09",
           "module": "Module 2 – Employee Compensation",
           "concept": "Tax windfall – US GAAP 처리 (변형)",
           "source": "변형",
-          "selected": "C",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-10",
           "module": "Module 2 – Employee Compensation",
           "concept": "DCF – Pension 처리 (변형)",
           "source": "변형",
-          "selected": "A",
+          "selected": null,
           "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         }
       ],
       "moduleAccuracy": {
         "Module 2 – Employee Compensation": {
           "total": 33,
-          "answered": 33,
-          "correct": 14,
-          "accuracy": 0.4242
+          "answered": 27,
+          "correct": 11,
+          "accuracy": 0.4074
         }
       },
       "weakConcepts": [
@@ -421,59 +421,97 @@
         {
           "concept": "Module 2 – Employee Compensation / Plan assets 기말 공정가치",
           "wrong": 1
-        },
-        {
-          "concept": "Module 2 – Employee Compensation / 임금상승률 가정",
-          "wrong": 1
-        },
-        {
-          "concept": "Module 2 – Employee Compensation / 할인율 하락 – funded status (all else equal)",
-          "wrong": 1
-        },
-        {
-          "concept": "Module 2 – Employee Compensation / Tax windfall – US GAAP 처리 (변형)",
-          "wrong": 1
         }
       ]
     },
     {
-      "exportedAt": "2026-10-16T08:28:49.237Z",
-      "mode": "review",
+      "exportedAt": "2026-10-16T04:07:23.818Z",
+      "mode": "all",
       "startedAt": "2026-10-13T23:02:36.220Z",
-      "totalQuestions": 19,
-      "answered": 2,
-      "correct": 2,
-      "wrong": 0,
-      "accuracy": 1,
+      "totalQuestions": 33,
+      "answered": 27,
+      "correct": 11,
+      "wrong": 16,
+      "accuracy": 0.4074,
       "questions": [
+        {
+          "id": "ECO-M2-Q4",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "DB plan – 현금흐름표",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q5",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Net pension liability 감소 이유",
+          "source": "ECO 관련유형",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q6",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Net pension liability – EV→Equity",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
         {
           "id": "ECO-M2-Q7",
           "module": "Module 2 – Employee Compensation",
           "concept": "할인율 하락 – Funded status",
           "source": "ECO 오답",
-          "selected": "C",
+          "selected": "A",
           "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
+          "isCorrect": false,
+          "attempts": 1
         },
         {
           "id": "ECO-M2-Q8",
           "module": "Module 2 – Employee Compensation",
           "concept": "IFRS service cost = current + past",
           "source": "ECO 오답",
-          "selected": "B",
+          "selected": "A",
           "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q10",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "IFRS pension cost 예측",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
           "id": "ECO-M2-Q12",
           "module": "Module 2 – Employee Compensation",
           "concept": "RSU 공정가치 – 변동성 무관",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q13",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "RSU 보상비용 계산",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -481,9 +519,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "Tax windfall – IFRS vs US GAAP",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -491,9 +529,19 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "RSU 희석 – Treasury stock method",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q19",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "SBC 예측 → 주식수 증가",
+          "source": "ECO 관련유형",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -501,9 +549,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "기대수익률 – PBO 무관",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -511,9 +559,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "할인율 상승 효과",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -521,9 +569,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "옵션 변동성 가정 – 비용",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -531,9 +579,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "옵션가치 입력변수 방향",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -541,9 +589,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "DCF – Net interest expense 이중계산",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -551,9 +599,29 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "SBC 희석 반영 – 둘 중 하나만",
           "source": "ECO 관련유형",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q30",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Tax windfall – 영구 적용 금지",
+          "source": "ECO 관련유형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q31",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "DCF – Underfunded plan은 debt",
+          "source": "ECO 관련유형",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -561,9 +629,19 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "단기 종업원급여 분류",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q37",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "미래 SBC 희석 – 모델링",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -571,9 +649,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "SBC 예측 기준",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -581,9 +659,29 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "Plan 지급액 – 회사 재무제표",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-01",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "옵션 vs RSU – 희석주식수",
+          "source": "Schweser MQ",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-02",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "주식보상 비용 인식 시점",
+          "source": "Schweser MQ",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -591,9 +689,9 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "단기 종업원급여",
           "source": "Schweser MQ",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -601,10 +699,30 @@
           "module": "Module 2 – Employee Compensation",
           "concept": "Plan assets 기말 공정가치",
           "source": "Schweser MQ",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-05",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "US GAAP pension cost",
+          "source": "Schweser MQ",
           "selected": null,
           "correctAnswer": "B",
           "isCorrect": null,
-          "attempts": 1
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M2-06",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "IFRS net interest (변형)",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
         },
         {
           "id": "SCH-M2-07",
@@ -614,7 +732,7 @@
           "selected": null,
           "correctAnswer": "A",
           "isCorrect": null,
-          "attempts": 1
+          "attempts": 0
         },
         {
           "id": "SCH-M2-08",
@@ -624,7 +742,7 @@
           "selected": null,
           "correctAnswer": "B",
           "isCorrect": null,
-          "attempts": 1
+          "attempts": 0
         },
         {
           "id": "SCH-M2-09",
@@ -634,229 +752,44 @@
           "selected": null,
           "correctAnswer": "B",
           "isCorrect": null,
-          "attempts": 1
-        }
-      ],
-      "moduleAccuracy": {
-        "Module 2 – Employee Compensation": {
-          "total": 19,
-          "answered": 2,
-          "correct": 2,
-          "accuracy": 1
-        }
-      },
-      "weakConcepts": []
-    },
-    {
-      "exportedAt": "2026-10-16T08:52:18.880Z",
-      "mode": "review",
-      "startedAt": "2026-10-13T23:02:36.220Z",
-      "totalQuestions": 19,
-      "answered": 19,
-      "correct": 15,
-      "wrong": 4,
-      "accuracy": 0.7895,
-      "questions": [
-        {
-          "id": "ECO-M2-Q7",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "할인율 하락 – Funded status",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
+          "attempts": 0
         },
         {
-          "id": "ECO-M2-Q8",
+          "id": "SCH-M2-10",
           "module": "Module 2 – Employee Compensation",
-          "concept": "IFRS service cost = current + past",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q12",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "RSU 공정가치 – 변동성 무관",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q16",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Tax windfall – IFRS vs US GAAP",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q17",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "RSU 희석 – Treasury stock method",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q20",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "기대수익률 – PBO 무관",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "C",
-          "isCorrect": false,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q21",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "할인율 상승 효과",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q24",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "옵션 변동성 가정 – 비용",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q25",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "옵션가치 입력변수 방향",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q26",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "DCF – Net interest expense 이중계산",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q29",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "SBC 희석 반영 – 둘 중 하나만",
-          "source": "ECO 관련유형",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q34",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "단기 종업원급여 분류",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q38",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "SBC 예측 기준",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q39",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Plan 지급액 – 회사 재무제표",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "SCH-M2-03",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "단기 종업원급여",
-          "source": "Schweser MQ",
-          "selected": "A",
-          "correctAnswer": "C",
-          "isCorrect": false,
-          "attempts": 2
-        },
-        {
-          "id": "SCH-M2-04",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Plan assets 기말 공정가치",
-          "source": "Schweser MQ",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "SCH-M2-07",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "임금상승률 가정",
-          "source": "Schweser MQ",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "SCH-M2-08",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "할인율 하락 – funded status (all else equal)",
-          "source": "Schweser MQ",
-          "selected": "A",
-          "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 2
-        },
-        {
-          "id": "SCH-M2-09",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Tax windfall – US GAAP 처리 (변형)",
+          "concept": "DCF – Pension 처리 (변형)",
           "source": "변형",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
         }
       ],
       "moduleAccuracy": {
         "Module 2 – Employee Compensation": {
-          "total": 19,
-          "answered": 19,
-          "correct": 15,
-          "accuracy": 0.7895
+          "total": 33,
+          "answered": 27,
+          "correct": 11,
+          "accuracy": 0.4074
         }
       },
       "weakConcepts": [
+        {
+          "concept": "Module 2 – Employee Compensation / 할인율 하락 – Funded status",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / IFRS service cost = current + past",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / RSU 공정가치 – 변동성 무관",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / Tax windfall – IFRS vs US GAAP",
+          "wrong": 1
+        },
         {
           "concept": "Module 2 – Employee Compensation / RSU 희석 – Treasury stock method",
           "wrong": 1
@@ -866,11 +799,617 @@
           "wrong": 1
         },
         {
+          "concept": "Module 2 – Employee Compensation / 할인율 상승 효과",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / 옵션 변동성 가정 – 비용",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / 옵션가치 입력변수 방향",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / DCF – Net interest expense 이중계산",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / SBC 희석 반영 – 둘 중 하나만",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / 단기 종업원급여 분류",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / SBC 예측 기준",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Employee Compensation / Plan 지급액 – 회사 재무제표",
+          "wrong": 1
+        },
+        {
           "concept": "Module 2 – Employee Compensation / 단기 종업원급여",
           "wrong": 1
         },
         {
-          "concept": "Module 2 – Employee Compensation / 할인율 하락 – funded status (all else equal)",
+          "concept": "Module 2 – Employee Compensation / Plan assets 기말 공정가치",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "exportedAt": "2026-10-16T12:34:11.158Z",
+      "mode": "all",
+      "startedAt": "2026-10-16T09:41:14.845Z",
+      "totalQuestions": 50,
+      "answered": 24,
+      "correct": 11,
+      "wrong": 13,
+      "accuracy": 0.4583,
+      "questions": [
+        {
+          "id": "ECO-M3-Q1",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure 식별",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q2",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "번역방법 결정 기준",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q3",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction gain 계산",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q4",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Net sales growth 구성",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q6",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – Flow 항목 재작성 (IFRS)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q7",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "ETR reconciliation – Profit mix",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q9",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Current rate method – 자산 환산",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q11",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Translation adjustment – 부채 방향",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q12",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal method – 이익잉여금 plug",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q24",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal method – RE 환산",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q25",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "기능통화 변경 근거",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q26",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal → Current rate 변경 효과",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q36",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal exposure 축소",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q40",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "환율 적용 – 화폐성 부채",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q42",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "USD 강세 – 비용 측 영향",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q43",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure – 연말 미실현손실",
+          "source": "ECO 관련유형",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q45",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal – 순화폐성부채 + 외화 강세",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q52",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "FX 효과 – 경영 성과 평가",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q53",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "ETR 하락 → 해외 이익 비중↑",
+          "source": "ECO 관련유형",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q55",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal remeasurement gain",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q58",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "FX가 매출 증가에 미친 영향",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q60",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation (IFRS) – 통합 자회사",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q61",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "세율 변경 효과 – Tax treaty",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q62",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "ETR 낮추기 & FX 손익",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q66",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Profit mix – 해외세율 효과 항목",
+          "source": "ECO 관련유형",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q67",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Sustainable sales growth",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q70",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Cash flow at risk vs Principal exposure",
+          "source": "ECO 관련유형",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q71",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Functional currency 정의",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q72",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure – 연말 미실현손익",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q73",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Current rate method – 총자산",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q76",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "미결제 외화거래 손익 – I/S",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q77",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "실현·미실현 거래손익",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q80",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal vs Current rate – 외화 약세",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q81",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – Stock 항목 재작성",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q85",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Presentation currency",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q86",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "외화 약세 – Current rate 영업이익↑",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q87",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation (IFRS) – 비화폐성 재작성",
+          "source": "ECO 관련유형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-01",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Local / Functional / Presentation currency",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-02",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal 노출 정의",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-03",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Current rate – 이익잉여금 환산",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-04",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "외화 약세 – 매출총이익률",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-05",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Translation gain 조건",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-06",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal 노출 축소 전략",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-07",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Current rate – 비율 보존",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-08",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "AR turnover – 두 방법 비교",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-09",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – US GAAP",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-10",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – 구매력 이익",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-11",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – Flow 항목 계산 (변형)",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-12",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure – 수출채권 (변형)",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "SCH-M3-13",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "외화 강세 – 영업이익 (변형)",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 3 – Multinational Operations": {
+          "total": 50,
+          "answered": 24,
+          "correct": 11,
+          "accuracy": 0.4583
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Module 3 – Multinational Operations / Transaction exposure 식별",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / 번역방법 결정 기준",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Transaction gain 계산",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Net sales growth 구성",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / ETR reconciliation – Profit mix",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Temporal method – 이익잉여금 plug",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Temporal method – RE 환산",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / 기능통화 변경 근거",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / USD 강세 – 비용 측 영향",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Transaction exposure – 연말 미실현손실",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / FX 효과 – 경영 성과 평가",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / FX가 매출 증가에 미친 영향",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / 세율 변경 효과 – Tax treaty",
           "wrong": 1
         }
       ]
