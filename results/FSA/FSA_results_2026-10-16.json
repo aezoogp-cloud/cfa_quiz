@@ -2,10 +2,10 @@
   "subject": "FSA",
   "date": "2026-10-16",
   "latest": {
-    "totalQuestions": 33,
-    "answered": 33,
-    "correct": 14,
-    "wrong": 19
+    "totalQuestions": 19,
+    "answered": 2,
+    "correct": 2,
+    "wrong": 0
   },
   "attempts": [
     {
@@ -435,6 +435,217 @@
           "wrong": 1
         }
       ]
+    },
+    {
+      "exportedAt": "2026-10-16T08:28:49.237Z",
+      "mode": "review",
+      "startedAt": "2026-10-13T23:02:36.220Z",
+      "totalQuestions": 19,
+      "answered": 2,
+      "correct": 2,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "ECO-M2-Q7",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "할인율 하락 – Funded status",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q8",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "IFRS service cost = current + past",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q12",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "RSU 공정가치 – 변동성 무관",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q16",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Tax windfall – IFRS vs US GAAP",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q17",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "RSU 희석 – Treasury stock method",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q20",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "기대수익률 – PBO 무관",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q21",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "할인율 상승 효과",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q24",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "옵션 변동성 가정 – 비용",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q25",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "옵션가치 입력변수 방향",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q26",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "DCF – Net interest expense 이중계산",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q29",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "SBC 희석 반영 – 둘 중 하나만",
+          "source": "ECO 관련유형",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q34",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "단기 종업원급여 분류",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q38",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "SBC 예측 기준",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q39",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Plan 지급액 – 회사 재무제표",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-03",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "단기 종업원급여",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-04",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Plan assets 기말 공정가치",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-07",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "임금상승률 가정",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-08",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "할인율 하락 – funded status (all else equal)",
+          "source": "Schweser MQ",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-M2-09",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Tax windfall – US GAAP 처리 (변형)",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 2 – Employee Compensation": {
+          "total": 19,
+          "answered": 2,
+          "correct": 2,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
     }
   ]
 }
