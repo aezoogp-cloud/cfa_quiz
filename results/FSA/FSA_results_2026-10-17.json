@@ -1,0 +1,462 @@
+{
+  "subject": "FSA",
+  "date": "2026-10-17",
+  "latest": {
+    "totalQuestions": 5,
+    "answered": 2,
+    "correct": 1,
+    "wrong": 1
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-17T05:09:01.414Z",
+      "mode": "review",
+      "startedAt": "2026-10-16T09:41:14.845Z",
+      "totalQuestions": 26,
+      "answered": 26,
+      "correct": 22,
+      "wrong": 4,
+      "accuracy": 0.8462,
+      "questions": [
+        {
+          "id": "ECO-M3-Q1",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure 식별",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q2",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "번역방법 결정 기준",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q3",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction gain 계산",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q4",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Net sales growth 구성",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q7",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "ETR reconciliation – Profit mix",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q12",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal method – 이익잉여금 plug",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q24",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal method – RE 환산",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q25",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "기능통화 변경 근거",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q42",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "USD 강세 – 비용 측 영향",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q43",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure – 연말 미실현손실",
+          "source": "ECO 관련유형",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q52",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "FX 효과 – 경영 성과 평가",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q58",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "FX가 매출 증가에 미친 영향",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q61",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "세율 변경 효과 – Tax treaty",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q66",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Profit mix – 해외세율 효과 항목",
+          "source": "ECO 관련유형",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q67",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Sustainable sales growth",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q71",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Functional currency 정의",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q72",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Transaction exposure – 연말 미실현손익",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q73",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Current rate method – 총자산",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q76",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "미결제 외화거래 손익 – I/S",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q80",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal vs Current rate – 외화 약세",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q81",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – Stock 항목 재작성",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q85",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Presentation currency",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M3-Q86",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "외화 약세 – Current rate 영업이익↑",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "SCH-M3-02",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Temporal 노출 정의",
+          "source": "Schweser MQ",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "SCH-M3-10",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – 구매력 이익",
+          "source": "Schweser MQ",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "SCH-M3-11",
+          "module": "Module 3 – Multinational Operations",
+          "concept": "Hyperinflation – Flow 항목 계산 (변형)",
+          "source": "변형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 3 – Multinational Operations": {
+          "total": 26,
+          "answered": 26,
+          "correct": 22,
+          "accuracy": 0.8462
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Module 3 – Multinational Operations / Net sales growth 구성",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Transaction exposure – 연말 미실현손실",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / FX가 매출 증가에 미친 영향",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 3 – Multinational Operations / Functional currency 정의",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "exportedAt": "2026-10-17T09:17:12.315Z",
+      "mode": "review",
+      "startedAt": "2026-10-17T08:57:06.560Z",
+      "totalQuestions": 5,
+      "answered": 2,
+      "correct": 1,
+      "wrong": 1,
+      "accuracy": 0.5,
+      "questions": [
+        {
+          "id": "ECO-M6-Q2",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "DuPont – 레버리지 효과",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M6-Q17",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "부문 마진 유지 시 전체 마진",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q20",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Core 이익 조정",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q24",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "재작성(restatement) 요구 상황",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M6-Q27",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "분석 프레임워크 단계별 산출물",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 6 – Integration of FSA Techniques": {
+          "total": 5,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Module 6 – Integration of FSA Techniques / Core 이익 조정",
+          "wrong": 1
+        }
+      ]
+    },
+    {
+      "exportedAt": "2026-10-17T09:17:14.998Z",
+      "mode": "review",
+      "startedAt": "2026-10-17T08:57:06.560Z",
+      "totalQuestions": 5,
+      "answered": 2,
+      "correct": 1,
+      "wrong": 1,
+      "accuracy": 0.5,
+      "questions": [
+        {
+          "id": "ECO-M6-Q2",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "DuPont – 레버리지 효과",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M6-Q17",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "부문 마진 유지 시 전체 마진",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q20",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Core 이익 조정",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q24",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "재작성(restatement) 요구 상황",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M6-Q27",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "분석 프레임워크 단계별 산출물",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 6 – Integration of FSA Techniques": {
+          "total": 5,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Module 6 – Integration of FSA Techniques / Core 이익 조정",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
