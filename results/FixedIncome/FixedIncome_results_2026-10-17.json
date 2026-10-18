@@ -1,0 +1,183 @@
+{
+  "subject": "FixedIncome",
+  "date": "2026-10-17",
+  "latest": {
+    "totalQuestions": 15,
+    "answered": 15,
+    "correct": 15,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-17T07:13:05.620Z",
+      "mode": "review",
+      "startedAt": "2026-10-17T05:34:29.867Z",
+      "totalQuestions": 15,
+      "answered": 15,
+      "correct": 15,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "ECO-M1-Q13",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Swap rate 정의",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q18",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Bootstrapping – 5년 spot rate",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q27",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Riding the yield curve – swap rate을 회사채 수익률 대용",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q32",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Swap spread 계산·해석",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q36",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Term structure 이론 – Liquidity preference",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q50",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Level/Steepness/Curvature 3-factor model",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q51",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Level/Steepness/Curvature 3-factor model",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q58",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Spot/forward/DF → 채권 가치, YTM 비교(rich/cheap)",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q60",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Spread 지표 – TED / MRR–OIS / Z-spread",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q69",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Par rate 정의 & Bootstrapping 식",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q71",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "전통적 Term structure 이론 비교",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q75",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "YTM vs 실현수익률 (upward curve, forward대로 실현)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q80",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Bootstrapping 목적",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q87",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Swap spread vs I-spread vs G-spread",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M1-Q88",
+          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
+          "concept": "Segmented markets vs Preferred habitat",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 1 – Term Structure & Interest Rate Dynamics": {
+          "total": 15,
+          "answered": 15,
+          "correct": 15,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}

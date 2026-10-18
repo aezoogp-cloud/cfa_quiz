@@ -1,0 +1,103 @@
+{
+  "subject": "FixedIncome",
+  "date": "2026-10-18",
+  "latest": {
+    "totalQuestions": 7,
+    "answered": 7,
+    "correct": 7,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-18T09:28:34.581Z",
+      "mode": "review",
+      "startedAt": "2026-10-18T08:55:12.073Z",
+      "totalQuestions": 7,
+      "answered": 7,
+      "correct": 7,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "ECO-M5-Q1",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "CDS 결제 – Cash vs Physical settlement",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q5",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "CDS 청산 – protection buyer의 손익",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q20",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "CDS 청산 – seller, spread 축소",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q22",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "Basis trade 방향 – negative basis",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q23",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "Expected loss – 연도별 조건부 PD (ECO 방식)",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q31",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "CDS 가격 & upfront premium",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q34",
+          "module": "Module 5 – Credit Default Swaps",
+          "concept": "Basis trade – positive basis (Company A)",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 5 – Credit Default Swaps": {
+          "total": 7,
+          "answered": 7,
+          "correct": 7,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}
