@@ -2,36 +2,46 @@
   "subject": "PM",
   "date": "2026-10-19",
   "latest": {
-    "totalQuestions": 22,
-    "answered": 5,
-    "correct": 2,
+    "totalQuestions": 20,
+    "answered": 10,
+    "correct": 7,
     "wrong": 3
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-19T02:23:41.082Z",
+      "exportedAt": "2026-10-19T04:00:12.346Z",
       "mode": "all",
-      "startedAt": "2026-10-19T01:30:44.422Z",
-      "totalQuestions": 22,
-      "answered": 5,
-      "correct": 2,
+      "startedAt": "2026-10-19T03:38:32.215Z",
+      "totalQuestions": 20,
+      "answered": 10,
+      "correct": 7,
       "wrong": 3,
-      "accuracy": 0.4,
+      "accuracy": 0.7,
       "questions": [
         {
-          "id": "ECO-M2-Q1",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return ≠ alpha",
+          "id": "ECO-M3-Q1",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF의 primary/secondary market",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q7",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Tracking error 낮추는 요인",
           "source": "ECO 오답",
           "selected": "C",
-          "correctAnswer": "B",
+          "correctAnswer": "A",
           "isCorrect": false,
           "attempts": 1
         },
         {
-          "id": "ECO-M2-Q3",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Value added 계산",
+          "id": "ECO-M3-Q8",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Bid–ask spread 결정요인",
           "source": "ECO 오답",
           "selected": "C",
           "correctAnswer": "C",
@@ -39,9 +49,19 @@
           "attempts": 1
         },
         {
-          "id": "ECO-M2-Q4",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "벤치마크 요건: 투자 기회 반영",
+          "id": "ECO-M3-Q9",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "NAV 대비 프리미엄/할인 큰 ETF",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q10",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 총 보유비용 계산",
           "source": "ECO 오답",
           "selected": "B",
           "correctAnswer": "A",
@@ -49,39 +69,59 @@
           "attempts": 1
         },
         {
-          "id": "ECO-M2-Q6",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return 일관성 = IR",
+          "id": "ECO-M3-Q12",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Rolling holding period(tracking difference)",
           "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
+          "selected": "B",
+          "correctAnswer": "B",
           "isCorrect": true,
           "attempts": 1
         },
         {
-          "id": "ECO-M2-Q7",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "SR_P² = SR_B² + IR²",
+          "id": "ECO-M3-Q13",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Tracking error 정의",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q15",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF vs 뮤추얼펀드 자본이득 분배",
           "source": "ECO 오답",
           "selected": "A",
-          "correctAnswer": "B",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q16",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 분배: ROC vs 배당",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
           "isCorrect": false,
           "attempts": 1
         },
         {
-          "id": "ECO-M2-Q9",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return 달성 능력 = IR",
+          "id": "ECO-M3-Q19",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "고유동성 ETF spread: 창설·환매 비용 영향 작음",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q14",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "IR: 현금 추가 vs 액티브 비중 비례 확대",
+          "id": "ECO-M3-Q21",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Expectation-related risk",
           "source": "ECO 오답",
           "selected": null,
           "correctAnswer": "C",
@@ -89,29 +129,9 @@
           "attempts": 0
         },
         {
-          "id": "ECO-M2-Q16",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet index의 특징",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q19",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "최적 active risk와 비중",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q23",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "TC 정의",
+          "id": "ECO-M3-Q24",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 활용: transition management",
           "source": "ECO 오답",
           "selected": null,
           "correctAnswer": "C",
@@ -119,9 +139,59 @@
           "attempts": 0
         },
         {
-          "id": "ECO-M2-Q25",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "예측 능력 = IC",
+          "id": "ECO-M3-Q25",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 참여자 역할",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q27",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 유형별 위험 연결",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q30",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 활용: completion",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q31",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Smart beta ETF",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q35",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "ETF 주식 거래 특징",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M3-Q38",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Tactical ETF 선택: 거래량/자산 비율",
           "source": "ECO 오답",
           "selected": null,
           "correctAnswer": "C",
@@ -129,135 +199,45 @@
           "attempts": 0
         },
         {
-          "id": "ECO-M2-Q26",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "예측을 비중에 반영하는 능력 = TC",
+          "id": "ECO-M3-Q41",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Bid–ask spread 줄이는 요인",
           "source": "ECO 오답",
           "selected": null,
-          "correctAnswer": "B",
+          "correctAnswer": "A",
           "isCorrect": null,
           "attempts": 0
         },
         {
-          "id": "ECO-M2-Q43",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet indexer: 위험조정 가치 없음",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q45",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "매니저 선택 기준 = 기대 IR",
+          "id": "ECO-M3-Q42",
+          "module": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications",
+          "concept": "Settlement risk",
           "source": "ECO 오답",
           "selected": null,
           "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q50",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Breadth 정의",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q52",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Value added = RP − RB",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q56",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "IC와 TC의 의미 (correlation triangle)",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q63",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "파생상품 헤지 → Breadth ↑",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q66",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "TC = 예측 active return vs 액티브 비중",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-01",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet index 특징",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-02",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Fundamental law 계산",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-03",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "최적 active risk 계산",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "A",
           "isCorrect": null,
           "attempts": 0
         }
       ],
       "moduleAccuracy": {
-        "Reading 35 – Analysis of Active Portfolio Management": {
-          "total": 22,
-          "answered": 5,
-          "correct": 2,
-          "accuracy": 0.4
+        "Reading 36 – Exchange-Traded Funds: Mechanics and Applications": {
+          "total": 20,
+          "answered": 10,
+          "correct": 7,
+          "accuracy": 0.7
         }
       },
       "weakConcepts": [
         {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / Active return ≠ alpha",
+          "concept": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications / Tracking error 낮추는 요인",
           "wrong": 1
         },
         {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / 벤치마크 요건: 투자 기회 반영",
+          "concept": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications / ETF 총 보유비용 계산",
           "wrong": 1
         },
         {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / SR_P² = SR_B² + IR²",
+          "concept": "Reading 36 – Exchange-Traded Funds: Mechanics and Applications / ETF 분배: ROC vs 배당",
           "wrong": 1
         }
       ]
