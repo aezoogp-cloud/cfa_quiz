@@ -324,6 +324,7 @@ function exportResults(){
   };
   var all=store.get(EXPKEY)||{};
   all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
   var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
   var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
   var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
@@ -351,7 +352,7 @@ function applyResults(d, quiet){
   var idx=0; while(idx<order.length && round[order[idx]]) idx++;
   var done=idx>=order.length;
   S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
-     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz"};
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
   save(); render(); window.scrollTo(0,0);
   return true;
 }
@@ -367,15 +368,20 @@ function importResults(file){
 $("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
 $("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
 
-// 저장된 기록: 이 브라우저에 진행 기록이 없으면 자동으로 이어 풀고, 있으면 처음 화면에 버튼만 보여 준다.
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
 var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
 function loadRemote(){
   if(!window.fetch) return;
   fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
     if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
     var at=d.attempts[d.attempts.length-1];
     REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
-    if(!S || !S.order || !Object.keys(S.round||{}).length){ applyResults(d,true); }
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
     else if(S.view==="setup"){ setup(); }
   })["catch"](function(){});
 }
