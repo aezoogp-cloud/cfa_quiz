@@ -1,0 +1,266 @@
+{
+  "subject": "PM",
+  "date": "2026-10-19",
+  "latest": {
+    "totalQuestions": 22,
+    "answered": 5,
+    "correct": 2,
+    "wrong": 3
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-19T02:23:41.082Z",
+      "mode": "all",
+      "startedAt": "2026-10-19T01:30:44.422Z",
+      "totalQuestions": 22,
+      "answered": 5,
+      "correct": 2,
+      "wrong": 3,
+      "accuracy": 0.4,
+      "questions": [
+        {
+          "id": "ECO-M2-Q1",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Active return ≠ alpha",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q3",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Value added 계산",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q4",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "벤치마크 요건: 투자 기회 반영",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q6",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Active return 일관성 = IR",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q7",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "SR_P² = SR_B² + IR²",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q9",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Active return 달성 능력 = IR",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q14",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "IR: 현금 추가 vs 액티브 비중 비례 확대",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q16",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Closet index의 특징",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q19",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "최적 active risk와 비중",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q23",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "TC 정의",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q25",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "예측 능력 = IC",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q26",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "예측을 비중에 반영하는 능력 = TC",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q43",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Closet indexer: 위험조정 가치 없음",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q45",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "매니저 선택 기준 = 기대 IR",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q50",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Breadth 정의",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q52",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Value added = RP − RB",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q56",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "IC와 TC의 의미 (correlation triangle)",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q63",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "파생상품 헤지 → Breadth ↑",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q66",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "TC = 예측 active return vs 액티브 비중",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-01",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Closet index 특징",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-02",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "Fundamental law 계산",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-03",
+          "module": "Reading 35 – Analysis of Active Portfolio Management",
+          "concept": "최적 active risk 계산",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 35 – Analysis of Active Portfolio Management": {
+          "total": 22,
+          "answered": 5,
+          "correct": 2,
+          "accuracy": 0.4
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 35 – Analysis of Active Portfolio Management / Active return ≠ alpha",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 35 – Analysis of Active Portfolio Management / 벤치마크 요건: 투자 기회 반영",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 35 – Analysis of Active Portfolio Management / SR_P² = SR_B² + IR²",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
