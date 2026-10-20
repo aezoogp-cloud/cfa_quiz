@@ -1,0 +1,113 @@
+{
+  "subject": "Quant",
+  "date": "2026-10-21",
+  "latest": {
+    "totalQuestions": 8,
+    "answered": 2,
+    "correct": 2,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-20T22:48:06.876Z",
+      "mode": "all",
+      "startedAt": "2026-10-20T22:38:02.416Z",
+      "totalQuestions": 8,
+      "answered": 2,
+      "correct": 2,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "ECO-M2-Q2",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "AIC vs BIC – 적합도(fit)는 BIC",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q6",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "단측검정 귀무가설 설정 (b2 ≥ 0)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q7",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "로그 변수 계수 해석 (ln 2 × b1)",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q16",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "더미변수 포함 예측값 (Dow = 1)",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M2-Q25",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "예측값 – 유의하지 않은 계수도 포함",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-01",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "AIC vs BIC – 예측(forecast)은 AIC",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-02",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "t-통계량 – 귀무가설 값이 0이 아닐 때",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "VAR-M2-03",
+          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
+          "concept": "가설 설정 – 보이고 싶은 주장은 Ha",
+          "source": "변형",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results": {
+          "total": 8,
+          "answered": 2,
+          "correct": 2,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}
