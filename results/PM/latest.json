@@ -1,347 +1,108 @@
 {
   "subject": "PM",
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "latest": {
-    "totalQuestions": 6,
-    "answered": 6,
+    "totalQuestions": 7,
+    "answered": 7,
     "correct": 6,
-    "wrong": 0
+    "wrong": 1
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-19T02:23:41.082Z",
-      "mode": "all",
-      "startedAt": "2026-10-19T01:30:44.422Z",
-      "totalQuestions": 22,
-      "answered": 5,
-      "correct": 2,
-      "wrong": 3,
-      "accuracy": 0.4,
+      "exportedAt": "2026-10-20T03:59:52.700Z",
+      "mode": "review",
+      "startedAt": "2026-10-20T02:42:02.958Z",
+      "totalQuestions": 7,
+      "answered": 7,
+      "correct": 6,
+      "wrong": 1,
+      "accuracy": 0.8571,
       "questions": [
         {
-          "id": "ECO-M2-Q1",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return ≠ alpha",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M2-Q3",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Value added 계산",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M2-Q4",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "벤치마크 요건: 투자 기회 반영",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "A",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M2-Q6",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return 일관성 = IR",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M2-Q7",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "SR_P² = SR_B² + IR²",
+          "id": "ECO-M5-Q5",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "VaR 한계: 유동성 위험 미반영",
           "source": "ECO 오답",
           "selected": "A",
-          "correctAnswer": "B",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q7",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "VaR 한계: 변동성 국면 변화",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
           "isCorrect": false,
-          "attempts": 1
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q9",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Active return 달성 능력 = IR",
+          "id": "ECO-M5-Q26",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "채권 비중 큰 포트폴리오 → duration",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q14",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "IR: 현금 추가 vs 액티브 비중 비례 확대",
+          "id": "ECO-M5-Q48",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "경제적 자본 대비 수익률 vs hurdle rate",
           "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q16",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet index의 특징",
-          "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q19",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "최적 active risk와 비중",
+          "id": "ECO-M5-Q52",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "기관 유형별 위험 지표",
           "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q23",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "TC 정의",
+          "id": "ECO-M5-Q63",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "한 번도 없던 극단 사건 → stress test",
           "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q25",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "예측 능력 = IC",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q26",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "예측을 비중에 반영하는 능력 = TC",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q43",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet indexer: 위험조정 가치 없음",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q45",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "매니저 선택 기준 = 기대 IR",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q50",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Breadth 정의",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q52",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Value added = RP − RB",
-          "source": "ECO 오답",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q56",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "IC와 TC의 의미 (correlation triangle)",
+          "id": "ECO-M5-Q67",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "Position limit",
           "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q63",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "파생상품 헤지 → Breadth ↑",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q66",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "TC = 예측 active return vs 액티브 비중",
-          "source": "ECO 오답",
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-01",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Closet index 특징",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-02",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "Fundamental law 계산",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "VAR-M2-03",
-          "module": "Reading 35 – Analysis of Active Portfolio Management",
-          "concept": "최적 active risk 계산",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         }
       ],
       "moduleAccuracy": {
-        "Reading 35 – Analysis of Active Portfolio Management": {
-          "total": 22,
-          "answered": 5,
-          "correct": 2,
-          "accuracy": 0.4
+        "Reading 38 – Measuring and Managing Market Risk": {
+          "total": 7,
+          "answered": 7,
+          "correct": 6,
+          "accuracy": 0.8571
         }
       },
       "weakConcepts": [
         {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / Active return ≠ alpha",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / 벤치마크 요건: 투자 기회 반영",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 35 – Analysis of Active Portfolio Management / SR_P² = SR_B² + IR²",
+          "concept": "Reading 38 – Measuring and Managing Market Risk / VaR 한계: 변동성 국면 변화",
           "wrong": 1
         }
       ]
-    },
-    {
-      "exportedAt": "2026-10-19T08:44:03.721Z",
-      "mode": "review",
-      "startedAt": "2026-10-19T07:29:12.577Z",
-      "totalQuestions": 6,
-      "answered": 6,
-      "correct": 6,
-      "wrong": 0,
-      "accuracy": 1,
-      "questions": [
-        {
-          "id": "ECO-M4-Q8",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "Surprise 결합 효과 비교",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M4-Q28",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "요인 노출과 투자자 적합성",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M4-Q31",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "Fundamental 모형 기대수익률 계산",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M4-Q33",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "요인별 active return 기여",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M4-Q60",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "Macro 모형 기대수익률 = 가중 절편",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "VAR-M4-03",
-          "module": "Reading 37 – Using Multifactor Models",
-          "concept": "요인별 active return 기여 (음수 요인)",
-          "source": "변형",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        }
-      ],
-      "moduleAccuracy": {
-        "Reading 37 – Using Multifactor Models": {
-          "total": 6,
-          "answered": 6,
-          "correct": 6,
-          "accuracy": 1
-        }
-      },
-      "weakConcepts": []
     }
   ]
 }

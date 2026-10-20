@@ -1,0 +1,108 @@
+{
+  "subject": "PM",
+  "date": "2026-10-20",
+  "latest": {
+    "totalQuestions": 7,
+    "answered": 7,
+    "correct": 6,
+    "wrong": 1
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-20T03:59:52.700Z",
+      "mode": "review",
+      "startedAt": "2026-10-20T02:42:02.958Z",
+      "totalQuestions": 7,
+      "answered": 7,
+      "correct": 6,
+      "wrong": 1,
+      "accuracy": 0.8571,
+      "questions": [
+        {
+          "id": "ECO-M5-Q5",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "VaR 한계: 유동성 위험 미반영",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q7",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "VaR 한계: 변동성 국면 변화",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q26",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "채권 비중 큰 포트폴리오 → duration",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q48",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "경제적 자본 대비 수익률 vs hurdle rate",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q52",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "기관 유형별 위험 지표",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q63",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "한 번도 없던 극단 사건 → stress test",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M5-Q67",
+          "module": "Reading 38 – Measuring and Managing Market Risk",
+          "concept": "Position limit",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 38 – Measuring and Managing Market Risk": {
+          "total": 7,
+          "answered": 7,
+          "correct": 6,
+          "accuracy": 0.8571
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 38 – Measuring and Managing Market Risk / VaR 한계: 변동성 국면 변화",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
