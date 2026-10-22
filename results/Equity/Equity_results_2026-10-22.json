@@ -1,0 +1,158 @@
+{
+  "subject": "Equity",
+  "date": "2026-10-22",
+  "latest": {
+    "totalQuestions": 12,
+    "answered": 12,
+    "correct": 11,
+    "wrong": 1
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-22T12:29:53.003Z",
+      "mode": "review",
+      "startedAt": "2026-10-22T10:41:23.617Z",
+      "totalQuestions": 12,
+      "answered": 12,
+      "correct": 11,
+      "wrong": 1,
+      "accuracy": 0.9167,
+      "questions": [
+        {
+          "id": "ECO-M2-Q7",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "DDM 적합성 판단",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q15",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "PVGO – P/E의 성장 성분 (PVGO/E1)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q21",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "Gordon growth – 적정가격이면 자본이득률 = g",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q24",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "Gordon growth model 적용 조건",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q27",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "3-stage DDM (H-model in stage 2·3)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q29",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "2-stage DDM – 1단계 말 terminal value의 의미",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q36",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "Sustainable growth → 배당성향",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q39",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "모형 선택 – FCFF (비배당·인수대상·레버리지 변화)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q43",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "모형 선택 – RI (배당 불규칙 + FCF 음수)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q44",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "Gordon growth model – D1 사용",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q58",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "성장 단계 판정 – 명목 GDP 성장률 비교",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q59",
+          "module": "Reading 18 – Discounted Dividend Valuation",
+          "concept": "Gordon growth – 과거 배당성장률 사용, 미스프라이싱 기준",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 18 – Discounted Dividend Valuation": {
+          "total": 12,
+          "answered": 12,
+          "correct": 11,
+          "accuracy": 0.9167
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 18 – Discounted Dividend Valuation / Gordon growth – 적정가격이면 자본이득률 = g",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
