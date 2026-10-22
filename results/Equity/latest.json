@@ -1,155 +1,271 @@
 {
   "subject": "Equity",
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "latest": {
-    "totalQuestions": 12,
-    "answered": 12,
-    "correct": 11,
-    "wrong": 1
+    "totalQuestions": 20,
+    "answered": 20,
+    "correct": 10,
+    "wrong": 10
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-22T12:29:53.003Z",
-      "mode": "review",
-      "startedAt": "2026-10-22T10:41:23.617Z",
-      "totalQuestions": 12,
-      "answered": 12,
-      "correct": 11,
-      "wrong": 1,
-      "accuracy": 0.9167,
+      "exportedAt": "2026-10-22T22:56:58.404Z",
+      "mode": "all",
+      "startedAt": "2026-10-22T20:46:50.127Z",
+      "totalQuestions": 20,
+      "answered": 20,
+      "correct": 10,
+      "wrong": 10,
+      "accuracy": 0.5,
       "questions": [
         {
-          "id": "ECO-M2-Q7",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "DDM 적합성 판단",
+          "id": "ECO-M3-Q13",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "Single-stage FCFF → equity value (target debt ratio)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q26",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFE 계산 (NI 기준) – net borrowing 포함 범위",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q27",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCF 성장 원천 – 재고 감소의 한계",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q36",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "Sensitivity analysis – range(가치 차이)로 판단",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q37",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "Total firm value = 영업자산 + 비영업자산",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q54",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "Single-stage FCFF – 주당가치",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q56",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "자사주매입은 FCFE에 영향 없음",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q60",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "3-stage FCFF 모형 특징",
           "source": "ECO 오답",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q15",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "PVGO – P/E의 성장 성분 (PVGO/E1)",
+          "id": "ECO-M3-Q61",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "EBITDA가 FCFE의 나쁜 대용치인 이유",
           "source": "ECO 오답",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q21",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "Gordon growth – 적정가격이면 자본이득률 = g",
+          "id": "ECO-M3-Q62",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "비현금 항목 조정 – 구조조정 환입·처분이익",
           "source": "ECO 오답",
           "selected": "C",
           "correctAnswer": "A",
           "isCorrect": false,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q24",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "Gordon growth model 적용 조건",
+          "id": "ECO-M3-Q63",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "2-stage FCFE – 시점 처리",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q64",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFF 계산 – 운전자본 감소(음의 WCInv)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q65",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFF → FCFE (net borrowing 음수)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q66",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFF 가치 → 주당가치 (WACC 할인)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q67",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFE 예측 (목표부채비율 방식)",
           "source": "ECO 오답",
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q27",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "3-stage DDM (H-model in stage 2·3)",
+          "id": "ECO-M3-Q69",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCF vs DDM, FCFF vs FCFE 선택",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q74",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "FCFF 계산 – NWC 감소는 현금 원천",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q77",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "CFO → FCFF (US GAAP)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M3-Q81",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "인수 대상 평가 – FCF 사용",
           "source": "ECO 오답",
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "ECO-M2-Q29",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "2-stage DDM – 1단계 말 terminal value의 의미",
+          "id": "ECO-M3-Q87",
+          "module": "Reading 19 – Free Cash Flow Valuation",
+          "concept": "Sensitivity analysis – range 비교",
           "source": "ECO 오답",
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q36",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "Sustainable growth → 배당성향",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q39",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "모형 선택 – FCFF (비배당·인수대상·레버리지 변화)",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q43",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "모형 선택 – RI (배당 불규칙 + FCF 음수)",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q44",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "Gordon growth model – D1 사용",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q58",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "성장 단계 판정 – 명목 GDP 성장률 비교",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M2-Q59",
-          "module": "Reading 18 – Discounted Dividend Valuation",
-          "concept": "Gordon growth – 과거 배당성장률 사용, 미스프라이싱 기준",
-          "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         }
       ],
       "moduleAccuracy": {
-        "Reading 18 – Discounted Dividend Valuation": {
-          "total": 12,
-          "answered": 12,
-          "correct": 11,
-          "accuracy": 0.9167
+        "Reading 19 – Free Cash Flow Valuation": {
+          "total": 20,
+          "answered": 20,
+          "correct": 10,
+          "accuracy": 0.5
         }
       },
       "weakConcepts": [
         {
-          "concept": "Reading 18 – Discounted Dividend Valuation / Gordon growth – 적정가격이면 자본이득률 = g",
+          "concept": "Reading 19 – Free Cash Flow Valuation / Single-stage FCFF → equity value (target debt ratio)",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / FCF 성장 원천 – 재고 감소의 한계",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / Sensitivity analysis – range(가치 차이)로 판단",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / Total firm value = 영업자산 + 비영업자산",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / 비현금 항목 조정 – 구조조정 환입·처분이익",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / 2-stage FCFE – 시점 처리",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / FCFF → FCFE (net borrowing 음수)",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / FCFF 가치 → 주당가치 (WACC 할인)",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / FCF vs DDM, FCFF vs FCFE 선택",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 19 – Free Cash Flow Valuation / FCFF 계산 – NWC 감소는 현금 원천",
           "wrong": 1
         }
       ]
