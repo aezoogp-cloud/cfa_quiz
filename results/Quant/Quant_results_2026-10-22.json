@@ -1,0 +1,133 @@
+{
+  "subject": "Quant",
+  "date": "2026-10-22",
+  "latest": {
+    "totalQuestions": 10,
+    "answered": 10,
+    "correct": 10,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-22T10:27:26.822Z",
+      "mode": "review",
+      "startedAt": "2026-10-22T09:54:39.903Z",
+      "totalQuestions": 10,
+      "answered": 10,
+      "correct": 10,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "ECO-M7-Q10",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "단어 빈도 시각화 → word cloud",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q18",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "텍스트 정제·가공 완료 토큰 (stemming, n-gram)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q20",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "TF 너무 높음·너무 낮음 → 둘 다 제거",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q26",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "IDF·TF-IDF 정의",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q31",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "모델 학습 3단계 (선택→평가→튜닝)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q32",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "텍스트 정제 단계 vs 가공 단계",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q34",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "실제 1, 예측 0 → Type II error",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q35",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "클래스 불균형 → F1 score",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q42",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "N-grams – 다단어 패턴 유지",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q43",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "Type I error = 거짓 양성",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 4 · M7 – Big Data Projects": {
+          "total": 10,
+          "answered": 10,
+          "correct": 10,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}

@@ -1,109 +1,129 @@
 {
   "subject": "Quant",
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "latest": {
-    "totalQuestions": 8,
-    "answered": 2,
-    "correct": 2,
+    "totalQuestions": 10,
+    "answered": 10,
+    "correct": 10,
     "wrong": 0
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-20T22:48:06.876Z",
-      "mode": "all",
-      "startedAt": "2026-10-20T22:38:02.416Z",
-      "totalQuestions": 8,
-      "answered": 2,
-      "correct": 2,
+      "exportedAt": "2026-10-22T10:27:26.822Z",
+      "mode": "review",
+      "startedAt": "2026-10-22T09:54:39.903Z",
+      "totalQuestions": 10,
+      "answered": 10,
+      "correct": 10,
       "wrong": 0,
       "accuracy": 1,
       "questions": [
         {
-          "id": "ECO-M2-Q2",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "AIC vs BIC – 적합도(fit)는 BIC",
+          "id": "ECO-M7-Q10",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "단어 빈도 시각화 → word cloud",
           "source": "ECO 오답",
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
-          "attempts": 1
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q6",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "단측검정 귀무가설 설정 (b2 ≥ 0)",
+          "id": "ECO-M7-Q18",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "텍스트 정제·가공 완료 토큰 (stemming, n-gram)",
           "source": "ECO 오답",
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 1
+          "attempts": 2
         },
         {
-          "id": "ECO-M2-Q7",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "로그 변수 계수 해석 (ln 2 × b1)",
+          "id": "ECO-M7-Q20",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "TF 너무 높음·너무 낮음 → 둘 다 제거",
           "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q16",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "더미변수 포함 예측값 (Dow = 1)",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M2-Q25",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "예측값 – 유의하지 않은 계수도 포함",
-          "source": "ECO 오답",
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "VAR-M2-01",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "AIC vs BIC – 예측(forecast)은 AIC",
-          "source": "변형",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "id": "ECO-M7-Q26",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "IDF·TF-IDF 정의",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "VAR-M2-02",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "t-통계량 – 귀무가설 값이 0이 아닐 때",
-          "source": "변형",
-          "selected": null,
+          "id": "ECO-M7-Q31",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "모델 학습 3단계 (선택→평가→튜닝)",
+          "source": "ECO 오답",
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
         },
         {
-          "id": "VAR-M2-03",
-          "module": "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results",
-          "concept": "가설 설정 – 보이고 싶은 주장은 Ha",
-          "source": "변형",
-          "selected": null,
+          "id": "ECO-M7-Q32",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "텍스트 정제 단계 vs 가공 단계",
+          "source": "ECO 오답",
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q34",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "실제 1, 예측 0 → Type II error",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q35",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "클래스 불균형 → F1 score",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q42",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "N-grams – 다단어 패턴 유지",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M7-Q43",
+          "module": "Reading 4 · M7 – Big Data Projects",
+          "concept": "Type I error = 거짓 양성",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
         }
       ],
       "moduleAccuracy": {
-        "Reading 1 · M2 – Evaluating Regression Model Fit and Interpreting Model Results": {
-          "total": 8,
-          "answered": 2,
-          "correct": 2,
+        "Reading 4 · M7 – Big Data Projects": {
+          "total": 10,
+          "answered": 10,
+          "correct": 10,
           "accuracy": 1
         }
       },
