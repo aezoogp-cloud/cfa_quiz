@@ -195,25 +195,33 @@ function header(){
 /* ---------- setup screen ---------- */
 function setup(){
   S && (S.view="setup", save());
-  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
-  var opts='<option value="all">전체 모듈 ('+Q.length+'문제)</option>'+Object.keys(MN).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  function isEco(q){ return q.src==="ECO 오답"; }
+  var counts={}, eco={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1; if(isEco(q)) eco[q.module]=(eco[q.module]||0)+1;});
+  var ecoAll=Q.filter(isEco).length;
+  var opts='<option value="all">전체 모듈 (ECO 오답 '+ecoAll+' / 전체 '+Q.length+')</option>'+Object.keys(MN).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' (ECO 오답 '+(eco[m]||0)+' / 전체 '+counts[m]+')</option>';}).join("");
   var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
   var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
   $("view").innerHTML =
-   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Equity 전체 Reading 오답 퀴즈 (R17–R22)</h2>'+
-   '<p class="muted">ECO에서 틀린 114문제 전부 + 오답 개념과 연결된 ECO 정답 유형 17문제 + Schweser Module Quiz 28문제 + 변형 6문제 (총 165문제). 정답은 ECO 원본·Schweser 해답 기준, 해설은 Schweser 기준으로 작성했습니다.</p>'+
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Alternative Investments 오답 퀴즈</h2>'+
+   '<p class="muted">ECO에서 틀린 '+ecoAll+'문제 + 변형 '+(Q.length-ecoAll)+'문제 (총 '+Q.length+'문제). 정답은 ECO 원본 기준, 해설과 변형 문제는 Schweser 기준으로 작성했습니다. 범위를 고르고 "ECO 오답 풀기"를 누르면 ECO 오답만 나옵니다. 변형 문제는 "변형 문제 풀기" 버튼으로 따로 풉니다.</p>'+
    '<label>범위 <select id="selMod">'+opts+'</select></label>'+
-   '<label>출처 <select id="selSrc"><option value="all">전체</option><option value="wrong">ECO 오답만 (114)</option><option value="nowrong">오답 외 문제만</option></select></label>'+
    '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스(안 푼 문제 넘기기) · ← 이전 문제</p>'+
-   '<div class="nav" style="justify-content:flex-start">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">새로 시작</button></div></section>';
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">ECO 오답 풀기</button> <button class="btn" id="bExtra">변형 문제 풀기</button></div></section>';
   if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
   if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
-  $("bStart").onclick=function(){
-    var m=$("selMod").value, s=$("selSrc").value;
-    var order=Q.filter(function(q){ return (m==="all"||String(q.module)===m) && (s==="all"||(s==="wrong"?q.src==="ECO 오답":q.src!=="ECO 오답")); }).map(function(q){return q.id;});
-    if(!order.length) return;
+  function start(wantEco){
+    var m=$("selMod").value;
+    var order=Q.filter(function(q){ return (m==="all"||String(q.module)===m) && isEco(q)===wantEco; }).map(function(q){return q.id;});
+    if(!order.length){ alert(wantEco?"이 범위에는 ECO 오답 문제가 없습니다.":"이 범위에는 변형 문제가 없습니다."); return; }
     S=fresh(order,"all"); save(); render();
-  };
+  }
+  function labels(){
+    var m=$("selMod").value, n=Q.filter(function(q){return m==="all"||String(q.module)===m;}), e=n.filter(isEco).length;
+    $("bStart").textContent="ECO 오답 풀기 ("+e+")"; $("bExtra").textContent="변형 문제 풀기 ("+(n.length-e)+")";
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(true); };
+  $("bExtra").onclick=function(){ start(false); };
   header();
 }
 
