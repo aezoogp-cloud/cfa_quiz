@@ -2,90 +2,50 @@
   "subject": "CorpIssuer",
   "date": "2026-10-23",
   "latest": {
-    "totalQuestions": 27,
-    "answered": 10,
-    "correct": 5,
-    "wrong": 5
+    "totalQuestions": 10,
+    "answered": 2,
+    "correct": 2,
+    "wrong": 0
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-23T05:02:04.597Z",
-      "mode": "all",
+      "exportedAt": "2026-10-23T06:21:12.231Z",
+      "mode": "review",
       "startedAt": "2026-10-22T23:19:08.242Z",
-      "totalQuestions": 27,
-      "answered": 10,
-      "correct": 5,
-      "wrong": 5,
-      "accuracy": 0.5,
+      "totalQuestions": 10,
+      "answered": 2,
+      "correct": 2,
+      "wrong": 0,
+      "accuracy": 1,
       "questions": [
-        {
-          "id": "ECO-M1-Q7",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "차입 자사주매입 EPS: E/P vs 세후 차입비용",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 1
-        },
         {
           "id": "ECO-M1-Q12",
           "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
           "concept": "Tax-exempt clientele: 배당락 가격으로 재투자",
           "source": "ECO 오답",
-          "selected": "B",
-          "correctAnswer": "C",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q15",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "배당정책 결정요인: 낮은 payout과 무관한 것",
-          "source": "ECO 오답",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 1
+          "attempts": 2
         },
         {
           "id": "ECO-M1-Q17",
           "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
           "concept": "Stable dividend policy",
           "source": "ECO 오답",
-          "selected": "C",
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q18",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "잉여현금 자사주매입 EPS",
-          "source": "ECO 오답",
-          "selected": "C",
-          "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q20",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "차입 자사주매입 EPS: E/P vs 세후 차입비용",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 1
+          "attempts": 2
         },
         {
           "id": "ECO-M1-Q22",
           "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
           "concept": "자사주매입 BVPS: 매입가 vs BVPS",
           "source": "ECO 오답",
-          "selected": "B",
+          "selected": null,
           "correctAnswer": "C",
-          "isCorrect": false,
+          "isCorrect": null,
           "attempts": 1
         },
         {
@@ -93,19 +53,9 @@
           "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
           "concept": "자사주매입 방법: 주가 하락 시 지지 → Open market",
           "source": "ECO 오답",
-          "selected": "B",
+          "selected": null,
           "correctAnswer": "A",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q32",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 vs 배당: 현금 분배 대상",
-          "source": "ECO 오답",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
+          "isCorrect": null,
           "attempts": 1
         },
         {
@@ -113,50 +63,10 @@
           "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
           "concept": "자사주매입 방법: 프리미엄 → Fixed-price tender",
           "source": "ECO 오답",
-          "selected": "C",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": false,
+          "isCorrect": null,
           "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q35",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입과 D/E covenant",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q37",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Stock dividend 후 주가",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q38",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Stock dividend: 세금·레버리지·flotation cost",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q40",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Stock dividend → float↑ → 변동성↓",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
         },
         {
           "id": "ECO-M1-Q48",
@@ -166,17 +76,7 @@
           "selected": null,
           "correctAnswer": "A",
           "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q49",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "배당 지속 불가능 신호",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "attempts": 1
         },
         {
           "id": "ECO-M1-Q51",
@@ -186,17 +86,7 @@
           "selected": null,
           "correctAnswer": "A",
           "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q52",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "차입 자사주매입 EPS: E/P vs 세후 차입비용",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
+          "attempts": 1
         },
         {
           "id": "ECO-M1-Q54",
@@ -206,17 +96,7 @@
           "selected": null,
           "correctAnswer": "C",
           "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q55",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "FCFE coverage ratio 계산",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "attempts": 1
         },
         {
           "id": "ECO-M1-Q57",
@@ -226,37 +106,7 @@
           "selected": null,
           "correctAnswer": "B",
           "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q61",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "배당 삭감 위험: dividend coverage",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q62",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "MM vs Graham·Dodd(bird-in-hand)",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q63",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Stock dividend 회계: RE → 납입자본",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
+          "attempts": 1
         },
         {
           "id": "ECO-M1-Q64",
@@ -266,59 +116,18 @@
           "selected": null,
           "correctAnswer": "A",
           "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q66",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 방법: 속도 → Fixed-price tender",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
-        },
-        {
-          "id": "ECO-M1-Q67",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 BVPS 계산",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "attempts": 1
         }
       ],
       "moduleAccuracy": {
         "Reading 13 – Analysis of Dividends and Share Repurchases": {
-          "total": 27,
-          "answered": 10,
-          "correct": 5,
-          "accuracy": 0.5
+          "total": 10,
+          "answered": 2,
+          "correct": 2,
+          "accuracy": 1
         }
       },
-      "weakConcepts": [
-        {
-          "concept": "Reading 13 – Analysis of Dividends and Share Repurchases / Tax-exempt clientele: 배당락 가격으로 재투자",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 13 – Analysis of Dividends and Share Repurchases / Stable dividend policy",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 13 – Analysis of Dividends and Share Repurchases / 자사주매입 BVPS: 매입가 vs BVPS",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 13 – Analysis of Dividends and Share Repurchases / 자사주매입 방법: 주가 하락 시 지지 → Open market",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 13 – Analysis of Dividends and Share Repurchases / 자사주매입 방법: 프리미엄 → Fixed-price tender",
-          "wrong": 1
-        }
-      ]
+      "weakConcepts": []
     }
   ]
 }
