@@ -1,0 +1,88 @@
+{
+  "subject": "Economics",
+  "date": "2026-10-25",
+  "latest": {
+    "totalQuestions": 5,
+    "answered": 5,
+    "correct": 4,
+    "wrong": 1
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-25T08:56:09.523Z",
+      "mode": "review",
+      "startedAt": "2026-10-25T08:06:11.917Z",
+      "totalQuestions": 5,
+      "answered": 5,
+      "correct": 4,
+      "wrong": 1,
+      "accuracy": 0.8,
+      "questions": [
+        {
+          "id": "ECO-M2-Q2",
+          "module": "Reading 6 – Economic Growth",
+          "concept": "Capital deepening 기여 = 노동생산성 성장 − TFP 성장",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q37",
+          "module": "Reading 6 – Economic Growth",
+          "concept": "Classical vs Endogenous – steady state·체감은 neoclassical 개념",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q44",
+          "module": "Reading 6 – Economic Growth",
+          "concept": "Grinold–Kroner – 경제성장이 주식수익률로 가는 주 경로 = EPS 성장",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q51",
+          "module": "Reading 6 – Economic Growth",
+          "concept": "기술 진보 → 인구 증가 가정 = Classical",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q68",
+          "module": "Reading 6 – Economic Growth",
+          "concept": "성장 제약 요인 – 창업 억제 세제는 개도국에 더 흔함",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 6 – Economic Growth": {
+          "total": 5,
+          "answered": 5,
+          "correct": 4,
+          "accuracy": 0.8
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 6 – Economic Growth / 성장 제약 요인 – 창업 억제 세제는 개도국에 더 흔함",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
