@@ -1,0 +1,112 @@
+{
+  "subject": "Equity",
+  "date": "2026-10-25",
+  "latest": {
+    "totalQuestions": 7,
+    "answered": 7,
+    "correct": 5,
+    "wrong": 2
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-25T06:08:02.357Z",
+      "mode": "review",
+      "startedAt": "2026-10-25T05:04:43.290Z",
+      "totalQuestions": 7,
+      "answered": 7,
+      "correct": 5,
+      "wrong": 2,
+      "accuracy": 0.7143,
+      "questions": [
+        {
+          "id": "ECO-M6-Q14",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "EV/Sales → equity value",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q25",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "CCM (FCFE) – 자기자본가치",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q26",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "Normalized operating income after taxes",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q27",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "FCFF → equity (WACC, 당해 FCFF = 1기)",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q29",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "Build-up method → WACC",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q30",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "Capitalization rate = WACC − g",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M6-Q42",
+          "module": "Reading 22 – Private Company Valuation",
+          "concept": "비상장사 특성 – 경영진 지배의 장점",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 22 – Private Company Valuation": {
+          "total": 7,
+          "answered": 7,
+          "correct": 5,
+          "accuracy": 0.7143
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 22 – Private Company Valuation / FCFF → equity (WACC, 당해 FCFF = 1기)",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 22 – Private Company Valuation / Build-up method → WACC",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
