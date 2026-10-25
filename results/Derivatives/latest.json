@@ -1,0 +1,162 @@
+{
+  "subject": "Derivatives",
+  "date": "2026-10-25",
+  "latest": {
+    "totalQuestions": 12,
+    "answered": 12,
+    "correct": 10,
+    "wrong": 2
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-25T06:08:12.308Z",
+      "mode": "review",
+      "startedAt": "2026-10-24T06:32:38.764Z",
+      "totalQuestions": 12,
+      "answered": 12,
+      "correct": 10,
+      "wrong": 2,
+      "accuracy": 0.8333,
+      "questions": [
+        {
+          "id": "ECO-M2-Q15",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "금리 option 기초변수 = FRA rate, 옵션 만기",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q22",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "무차익·기대값 접근은 투자자 전망과 무관",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q34",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "2기간 이항 call 가치",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q38",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "Gamma = delta의 변화율",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q50",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "금리 call option – 노드별 할인계수",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q59",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "Delta hedge – put 매도 계약 수",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q75",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "금리 put option – 2기간 이항",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q80",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "Volatility smile = IV vs 행사가",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q83",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "Black model put = bond − futures 성분",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q87",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "특별배당 → put 가치 ↑ → short put 손해",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q90",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "IV는 행사가·만기별로 다름",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "ECO-M2-Q95",
+          "module": "Reading 29 – Valuation of Contingent Claims",
+          "concept": "1기간 이항 call – π에 1 + r",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 29 – Valuation of Contingent Claims": {
+          "total": 12,
+          "answered": 12,
+          "correct": 10,
+          "accuracy": 0.8333
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 29 – Valuation of Contingent Claims / Gamma = delta의 변화율",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 29 – Valuation of Contingent Claims / 금리 call option – 노드별 할인계수",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
