@@ -1,0 +1,154 @@
+{
+  "subject": "CorpIssuer",
+  "date": "2026-10-26",
+  "latest": {
+    "totalQuestions": 10,
+    "answered": 10,
+    "correct": 5,
+    "wrong": 5
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-26T08:02:22.881Z",
+      "mode": "all",
+      "startedAt": "2026-10-26T07:29:18.677Z",
+      "totalQuestions": 10,
+      "answered": 10,
+      "correct": 5,
+      "wrong": 5,
+      "accuracy": 0.5,
+      "questions": [
+        {
+          "id": "SCH-R14-01",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "소유구조와 principal–agent 문제",
+          "source": "Schweser MQ",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-R14-02",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Two-tier board",
+          "source": "Schweser MQ",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-R14-03",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "CEO duality",
+          "source": "Schweser MQ",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-R14-04",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "채권 ESG 분석 초점",
+          "source": "Schweser MQ",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-01",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "ESG 식별 방법: Industry organizations",
+          "source": "변형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-02",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Green bond 특징",
+          "source": "변형",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-03",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "차등의결권 → principal–principal",
+          "source": "변형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-04",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Voting caps",
+          "source": "변형",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-05",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Special voting arrangements",
+          "source": "변형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-06",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "주식 ESG 통합: 할인율 조정",
+          "source": "변형",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis": {
+          "total": 10,
+          "answered": 10,
+          "correct": 5,
+          "accuracy": 0.5
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / 소유구조와 principal–agent 문제",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Two-tier board",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / CEO duality",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Green bond 특징",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Voting caps",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}

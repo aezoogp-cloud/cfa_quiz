@@ -1,133 +1,154 @@
 {
   "subject": "CorpIssuer",
-  "date": "2026-10-23",
+  "date": "2026-10-26",
   "latest": {
     "totalQuestions": 10,
-    "answered": 2,
-    "correct": 2,
-    "wrong": 0
+    "answered": 10,
+    "correct": 5,
+    "wrong": 5
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-23T06:21:12.231Z",
-      "mode": "review",
-      "startedAt": "2026-10-22T23:19:08.242Z",
+      "exportedAt": "2026-10-26T08:02:22.881Z",
+      "mode": "all",
+      "startedAt": "2026-10-26T07:29:18.677Z",
       "totalQuestions": 10,
-      "answered": 2,
-      "correct": 2,
-      "wrong": 0,
-      "accuracy": 1,
+      "answered": 10,
+      "correct": 5,
+      "wrong": 5,
+      "accuracy": 0.5,
       "questions": [
         {
-          "id": "ECO-M1-Q12",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Tax-exempt clientele: 배당락 가격으로 재투자",
-          "source": "ECO 오답",
+          "id": "SCH-R14-01",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "소유구조와 principal–agent 문제",
+          "source": "Schweser MQ",
           "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
         },
         {
-          "id": "ECO-M1-Q17",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Stable dividend policy",
-          "source": "ECO 오답",
+          "id": "SCH-R14-02",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Two-tier board",
+          "source": "Schweser MQ",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-R14-03",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "CEO duality",
+          "source": "Schweser MQ",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "SCH-R14-04",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "채권 ESG 분석 초점",
+          "source": "Schweser MQ",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-01",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "ESG 식별 방법: Industry organizations",
+          "source": "변형",
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "ECO-M1-Q22",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 BVPS: 매입가 vs BVPS",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
           "attempts": 1
         },
         {
-          "id": "ECO-M1-Q24",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 방법: 주가 하락 시 지지 → Open market",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q34",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "자사주매입 방법: 프리미엄 → Fixed-price tender",
-          "source": "ECO 오답",
-          "selected": null,
+          "id": "VAR-M2-02",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Green bond 특징",
+          "source": "변형",
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
-          "id": "ECO-M1-Q48",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "FCFE coverage ratio로 배당 안전성 비교",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q51",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Target payout adjustment model",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q54",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "글로벌 배당정책 추세",
-          "source": "ECO 오답",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "ECO-M1-Q57",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Agency 문제(과잉투자) 완화 → 현금배당",
-          "source": "ECO 오답",
-          "selected": null,
+          "id": "VAR-M2-03",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "차등의결권 → principal–principal",
+          "source": "변형",
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
-          "id": "ECO-M1-Q64",
-          "module": "Reading 13 – Analysis of Dividends and Share Repurchases",
-          "concept": "Imputation 세제 유효세율",
-          "source": "ECO 오답",
-          "selected": null,
+          "id": "VAR-M2-04",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Voting caps",
+          "source": "변형",
+          "selected": "C",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-05",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "Special voting arrangements",
+          "source": "변형",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "VAR-M2-06",
+          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
+          "concept": "주식 ESG 통합: 할인율 조정",
+          "source": "변형",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
           "attempts": 1
         }
       ],
       "moduleAccuracy": {
-        "Reading 13 – Analysis of Dividends and Share Repurchases": {
+        "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis": {
           "total": 10,
-          "answered": 2,
-          "correct": 2,
-          "accuracy": 1
+          "answered": 10,
+          "correct": 5,
+          "accuracy": 0.5
         }
       },
-      "weakConcepts": []
+      "weakConcepts": [
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / 소유구조와 principal–agent 문제",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Two-tier board",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / CEO duality",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Green bond 특징",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Voting caps",
+          "wrong": 1
+        }
+      ]
     }
   ]
 }
