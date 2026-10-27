@@ -1,0 +1,148 @@
+{
+  "subject": "AlternativeInvestments",
+  "date": "2026-10-27",
+  "latest": {
+    "totalQuestions": 9,
+    "answered": 9,
+    "correct": 3,
+    "wrong": 6
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-27T04:01:32.049Z",
+      "mode": "all",
+      "startedAt": "2026-10-27T03:38:33.916Z",
+      "totalQuestions": 9,
+      "answered": 9,
+      "correct": 3,
+      "wrong": 6,
+      "accuracy": 0.3333,
+      "questions": [
+        {
+          "id": "ECO-M2-Q3",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Due diligence: 100% 임대 → Current lease review",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q5",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "최대 대출액: LTV vs DSCR 중 작은 값",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q7",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Loss to lease로 사이클 판단",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q11",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Terminal value = (n+1)년 NOI / terminal cap",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q12",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Cap rate = 할인율 − 성장률",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q15",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Private equity vs private debt",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q16",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Appraisal-based index → 분산효과 과대평가",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M2-Q19",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Gross lease vs net lease",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q21",
+          "module": "Reading 31 – Overview of Types of Real Estate Investment",
+          "concept": "Lease·rent review 주체: REIT 운용역",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 31 – Overview of Types of Real Estate Investment": {
+          "total": 9,
+          "answered": 9,
+          "correct": 3,
+          "accuracy": 0.3333
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / Due diligence: 100% 임대 → Current lease review",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / 최대 대출액: LTV vs DSCR 중 작은 값",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / Loss to lease로 사이클 판단",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / Terminal value = (n+1)년 NOI / terminal cap",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / Private equity vs private debt",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 31 – Overview of Types of Real Estate Investment / Appraisal-based index → 분산효과 과대평가",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
