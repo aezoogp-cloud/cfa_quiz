@@ -1,0 +1,102 @@
+{
+ "subject": "Mock1",
+ "date": "2026-10-29",
+ "latest": {
+  "phase": "s1",
+  "totalQuestions": 88,
+  "answered": 4,
+  "correct": null,
+  "wrong": null
+ },
+ "attempts": [
+  {
+   "exportedAt": "2026-10-28T22:51:28.874Z",
+   "exportedFrom": "cmock-1.html",
+   "phase": "s1",
+   "totalQuestions": 88,
+   "answered": 4,
+   "correct": null,
+   "wrong": null,
+   "state": {
+    "answers": {
+     "m1-s01-q1": {
+      "selected": "B",
+      "correct": null,
+      "time": 403.768
+     },
+     "m1-s01-q2": {
+      "selected": "C",
+      "correct": null,
+      "time": 656.002
+     },
+     "m1-s01-q3": {
+      "selected": "A",
+      "correct": null,
+      "time": 154.002
+     },
+     "m1-s01-q4": {
+      "selected": "C",
+      "correct": null,
+      "time": 244.999
+     },
+     "m1-s02-q1": {
+      "selected": null,
+      "correct": null,
+      "time": 164.336
+     }
+    },
+    "timeSpentSec": 1623,
+    "flagged": {},
+    "struck": {},
+    "dispute": {},
+    "phase": "s1",
+    "unlimited": true,
+    "remaining": {
+     "1": 7920,
+     "2": 7920
+    },
+    "cur": 3,
+    "startedAt": "2026-10-28T22:22:11.418Z",
+    "finishedAt": null,
+    "paused": false,
+    "pausedAt": null,
+    "pauseLog": [
+     {
+      "start": "2026-10-28T22:47:06.831Z",
+      "end": "2026-10-28T22:47:13.298Z",
+      "sec": 6.467,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-28T22:47:59.048Z",
+      "end": "2026-10-28T22:49:59.007Z",
+      "sec": 119.959,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-28T22:50:02.530Z",
+      "end": "2026-10-28T22:50:03.641Z",
+      "sec": 1.111,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:50:15.846Z",
+      "end": "2026-10-28T22:50:17.991Z",
+      "sec": 2.145,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:51:18.887Z",
+      "end": "2026-10-28T22:51:20.573Z",
+      "sec": 1.686,
+      "reason": "hidden"
+     }
+    ],
+    "pauseSummary": {
+     "count": 5,
+     "totalSec": 131
+    }
+   }
+  }
+ ]
+}
