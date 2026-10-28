@@ -284,7 +284,7 @@ function renderStart(app) {
   <div class="card"><p>Session 1 (Set 1–11, 44문항, 132분) → 선택 휴식 → Session 2 (Set 12–22, 44문항, 132분). 제출 후에만 채점·해설이 공개됩니다.</p>
   <ul><li>각 세션은 제출하면 되돌아갈 수 없습니다. 시간이 끝나도 자동 제출되지 않고, 초과 시간이 기록됩니다.</li>
   <li>플래그(⚑), 오답 지우기(✕), vignette 하이라이트, 관련 지문 강조 기능을 쓸 수 있습니다.</li>
-  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 시험 중에도 💾 내보내기로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
+  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 시험 중에도 💾 저장 버튼으로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
   <li>합격선은 CFA Institute가 공개하지 않습니다. 리포트의 65–70%는 비공식 참고선일 뿐입니다.</li></ul>
   <label><input type="checkbox" id="unl"> 시간 무제한 (연습용 — 결과에 표기됨)</label></div>
   <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -303,7 +303,7 @@ function renderStart(app) {
 function renderBreak(app) {
   app.innerHTML = `<div class="center"><div style="text-align:right">${darkBtn()}</div><h1>Session 1 종료</h1>
   <div class="card"><p>Session 1이 제출되었습니다. (선택) 휴식 후 Session 2를 시작하세요. Session 2의 132분 타이머는 시작 버튼을 누를 때부터 흐릅니다.</p>
-  <button class="pri" id="s2btn">Session 2 시작</button> <button id="expbrk">💾 내보내기</button>${S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : ""}</div></div>`;
+  <button class="pri" id="s2btn">Session 2 시작</button> <button id="expbrk">💾 저장</button>${S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : ""}</div></div>`;
   $("s2btn").onclick = startSession2;
   $("expbrk").onclick = exportJSON;
   if ($("s1back")) $("s1back").onclick = backToS1;
@@ -316,7 +316,7 @@ function renderExam() {
   if (!$("left") || app.dataset.mode !== "exam") {
     app.dataset.mode = "exam";
     app.innerHTML = `<div id="top"><b>Mock ${MOCK} · Session ${se}</b><span id="qinfo"></span><span class="grow"></span>
-      <button id="resetq" title="모든 진행 상황 삭제 후 처음으로">↺ Reset</button><button class="flagbtn" id="flagbtn"></button><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button><button id="expq" title="지금까지 진행 상황을 JSON으로 내보내기">💾 내보내기</button>${darkBtn()}
+      <button id="resetq" title="모든 진행 상황 삭제 후 처음으로">↺ Reset</button><button id="expq" title="지금까지 진행 상황을 JSON으로 내보내기">💾 저장</button><button class="flagbtn" id="flagbtn"></button><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button>${darkBtn()}
       ${se === 2 && S.rem[1] === 0 ? `<button id="s1back" title="시간 종료로 자동 제출된 Session 1로 돌아가기">◀ Session 1로</button>` : ""}<button id="endbtn">Session ${se} 종료…</button></div>
       <div id="main"><div id="left"></div><div id="right"></div></div>
       <div id="bottom"><button id="prev">◀ Prev</button><button id="next">Next ▶</button><div id="nav"></div></div>`;
