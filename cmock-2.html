@@ -100,6 +100,7 @@ const SECRET_B64 = "GkUIXFleXV5OGhxBXEFJDy0QW0dHL1YBTU0GSRdDRI2SuKe51EckQFR+GQ4N
 const KEYS = "agent-mock-cfa2-L2";
 const MOCK = DATA.mock;
 const SKEY = "agent-mock-" + MOCK;
+const SUBJECT = "Mock" + MOCK; // 결과 폴더 results/Mock{N}/
 const SESSION_SEC = 132 * 60;
 const OFFICIAL = {ETH:[10,15],QM:[5,10],ECO:[5,10],FSA:[10,15],CI:[10,15],EQ:[10,15],DER:[5,10],FI:[10,15],PM:[5,10],AI:[5,10]};
 
@@ -283,7 +284,7 @@ function renderStart(app) {
   <div class="card"><p>Session 1 (Set 1–11, 44문항, 132분) → 선택 휴식 → Session 2 (Set 12–22, 44문항, 132분). 제출 후에만 채점·해설이 공개됩니다.</p>
   <ul><li>각 세션은 제출하면 되돌아갈 수 없습니다. 시간이 끝나도 자동 제출되지 않고, 초과 시간이 기록됩니다.</li>
   <li>플래그(⚑), 오답 지우기(✕), vignette 하이라이트, 관련 지문 강조 기능을 쓸 수 있습니다.</li>
-  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, JSON Export/Import 파일은 <code>mock-extra/agent-mock/progress/</code> 에 보관하세요.</li>
+  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 시험 중에도 💾 내보내기로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
   <li>합격선은 CFA Institute가 공개하지 않습니다. 리포트의 65–70%는 비공식 참고선일 뿐입니다.</li></ul>
   <label><input type="checkbox" id="unl"> 시간 무제한 (연습용 — 결과에 표기됨)</label></div>
   <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -302,8 +303,9 @@ function renderStart(app) {
 function renderBreak(app) {
   app.innerHTML = `<div class="center"><div style="text-align:right">${darkBtn()}</div><h1>Session 1 종료</h1>
   <div class="card"><p>Session 1이 제출되었습니다. (선택) 휴식 후 Session 2를 시작하세요. Session 2의 132분 타이머는 시작 버튼을 누를 때부터 흐릅니다.</p>
-  <button class="pri" id="s2btn">Session 2 시작</button>${S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : ""}</div></div>`;
+  <button class="pri" id="s2btn">Session 2 시작</button> <button id="expbrk">💾 내보내기</button>${S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : ""}</div></div>`;
   $("s2btn").onclick = startSession2;
+  $("expbrk").onclick = exportJSON;
   if ($("s1back")) $("s1back").onclick = backToS1;
 }
 
@@ -314,13 +316,14 @@ function renderExam() {
   if (!$("left") || app.dataset.mode !== "exam") {
     app.dataset.mode = "exam";
     app.innerHTML = `<div id="top"><b>Mock ${MOCK} · Session ${se}</b><span id="qinfo"></span><span class="grow"></span>
-      <button id="resetq" title="모든 진행 상황 삭제 후 처음으로">↺ Reset</button><button class="flagbtn" id="flagbtn"></button><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button>${darkBtn()}
+      <button id="resetq" title="모든 진행 상황 삭제 후 처음으로">↺ Reset</button><button class="flagbtn" id="flagbtn"></button><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button><button id="expq" title="지금까지 진행 상황을 JSON으로 내보내기">💾 내보내기</button>${darkBtn()}
       ${se === 2 && S.rem[1] === 0 ? `<button id="s1back" title="시간 종료로 자동 제출된 Session 1로 돌아가기">◀ Session 1로</button>` : ""}<button id="endbtn">Session ${se} 종료…</button></div>
       <div id="main"><div id="left"></div><div id="right"></div></div>
       <div id="bottom"><button id="prev">◀ Prev</button><button id="next">Next ▶</button><div id="nav"></div></div>`;
     $("prev").onclick = () => { if (S.cur > a) goto(S.cur - 1); };
     $("next").onclick = () => { if (S.cur < b) goto(S.cur + 1); };
     $("pausebtn").onclick = () => pauseExam("manual");
+    $("expq").onclick = exportJSON;
     $("endbtn").onclick = () => { S.phase = "review" + se; save(); render(); };
     if ($("s1back")) $("s1back").onclick = () => { if (confirm("Session 1로 돌아갑니다. Session 1 답안은 그대로 남아 있습니다. 계속할까요?")) { app.dataset.mode = ""; backToS1(); } };
     $("resetq").onclick = () => { if (confirm("모든 답안·시간·진행 상황을 삭제하고 처음으로 돌아갑니다. 계속할까요?")) { S = fresh(); try { localStorage.removeItem(SKEY); } catch (e) {} render(); } };
@@ -504,28 +507,35 @@ function renderResults(app) {
       <p>미응답 ${rows.filter(r => !r.sel).length}문항 · Flag ${fl.length}문항 (정답률 ${pct(fl.filter(r => r.ok).length, fl.length)}%)</p></div>
     <div class="card"><h3>Topic</h3><table class="r"><tr><th>Topic</th><th class="n">정답/문항</th><th class="n">정답률</th><th></th><th class="n">본 회차 비중</th><th class="n">CFAI 공식 비중</th></tr>` +
       Object.keys(m).sort((a, b) => pct(m[a].c, m[a].n) - pct(m[b].c, m[b].n)).map(k => `<tr><td>${k}</td><td class="n">${m[k].c}/${m[k].n}</td><td class="n">${pct(m[k].c, m[k].n)}%</td><td>${bar(pct(m[k].c, m[k].n))}</td><td class="n">${pct(m[k].n, n)}%</td><td class="n">${OFFICIAL[k] ? OFFICIAL[k][0] + "–" + OFFICIAL[k][1] + "%" : "-"}</td></tr>`).join("") + `</table></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="expbtn">Export JSON</button><button id="impbtn2">Import JSON</button><input type="file" id="impfile2" accept=".json" style="display:none"><button id="resetbtn">초기화 후 처음으로</button><span class="mut" style="align-self:center;font-size:13px">Export 저장 위치: mock-extra/agent-mock/progress/</span></div>`;
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="expbtn">Export JSON</button><button id="impbtn2">Import JSON</button><input type="file" id="impfile2" accept=".json" style="display:none"><button id="resetbtn">초기화 후 처음으로</button></div>`;
   $("expbtn").onclick = exportJSON; $("impbtn2").onclick = () => $("impfile2").click();
   $("impfile2").onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => importJSON(r.result); r.readAsText(f); };
   $("resetbtn").onclick = () => { if (confirm("저장된 진행 상황을 삭제하고 처음으로 돌아갑니다. Export 했는지 확인하세요.")) { S = fresh(); try { localStorage.removeItem(SKEY); } catch (e) {} render(); } };
 }
 // ---------- export / import ----------
 function exportJSON() {
+  save();
   const rows = S.phase === "done" ? grade() : null, answers = {};
   QL.forEach(x => { const id = x.q.id; if (S.answers[id] || S.time[id]) answers[id] = {selected: S.answers[id] || null, correct: rows ? rows[byId[id]].ans : null, time: S.time[id] || 0}; });
-  const o = {version: 2, subject: "agent-mock-" + MOCK, exportedAt: new Date().toISOString(), exportedFrom: "Mock-" + MOCK + ".html",
+  const answered = Object.keys(S.answers).length, correct = rows ? rows.filter(r => r.ok).length : null;
+  const attempt = {exportedAt: new Date().toISOString(), exportedFrom: "cmock-" + MOCK + ".html", phase: S.phase,
+    totalQuestions: QL.length, answered, correct, wrong: rows ? answered - correct : null,
     state: {answers, timeSpentSec: Math.round(Object.values(S.time).reduce((a, b) => a + b, 0)), flagged: S.flagged, struck: S.struck, dispute: S.dispute,
             phase: S.phase, unlimited: S.unlimited, remaining: S.rem, cur: S.cur, startedAt: S.startedAt, finishedAt: S.finishedAt,
             paused: S.paused, pausedAt: S.pausedAt, pauseLog: S.pauseLog, pauseSummary: {count: S.pauseLog.length, totalSec: Math.round(pauseTotal())}}};
+  const d = new Date(), date = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const o = {subject: SUBJECT, date, latest: {phase: S.phase, totalQuestions: QL.length, answered, correct, wrong: attempt.wrong}, attempts: [attempt]};
   const blob = new Blob([JSON.stringify(o, null, 1)], {type: "application/json"});
   const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-  a.download = "agent-mock-" + MOCK + "-" + new Date().toISOString().slice(0, 16).replace(/[:T]/g, "") + ".json"; a.click();
+  a.download = SUBJECT + "_results_" + date + ".json";
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
   return o;
 }
-function importJSON(txt) {
+function importJSON(txt, quiet) {
   try {
-    const o = JSON.parse(txt);
-    if (o.subject !== "agent-mock-" + MOCK) { alert("다른 회차의 파일입니다: " + o.subject); return; }
+    let o = typeof txt === "string" ? JSON.parse(txt) : txt;
+    if (o.subject === SUBJECT && Array.isArray(o.attempts) && o.attempts.length) o = o.attempts[o.attempts.length - 1];
+    else if (o.subject !== "agent-mock-" + MOCK) { if (!quiet) alert("다른 회차의 파일입니다: " + o.subject); return; }
     const st = o.state, n = fresh();
     Object.keys(st.answers || {}).forEach(id => { if (byId[id] !== undefined && st.answers[id].selected) { n.answers[id] = st.answers[id].selected; } n.time[id] = st.answers[id].time || 0; });
     n.flagged = st.flagged || {}; n.struck = st.struck || {}; n.dispute = st.dispute || {};
@@ -539,7 +549,16 @@ function importJSON(txt) {
     S.paused = false; S.pausedAt = null;
     if (inSession() || S.phase === "review1" || S.phase === "review2") { if (S.phase === "review1") S.phase = "s1"; if (S.phase === "review2") S.phase = "s2"; pauseExam("import"); }
     save(); render();
-  } catch (e) { alert("Import 실패: " + e.message); }
+  } catch (e) { if (!quiet) alert("Import 실패: " + e.message); }
+}
+// GitHub의 results/Mock{N}/latest.json이 이 브라우저 저장본보다 최신이면 자동 복원
+function loadRemote() {
+  if (!window.fetch) return;
+  fetch("results/" + SUBJECT + "/latest.json", {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(d => {
+    if (!d || d.subject !== SUBJECT || !Array.isArray(d.attempts) || !d.attempts.length) return;
+    const at = d.attempts[d.attempts.length - 1], local = load();
+    if ((at.exportedAt || "") > ((local && local.savedAt) || "")) importJSON(d, true);
+  }).catch(() => {});
 }
 // ---------- boot ----------
 window.__mock = {get S() { return S; }, pauseExam, resumeExam, pauseTotal, QL, grade, exportJSON, submitSession, startExam, render, getSecret};
@@ -548,6 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (prev && ["s1", "s2", "review1", "review2", "done"].includes(prev.phase)) restoreFrom(prev); else render();
   lastTick = Date.now();
   setInterval(tick, 1000);
+  loadRemote();
   window.addEventListener("beforeunload", save);
   window.addEventListener("pagehide", save);
   document.addEventListener("visibilitychange", () => { if ((document.hidden || document.visibilityState === "hidden") && pausable()) pauseExam("hidden"); });
