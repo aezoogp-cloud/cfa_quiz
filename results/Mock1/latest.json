@@ -10,7 +10,7 @@
  },
  "attempts": [
   {
-   "exportedAt": "2026-10-29T09:37:47.369Z",
+   "exportedAt": "2026-10-29T09:39:50.349Z",
    "exportedFrom": "cmock-1.html",
    "phase": "s1",
    "totalQuestions": 88,
@@ -177,7 +177,7 @@
      "m1-s08-q4": {
       "selected": "C",
       "correct": null,
-      "time": 132.004
+      "time": 140.666
      },
      "m1-s09-q1": {
       "selected": null,
@@ -205,7 +205,7 @@
       "time": 2
      }
     },
-    "timeSpentSec": 10434,
+    "timeSpentSec": 10442,
     "flagged": {
      "m1-s02-q1": 1,
      "m1-s03-q2": 1,
@@ -339,11 +339,17 @@
       "end": "2026-10-29T09:20:02.833Z",
       "sec": 4203.361,
       "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T09:37:54.190Z",
+      "end": "2026-10-29T09:39:48.461Z",
+      "sec": 114.271,
+      "reason": "hidden"
      }
     ],
     "pauseSummary": {
-     "count": 18,
-     "totalSec": 29552
+     "count": 19,
+     "totalSec": 29666
     }
    }
   }
