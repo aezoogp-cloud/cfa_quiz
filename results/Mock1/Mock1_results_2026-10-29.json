@@ -4,17 +4,17 @@
  "latest": {
   "phase": "s1",
   "totalQuestions": 88,
-  "answered": 20,
+  "answered": 24,
   "correct": null,
   "wrong": null
  },
  "attempts": [
   {
-   "exportedAt": "2026-10-29T04:06:55.219Z",
+   "exportedAt": "2026-10-29T05:30:56.974Z",
    "exportedFrom": "cmock-1.html",
    "phase": "s1",
    "totalQuestions": 88,
-   "answered": 20,
+   "answered": 24,
    "correct": null,
    "wrong": null,
    "state": {
@@ -107,7 +107,7 @@
      "m1-s05-q2": {
       "selected": "C",
       "correct": null,
-      "time": 455.998
+      "time": 459.084
      },
      "m1-s05-q3": {
       "selected": "C",
@@ -118,15 +118,41 @@
       "selected": "B",
       "correct": null,
       "time": 102.998
+     },
+     "m1-s06-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 181.013
+     },
+     "m1-s06-q2": {
+      "selected": "A",
+      "correct": null,
+      "time": 72.004
+     },
+     "m1-s06-q3": {
+      "selected": "A",
+      "correct": null,
+      "time": 152.004
+     },
+     "m1-s06-q4": {
+      "selected": "A",
+      "correct": null,
+      "time": 114.003
+     },
+     "m1-s07-q1": {
+      "selected": null,
+      "correct": null,
+      "time": 253.469
      }
     },
-    "timeSpentSec": 6608,
+    "timeSpentSec": 7383,
     "flagged": {
      "m1-s02-q1": 1,
      "m1-s03-q2": 1,
      "m1-s03-q3": 1,
      "m1-s03-q4": 1,
-     "m1-s04-q3": 1
+     "m1-s04-q3": 1,
+     "m1-s06-q4": 1
     },
     "struck": {},
     "dispute": {},
@@ -136,7 +162,7 @@
      "1": 7920,
      "2": 7920
     },
-    "cur": 17,
+    "cur": 24,
     "startedAt": "2026-10-28T22:22:11.418Z",
     "finishedAt": null,
     "paused": false,
@@ -195,11 +221,41 @@
       "end": "2026-10-29T03:12:19.197Z",
       "sec": 2.896,
       "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T04:15:54.515Z",
+      "end": "2026-10-29T04:15:57.211Z",
+      "sec": 2.696,
+      "reason": "import"
+     },
+     {
+      "start": "2026-10-29T04:16:05.763Z",
+      "end": "2026-10-29T05:17:43.562Z",
+      "sec": 3697.799,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:30:08.338Z",
+      "end": "2026-10-29T05:30:09.960Z",
+      "sec": 1.622,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:30:20.096Z",
+      "end": "2026-10-29T05:30:24.732Z",
+      "sec": 4.636,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-29T05:30:38.147Z",
+      "end": "2026-10-29T05:30:54.859Z",
+      "sec": 16.712,
+      "reason": "hidden"
      }
     ],
     "pauseSummary": {
-     "count": 9,
-     "totalSec": 14070
+     "count": 14,
+     "totalSec": 17794
     }
    }
   }
