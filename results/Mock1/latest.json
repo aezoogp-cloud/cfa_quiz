@@ -4,17 +4,17 @@
  "latest": {
   "phase": "s1",
   "totalQuestions": 88,
-  "answered": 24,
+  "answered": 32,
   "correct": null,
   "wrong": null
  },
  "attempts": [
   {
-   "exportedAt": "2026-10-29T05:30:56.974Z",
+   "exportedAt": "2026-10-29T09:37:47.369Z",
    "exportedFrom": "cmock-1.html",
    "phase": "s1",
    "totalQuestions": 88,
-   "answered": 24,
+   "answered": 32,
    "correct": null,
    "wrong": null,
    "state": {
@@ -140,19 +140,83 @@
       "time": 114.003
      },
      "m1-s07-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 526.188
+     },
+     "m1-s07-q2": {
+      "selected": "A",
+      "correct": null,
+      "time": 303.943
+     },
+     "m1-s07-q3": {
+      "selected": "B",
+      "correct": null,
+      "time": 53.001
+     },
+     "m1-s07-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 90.122
+     },
+     "m1-s08-q1": {
+      "selected": "B",
+      "correct": null,
+      "time": 1665.686
+     },
+     "m1-s08-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 145.004
+     },
+     "m1-s08-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 219.007
+     },
+     "m1-s08-q4": {
+      "selected": "C",
+      "correct": null,
+      "time": 132.004
+     },
+     "m1-s09-q1": {
       "selected": null,
       "correct": null,
-      "time": 253.469
+      "time": 164.005
+     },
+     "m1-s09-q2": {
+      "selected": null,
+      "correct": null,
+      "time": 1.001
+     },
+     "m1-s09-q3": {
+      "selected": null,
+      "correct": null,
+      "time": 1
+     },
+     "m1-s09-q4": {
+      "selected": null,
+      "correct": null,
+      "time": 1
+     },
+     "m1-s10-q1": {
+      "selected": null,
+      "correct": null,
+      "time": 2
      }
     },
-    "timeSpentSec": 7383,
+    "timeSpentSec": 10434,
     "flagged": {
      "m1-s02-q1": 1,
      "m1-s03-q2": 1,
      "m1-s03-q3": 1,
      "m1-s03-q4": 1,
      "m1-s04-q3": 1,
-     "m1-s06-q4": 1
+     "m1-s06-q4": 1,
+     "m1-s07-q1": 1,
+     "m1-s07-q2": 1,
+     "m1-s08-q2": 1,
+     "m1-s08-q3": 1
     },
     "struck": {},
     "dispute": {},
@@ -162,7 +226,7 @@
      "1": 7920,
      "2": 7920
     },
-    "cur": 24,
+    "cur": 31,
     "startedAt": "2026-10-28T22:22:11.418Z",
     "finishedAt": null,
     "paused": false,
@@ -251,11 +315,35 @@
       "end": "2026-10-29T05:30:54.859Z",
       "sec": 16.712,
       "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:33:08.284Z",
+      "end": "2026-10-29T05:33:09.600Z",
+      "sec": 1.316,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:38:51.445Z",
+      "end": "2026-10-29T07:44:28.889Z",
+      "sec": 7537.444,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T07:47:35.150Z",
+      "end": "2026-10-29T07:47:50.931Z",
+      "sec": 15.781,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T08:09:59.472Z",
+      "end": "2026-10-29T09:20:02.833Z",
+      "sec": 4203.361,
+      "reason": "hidden"
      }
     ],
     "pauseSummary": {
-     "count": 14,
-     "totalSec": 17794
+     "count": 18,
+     "totalSec": 29552
     }
    }
   }
