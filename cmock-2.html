@@ -584,12 +584,13 @@ function importJSON(txt, quiet) {
   } catch (e) { if (!quiet) alert("Import 실패: " + e.message); }
 }
 // GitHub의 results/Mock{N}/latest.json이 이 브라우저 저장본보다 최신이면 자동 복원
-function loadRemote() {
+// 비교는 페이지를 열 때 다시 저장하기 전의 savedAt으로 한다(열자마자 save()가 savedAt을 지금으로 바꾸기 때문)
+function loadRemote(localSavedAt) {
   if (!window.fetch) return;
   fetch("results/" + SUBJECT + "/latest.json", {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(d => {
     if (!d || d.subject !== SUBJECT || !Array.isArray(d.attempts) || !d.attempts.length) return;
-    const at = d.attempts[d.attempts.length - 1], local = load();
-    if ((at.exportedAt || "") > ((local && local.savedAt) || "")) importJSON(d, true);
+    const at = d.attempts[d.attempts.length - 1];
+    if ((at.exportedAt || "") > (localSavedAt || "")) importJSON(d, true);
   }).catch(() => {});
 }
 // ---------- boot ----------
@@ -599,7 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (prev) restoreFrom(prev); else render();
   lastTick = Date.now();
   setInterval(tick, 1000);
-  loadRemote();
+  loadRemote(prev && prev.savedAt);
   window.addEventListener("beforeunload", save);
   window.addEventListener("pagehide", save);
   document.addEventListener("visibilitychange", () => { if ((document.hidden || document.visibilityState === "hidden") && pausable()) pauseExam("hidden"); });

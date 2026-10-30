@@ -10,7 +10,7 @@
  },
  "attempts": [
   {
-   "exportedAt": "2026-10-30T04:46:15.881Z",
+   "exportedAt": "2026-10-30T08:28:57.663Z",
    "exportedFrom": "cmock-1.html",
    "phase": "s2",
    "totalQuestions": 88,
@@ -394,7 +394,7 @@
     "startedAt": "2026-10-28T22:22:11.418Z",
     "finishedAt": null,
     "paused": true,
-    "pausedAt": "2026-10-30T04:46:15.861Z",
+    "pausedAt": "2026-10-30T08:28:57.649Z",
     "pauseLog": [
      {
       "start": "2026-10-28T22:47:06.831Z",
@@ -602,13 +602,19 @@
      },
      {
       "start": "2026-10-30T04:46:15.861Z",
+      "end": "2026-10-30T04:46:15.881Z",
+      "sec": 0.02,
+      "reason": "import"
+     },
+     {
+      "start": "2026-10-30T08:28:57.649Z",
       "end": null,
       "sec": 0,
       "reason": "import"
      }
     ],
     "pauseSummary": {
-     "count": 35,
+     "count": 36,
      "totalSec": 111841
     }
    }
