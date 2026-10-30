@@ -118,7 +118,7 @@ const sessRange = se => { const a = QL.map((x, i) => x.sess === se ? i : -1).fil
 // ---------- state ----------
 function fresh() {
   return {phase: "start", cur: 0, rem: {1: SESSION_SEC, 2: SESSION_SEC}, answers: {}, flagged: {}, struck: {},
-          time: {}, dispute: {}, hl: {}, unlimited: false, startedAt: null, finishedAt: null,
+          time: {}, dispute: {}, hl: {}, unlimited: false, startedAt: null, finishedAt: null, sub: {1: false, 2: false}, last: {}, sview: 0,
           paused: false, pausedAt: null, pauseLog: [], savedAt: null};
 }
 let S = fresh();
@@ -148,27 +148,33 @@ function getSecret() {
   return secret;
 }
 const inSession = () => S.phase === "s1" || S.phase === "s2";
+// 채점 화면에 보일 문항: 제출한 세션만 (sview = 1·2면 그 세션, 0이면 제출한 세션 전체)
+const inView = x => !!S.sub[x.sess] && (!S.sview || x.sess === S.sview);
+const gradedIdx = () => QL.map((x, i) => inView(x) ? i : -1).filter(i => i >= 0);
 const curSess = () => (S.phase === "s1" || S.phase === "review1") ? 1 : 2;
 
 // ---------- exam flow ----------
-function startExam() { S.phase = "s1"; S.cur = 0; S.startedAt = new Date().toISOString(); save(); render(); }
+function startSession(se) {
+  if (!S.startedAt) S.startedAt = new Date().toISOString();
+  const [a, b] = sessRange(se), l = S.last[se];
+  S.phase = "s" + se; S.cur = l >= a && l <= b ? l : a; lastTick = Date.now(); $("app").dataset.mode = ""; save(); render();
+}
 function goto(i) { S.cur = i; save(); renderExam(); }
+// 메인 화면으로: 풀이 중이던 위치를 기억하고, 메인에 있는 동안은 시간이 흐르지 않는다
+function toHub() { if (inSession()) S.last[curSess()] = S.cur; S.phase = "start"; $("app").dataset.mode = ""; save(); render(); }
 function submitSession(se) {
   closeOpenPause();
-  if (se === 1) { S.phase = "break"; }
-  else { S.phase = "done"; S.finishedAt = new Date().toISOString(); S.study = true; S.sfilt = "wf"; const l = studyList(); S.cur = l.length ? l[0] : 0; }
-  save(); render();
+  S.sub[se] = true; S.last[se] = S.cur;
+  if (S.sub[1] && S.sub[2]) S.finishedAt = new Date().toISOString();
+  S.phase = "start"; $("app").dataset.mode = ""; save(); render();
 }
-function startSession2() { S.phase = "s2"; S.cur = sessRange(2)[0]; save(); render(); }
-// Session 1이 예전 코드에서 시간 종료로 자동 제출된 경우(rem[1] === 0) 되돌아가기. Session 2에 답이 없으면 Session 2 시간도 되돌린다.
-function backToS1() {
-  const [a, b] = sessRange(1), [c, d] = sessRange(2);
-  let s2ans = false;
-  for (let i = c; i <= d; i++) if (S.answers[QL[i].q.id]) s2ans = true;
-  if (!s2ans) { S.rem[2] = SESSION_SEC; for (let i = c; i <= d; i++) delete S.time[QL[i].q.id]; }
-  let i = a; while (i < b && S.answers[QL[i].q.id]) i++;
-  S.phase = "s1"; S.cur = i; lastTick = Date.now(); save(); render();
+// 채점·복습 열기: se = 1, 2 또는 0(제출한 세션 전체)
+function openGraded(se) {
+  S.sview = se; S.phase = "done"; S.study = true; S.sfilt = "wf";
+  const l = studyList(); S.cur = l.length ? l[0] : gradedIdx()[0]; $("app").dataset.mode = ""; save(); render();
 }
+// Session 1이 예전 코드에서 시간 종료로 자동 제출된 경우(rem[1] === 0) 다시 열기
+function reopenS1() { S.sub[1] = false; S.finishedAt = null; if (S.sview === 1) S.sview = 0; startSession(1); }
 
 // ---------- pause / wall-clock timer ----------
 const r3 = x => Math.round(x * 1000) / 1000;
@@ -178,6 +184,12 @@ function normalizeState(st) {
   const n = Object.assign(fresh(), st);
   if (!Array.isArray(n.pauseLog)) n.pauseLog = [];
   n.paused = !!n.paused; n.pausedAt = n.pausedAt || null;
+  // 예전 저장본(세션 순서 고정)은 단계로 제출 여부를 추정
+  if (!st || !st.sub) n.sub = {1: ["break", "s2", "review2", "done"].includes(n.phase), 2: n.phase === "done"};
+  n.last = n.last || {};
+  if (n.phase === "break") n.phase = "start";
+  if (n.sview && !n.sub[n.sview]) n.sview = 0;
+  if (n.phase === "done" && !n.sub[1] && !n.sub[2]) n.phase = "start";
   return n;
 }
 function pauseSecOf(e, now) { return e.end ? (e.sec || 0) : Math.max(0, ((now || Date.now()) - Date.parse(e.start)) / 1000); }
@@ -258,7 +270,6 @@ function render() {
   document.body.classList.toggle("live", inSession());
   syncOverlay();
   if (S.phase === "start") return renderStart(app);
-  if (S.phase === "break") return renderBreak(app);
   if (S.phase === "done") return S.study !== false ? renderStudy() : renderResults(app);
   if (S.phase === "review1" || S.phase === "review2") return renderReview(app);
   renderExam();
@@ -276,37 +287,50 @@ function restoreFrom(prev) {
   else save();
   render();
 }
+function sessUsed(se) { const [a, b] = sessRange(se); let t = 0; for (let i = a; i <= b; i++) t += S.time[QL[i].q.id] || 0; return t; }
 function renderStart(app) {
-  const prev = load();
-  const has = prev && prev.phase && prev.phase !== "start";
+  app.dataset.mode = "hub";
+  const rows = (S.sub[1] || S.sub[2]) ? grade() : null;
+  const card = se => {
+    const [a, b] = sessRange(se), tot = b - a + 1;
+    let n = 0; for (let i = a; i <= b; i++) if (S.answers[QL[i].q.id]) n++;
+    let st, btns;
+    if (S.sub[se]) {
+      const c = rows.slice(a, b + 1).filter(r => r.ok).length;
+      st = `<b class="okc">제출 완료</b> · ${c}/${tot} (${pct(c, tot)}%)`;
+      btns = `<button class="pri" data-g="${se}">채점 결과·오답 보기</button>` + (se === 1 && S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : "");
+    } else {
+      const go = n > 0 || sessUsed(se) > 0;
+      const t = S.unlimited ? fmt(sessUsed(se)) + " 경과" : (S.rem[se] < 0 ? "+" + fmt(-S.rem[se]) + " 초과" : "남은 시간 " + fmt(S.rem[se]));
+      st = go ? `풀이 중 · ${n}/${tot} 응답 · ${t}` : "시작 전";
+      btns = `<button class="pri" data-s="${se}">Session ${se} ${go ? "이어 풀기" : "시작"}</button>`;
+    }
+    return `<div class="card"><h3>Session ${se}</h3><p class="mut">Set ${DATA.sets[QL[a].si].set}–${DATA.sets[QL[b].si].set} · ${tot}문항 · 132분</p><p>${st}</p>${btns}</div>`;
+  };
   app.innerHTML = `<div class="center"><div style="text-align:right">${darkBtn()}</div>
   <h1>Agent Mock ${MOCK} — CFA Level II</h1>
-  <div class="card"><p>Session 1 (Set 1–11, 44문항, 132분) → 선택 휴식 → Session 2 (Set 12–22, 44문항, 132분). 제출 후에만 채점·해설이 공개됩니다.</p>
-  <ul><li>각 세션은 제출하면 되돌아갈 수 없습니다. 시간이 끝나도 자동 제출되지 않고, 초과 시간이 기록됩니다.</li>
+  <div class="card"><p>Session 1과 Session 2를 따로 시작합니다. 세션을 제출하면 그 세션만 바로 채점·오답 복습을 할 수 있고, 다른 세션은 나중에 풀어도 됩니다.</p>
+  <ul><li>제출한 세션은 다시 풀 수 없습니다. 시간이 끝나도 자동 제출되지 않고, 초과 시간이 기록됩니다.</li>
+  <li>풀이 중 ◀ 메인으로 나오면 그 세션의 시간이 멈추고, 이어 풀기로 다시 들어갈 수 있습니다.</li>
   <li>플래그(⚑), 오답 지우기(✕), vignette 하이라이트, 관련 지문 강조 기능을 쓸 수 있습니다.</li>
-  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 시험 중에도 💾 저장 버튼으로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
+  <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 💾 저장 버튼으로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
   <li>합격선은 CFA Institute가 공개하지 않습니다. 리포트의 65–70%는 비공식 참고선일 뿐입니다.</li></ul>
-  <label><input type="checkbox" id="unl"> 시간 무제한 (연습용 — 결과에 표기됨)</label></div>
+  <label><input type="checkbox" id="unl"${S.unlimited ? " checked" : ""}${S.startedAt ? " disabled" : ""}> 시간 무제한 (연습용 — 결과에 표기됨${S.startedAt ? ", 시작 후에는 바꿀 수 없음" : ""})</label></div>
+  <div class="grid">${card(1)}${card(2)}</div>
   <div style="display:flex;gap:10px;flex-wrap:wrap">
-  <button class="pri" id="startbtn">시험 시작</button>
-  ${has ? `<button id="resumebtn">이어풀기 (${esc(prev.phase)})</button>` : ""}
-  <button id="impbtn">Import JSON</button><input type="file" id="impfile" accept=".json" style="display:none"></div></div>`;
-  $("startbtn").onclick = () => {
-    if (has && !confirm("저장된 진행 상황을 지우고 새로 시작할까요?")) return;
-    S = fresh(); S.unlimited = $("unl").checked; lastTick = Date.now(); startExam();
-  };
-  if (has) $("resumebtn").onclick = () => restoreFrom(prev);
+  ${S.sub[1] && S.sub[2] ? `<button class="pri" id="allbtn">전체 결과 (88문항)</button>` : ""}
+  <button id="exphub">💾 저장</button>
+  <button id="impbtn">Import JSON</button><input type="file" id="impfile" accept=".json" style="display:none">
+  ${S.startedAt ? `<button id="resethub">↺ 처음부터 다시</button>` : ""}</div></div>`;
+  $("unl").onchange = e => { S.unlimited = e.target.checked; save(); };
+  app.querySelectorAll("[data-s]").forEach(bt => bt.onclick = () => startSession(+bt.dataset.s));
+  app.querySelectorAll("[data-g]").forEach(bt => bt.onclick = () => openGraded(+bt.dataset.g));
+  if ($("allbtn")) $("allbtn").onclick = () => openGraded(0);
+  if ($("s1back")) $("s1back").onclick = () => { if (confirm("Session 1 제출을 취소하고 이어 풉니다. 계속할까요?")) reopenS1(); };
+  $("exphub").onclick = exportJSON;
+  if ($("resethub")) $("resethub").onclick = () => { if (confirm("모든 답안·시간·진행 상황을 삭제하고 처음으로 돌아갑니다. 💾 저장했는지 확인하세요. 계속할까요?")) { S = fresh(); try { localStorage.removeItem(SKEY); } catch (e) {} render(); } };
   $("impbtn").onclick = () => $("impfile").click();
   $("impfile").onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => importJSON(r.result); r.readAsText(f); };
-}
-
-function renderBreak(app) {
-  app.innerHTML = `<div class="center"><div style="text-align:right">${darkBtn()}</div><h1>Session 1 종료</h1>
-  <div class="card"><p>Session 1이 제출되었습니다. (선택) 휴식 후 Session 2를 시작하세요. Session 2의 132분 타이머는 시작 버튼을 누를 때부터 흐릅니다.</p>
-  <button class="pri" id="s2btn">Session 2 시작</button> <button id="expbrk">💾 저장</button>${S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : ""}</div></div>`;
-  $("s2btn").onclick = startSession2;
-  $("expbrk").onclick = exportJSON;
-  if ($("s1back")) $("s1back").onclick = backToS1;
 }
 
 function renderExam() {
@@ -315,9 +339,9 @@ function renderExam() {
   const [a, b] = sessRange(se);
   if (!$("left") || app.dataset.mode !== "exam") {
     app.dataset.mode = "exam";
-    app.innerHTML = `<div id="top"><b>Mock ${MOCK} · Session ${se}</b><span id="qinfo"></span><span class="grow"></span>
+    app.innerHTML = `<div id="top"><button id="hubq" title="메인 화면으로 (이 세션 시간 멈춤)">◀ 메인</button><b>Mock ${MOCK} · Session ${se}</b><span id="qinfo"></span><span class="grow"></span>
       <button id="resetq" title="모든 진행 상황 삭제 후 처음으로">↺ Reset</button><button id="expq" title="지금까지 진행 상황을 JSON으로 내보내기">💾 저장</button><button class="flagbtn" id="flagbtn"></button><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button>${darkBtn()}
-      ${se === 2 && S.rem[1] === 0 ? `<button id="s1back" title="시간 종료로 자동 제출된 Session 1로 돌아가기">◀ Session 1로</button>` : ""}<button id="endbtn">Session ${se} 종료…</button></div>
+      <button id="endbtn">Session ${se} 종료…</button></div>
       <div id="main"><div id="left"></div><div id="right"></div></div>
       <div id="bottom"><button id="prev">◀ Prev</button><button id="next">Next ▶</button><div id="nav"></div></div>`;
     $("prev").onclick = () => { if (S.cur > a) goto(S.cur - 1); };
@@ -325,7 +349,7 @@ function renderExam() {
     $("pausebtn").onclick = () => pauseExam("manual");
     $("expq").onclick = exportJSON;
     $("endbtn").onclick = () => { S.phase = "review" + se; save(); render(); };
-    if ($("s1back")) $("s1back").onclick = () => { if (confirm("Session 1로 돌아갑니다. Session 1 답안은 그대로 남아 있습니다. 계속할까요?")) { app.dataset.mode = ""; backToS1(); } };
+    $("hubq").onclick = toHub;
     $("resetq").onclick = () => { if (confirm("모든 답안·시간·진행 상황을 삭제하고 처음으로 돌아갑니다. 계속할까요?")) { S = fresh(); try { localStorage.removeItem(SKEY); } catch (e) {} render(); } };
     $("flagbtn").onclick = () => { const id = QL[S.cur].q.id; if (S.flagged[id]) delete S.flagged[id]; else S.flagged[id] = 1; save(); renderExam(); };
   }
@@ -402,11 +426,11 @@ function renderReview(app) {
   app.innerHTML = `<div id="top"><b>Session ${se} — 제출 전 확인</b><span class="grow"></span><span id="timer"></span><button id="pausebtn" title="일시정지 (P)">⏸ 일시정지</button>${darkBtn()}</div>
   <div class="center"><div class="card"><h3>미응답 ${un.length}문항</h3><div style="display:flex;flex-wrap:wrap;gap:3px">${un.map(chip).join("") || "<span class='mut'>없음</span>"}</div></div>
   <div class="card"><h3>Flag ${fl.length}문항</h3><div style="display:flex;flex-wrap:wrap;gap:3px">${fl.map(chip).join("") || "<span class='mut'>없음</span>"}</div></div>
-  <div style="display:flex;gap:10px"><button id="back">돌아가기</button><button class="pri" id="sub">Session ${se} 제출${se === 2 ? " 및 채점" : ""}</button></div></div>`;
+  <div style="display:flex;gap:10px"><button id="back">돌아가기</button><button class="pri" id="sub">Session ${se} 제출 및 채점</button></div></div>`;
   app.querySelectorAll(".nb").forEach(bt => bt.onclick = () => { S.phase = "s" + se; S.cur = +bt.dataset.i; save(); render(); });
   $("pausebtn").onclick = () => pauseExam("manual");
   $("back").onclick = () => { S.phase = "s" + se; save(); render(); };
-  $("sub").onclick = () => { if (confirm("제출하면 이 세션으로 돌아올 수 없습니다. 제출할까요?")) submitSession(se); };
+  $("sub").onclick = () => { if (confirm("제출하면 이 세션은 다시 풀 수 없습니다. 제출 후 메인 화면에서 이 세션의 채점 결과·오답을 볼 수 있습니다. 제출할까요?")) submitSession(se); };
   updateTimer();
 }
 
@@ -414,11 +438,11 @@ function renderReview(app) {
 const SFILT = [["wf", "오답+Flag"], ["wrong", "오답"], ["flag", "Flag"], ["all", "전체"]];
 function studyList(f, rows) {
   f = f || S.sfilt || "wf"; rows = rows || grade();
-  return rows.filter(r => f === "all" || (f === "wrong" && !r.ok) || (f === "flag" && r.flag) || (f === "wf" && (!r.ok || r.flag))).map(r => r.i);
+  return rows.filter(r => inView(r.x)).filter(r => f === "all" || (f === "wrong" && !r.ok) || (f === "flag" && r.flag) || (f === "wf" && (!r.ok || r.flag))).map(r => r.i);
 }
 function openStudy(i) {
   S.study = true; S.sfilt = S.sfilt || "wf";
-  if (i === undefined) { const l = studyList(); i = l.length ? l[0] : 0; }
+  if (i === undefined || !inView(QL[i])) { const l = studyList(); i = l.length ? l[0] : gradedIdx()[0]; }
   S.cur = i; $("app").dataset.mode = ""; save(); render();
 }
 function closeStudy() { S.study = false; save(); render(); }
@@ -435,17 +459,19 @@ function noteHTML(sec) {
   return `<div class="note">${row("핵심", esc(n.k))}${row("공식", sec.f ? esc(sec.f) : "")}${row("풀이", n.s.map(esc).join("<br>"))}${row("함정", esc(n.t))}</div>`;
 }
 function renderStudy() {
+  if (!inView(QL[S.cur])) { const g = gradedIdx(); if (!g.length) { S.phase = "start"; return render(); } S.cur = g[0]; }
   const app = $("app"), rows = grade(), r = rows[S.cur], x = r.x, q = r.q, s = DATA.sets[x.si], sec = getSecret()[r.id];
   S.reviewed = S.reviewed || {};
   if (!$("left") || app.dataset.mode !== "study") {
     app.dataset.mode = "study";
-    app.innerHTML = `<div id="top"><b>Mock ${MOCK} · 복습</b><span id="qinfo"></span><span class="grow"></span>
+    app.innerHTML = `<div id="top"><button id="tohub">◀ 메인</button><b>Mock ${MOCK} · ${S.sview ? "Session " + S.sview + " " : ""}복습</b><span id="qinfo"></span><span class="grow"></span>
       <span class="tabs" id="sfilt" style="margin:0"></span><button id="doneb" title="복습 완료 표시 (하단 번호에 ✓)"></button>${darkBtn()}<button id="tores">결과 화면</button></div>
       <div id="main"><div id="left"></div><div id="right"></div></div>
       <div id="bottom"><button id="prev">◀ Prev</button><button id="next">Next ▶</button><div id="nav"></div></div>`;
     $("prev").onclick = () => studyStep(-1);
     $("next").onclick = () => studyStep(1);
     $("tores").onclick = closeStudy;
+    $("tohub").onclick = toHub;
     $("doneb").onclick = () => { const id = QL[S.cur].q.id; if (S.reviewed[id]) delete S.reviewed[id]; else S.reviewed[id] = 1; save(); renderStudy(); };
   }
   const l = studyList(null, rows), p = l.indexOf(S.cur);
@@ -469,8 +495,10 @@ function renderStudy() {
   R.querySelectorAll(".dsp").forEach(t => t.onchange = () => { if (t.value.trim()) S.dispute[t.dataset.id] = t.value.trim(); else delete S.dispute[t.dataset.id]; save(); });
   typeset(R);
   const inl = new Set(l);
+  let pv = null;
   $("nav").innerHTML = QL.map((y, i) => {
-    const rr = rows[i], first = i === 0 || QL[i - 1].si !== y.si, ss = i === 0 || QL[i - 1].sess !== y.sess;
+    if (!inView(y)) return "";
+    const rr = rows[i], ss = !pv || pv.sess !== y.sess, first = ss || pv.si !== y.si; pv = y;
     return `${ss ? `<span class="sl">S${y.sess}</span>` : ""}<button class="nb ${rr.ok ? "nok" : "nno"}${i === S.cur ? " cur" : ""}${rr.flag ? " fl" : ""}${first && !ss ? " setstart" : ""}${inl.has(i) ? "" : " out"}${S.reviewed[rr.id] ? " rvd" : ""}" data-i="${i}" title="Set ${DATA.sets[y.si].set}">${y.no}</button>`;
   }).join("");
   $("nav").querySelectorAll("button").forEach(bt => bt.onclick = () => studyGo(+bt.dataset.i));
@@ -496,13 +524,14 @@ function agg(rows, keyf) {
 const pauseLine = () => `일시정지 ${S.pauseLog.length}회 · 총 ${fmt(pauseTotal())}`;
 function renderResults(app) {
   app.dataset.mode = "results";
-  const rows = grade(), n = rows.length, c = rows.filter(r => r.ok).length;
-  app.innerHTML = `<div id="top"><b>Mock ${MOCK} — 결과</b><span class="grow"></span><button class="pri" id="studybtn">◀ 문제 화면으로 복습</button>${darkBtn()}</div><div class="center" id="res" style="overflow:auto"></div>`;
+  const rows = grade().filter(r => inView(r.x)), n = rows.length, c = rows.filter(r => r.ok).length;
+  app.innerHTML = `<div id="top"><button id="tohub2">◀ 메인</button><b>Mock ${MOCK} — ${S.sview ? "Session " + S.sview + " " : ""}결과</b><span class="grow"></span><button class="pri" id="studybtn">◀ 문제 화면으로 복습</button>${darkBtn()}</div><div class="center" id="res" style="overflow:auto"></div>`;
   $("studybtn").onclick = () => openStudy(S.cur);
+  $("tohub2").onclick = toHub;
   const s1 = rows.filter(r => r.sess === 1), s2 = rows.filter(r => r.sess === 2), fl = rows.filter(r => r.flag), m = agg(rows, r => r.code);
   $("res").innerHTML = `<div class="card"><h2>${c} / ${n} (${pct(c, n)}%)</h2>
-      <p>Session 1: ${s1.filter(r => r.ok).length}/${s1.length} (${pct(s1.filter(r => r.ok).length, s1.length)}%) · Session 2: ${s2.filter(r => r.ok).length}/${s2.length} (${pct(s2.filter(r => r.ok).length, s2.length)}%)</p>
-      <p class="mut">비공식 참고선 ~65–70% (CFA Institute는 합격선을 공개하지 않음). ${S.unlimited ? "<b class='warn'>※ 시간 무제한 모드로 응시</b>" : ""}${[1, 2].filter(k => S.rem[k] < 0).map(k => ` <b class='warn'>※ Session ${k} 시간 초과 +${fmt(-S.rem[k])}</b>`).join("")}</p>
+      <p>${[[1, s1], [2, s2]].filter(z => z[1].length).map(([k, ss]) => `Session ${k}: ${ss.filter(r => r.ok).length}/${ss.length} (${pct(ss.filter(r => r.ok).length, ss.length)}%)`).join(" · ")}</p>
+      <p class="mut">비공식 참고선 ~65–70% (CFA Institute는 합격선을 공개하지 않음). ${S.unlimited ? "<b class='warn'>※ 시간 무제한 모드로 응시</b>" : ""}${[1, 2].filter(k => S.rem[k] < 0 && rows.some(r => r.sess === k)).map(k => ` <b class='warn'>※ Session ${k} 시간 초과 +${fmt(-S.rem[k])}</b>`).join("")}</p>
       <p>${pauseLine()}</p>
       <p>미응답 ${rows.filter(r => !r.sel).length}문항 · Flag ${fl.length}문항 (정답률 ${pct(fl.filter(r => r.ok).length, fl.length)}%)</p></div>
     <div class="card"><h3>Topic</h3><table class="r"><tr><th>Topic</th><th class="n">정답/문항</th><th class="n">정답률</th><th></th><th class="n">본 회차 비중</th><th class="n">CFAI 공식 비중</th></tr>` +
@@ -515,13 +544,15 @@ function renderResults(app) {
 // ---------- export / import ----------
 function exportJSON() {
   save();
-  const rows = S.phase === "done" ? grade() : null, answers = {};
-  QL.forEach(x => { const id = x.q.id; if (S.answers[id] || S.time[id]) answers[id] = {selected: S.answers[id] || null, correct: rows ? rows[byId[id]].ans : null, time: S.time[id] || 0}; });
-  const answered = Object.keys(S.answers).length, correct = rows ? rows.filter(r => r.ok).length : null;
+  // 정답은 제출한 세션 문항만 기록
+  const rows = (S.sub[1] || S.sub[2]) ? grade() : null, answers = {};
+  QL.forEach(x => { const id = x.q.id; if (S.answers[id] || S.time[id]) answers[id] = {selected: S.answers[id] || null, correct: rows && S.sub[x.sess] ? rows[byId[id]].ans : null, time: S.time[id] || 0}; });
+  const answered = Object.keys(S.answers).length, correct = rows ? rows.filter(r => S.sub[r.sess] && r.ok).length : null;
+  const ansSub = rows ? rows.filter(r => S.sub[r.sess] && r.sel).length : 0;
   const attempt = {exportedAt: new Date().toISOString(), exportedFrom: "cmock-" + MOCK + ".html", phase: S.phase,
-    totalQuestions: QL.length, answered, correct, wrong: rows ? answered - correct : null,
+    totalQuestions: QL.length, answered, correct, wrong: rows ? ansSub - correct : null,
     state: {answers, timeSpentSec: Math.round(Object.values(S.time).reduce((a, b) => a + b, 0)), flagged: S.flagged, struck: S.struck, dispute: S.dispute,
-            phase: S.phase, unlimited: S.unlimited, remaining: S.rem, cur: S.cur, startedAt: S.startedAt, finishedAt: S.finishedAt,
+            phase: S.phase, submitted: S.sub, last: S.last, sview: S.sview, unlimited: S.unlimited, remaining: S.rem, cur: S.cur, startedAt: S.startedAt, finishedAt: S.finishedAt,
             paused: S.paused, pausedAt: S.pausedAt, pauseLog: S.pauseLog, pauseSummary: {count: S.pauseLog.length, totalSec: Math.round(pauseTotal())}}};
   const d = new Date(), date = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
   const o = {subject: SUBJECT, date, latest: {phase: S.phase, totalQuestions: QL.length, answered, correct, wrong: attempt.wrong}, attempts: [attempt]};
@@ -542,7 +573,8 @@ function importJSON(txt, quiet) {
     n.unlimited = !!st.unlimited; n.rem = st.remaining || n.rem; n.startedAt = st.startedAt || null; n.finishedAt = st.finishedAt || null;
     n.phase = st.phase || "s1"; n.cur = st.cur || 0;
     n.pauseLog = Array.isArray(st.pauseLog) ? st.pauseLog.map(e => Object.assign({}, e)) : [];
-    S = n; lastTick = Date.now();
+    n.sub = st.submitted; n.last = st.last || {}; n.sview = st.sview || 0;
+    S = normalizeState(n); lastTick = Date.now();
     // 열려 있던 일시정지는 export 시각에서 닫고, 세션 중이면 지금부터 새 일시정지로 복원
     const open = S.pauseLog[S.pauseLog.length - 1];
     if (open && !open.end) closeOpenPause(Math.max(Date.parse(open.start), Date.parse(o.exportedAt) || 0));
@@ -561,10 +593,10 @@ function loadRemote() {
   }).catch(() => {});
 }
 // ---------- boot ----------
-window.__mock = {get S() { return S; }, pauseExam, resumeExam, pauseTotal, QL, grade, exportJSON, submitSession, startExam, render, getSecret};
+window.__mock = {get S() { return S; }, pauseExam, resumeExam, pauseTotal, QL, grade, exportJSON, submitSession, startSession, openGraded, render, getSecret};
 document.addEventListener("DOMContentLoaded", () => {
   const prev = load();
-  if (prev && ["s1", "s2", "review1", "review2", "done"].includes(prev.phase)) restoreFrom(prev); else render();
+  if (prev) restoreFrom(prev); else render();
   lastTick = Date.now();
   setInterval(tick, 1000);
   loadRemote();

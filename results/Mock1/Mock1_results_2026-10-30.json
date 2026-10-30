@@ -1,0 +1,456 @@
+{
+ "subject": "Mock1",
+ "date": "2026-10-30",
+ "latest": {
+  "phase": "start",
+  "totalQuestions": 88,
+  "answered": 44,
+  "correct": 32,
+  "wrong": 12
+ },
+ "attempts": [
+  {
+   "exportedAt": "2026-10-30T01:08:28.956Z",
+   "exportedFrom": "cmock-1.html",
+   "phase": "start",
+   "totalQuestions": 88,
+   "answered": 44,
+   "correct": 32,
+   "wrong": 12,
+   "state": {
+    "answers": {
+     "m1-s01-q1": {
+      "selected": "B",
+      "correct": "B",
+      "time": 403.768
+     },
+     "m1-s01-q2": {
+      "selected": "C",
+      "correct": "C",
+      "time": 656.002
+     },
+     "m1-s01-q3": {
+      "selected": "A",
+      "correct": "A",
+      "time": 154.002
+     },
+     "m1-s01-q4": {
+      "selected": "C",
+      "correct": "C",
+      "time": 317.338
+     },
+     "m1-s02-q1": {
+      "selected": "B",
+      "correct": "B",
+      "time": 432.326
+     },
+     "m1-s02-q2": {
+      "selected": "A",
+      "correct": "B",
+      "time": 147.999
+     },
+     "m1-s02-q3": {
+      "selected": "A",
+      "correct": "A",
+      "time": 166
+     },
+     "m1-s02-q4": {
+      "selected": "B",
+      "correct": "B",
+      "time": 442.004
+     },
+     "m1-s03-q1": {
+      "selected": "C",
+      "correct": "C",
+      "time": 718.177
+     },
+     "m1-s03-q2": {
+      "selected": "B",
+      "correct": "B",
+      "time": 838.995
+     },
+     "m1-s03-q3": {
+      "selected": "B",
+      "correct": "A",
+      "time": 160
+     },
+     "m1-s03-q4": {
+      "selected": "C",
+      "correct": "C",
+      "time": 226.999
+     },
+     "m1-s04-q1": {
+      "selected": "C",
+      "correct": "B",
+      "time": 188
+     },
+     "m1-s04-q2": {
+      "selected": "C",
+      "correct": "A",
+      "time": 293.999
+     },
+     "m1-s04-q3": {
+      "selected": "C",
+      "correct": "C",
+      "time": 372.001
+     },
+     "m1-s04-q4": {
+      "selected": "C",
+      "correct": "B",
+      "time": 154
+     },
+     "m1-s05-q1": {
+      "selected": "C",
+      "correct": "C",
+      "time": 218.002
+     },
+     "m1-s05-q2": {
+      "selected": "C",
+      "correct": "C",
+      "time": 459.084
+     },
+     "m1-s05-q3": {
+      "selected": "C",
+      "correct": "C",
+      "time": 158.998
+     },
+     "m1-s05-q4": {
+      "selected": "B",
+      "correct": "B",
+      "time": 102.998
+     },
+     "m1-s06-q1": {
+      "selected": "C",
+      "correct": "C",
+      "time": 181.013
+     },
+     "m1-s06-q2": {
+      "selected": "A",
+      "correct": "A",
+      "time": 72.004
+     },
+     "m1-s06-q3": {
+      "selected": "A",
+      "correct": "A",
+      "time": 152.004
+     },
+     "m1-s06-q4": {
+      "selected": "A",
+      "correct": "C",
+      "time": 114.003
+     },
+     "m1-s07-q1": {
+      "selected": "C",
+      "correct": "C",
+      "time": 526.188
+     },
+     "m1-s07-q2": {
+      "selected": "A",
+      "correct": "C",
+      "time": 303.943
+     },
+     "m1-s07-q3": {
+      "selected": "B",
+      "correct": "B",
+      "time": 53.001
+     },
+     "m1-s07-q4": {
+      "selected": "B",
+      "correct": "B",
+      "time": 90.122
+     },
+     "m1-s08-q1": {
+      "selected": "B",
+      "correct": "A",
+      "time": 1665.686
+     },
+     "m1-s08-q2": {
+      "selected": "B",
+      "correct": "C",
+      "time": 145.004
+     },
+     "m1-s08-q3": {
+      "selected": "C",
+      "correct": "C",
+      "time": 219.007
+     },
+     "m1-s08-q4": {
+      "selected": "C",
+      "correct": "C",
+      "time": 147.823
+     },
+     "m1-s09-q1": {
+      "selected": "A",
+      "correct": "A",
+      "time": 1185.446
+     },
+     "m1-s09-q2": {
+      "selected": "A",
+      "correct": "C",
+      "time": 437.976
+     },
+     "m1-s09-q3": {
+      "selected": "A",
+      "correct": "A",
+      "time": 1336.587
+     },
+     "m1-s09-q4": {
+      "selected": "A",
+      "correct": "A",
+      "time": 189.984
+     },
+     "m1-s10-q1": {
+      "selected": "C",
+      "correct": "C",
+      "time": 13.998
+     },
+     "m1-s10-q2": {
+      "selected": "C",
+      "correct": "A",
+      "time": 1607.872
+     },
+     "m1-s10-q3": {
+      "selected": "A",
+      "correct": "A",
+      "time": 306.145
+     },
+     "m1-s10-q4": {
+      "selected": "A",
+      "correct": "A",
+      "time": 361.99
+     },
+     "m1-s11-q1": {
+      "selected": "B",
+      "correct": "B",
+      "time": 127.993
+     },
+     "m1-s11-q2": {
+      "selected": "A",
+      "correct": "A",
+      "time": 59.998
+     },
+     "m1-s11-q3": {
+      "selected": "B",
+      "correct": "B",
+      "time": 421.979
+     },
+     "m1-s11-q4": {
+      "selected": "A",
+      "correct": "B",
+      "time": 130.993
+     }
+    },
+    "timeSpentSec": 16461,
+    "flagged": {
+     "m1-s02-q1": 1,
+     "m1-s03-q2": 1,
+     "m1-s03-q3": 1,
+     "m1-s03-q4": 1,
+     "m1-s04-q3": 1,
+     "m1-s06-q4": 1,
+     "m1-s07-q1": 1,
+     "m1-s07-q2": 1,
+     "m1-s08-q2": 1,
+     "m1-s08-q3": 1,
+     "m1-s09-q1": 1,
+     "m1-s09-q3": 1,
+     "m1-s10-q2": 1,
+     "m1-s11-q3": 1
+    },
+    "struck": {},
+    "dispute": {},
+    "phase": "start",
+    "submitted": {
+     "1": true,
+     "2": false
+    },
+    "last": {},
+    "sview": 0,
+    "unlimited": true,
+    "remaining": {
+     "1": 7920,
+     "2": 7920
+    },
+    "cur": 43,
+    "startedAt": "2026-10-28T22:22:11.418Z",
+    "finishedAt": null,
+    "paused": false,
+    "pausedAt": null,
+    "pauseLog": [
+     {
+      "start": "2026-10-28T22:47:06.831Z",
+      "end": "2026-10-28T22:47:13.298Z",
+      "sec": 6.467,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-28T22:47:59.048Z",
+      "end": "2026-10-28T22:49:59.007Z",
+      "sec": 119.959,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-28T22:50:02.530Z",
+      "end": "2026-10-28T22:50:03.641Z",
+      "sec": 1.111,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:50:15.846Z",
+      "end": "2026-10-28T22:50:17.991Z",
+      "sec": 2.145,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:51:18.887Z",
+      "end": "2026-10-28T22:51:20.573Z",
+      "sec": 1.686,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:52:35.552Z",
+      "end": "2026-10-28T22:52:37.656Z",
+      "sec": 2.104,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-28T22:52:39.275Z",
+      "end": "2026-10-29T02:44:50.884Z",
+      "sec": 13931.609,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T03:11:25.053Z",
+      "end": "2026-10-29T03:11:27.231Z",
+      "sec": 2.178,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T03:12:16.301Z",
+      "end": "2026-10-29T03:12:19.197Z",
+      "sec": 2.896,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T04:15:54.515Z",
+      "end": "2026-10-29T04:15:57.211Z",
+      "sec": 2.696,
+      "reason": "import"
+     },
+     {
+      "start": "2026-10-29T04:16:05.763Z",
+      "end": "2026-10-29T05:17:43.562Z",
+      "sec": 3697.799,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:30:08.338Z",
+      "end": "2026-10-29T05:30:09.960Z",
+      "sec": 1.622,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:30:20.096Z",
+      "end": "2026-10-29T05:30:24.732Z",
+      "sec": 4.636,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-10-29T05:30:38.147Z",
+      "end": "2026-10-29T05:30:54.859Z",
+      "sec": 16.712,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:33:08.284Z",
+      "end": "2026-10-29T05:33:09.600Z",
+      "sec": 1.316,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T05:38:51.445Z",
+      "end": "2026-10-29T07:44:28.889Z",
+      "sec": 7537.444,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T07:47:35.150Z",
+      "end": "2026-10-29T07:47:50.931Z",
+      "sec": 15.781,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T08:09:59.472Z",
+      "end": "2026-10-29T09:20:02.833Z",
+      "sec": 4203.361,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T09:37:54.190Z",
+      "end": "2026-10-29T09:39:48.461Z",
+      "sec": 114.271,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T11:42:24.118Z",
+      "end": "2026-10-29T11:42:25.926Z",
+      "sec": 1.808,
+      "reason": "import"
+     },
+     {
+      "start": "2026-10-29T11:46:38.074Z",
+      "end": "2026-10-29T11:47:12.554Z",
+      "sec": 34.48,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T11:51:36.833Z",
+      "end": "2026-10-29T11:56:43.745Z",
+      "sec": 306.912,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T12:02:25.811Z",
+      "end": "2026-10-29T12:02:50.321Z",
+      "sec": 24.51,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T12:22:29.221Z",
+      "end": "2026-10-29T12:23:55.746Z",
+      "sec": 86.525,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T12:24:00.101Z",
+      "end": "2026-10-29T12:26:05.226Z",
+      "sec": 125.125,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T12:37:42.490Z",
+      "end": "2026-10-29T12:39:23.201Z",
+      "sec": 100.711,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T12:59:55.465Z",
+      "end": "2026-10-29T13:00:06.891Z",
+      "sec": 11.426,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-10-29T13:12:42.271Z",
+      "end": "2026-10-29T13:12:54.647Z",
+      "sec": 12.376,
+      "reason": "hidden"
+     }
+    ],
+    "pauseSummary": {
+     "count": 28,
+     "totalSec": 30370
+    }
+   }
+  }
+ ]
+}
