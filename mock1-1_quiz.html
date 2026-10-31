@@ -108,6 +108,14 @@ details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
 .btn.conf.on{background:var(--amber-soft);border-color:#E3A33A;color:var(--amber);font-weight:600}
 .whyl{display:block;margin-top:6px;font-size:13.5px;color:var(--bad)}
 img.exh{max-width:100%;height:auto;background:#fff}
+/* 지문 왼쪽 · 문제/해설 오른쪽 (cmock처럼) */
+body.wide .wrap{max-width:1440px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start;margin-top:12px}
+.split .card{margin-top:0}
+.vpane{position:sticky;top:104px;max-height:calc(100vh - 116px);overflow:auto;background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:12px;padding:12px 18px 16px;font-size:14.5px}
+.vpane .vhead{font-weight:600;font-size:13px;color:var(--ink2);margin-bottom:4px}
+.vpane p{margin:.5em 0}
+@media (max-width:900px){.split{grid-template-columns:1fr}.vpane{position:static;max-height:42vh}}
 </style>
 </head>
 <body>
@@ -234,6 +242,7 @@ function setup(){
   var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
   var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
   var f = UI.filt || "wc";
+  document.body.classList.remove("wide");
   $("view").innerHTML =
    '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">'+esc(DATA.meta.title)+' 오답 퀴즈</h2>'+
    '<p class="muted">전체 '+Q.length+'문제 · 내가 틀린 문제 '+wrongAll+' · 헷갈린 문제 '+confAll+'. 정답과 영어 해설은 CFA Institute 원문, 한국어 해설은 원문을 바탕으로 작성했습니다. 헷갈림 표시는 문제 화면의 ☆ 버튼으로 켜고 끌 수 있습니다.</p>'+
@@ -263,24 +272,34 @@ function setup(){
   header();
 }
 
+/* ---------- 지문 패널: 지문이 있는 문제는 왼쪽에 지문, 오른쪽에 문제·보기·해설 ---------- */
+function split(q, html){
+  var has = q.vig!==null && q.vig!==undefined;
+  document.body.classList.toggle("wide", has);
+  if(!has) return html;
+  var old=document.querySelector(".vpane"), keep=(old && old.getAttribute("data-v")===String(q.vig)) ? old.scrollTop : 0;
+  setTimeout(function(){ var n=document.querySelector(".vpane"); if(n) n.scrollTop=keep; },0);
+  return '<div class="split"><aside class="vpane" data-v="'+q.vig+'"><div class="vhead">케이스 지문 (Vignette)</div>'+rich(VIG[q.vig])+'</aside><div class="qpane">'+html+'</div></div>';
+}
+
 /* ---------- study screen: 문제 + 정답 + 해설을 같이 본다 ---------- */
 function startStudy(ids, label){ UI.view="study"; UI.study={ids:ids, i:0, label:label}; saveUI(); study(); window.scrollTo(0,0); }
 function study(){
   var T=UI.study, id=T.ids[T.i], q=BYID[id];
-  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case"><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var vig = '';
   var optsHtml = ["A","B","C"].map(function(L){
     return '<div class="opt'+(L===q.ans?' sel-ok':'')+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+
       (L!==q.ans && q.why && q.why[L] ? '<span class="whyl">'+esc(q.why[L])+'</span>' : '')+'</span></div>';
   }).join("");
   var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
   var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
-  $("view").innerHTML='<section class="card">'+metaHtml(q, esc(q.orig))+vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div>'+
+  $("view").innerHTML=split(q, '<section class="card">'+metaHtml(q, esc(q.orig))+vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div>'+
     '<div class="fb ok"><h3>정답 '+q.ans+'</h3><h4>핵심 포인트</h4><p>'+esc(q.ko)+'</p>'+f+trap+
     '<details class="en"><summary>English explanation (원문 해설)</summary><div class="enbody">'+rich(q.en)+'</div></details></div>'+
     '<div class="nav"><button class="btn" id="sPrev" '+(T.i===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+(T.i+1)+' / '+T.ids.length+'</span>'+
     '<button class="btn primary" id="sNext" '+(T.i===T.ids.length-1?'disabled':'')+'>다음 →</button></div>'+
-    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap;margin-top:8px"><button class="btn" id="sQuiz">이 목록 풀기 ('+T.ids.length+')</button><button class="btn" id="sHome">처음 화면</button></div></section>';
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap;margin-top:8px"><button class="btn" id="sQuiz">이 목록 풀기 ('+T.ids.length+')</button><button class="btn" id="sHome">처음 화면</button></div></section>');
   $("sPrev").onclick=function(){ studyGo(T.i-1); };
   $("sNext").onclick=function(){ studyGo(T.i+1); };
   $("sQuiz").onclick=function(){ UI.view=null; saveUI(); S=fresh(T.ids.slice(),"list"); save(); render(); };
@@ -293,7 +312,7 @@ function studyGo(i){ var T=UI.study; if(i<0||i>=T.ids.length) return; T.i=i; sav
 /* ---------- quiz screen ---------- */
 function quiz(){
   var id=S.order[S.idx], q=BYID[id], r=S.round[id];
-  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var vig = '';
   var optsHtml = ["A","B","C"].map(function(L){
     var cls="opt";
     if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
@@ -304,7 +323,7 @@ function quiz(){
     '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
     (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
-  $("view").innerHTML=html;
+  $("view").innerHTML=split(q, html);
   Array.prototype.forEach.call(document.querySelectorAll("button.opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
   $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
   $("bConf").onclick=function(){ toggleConf(id); quiz(); };
@@ -365,6 +384,7 @@ function result(){
   var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
   var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
   var wcIds=S.order.filter(function(id){var r=S.round[id];return (r&&!r.correct) || isConf(BYID[id]);});
+  document.body.classList.remove("wide");
   $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"||S.mode==="rwc"?"다시 풀기 결과":"라운드 결과")+'</h2>'+
     '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
     (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
