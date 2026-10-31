@@ -45,6 +45,7 @@ mark{background:var(--hl);color:inherit}
 #relbtn.on{background:var(--accbg);border-color:var(--acc)}
 .nb.nno{color:var(--bad);border-color:var(--bad)}
 .nb.out{opacity:.35}
+.nb.rok{color:var(--ok);border-color:var(--ok)}
 .nb.rvd::before{content:"✓";position:absolute;left:2px;bottom:-1px;font-size:9px;color:var(--ok)}
 .sl{font-size:11px;color:var(--mut);align-self:center;margin:0 2px 0 8px}
 .why{font-size:13px;color:var(--mut);margin-top:4px}
@@ -119,7 +120,7 @@ const sessRange = se => { const a = QL.map((x, i) => x.sess === se ? i : -1).fil
 function fresh() {
   return {phase: "start", cur: 0, rem: {1: SESSION_SEC, 2: SESSION_SEC}, answers: {}, flagged: {}, struck: {},
           time: {}, dispute: {}, hl: {}, unlimited: false, startedAt: null, finishedAt: null, sub: {1: false, 2: false}, last: {}, sview: 0,
-          paused: false, pausedAt: null, pauseLog: [], savedAt: null};
+          paused: false, pausedAt: null, pauseLog: [], savedAt: null, retry: null};
 }
 let S = fresh();
 let dark = false;
@@ -190,6 +191,7 @@ function normalizeState(st) {
   if (n.phase === "break") n.phase = "start";
   if (n.sview && !n.sub[n.sview]) n.sview = 0;
   if (n.phase === "done" && !n.sub[1] && !n.sub[2]) n.phase = "start";
+  if (n.phase === "retry" && !(n.retry && Array.isArray(n.retry.ids) && n.retry.ids.length)) n.phase = "start";
   return n;
 }
 function pauseSecOf(e, now) { return e.end ? (e.sec || 0) : Math.max(0, ((now || Date.now()) - Date.parse(e.start)) / 1000); }
@@ -271,6 +273,7 @@ function render() {
   syncOverlay();
   if (S.phase === "start") return renderStart(app);
   if (S.phase === "done") return S.study !== false ? renderStudy() : renderResults(app);
+  if (S.phase === "retry") return renderRetry();
   if (S.phase === "review1" || S.phase === "review2") return renderReview(app);
   renderExam();
 }
@@ -298,7 +301,7 @@ function renderStart(app) {
     if (S.sub[se]) {
       const c = rows.slice(a, b + 1).filter(r => r.ok).length;
       st = `<b class="okc">제출 완료</b> · ${c}/${tot} (${pct(c, tot)}%)`;
-      btns = `<button class="pri" data-g="${se}">채점 결과·오답 보기</button>` + (se === 1 && S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : "");
+      btns = `<button class="pri" data-g="${se}">채점 결과·오답 보기</button>` + `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">${retryBtns(se, rows)}</div>` + (se === 1 && S.rem[1] === 0 ? ` <button id="s1back">Session 1로 돌아가 이어 풀기</button><p class="mut">시간 종료로 자동 제출된 경우에만 보입니다.</p>` : "");
     } else {
       const go = n > 0 || sessUsed(se) > 0;
       const t = S.unlimited ? fmt(sessUsed(se)) + " 경과" : (S.rem[se] < 0 ? "+" + fmt(-S.rem[se]) + " 초과" : "남은 시간 " + fmt(S.rem[se]));
@@ -314,11 +317,13 @@ function renderStart(app) {
   <li>풀이 중 ◀ 메인으로 나오면 그 세션의 시간이 멈추고, 이어 풀기로 다시 들어갈 수 있습니다.</li>
   <li>플래그(⚑), 오답 지우기(✕), vignette 하이라이트, 관련 지문 강조 기능을 쓸 수 있습니다.</li>
   <li>진행 상황은 브라우저 localStorage에 자동 저장되며, 💾 저장 버튼으로 <code>Mock${MOCK}_results_날짜.json</code>을 받을 수 있습니다. GitHub의 <code>results/Mock${MOCK}/latest.json</code>이 더 최신이면 열 때 자동으로 불러옵니다(일시정지 상태).</li>
+  <li>제출한 세션은 오답·Flag 문제만 골라 다시 풀 수 있습니다(바로 채점·해설, 끝나면 틀린 문제만 다시). 시험 점수와 답안은 바뀌지 않습니다.</li>
   <li>합격선은 CFA Institute가 공개하지 않습니다. 리포트의 65–70%는 비공식 참고선일 뿐입니다.</li></ul>
   <label><input type="checkbox" id="unl"${S.unlimited ? " checked" : ""}${S.startedAt ? " disabled" : ""}> 시간 무제한 (연습용 — 결과에 표기됨${S.startedAt ? ", 시작 후에는 바꿀 수 없음" : ""})</label></div>
   <div class="grid">${card(1)}${card(2)}</div>
   <div style="display:flex;gap:10px;flex-wrap:wrap">
-  ${S.sub[1] && S.sub[2] ? `<button class="pri" id="allbtn">전체 결과 (88문항)</button>` : ""}
+  ${S.sub[1] && S.sub[2] ? `<button class="pri" id="allbtn">전체 결과 (88문항)</button>${retryBtns(0, rows)}` : ""}
+  ${S.retry && S.retry.ids.length ? `<button class="pri" id="rresume">다시 풀기 이어서 — ${esc(S.retry.label)} (${retryStats().answered}/${S.retry.ids.length})</button>` : ""}
   <button id="exphub">💾 저장</button>
   <button id="impbtn">Import JSON</button><input type="file" id="impfile" accept=".json" style="display:none">
   ${S.startedAt ? `<button id="resethub">↺ 처음부터 다시</button>` : ""}</div></div>`;
@@ -326,6 +331,8 @@ function renderStart(app) {
   app.querySelectorAll("[data-s]").forEach(bt => bt.onclick = () => startSession(+bt.dataset.s));
   app.querySelectorAll("[data-g]").forEach(bt => bt.onclick = () => openGraded(+bt.dataset.g));
   if ($("allbtn")) $("allbtn").onclick = () => openGraded(0);
+  app.querySelectorAll("[data-r]").forEach(bt => bt.onclick = () => { const [se, f] = bt.dataset.r.split(":"); startRetry(retryIds(+se, f, rows), retryLabel(+se, f)); });
+  if ($("rresume")) $("rresume").onclick = () => { S.phase = "retry"; $("app").dataset.mode = ""; save(); render(); };
   if ($("s1back")) $("s1back").onclick = () => { if (confirm("Session 1 제출을 취소하고 이어 풉니다. 계속할까요?")) reopenS1(); };
   $("exphub").onclick = exportJSON;
   if ($("resethub")) $("resethub").onclick = () => { if (confirm("모든 답안·시간·진행 상황을 삭제하고 처음으로 돌아갑니다. 💾 저장했는지 확인하세요. 계속할까요?")) { S = fresh(); try { localStorage.removeItem(SKEY); } catch (e) {} render(); } };
@@ -465,12 +472,13 @@ function renderStudy() {
   if (!$("left") || app.dataset.mode !== "study") {
     app.dataset.mode = "study";
     app.innerHTML = `<div id="top"><button id="tohub">◀ 메인</button><b>Mock ${MOCK} · ${S.sview ? "Session " + S.sview + " " : ""}복습</b><span id="qinfo"></span><span class="grow"></span>
-      <span class="tabs" id="sfilt" style="margin:0"></span><button id="doneb" title="복습 완료 표시 (하단 번호에 ✓)"></button>${darkBtn()}<button id="tores">결과 화면</button></div>
+      <span class="tabs" id="sfilt" style="margin:0"></span><button id="sretry" title="지금 고른 목록(오답·Flag 등)을 다시 풀기">▶ 이 목록 다시 풀기</button><button id="doneb" title="복습 완료 표시 (하단 번호에 ✓)"></button>${darkBtn()}<button id="tores">결과 화면</button></div>
       <div id="main"><div id="left"></div><div id="right"></div></div>
       <div id="bottom"><button id="prev">◀ Prev</button><button id="next">Next ▶</button><div id="nav"></div></div>`;
     $("prev").onclick = () => studyStep(-1);
     $("next").onclick = () => studyStep(1);
     $("tores").onclick = closeStudy;
+    $("sretry").onclick = () => { const l = studyList(); if (!l.length) return alert("이 목록에 문제가 없습니다."); startRetry(l.map(i => QL[i].q.id), retryLabel(S.sview, S.sfilt)); };
     $("tohub").onclick = toHub;
     $("doneb").onclick = () => { const id = QL[S.cur].q.id; if (S.reviewed[id]) delete S.reviewed[id]; else S.reviewed[id] = 1; save(); renderStudy(); };
   }
@@ -502,6 +510,95 @@ function renderStudy() {
     return `${ss ? `<span class="sl">S${y.sess}</span>` : ""}<button class="nb ${rr.ok ? "nok" : "nno"}${i === S.cur ? " cur" : ""}${rr.flag ? " fl" : ""}${first && !ss ? " setstart" : ""}${inl.has(i) ? "" : " out"}${S.reviewed[rr.id] ? " rvd" : ""}" data-i="${i}" title="Set ${DATA.sets[y.si].set}">${y.no}</button>`;
   }).join("");
   $("nav").querySelectorAll("button").forEach(bt => bt.onclick = () => studyGo(+bt.dataset.i));
+}
+
+// ---------- 다시 풀기: 채점한 세션의 오답·Flag만 골라 한 문항씩 바로 채점 (시험 답안·점수는 그대로) ----------
+const RFILT = {wf: "오답+Flag", wrong: "오답", flag: "Flag", all: "전체"};
+const retryLabel = (se, f) => (se ? "Session " + se + " " : "") + (RFILT[f] || "전체");
+function retryIds(se, f, rows) {
+  rows = rows || grade();
+  return rows.filter(r => S.sub[r.sess] && (!se || r.sess === se))
+    .filter(r => f === "all" || (f === "wrong" && !r.ok) || (f === "flag" && r.flag) || (f === "wf" && (!r.ok || r.flag))).map(r => r.id);
+}
+function retryBtns(se, rows) {
+  return ["wf", "wrong", "flag"].map(f => { const n = retryIds(se, f, rows).length;
+    return `<button data-r="${se}:${f}"${n ? "" : " disabled"}>${se ? "" : "전체 "}${RFILT[f]} 다시 풀기 (${n})</button>`; }).join(" ");
+}
+function startRetry(ids, label) {
+  if (!ids.length) return;
+  S.retry = {ids, i: 0, res: {}, label, done: false};
+  S.phase = "retry"; $("app").dataset.mode = ""; save(); render();
+}
+function retryStats() {
+  const T = S.retry, sec = getSecret(); let ok = 0, bad = 0;
+  T.ids.forEach(id => { const v = T.res[id]; if (v) { if (v === sec[id].a) ok++; else bad++; } });
+  return {ok, bad, answered: ok + bad, total: T.ids.length};
+}
+function retryGo(i) { const T = S.retry; if (i < 0 || i >= T.ids.length) return; T.i = i; T.done = false; save(); renderRetry(); }
+function retryAnswer(k) { const T = S.retry, id = T.ids[T.i]; if (T.res[id]) return; T.res[id] = k; save(); renderRetry(); }
+// 다음: 안 푼 문제면 패스. 마지막 문제에서 패스하면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로
+function retryNext() {
+  const T = S.retry;
+  if (T.i < T.ids.length - 1) return retryGo(T.i + 1);
+  const j = T.ids.findIndex((id, k) => !T.res[id] && k !== T.i);
+  if (!T.res[T.ids[T.i]] && j >= 0) return retryGo(j);
+  T.done = true; save(); renderRetry();
+}
+function renderRetry() {
+  const T = S.retry, app = $("app");
+  if (!T || !T.ids.length) { S.phase = "start"; return render(); }
+  if (T.done) return renderRetryResult(app);
+  const i = byId[T.ids[T.i]], x = QL[i], q = x.q, s = DATA.sets[x.si], id = q.id, sec = getSecret()[id], ans = sec.a, sel = T.res[id] || null, dl = sec.d || {};
+  document.body.classList.toggle("live", !sel);
+  if (!$("left") || app.dataset.mode !== "retry") {
+    app.dataset.mode = "retry";
+    app.innerHTML = `<div id="top"><button id="rhub">◀ 메인</button><b>Mock ${MOCK} · 다시 풀기 (${esc(T.label)})</b><span id="qinfo"></span><span class="grow"></span><span id="rscore" class="mut"></span>${darkBtn()}<button id="rend">결과 보기</button></div>
+      <div id="main"><div id="left"></div><div id="right"></div></div>
+      <div id="bottom"><button id="prev">◀ Prev</button><button id="next"></button><div id="nav"></div></div>`;
+    $("rhub").onclick = toHub;
+    $("rend").onclick = () => { S.retry.done = true; save(); renderRetry(); };
+    $("prev").onclick = () => retryGo(S.retry.i - 1);
+    $("next").onclick = retryNext;
+  }
+  const st = retryStats();
+  $("qinfo").textContent = `${T.i + 1}/${T.ids.length} · S${x.sess} Q${x.no} · Set ${s.set}`;
+  $("rscore").textContent = `정답 ${st.ok} · 오답 ${st.bad} · 남음 ${st.total - st.answered}`;
+  $("next").textContent = sel ? (T.i === T.ids.length - 1 ? "결과 보기 ▶" : "Next ▶") : "패스 ▶";
+  renderLeft(x, renderRetry);
+  const R = $("right");
+  R.scrollTop = 0;
+  R.innerHTML = (sel ? `<div class="sh"><b class="${sel === ans ? "okc" : "warn"}">${sel === ans ? "정답" : "오답"}</b><span class="mut">고른 답 ${sel} · 정답 ${ans}${S.flagged[id] ? " · ⚑ Flag" : ""}</span><span class="tag">${esc(q.los)}</span></div>` : "") +
+    `<div class="mut" style="font-size:13px">Question ${x.no}</div><div class="stem">${q.stem}</div>` +
+    Object.keys(q.options).map(k => sel
+      ? `<div class="opt ${k === ans ? "right" : (k === sel ? "wrong" : "")}"><span class="l">${k}</span><span class="t">${q.options[k]}${k !== ans && dl[k] ? `<div class="why">${esc(dl[k])}</div>` : ""}</span>${k === sel ? "<span class='tag'>고른 답</span>" : ""}${k === ans ? "<span class='tag'>정답</span>" : ""}</div>`
+      : `<div class="opt" data-k="${k}"><span class="l">${k}</span><span class="t">${q.options[k]}</span></div>`).join("") +
+    (sel ? `${noteHTML(sec)}<details class="raw"><summary>원문 해설 (출처 포함)</summary><div class="expl">${esc(sec.e)}</div></details>` : "");
+  if (!sel) R.querySelectorAll(".opt").forEach(o => o.onclick = () => retryAnswer(o.dataset.k));
+  typeset(R);
+  const sc = getSecret();
+  $("nav").innerHTML = T.ids.map((rid, k) => { const v = T.res[rid];
+    return `<button class="nb${v ? (v === sc[rid].a ? " rok" : " nno") : ""}${k === T.i ? " cur" : ""}${S.flagged[rid] ? " fl" : ""}" data-k="${k}" title="S${QL[byId[rid]].sess} Q${QL[byId[rid]].no}">${QL[byId[rid]].no}</button>`; }).join("");
+  $("nav").querySelectorAll("button").forEach(bt => bt.onclick = () => retryGo(+bt.dataset.k));
+}
+function renderRetryResult(app) {
+  app.dataset.mode = "retryres";
+  document.body.classList.remove("live");
+  const T = S.retry, st = retryStats(), sec = getSecret();
+  const wrong = T.ids.filter(id => T.res[id] && T.res[id] !== sec[id].a), open = T.ids.findIndex(id => !T.res[id]);
+  const m = {}; T.ids.forEach(id => { const x = QL[byId[id]], c = DATA.sets[x.si].code; m[c] = m[c] || {n: 0, c: 0}; if (T.res[id]) { m[c].n++; if (T.res[id] === sec[id].a) m[c].c++; } });
+  app.innerHTML = `<div id="top"><button id="rhub2">◀ 메인</button><b>Mock ${MOCK} — 다시 풀기 결과 (${esc(T.label)})</b><span class="grow"></span>${darkBtn()}</div>
+  <div class="center"><div class="card"><h2>${st.ok} / ${st.answered} (${pct(st.ok, st.answered)}%)</h2>
+    ${st.answered < st.total ? `<p class="mut">아직 ${st.total - st.answered}문제를 풀지 않았습니다.</p>` : ""}
+    <table class="r"><tr><th>Topic</th><th class="n">정답/푼 문항</th><th class="n">정답률</th><th></th></tr>${Object.keys(m).filter(k => m[k].n).map(k => `<tr><td>${k}</td><td class="n">${m[k].c}/${m[k].n}</td><td class="n">${pct(m[k].c, m[k].n)}%</td><td>${bar(pct(m[k].c, m[k].n))}</td></tr>`).join("")}</table>
+    <p class="mut">시험 점수·답안은 바뀌지 않습니다.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pri" id="rwrong"${wrong.length ? "" : " disabled"}>틀린 문제만 다시 풀기 (${wrong.length})</button>
+    ${open >= 0 ? `<button id="ropen">안 푼 문제 풀기 (${st.total - st.answered})</button>` : ""}
+    <button id="rback">문제로 돌아가기</button><button id="rexp">💾 저장</button></div></div>`;
+  $("rhub2").onclick = toHub;
+  $("rwrong").onclick = () => startRetry(wrong, T.label.replace(/ · 틀린 문제$/, "") + " · 틀린 문제");
+  if ($("ropen")) $("ropen").onclick = () => retryGo(open);
+  $("rback").onclick = () => retryGo(T.i);
+  $("rexp").onclick = exportJSON;
 }
 
 // ---------- grading ----------
@@ -553,7 +650,7 @@ function exportJSON() {
     totalQuestions: QL.length, answered, correct, wrong: rows ? ansSub - correct : null,
     state: {answers, timeSpentSec: Math.round(Object.values(S.time).reduce((a, b) => a + b, 0)), flagged: S.flagged, struck: S.struck, dispute: S.dispute,
             phase: S.phase, submitted: S.sub, last: S.last, sview: S.sview, unlimited: S.unlimited, remaining: S.rem, cur: S.cur, startedAt: S.startedAt, finishedAt: S.finishedAt,
-            paused: S.paused, pausedAt: S.pausedAt, pauseLog: S.pauseLog, pauseSummary: {count: S.pauseLog.length, totalSec: Math.round(pauseTotal())}}};
+            paused: S.paused, pausedAt: S.pausedAt, pauseLog: S.pauseLog, pauseSummary: {count: S.pauseLog.length, totalSec: Math.round(pauseTotal())}, retry: S.retry}};
   const d = new Date(), date = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
   const o = {subject: SUBJECT, date, latest: {phase: S.phase, totalQuestions: QL.length, answered, correct, wrong: attempt.wrong}, attempts: [attempt]};
   const blob = new Blob([JSON.stringify(o, null, 1)], {type: "application/json"});
@@ -573,7 +670,7 @@ function importJSON(txt, quiet) {
     n.unlimited = !!st.unlimited; n.rem = st.remaining || n.rem; n.startedAt = st.startedAt || null; n.finishedAt = st.finishedAt || null;
     n.phase = st.phase || "s1"; n.cur = st.cur || 0;
     n.pauseLog = Array.isArray(st.pauseLog) ? st.pauseLog.map(e => Object.assign({}, e)) : [];
-    n.sub = st.submitted; n.last = st.last || {}; n.sview = st.sview || 0;
+    n.sub = st.submitted; n.last = st.last || {}; n.sview = st.sview || 0; n.retry = st.retry || null;
     S = normalizeState(n); lastTick = Date.now();
     // 열려 있던 일시정지는 export 시각에서 닫고, 세션 중이면 지금부터 새 일시정지로 복원
     const open = S.pauseLog[S.pauseLog.length - 1];
@@ -627,6 +724,11 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault(); e.clipboardData.setData("text/plain", t);
   });
   document.addEventListener("keydown", e => {
+    if (S.phase === "retry" && S.retry && !S.retry.done && !/TEXTAREA|INPUT/.test(e.target.tagName) && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (e.key === "ArrowRight" || e.key === "Enter") retryNext(); else if (e.key === "ArrowLeft") retryGo(S.retry.i - 1);
+      else if ("abcABC".includes(e.key) && e.key.length === 1) retryAnswer(e.key.toUpperCase());
+      return;
+    }
     if (S.phase === "done" && S.study !== false && !/TEXTAREA|INPUT/.test(e.target.tagName) && !e.ctrlKey && !e.metaKey && !e.altKey) {
       if (e.key === "ArrowRight") studyStep(1); else if (e.key === "ArrowLeft") studyStep(-1);
       return;
@@ -639,7 +741,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (e.key === "ArrowLeft" && S.cur > a) goto(S.cur - 1);
     else if ("abcABC".includes(e.key) && e.key.length === 1) { S.answers[x.q.id] = e.key.toUpperCase(); save(); renderExam(); }
   });
-  window.addEventListener("load", () => { if (S.phase === "done") { $("app").dataset.mode = ""; render(); } else if (inSession()) typeset($("app")); });
+  window.addEventListener("load", () => { if (S.phase === "done" || S.phase === "retry") { $("app").dataset.mode = ""; render(); } else if (inSession()) typeset($("app")); });
 });
 </script>
 </body>
