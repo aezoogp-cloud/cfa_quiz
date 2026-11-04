@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Economics Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Economics 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Bid–offer spread factors", "vig": null, "stem": "For a spot foreign exchange trade, which factor is least likely to affect the bid–offer spread a dealer quotes?", "opts": {"A": "The currency pair", "B": "The client's credit rating", "C": "The size of the trade"}, "ans": "B", "en": "L7: FX spread = currency pair + timing + trade size + volatility + bank-client relationship 영향 ↑ / 단기 spot 거래에서 credit rating 영향 ↓\nL9: spot 거래라 신용위험이 매우 짧아서 credit rating의 영향이 작음", "enLabel": "오답노트 원문", "ko": "Spreads depend on currency pair, timing, trade size, volatility, and the bank–client relationship. In a spot trade, credit exposure is very short, so the credit rating matters little.", "trap": "", "f": "", "why": {"A": "The currency pair strongly affects spreads (liquidity).", "C": "Trade size affects spreads."}, "orig": "Economics 오답노트 L7 · 근거 ECO-M1-Q4"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Arbitrage condition", "vig": null, "stem": "An arbitrage opportunity between two dealers exists when:", "opts": {"A": "one dealer's bid is lower than the other dealer's ask", "B": "one dealer's ask is lower than the other dealer's bid", "C": "both dealers quote the same mid-price"}, "ans": "B", "en": "L10: arbirtrage 조건 : 낮은 ask < 높은 Bid", "enLabel": "오답노트 원문", "ko": "Arbitrage condition: low ask < high bid (buy at the low ask, sell at the high bid).", "trap": "", "f": "", "why": {"A": "That is the normal situation and gives no profit.", "C": "Equal mid-prices do not create a buy-low/sell-high opportunity."}, "orig": "Economics 오답노트 L10 · 근거 SCH R5"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "Forward rate from forward points", "vig": null, "stem": "The spot rate is 1.3000 and the forward points are +25 (in pips). The forward rate is:", "opts": {"A": "1.3025", "B": "1.3250", "C": "1.2975"}, "ans": "A", "en": "L11: Forward Rate 계산: Spot Rate + Forward Points\nL13: Forward points가 주어지면 현재 Forward rate = Spot rate + Forward points\nL14: Bid는 Bid끼리 / Ask는 Ask끼리 계산\nL15: Forward points가 +  → Forward rate > Spot\nL16: Forward points가 − → Forward rate < Spot\nL120: Forward Rate=Spot Rate+(Forward Points)/(10,000)", "enLabel": "오답노트 원문", "ko": "Forward rate = spot + forward points/10,000. Bid with bid, ask with ask. Positive points → forward > spot; negative → forward < spot.", "trap": "", "f": "", "why": {"B": "Points are divided by 10,000, not 1,000.", "C": "Positive points are added, not subtracted."}, "orig": "Economics 오답노트 L11 · 근거 SCH R5"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "Forward above spot", "vig": null, "stem": "For a quote in price/base terms (GBP/EUR), the forward rate is above the spot rate. This implies:", "opts": {"A": "the GBP (price currency) interest rate is higher than the EUR (base currency) rate", "B": "the EUR (base currency) interest rate is higher than the GBP rate", "C": "the two interest rates are equal"}, "ans": "A", "en": "L17: F>S⇒ r_price>r_base\nL19: F=S×(1+r_GBP)/(1+r_EUR)\nL20: ex) F = Forward GBP/EUR\nL21: F>S 라는건 (1+r_GBP)/(1+r_EUR)>1 ⇒ r_GBP>r_EUR ⇒ EUR MRR < GBP MRR", "enLabel": "오답노트 원문", "ko": "F = S × (1 + i_price)/(1 + i_base). F > S ⇒ i_price > i_base (here EUR market reference rate < GBP market reference rate).", "trap": "", "f": "", "why": {"B": "F > S means (1 + i_GBP)/(1 + i_EUR) > 1.", "C": "Equal rates would give F = S."}, "orig": "Economics 오답노트 L17 · 근거 SCH R5"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Which parity uses forward and spot rates", "vig": null, "stem": "An analyst has the spot rate, the forward rate, and one country's interest rate, and wants the other country's interest rate. She should use:", "opts": {"A": "uncovered interest rate parity", "B": "covered interest rate parity", "C": "relative purchasing power parity"}, "ans": "B", "en": "L22: Forward rate가 주어지고 → 다른 나라 금리를 계산 : CIP\nL24: covered arbitrage가 발생하지 않도록 하는 Forward rate의 관계를 설명하는 것\nL25: Forward contract를 이용해 환율 위험을 제거", "enLabel": "오답노트 원문", "ko": "Covered interest rate parity = the forward rate that prevents covered arbitrage (forward contract removes currency risk).", "trap": "", "f": "", "why": {"A": "Uncovered parity relates interest rates to the expected future spot, not the forward.", "C": "Purchasing power parity uses inflation, not interest rates."}, "orig": "Economics 오답노트 L22 · 근거 ECO-M1-Q12"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "Forecasting an unhedged future spot rate", "vig": null, "stem": "To estimate the future spot rate for unhedged cash flows using an interest rate differential, the analyst should use:", "opts": {"A": "uncovered interest rate parity", "B": "absolute purchasing power parity", "C": "covered interest rate parity"}, "ans": "A", "en": "L26: Future spot forecast →  UIP\nL28: 두 나라의 금리 차이가 미래 spot exhange rate 예상 변화에 반영된다\nL29: Forward hedge 없이 미래 환율을 예상", "enLabel": "오답노트 원문", "ko": "Uncovered interest rate parity: the interest rate differential is reflected in the expected change in the future spot rate (no forward hedge).", "trap": "", "f": "", "why": {"C": "Covered parity gives the forward rate (hedged).", "B": "Absolute purchasing power parity uses price levels, not interest rates."}, "orig": "Economics 오답노트 L26 · 근거 ECO-M1-Q13"}, {"id": "CON-M1-07", "src": "개념", "module": 1, "tag": "Forward rate as an unbiased predictor", "vig": null, "stem": "The forward rate is an unbiased predictor of the future spot rate when:", "opts": {"A": "only covered interest rate parity holds", "B": "both covered and uncovered interest rate parity hold", "C": "only uncovered interest rate parity holds"}, "ans": "B", "en": "L30: CIP + UIP ⇒ F = E(S_T) :  forward rate is an unbiased predictor of the future spot\nL32: UIP만으로는 예상 spot과 금리 차의 관계만 정해짐. forward와 연결하려면 CIP도 필요\nL58: forward rate is an unbiased predictor of the future spot rate when Both covered interest rate parity and uncovered interest rate parity hold", "enLabel": "오답노트 원문", "ko": "Covered + uncovered interest rate parity ⇒ F = E(S_T): forward rate is an unbiased predictor of the future spot.", "trap": "", "f": "", "why": {"C": "Uncovered parity alone links the expected spot to interest rates, not to the forward.", "A": "Covered parity alone links the forward to interest rates, not to the expected spot."}, "orig": "Economics 오답노트 L30 · 근거 SCH R5"}, {"id": "CON-M1-08", "src": "개념", "module": 1, "tag": "Which parity uses inflation", "vig": null, "stem": "Explaining exchange rate changes with inflation differentials uses:", "opts": {"A": "uncovered interest rate parity", "B": "covered interest rate parity", "C": "purchasing power parity"}, "ans": "C", "en": "L33: Inflation 차이로 환율을 설명하면 → PPP\nL121: UIP = Interest rate differential(명목금리 차이→ MRR), PPP = Inflation differential", "enLabel": "오답노트 원문", "ko": "Inflation differential → purchasing power parity; nominal interest rate differential (market reference rates) → uncovered interest rate parity.", "trap": "", "f": "", "why": {"A": "Uncovered parity uses nominal interest rate differentials.", "B": "Covered parity uses interest rates and the forward rate."}, "orig": "Economics 오답노트 L33 · 근거 SCH R5"}, {"id": "CON-M1-09", "src": "개념", "module": 1, "tag": "All parity conditions hold", "vig": null, "stem": "If all international parity conditions hold, then:", "opts": {"A": "real interest rates are equal across countries", "B": "nominal interest rates are equal across countries", "C": "spot exchange rates never change"}, "ans": "A", "en": "L34: 모든 parity 성립 ⇒ r_foreign = r_domestic\nL133: all international parity conditions hold → r_foreign = r_domestic", "enLabel": "오답노트 원문", "ko": "All parity conditions hold → foreign and domestic real interest rates are equal.", "trap": "", "f": "", "why": {"B": "Nominal rates can differ by expected inflation.", "C": "Spot rates change with inflation differentials."}, "orig": "Economics 오답노트 L34 · 근거 SCH R5"}, {"id": "CON-M1-10", "src": "개념", "module": 1, "tag": "Carry trade and uncovered interest rate parity", "vig": null, "stem": "An FX carry trade (borrow low-yield currency, invest in high-yield currency) earns excess returns only if:", "opts": {"A": "covered interest rate parity fails", "B": "uncovered interest rate parity does not hold in the short to medium term", "C": "uncovered interest rate parity holds in the short term"}, "ans": "B", "en": "L35: Carry trade는 UIP가 단기/중기에 성립하지 않는 것을 전제로 함\nL37: “ FX carry trade = high-yield currency 매수 + low-yield currency 차입”성립하려면 UIP가 단기·중기에는 성립 X\nL38: UIP : 높은 금리에서 얻는 이자수익이 환율 하락으로 상쇄됨 → carry trade로 초과수익 불가\nL39: carry trade strategy depends on UIP 중·단기 성립 X", "enLabel": "오답노트 원문", "ko": "Carry trade depends on uncovered interest rate parity not holding in the short/medium term; under parity, the interest gain is offset by currency depreciation.", "trap": "", "f": "", "why": {"C": "If uncovered parity held, the high-yield currency would depreciate and cancel the interest gain.", "A": "Covered parity is about forwards and does not drive carry profits."}, "orig": "Economics 오답노트 L35 · 근거 SCH R5"}, {"id": "CON-M1-11", "src": "개념", "module": 1, "tag": "Emerging market currency intervention", "vig": null, "stem": "Emerging market central banks can influence their exchange rates more effectively than developed market central banks mainly because:", "opts": {"A": "their capital flows are smaller", "B": "their foreign exchange reserves are large relative to average daily FX turnover", "C": "their domestic demand is larger"}, "ans": "B", "en": "L40: Emerging Market  FX reserves / average daily FX turnover 비율이 선진국보다 높음 → FX intervention effectiveness ↑", "enLabel": "오답노트 원문", "ko": "Emerging markets: FX reserves / average daily FX turnover is much higher than in developed markets → intervention more effective.", "trap": "", "f": "", "why": {"C": "Domestic demand is not the stated reason.", "A": "The key factor is the reserve-to-turnover ratio."}, "orig": "Economics 오답노트 L40 · 근거 ECO-M1-Q19"}, {"id": "CON-M1-12", "src": "개념", "module": 1, "tag": "Warning signs of a currency crisis", "vig": null, "stem": "As a currency crisis approaches, foreign exchange reserves and broad money growth typically:", "opts": {"A": "reserves rise; broad money growth rises", "B": "reserves fall sharply; broad money growth rises", "C": "reserves rise; broad money growth falls"}, "ans": "B", "en": "L41: Currency crisis approaching → FX reserves ↓, broad money growth ↑, Exchange rate ↑ (Domestic currency depreciation)\nL43: 중앙은행이 currency depreciation을 막기 위해 FX reserves를 사용하기 때문\nL44: Narrow money → 현금 + 당장 결제 가능한 예금\nL45: Broad money → narrow money + 저축예금·정기예금 등 비교적 유동성이 낮은 금융자산까지 포함\nL51: M2 ↑ = crisis warning sign (currency crisis 직전에는 broad money(M2)가 증가하는 경향)", "enLabel": "오답노트 원문", "ko": "Before a crisis: FX reserves decline, broad money (M2) growth rises, and the currency is valued above its historical mean (overvalued). ※ Note line 41 reads the exchange rate move as 'domestic depreciation'; ECO says the currency is above its mean (overvalued) before the crisis.", "trap": "", "f": "", "why": {"C": "Reserves fall because the central bank uses them to defend the currency.", "A": "Reserves fall, not rise."}, "orig": "Economics 오답노트 L41 · 근거 ECO-M1-Q20"}, {"id": "CON-M1-13", "src": "개념", "module": 1, "tag": "Banking sector and currency crises", "vig": null, "stem": "Which situation most increases the risk of a currency crisis?", "opts": {"A": "Rapid banking sector growth funded by short-term foreign-currency debt", "B": "A floating exchange rate regime", "C": "Improving terms of trade"}, "ans": "A", "en": "L46: Banking crisis가 currency crisis보다 먼저 나타날 수 있음 → foreign-currency denominated short-term debt 많으면 → currency depreciation 시 balance sheet 악화 → 위험", "enLabel": "오답노트 원문", "ko": "Banking crises can precede currency crises; heavy short-term foreign-currency debt worsens balance sheets when the currency depreciates.", "trap": "", "f": "", "why": {"B": "Fixed or partially fixed regimes are more vulnerable than floating ones.", "C": "Deteriorating, not improving, terms of trade is the warning sign."}, "orig": "Economics 오답노트 L46 · 근거 ECO-M1-Q38"}, {"id": "CON-M1-14", "src": "개념", "module": 1, "tag": "Exchange rate regime and crisis risk", "vig": null, "stem": "Compared with floating rates, fixed or partially fixed exchange rates make a country:", "opts": {"A": "less vulnerable to a currency crisis", "B": "equally vulnerable", "C": "more vulnerable to a currency crisis"}, "ans": "C", "en": "L47: Fixed / partially fixed exchange rate → floating rate보다 currency crisis에 더 취약\nL49: 고정환율을 방어하려면 중앙은행이 계속 FX intervention을 해야 하기 때문", "enLabel": "오답노트 원문", "ko": "Fixed/partially fixed rates are more vulnerable because the central bank must keep intervening to defend the rate.", "trap": "", "f": "", "why": {"A": "Defending a peg requires continuous intervention, which raises vulnerability.", "B": "The regime matters for vulnerability."}, "orig": "Economics 오답노트 L47 · 근거 ECO-M1-Q59"}, {"id": "CON-M1-15", "src": "개념", "module": 1, "tag": "Capital inflows", "vig": null, "stem": "Large capital inflows into a country typically cause its currency to:", "opts": {"A": "depreciate", "B": "appreciate", "C": "stay unchanged"}, "ans": "B", "en": "L50: Capital inflows↑⇒Domestic currency demand↑⇒Currency appreciation", "enLabel": "오답노트 원문", "ko": "Capital inflows↑ ⇒ demand for domestic currency↑ ⇒ appreciation.", "trap": "", "f": "", "why": {"A": "Inflows raise demand for the domestic currency.", "C": "Higher demand moves the currency."}, "orig": "Economics 오답노트 L50 · 근거 SCH R5"}, {"id": "CON-M1-16", "src": "개념", "module": 1, "tag": "Carry trade return – approximation", "vig": null, "stem": "A carry trader borrows in a currency with a 1% interest rate and invests in a currency with a 5% rate. Over the period, the investment currency depreciates 2% against the funding currency. The carry trade return is approximately:", "opts": {"A": "2%", "B": "4%", "C": "6%"}, "ans": "A", "en": "L52: Carry trade: borrow low-yield currency → invest high-yield currency  → 환율변동 반영 → borrowing cost (이자) 차감\nL54: Currency 매입 시 offer 사용, 최종 수익률에서는 borrowing cost 차감\nL56: borrowing cost 빼는 거 → ex) 100원 빌리고 base금리 8%면 → -8. (이자비용만큼 빼주는거. 100/1.0008 X)\nL57: (1/rate0) × (1+i) × rate1 – 1 – borrowing cost\nL112: Carry trade = 저금리 통화(funding currency) 차입 → 고금리 통화(investment currency)에 투자 → 금리 차이 + 환율 변화로 수익\nL114: 투자 통화를 사는 거래라서 offer 환율을 사용, 만기에 다시 팔 때는 예상 spot 사용\nL115: 순수익 = (1/S₀) × (1 + i_invest) × S₁ − (1 + i_fund)\nL116: 위험: 투자 통화가 약세가 되면 환손실 (UIP 불성립 가정)\nL201: Carry Trade Profit(%) = (%r_invest-%r_fund) - Δ% S_invest/fund / → (고금리 통화의 금리% - 저금리 통화의 금리%) - (고금리 통화의 Depreciation %) / +) 고금리 통화를 매수 → 고금리 통화가 Base인 호가에서 Down the ask 사용하여 Depreciation % 계산", "enLabel": "오답노트 원문", "ko": "Carry trade profit ≈ (investment rate − funding rate) − depreciation of the investment currency = (5% − 1%) − 2% = 2%.", "trap": "", "f": "", "why": {"B": "4% ignores the 2% depreciation.", "C": "6% adds the depreciation instead of subtracting it."}, "orig": "Economics 오답노트 L52 · 근거 SCH R5"}, {"id": "CON-M1-17", "src": "개념", "module": 1, "tag": "Current account – debt sustainability channel", "vig": null, "stem": "The debt sustainability channel says that persistent current account deficits:", "opts": {"A": "always cause the currency to appreciate", "B": "have a long-run limit; rising external debt eventually forces the currency down, which shrinks the deficit", "C": "can be financed indefinitely without currency effects"}, "ans": "B", "en": "L59: Debt sustainability channel  : current account deficits에 long-run limit (장기 한계가 있다)\nL61: 지속적 CA 적자 → 대외부채 누적 → 통화 급락 → 적자 축소\nL67: | Debt sustainability |   • 지속적인 CA deficit →external dept 누적 → 결국 통화가치 하락 → 수출 경쟁력 ↑ → CA deficit 축소 → external dept 지속 가능한 수준으로 안정 /   • persistent current account deficit의 borrowing에는 한계가 있음 /   • 빚이 너무 많아져서 외국인들이 국가 부도 위협을 느끼고 달아날 때 환율 depreciation |", "enLabel": "오답노트 원문", "ko": "Debt sustainability: persistent deficits → external debt builds → currency falls → exports more competitive → deficit shrinks; investors flee when default risk rises.", "trap": "", "f": "", "why": {"C": "Borrowing to fund persistent deficits has a limit.", "A": "Accumulating external debt leads to depreciation, not appreciation."}, "orig": "Economics 오답노트 L59 · 근거 SCH R5"}, {"id": "CON-M1-18", "src": "개념", "module": 1, "tag": "Current account – flow supply/demand channel", "vig": null, "stem": "Under the flow supply/demand channel, a current account surplus tends to:", "opts": {"A": "have no effect on the currency", "B": "reduce demand for the currency, causing depreciation", "C": "increase demand for the currency, causing appreciation"}, "ans": "C", "en": "L65: | Flow supply/demand | • 수출·수입에 따른 통화 수요/공급 → 환율 변화 /   • Current account surplus → currency demand ↑ →currency appreciation / Deficit → demand ↓ → depreciation /   • 물건 사고팔 때 발생하는 순수한 외화 환전 수급 때문에 환율 변화 |", "enLabel": "오답노트 원문", "ko": "Flow channel: exports/imports create currency demand/supply; surplus → appreciation, deficit → depreciation.", "trap": "", "f": "", "why": {"B": "Deficits reduce currency demand; surpluses raise it.", "A": "Trade flows change currency demand."}, "orig": "Economics 오답노트 L65 · 근거 SCH R5"}, {"id": "CON-M1-19", "src": "개념", "module": 1, "tag": "Current account – portfolio balance channel", "vig": null, "stem": "Under the portfolio balance channel, a country with persistent current account deficits and expansionary fiscal policy will in the long run see its currency:", "opts": {"A": "remain unaffected", "B": "appreciate, as investors buy more of its assets", "C": "depreciate, as foreign investors hold too much of its assets and rebalance"}, "ans": "C", "en": "L66: | Portfolio balance | • Current account imbalance → 국가 간 금융자산/부채 이동 (financial wealth / asset holdings 변화 →)→ 투자자 asset preference 변화 /   • current account deficit 국가가 borrowing ↑ /   • 외국 투자자 포트폴리오에 우리나라 자산이 너무 많아져서 위험 관리 차원에서 팔 때 환율 depreciation /   • long run + Expansionary Fiscal Policy → 통화 depreciation |", "enLabel": "오답노트 원문", "ko": "Portfolio balance: imbalances shift financial wealth and asset holdings; when foreign portfolios hold too much of a country's assets, rebalancing causes depreciation. Long run + expansionary fiscal policy → depreciation.", "trap": "", "f": "", "why": {"B": "Over-concentration leads foreigners to sell, not buy.", "A": "Changes in wealth and asset holdings move the currency."}, "orig": "Economics 오답노트 L66 · 근거 SCH R5"}, {"id": "CON-M1-20", "src": "개념", "module": 1, "tag": "Forward rate by covered interest rate parity", "vig": null, "stem": "The spot rate is USD/EUR 1.2000 (USD per EUR). The USD interest rate is 3% and the EUR rate is 1% (one year). The no-arbitrage one-year forward rate is closest to:", "opts": {"A": "1.2238", "B": "1.1767", "C": "1.2240"}, "ans": "A", "en": "L71: ① Forward rate 자체를 구할 때 → \"1년 forward rate는 얼마인가\" 같은 질문에 사용 ⇒ CIRP 성립\nL74: F_P/B = S_P/B((1+i_P)/(1+i_B))", "enLabel": "오답노트 원문", "ko": "F_P/B = S_P/B × (1 + i_P)/(1 + i_B) = 1.2000 × 1.03/1.01 = 1.2238.", "trap": "", "f": "", "why": {"B": "1.1767 inverts the interest rates; the price currency (USD) rate goes in the numerator.", "C": "1.2240 simply adds the 2% differential; use (1 + i_price)/(1 + i_base)."}, "orig": "Economics 오답노트 L71 · 근거 SCH R5"}, {"id": "CON-M1-21", "src": "개념", "module": 1, "tag": "Exploiting a mispriced forward", "vig": null, "stem": "The market forward rate is higher than the covered-interest-parity forward rate. To arbitrage, the trader should:", "opts": {"A": "sell the base currency forward and buy it spot", "B": "do nothing; covered parity cannot be arbitraged", "C": "buy the base currency forward and sell it spot"}, "ans": "A", "en": "L77: → 시장 forward rate가 ①로 계산한 값보다 높으면 → 그 통화를 forward에서 매도, spot에서 매수(차익거래)", "enLabel": "오답노트 원문", "ko": "Market forward > parity forward → sell that currency forward, buy it spot (arbitrage).", "trap": "", "f": "", "why": {"C": "Buying the overpriced forward loses money.", "B": "A gap from covered parity is an arbitrage opportunity."}, "orig": "Economics 오답노트 L77 · 근거 SCH R5"}, {"id": "CON-M1-22", "src": "개념", "module": 1, "tag": "Forward premium with a day-count", "vig": null, "stem": "The spot rate is 1.2000 (price/base). The price currency rate is 3% and the base currency rate is 1% (Actual/360). For a 90-day forward, the forward premium (F − S) is closest to:", "opts": {"A": "0.00594", "B": "0.02376", "C": "0.00599"}, "ans": "C", "en": "L79: ② Forward premium/discount (F−S)를 구할 때 → ①에서 S를 빼고 정리\nL82: F_P/B - S_P/B = S_P/B((i_P - i_B)/(1+i_B))\nL85: ③ Day-count(Actual/360, MRR)가 명시된 경우 → 분자, 분모에 기간 조정이 들어감:\nL88: F_P/B - S_P/B = S_P/B × (((Actual)/(360))(i_P - i_B))/(1+i_B((Actual)/(360)))", "enLabel": "오답노트 원문", "ko": "F − S = S × [(Actual/360)(i_P − i_B)] / [1 + i_B(Actual/360)] = 1.2 × (0.25 × 0.02)/(1 + 0.01 × 0.25) = 0.006/1.0025 = 0.00599.", "trap": "", "f": "", "why": {"A": "0.00594 does not apply the day-count adjustment to the denominator.", "B": "0.02376 uses annual rates without the 90/360 adjustment."}, "orig": "Economics 오답노트 L79 · 근거 SCH R5"}, {"id": "CON-M1-23", "src": "개념", "module": 1, "tag": "Mark-to-market of a forward", "vig": null, "stem": "A trader is long EUR 1,000,000 forward at 1.2000 (USD per EUR). With 90 days left, the forward rate to sell EUR for that maturity is 1.2100. The USD rate is 2% and the EUR rate is 1% (Actual/360). The mark-to-market value is closest to:", "opts": {"A": "USD 10,000", "B": "USD 9,975", "C": "USD 9,950"}, "ans": "C", "en": "L69: Forward Rate / Premium-Discount / Mark-to-Market\nL91: ④ Mark-to-market value (만기 전 계약의 현재가치)\nL93: * Forward MTM = 원래 계약의 반대 거래를 지금 시장 가격(남은 만기의 forward)으로 체결한다고 보고, 원래 가격과의 차이를 남은 기간만큼 할인해서 계산\nL98: V_t = ((F_t - F_0)× 계약규모)/(1+i_price currency×((남은 일수)/(360)))\nL101: ① 원래 F₀와 현재 시점 새 계약의 F_t 차이 → ② 계약규모 곱함 → ③ 남은 기간으로 할인 : 할인 금리는 반드시 price currency 금리 사용\nL103: Ft = Forward price (to sell base currency) at time t\nL202: Mark to Market Value:  / [기존 포지션이 Long Base Currency(Down the ask)일 때] = (FP_t - FP) × Notionalbase1 + rprice currency × (T-t)/(360) / → FP_t = 같은 잔존 만기의 Short Base Currency(Up the bid) Forward → Long Base 를 Offset / [기존 포지션이 Short Base Currency(Up the bid)일 때] = (FP-FP_t) × Notionalbase1 + rprice currency × (T-t)/(360) / → FP_t = 같은 잔존 만기의 Long Base Currency(Down the ask) Forward → Short Base를 Offset\nL203: “Price Currency로 할인”", "enLabel": "오답노트 원문", "ko": "Value = (F_t − F_0) × notional / [1 + i_price × (days/360)] = 0.0100 × 1,000,000 / (1 + 0.02 × 90/360) = 10,000/1.005 = 9,950.", "trap": "", "f": "", "why": {"A": "USD 10,000 is not discounted to today.", "B": "USD 9,975 discounts at the EUR (base) rate; use the price currency (USD) rate."}, "orig": "Economics 오답노트 L69 · 근거 SCH R5"}, {"id": "CON-M1-24", "src": "개념", "module": 1, "tag": "Closing out a forward – bid or offer", "vig": null, "stem": "A trader who is long the base currency forward marks the position to market by entering an offsetting forward. That offsetting trade uses the:", "opts": {"A": "bid (selling the base currency)", "B": "mid-rate", "C": "offer (buying the base currency)"}, "ans": "A", "en": "L95: (원래 매도였다면 매수로 청산 → offer, 원래 매수였다면 매도로 청산 → bid)\nL104: Mark-to-market은 기존 계약의 반대 거래로 청산\nL106: 반대 Forward 거래로 상쇄한 만기 손익을 현재가치로 할인\nL107: 기존 SGD 매수 → 청산 시 SGD 매도→ Bid\nL108: 기존 SGD 매도 → 청산 시 SGD 매수 → Offer\nL109: 사는 계약은 싸게 샀을수록(F₀가 낮을수록) 이익 → 지금 가격이 더 높으면 이익\nL110: 파는 계약은 비싸게 팔았을수록(F₀가 높을수록) 이익 → 지금 가격이 더 낮으면 이익\nL111: \"원래 계약 가격 vs 지금 청산 가격\"에서 내게 유리한 쪽이 앞에. F_t > F_0 이 이익 → F_t - F_0", "enLabel": "오답노트 원문", "ko": "Mark-to-market closes with the opposite forward: long base → sell base → bid; short base → buy base → offer. Long gains when F_t > F_0; short gains when F_t < F_0.", "trap": "", "f": "", "why": {"C": "The offer is used to close a short base position.", "B": "Dealer quotes, not mid-rates, are used."}, "orig": "Economics 오답노트 L95 · 근거 SCH R5"}, {"id": "CON-M1-25", "src": "개념", "module": 1, "tag": "Carry trade return distribution", "vig": null, "stem": "Carry trade returns typically show:", "opts": {"A": "negative skewness and fat tails (crash risk), mainly because of leverage", "B": "positive skewness and thin tails", "C": "a normal distribution"}, "ans": "A", "en": "L117: Carry trade 수익 분포: 음의 왜도 + fat tail(crash risk) ← 레버리지 때문\nL119: 가속 요인 : stop-loss, flight to safety\nL126: Carry trade crash → Leverage가 손실을 확대시키는 근본적인 원인", "enLabel": "오답노트 원문", "ko": "Carry trade: negative skew + fat tails; leverage is the root cause of crashes; stop-losses and flight to safety accelerate them.", "trap": "", "f": "", "why": {"B": "Carry trades earn small gains most of the time with occasional large losses.", "C": "Crash risk makes the tails fat."}, "orig": "Economics 오답노트 L117 · 근거 ECO-M1-Q35"}, {"id": "CON-M1-26", "src": "개념", "module": 1, "tag": "Push factors", "vig": null, "stem": "Push factors driving capital into emerging markets most likely arise from:", "opts": {"A": "domestic policies of the receiving country", "B": "both domestic policies and the industrial-country investor base", "C": "the investor base in industrial (developed) countries"}, "ans": "C", "en": "L122: Push factors driving foreign capital inflows → 선진국 투자자로부터 (industrial country)\nL124: Push factors : 자금이 나오는 나라 (선진국) → 분산투자, 고수익을 찾아 돈을 내보냄 (investor base in industrial countries)\nL125: Pull : 자금을 받는 나라(신흥국)의 정책· 여건 → Domestic policies(가격 안정, 유연한 환율제, 재정 개선, 국영기업 민영화 등)", "enLabel": "오답노트 원문", "ko": "Push = source (developed) countries seeking diversification and higher returns. Pull = receiving country's policies (price stability, flexible FX, fiscal improvement, privatization).", "trap": "", "f": "", "why": {"A": "Domestic policies of the receiving country are pull factors.", "B": "Push factors come from the source countries only."}, "orig": "Economics 오답노트 L122 · 근거 ECO-M1-Q86"}, {"id": "CON-M1-27", "src": "개념", "module": 1, "tag": "Buying and selling currencies at dealer quotes", "vig": null, "stem": "When buying the base currency from a dealer, you pay the:", "opts": {"A": "bid", "B": "mid-rate", "C": "offer (ask)"}, "ans": "C", "en": "L127: Base currency를 살 때 → Offer\nL129: Price를 살 때 = Base를 파는 것 → Bid", "enLabel": "오답노트 원문", "ko": "Buy base → offer. Buy price currency = sell base → bid.", "trap": "", "f": "", "why": {"A": "You receive the bid when selling the base currency.", "B": "Dealers trade at bid or offer, not mid."}, "orig": "Economics 오답노트 L127 · 근거 SCH R5"}, {"id": "CON-M1-28", "src": "개념", "module": 1, "tag": "Capital market liberalization", "vig": null, "stem": "Which condition is most likely to increase a country's vulnerability to a currency crisis?", "opts": {"A": "Relatively low inflows of foreign capital", "B": "A floating exchange rate regime", "C": "Liberalized capital markets"}, "ans": "C", "en": "L130: Liberalization of capital markets = precursor(전조) to a currency crisis\nL132: 위기 전조: 자본시장 자유화, 대규모 자본 유입(특히 외화 단기), 고정환율", "enLabel": "오답노트 원문", "ko": "Crisis precursors: capital market liberalization, large capital inflows (especially short-term foreign currency), fixed exchange rates.", "trap": "", "f": "", "why": {"B": "Floating regimes are less vulnerable.", "A": "Large (not low) capital inflows precede crises."}, "orig": "Economics 오답노트 L130 · 근거 ECO-M1-Q59"}, {"id": "CON-M1-29", "src": "개념", "module": 1, "tag": "Purpose of capital controls", "vig": null, "stem": "A goal of government intervention and capital controls on inflows is most likely to:", "opts": {"A": "prevent the currency from appreciating too strongly", "B": "prevent the currency from depreciating", "C": "decrease foreign exchange reserves"}, "ans": "A", "en": "L134: capital inflow 통제의 목적 : 과도한 appreciation 막기 위해", "enLabel": "오답노트 원문", "ko": "Capital inflow controls aim to prevent excessive appreciation.", "trap": "", "f": "", "why": {"B": "Controls on inflows target appreciation pressure.", "C": "Reducing reserves is not the goal."}, "orig": "Economics 오답노트 L134 · 근거 ECO-M1-Q68"}, {"id": "CON-M1-30", "src": "개념", "module": 1, "tag": "Depreciation of a deficit country's currency", "vig": null, "stem": "Depreciation of a current-account-deficit country's currency most likely leads to:", "opts": {"A": "lower import prices in domestic currency", "B": "higher import prices in domestic currency and lower export prices in foreign currency", "C": "higher export prices in foreign currency"}, "ans": "B", "en": "L135: depreciation of a deficit country’s currency should result in an increase in import prices in domestic currency terms and a decrease in export prices in foreign currency terms.", "enLabel": "오답노트 원문", "ko": "Depreciation → import prices↑ (domestic currency terms), export prices↓ (foreign currency terms).", "trap": "", "f": "", "why": {"C": "Exports become cheaper for foreigners.", "A": "Imports become more expensive at home."}, "orig": "Economics 오답노트 L135 · 근거 ECO-M1-Q74"}, {"id": "CON-M1-31", "src": "개념", "module": 1, "tag": "International Fisher effect", "vig": null, "stem": "Under the international Fisher effect, the foreign–domestic nominal yield spread equals:", "opts": {"A": "the sum of the two real interest rates", "B": "the change in the spot rate over the horizon", "C": "the expected inflation differential"}, "ans": "C", "en": "L139: | International Fisher Effect (IFE) | The foreign–domestic nominal yield spread is determined by the expected inflation differential. | Nominal interest rate differential | Interest rate differential / 금리차 ↔ 기대 인플레이션차 |", "enLabel": "오답노트 원문", "ko": "International Fisher effect: nominal interest rate differential ↔ expected inflation differential.", "trap": "", "f": "", "why": {"B": "That is the uncovered parity / relative purchasing power parity result.", "A": "Real rates are assumed equal, so they cancel."}, "orig": "Economics 오답노트 L139 · 근거 ECO-M1-Q88"}, {"id": "CON-M1-32", "src": "개념", "module": 1, "tag": "Relative vs absolute purchasing power parity", "vig": null, "stem": "Relative purchasing power parity states that:", "opts": {"A": "nominal yield spreads equal expected inflation differentials", "B": "the percentage change in the spot rate is determined by the inflation differential", "C": "the equilibrium exchange rate equals the ratio of national price levels"}, "ans": "B", "en": "L140: | Relative PPP | The percentage change in the spot exchange rate is determined by the difference in inflation rates. | % Change in spot exchange rate /   • Low inflation → 통화 Appreciation  /   • High inflation → 통화 Depreciation /   • inflation ↓  = 구매력 잘 유지된다 = 통화 ↑  | Inflation differential → Exchange rate change |\nL141: | Absolute PPP | The equilibrium exchange rate is determined by the ratio of national price levels. | Equilibrium exchange rate | Price level ratio → Exchange rate level |", "enLabel": "오답노트 원문", "ko": "Relative PPP: % change in spot = inflation differential (low inflation → appreciation, high inflation → depreciation). Absolute PPP: exchange rate level = price level ratio.", "trap": "", "f": "", "why": {"C": "That is absolute purchasing power parity.", "A": "That is the international Fisher effect."}, "orig": "Economics 오답노트 L140 · 근거 SCH R5"}, {"id": "CON-M1-33", "src": "개념", "module": 1, "tag": "Expansionary fiscal policy and capital mobility", "vig": null, "stem": "Under the Mundell–Fleming model with flexible exchange rates, expansionary fiscal policy causes the currency to:", "opts": {"A": "depreciate if capital is highly mobile; appreciate if capital is immobile", "B": "appreciate regardless of capital mobility", "C": "appreciate if capital is highly mobile; face depreciation pressure if capital is immobile"}, "ans": "C", "en": "L143: | sensitive to interest rate differentials (자본 이동 민감도) | Expansionary Fiscal Policy 결과 |\nL145: | Highly sensitive (자본 이동성 높음) | 금리 ↑ → 자본 유입 ↑ → 통화 절상 (Appreciation) |\nL146: | Insensitive / Immobile (자본 이동성 낮음) | 수입 ↑ → 무역수지 악화 → 통화 절하 압력 (Depreciation pressure) |", "enLabel": "오답노트 원문", "ko": "High mobility: rates↑ → capital inflow → appreciation. Low mobility: imports↑ → trade balance worsens → depreciation pressure.", "trap": "", "f": "", "why": {"A": "The directions are reversed.", "B": "With immobile capital, higher imports worsen the trade balance and pressure the currency down."}, "orig": "Economics 오답노트 L143 · 근거 SCH R5"}, {"id": "CON-M1-34", "src": "개념", "module": 1, "tag": "Triangular arbitrage", "vig": null, "stem": "A dealer's bid for the base currency is 1.2050, while the implied (cross) ask for the same pair is 1.2000. The arbitrage profit is closest to:", "opts": {"A": "No profit, because the dealer bid is above the implied ask", "B": "0.50% (buy the base from the dealer)", "C": "0.42% (sell the base to the dealer, buy it through the cross rates)"}, "ans": "C", "en": "L197: Triangular Arbitrage Method: If Dealer Quote와 Implied Quote 비교 / ⓵ Dealer가 Base 고평가(Dealer Bid > Implied Ask)시 →  / ( (Dealer Bid)/(Implied Ask) -1) = Profit(%) / ⓶ Dealer가 Base 저평가(Dealer Ask < Implied Bid)시 →  / ((Implied Bid)/(Dealer Ask) -1) = Profit(%)\nL198: Base를 Dealer에 매도 (Base → Price)\nL200: Base를 Dealer로부터 매수 (Price → Base)", "enLabel": "오답노트 원문", "ko": "Dealer bid > implied ask → dealer overvalues the base → sell base to the dealer: profit = dealer bid / implied ask − 1. Dealer ask < implied bid → buy base from dealer: profit = implied bid / dealer ask − 1.", "trap": "", "f": "", "why": {"B": "The profit is dealer bid / implied ask − 1 = 0.42%, earned by selling (not buying) the base to the dealer.", "A": "Dealer bid > implied ask is exactly the arbitrage condition."}, "orig": "Economics 오답노트 L197 · 근거 SCH R5"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "Labor productivity growth", "vig": null, "stem": "Labor productivity growth equals:", "opts": {"A": "capital deepening contribution − total factor productivity growth", "B": "population growth + total factor productivity growth", "C": "capital deepening contribution + total factor productivity growth"}, "ans": "C", "en": "L152: Labor productivity growth  = Capital deepening contribution + TFP growth\nL189: Capital Deepening = Labor Productivity Growth – Total Factor Productivity / Total Factor Productivity = Labor Productivity Growth – Capital Deepening / → Labor - Capital Deepening 클수록 TFP 성장 큰 국가", "enLabel": "오답노트 원문", "ko": "Labor productivity growth = capital deepening + TFP growth; so TFP = labor productivity growth − capital deepening.", "trap": "", "f": "", "why": {"B": "Population growth is not part of labor productivity growth.", "A": "The two components are added."}, "orig": "Economics 오답노트 L152 · 근거 SCH R6"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "Labor productivity growth calculation", "vig": null, "stem": "Total factor productivity grows 1%, capital grows 3%, labor grows 1%, and capital's share α = 0.4. Labor productivity growth is:", "opts": {"A": "2.8%", "B": "1.8%", "C": "2.2%"}, "ans": "B", "en": "L184: | Labor productivity growth accounting | (Δ(Y/L))/(Y/L) = (Δ T)/(T) + α((Δ K)/(K) - (Δ L)/(L)) / (1인당 productivity growth) =기술 성장 + Capital Deepening Contribution / → Labor productivity : 자본과 노동의 성장률 차이 X α = |", "enLabel": "오답노트 원문", "ko": "Labor productivity growth = ΔT/T + α(ΔK/K − ΔL/L) = 1% + 0.4 × (3% − 1%) = 1.8%.", "trap": "", "f": "", "why": {"A": "2.8% is GDP growth from the Solow equation, not labor productivity growth.", "C": "2.2% uses capital growth (3%) instead of capital growth minus labor growth."}, "orig": "Economics 오답노트 L184 · 근거 SCH R6"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "Solow growth accounting", "vig": null, "stem": "Total factor productivity grows 1%, capital grows 3%, labor grows 1%, and capital's share α = 0.4. Potential GDP growth is:", "opts": {"A": "2.8%", "B": "1.8%", "C": "2.6%"}, "ans": "A", "en": "L170: Solow growth accounting\nL172: (Δ Y)/(Y)=(Δ T)/(T)+α(Δ K)/(K)+(1-α)(Δ L)/(L) = GDP Growth\nL174: ΔY/Y = GDP 성장률(구하려는 것)\nL176:  / ΔT/T = TFP 성장률 / α = 자본 탄력성, (1−α) = 노동 탄력성 ← 표에 없으면 반드시 1에서 빼서 계산 / ΔK/K, ΔL/L = 자본·노동 성장률\nL183: | Solow growth accounting | ΔY/Y (GDP growth) |", "enLabel": "오답노트 원문", "ko": "ΔY/Y = ΔT/T + αΔK/K + (1 − α)ΔL/L = 1% + 0.4 × 3% + 0.6 × 1% = 2.8%. If labor's share is not given, compute 1 − α.", "trap": "", "f": "", "why": {"C": "2.6% uses α (0.4) for labor; labor's share is 1 − α = 0.6.", "B": "1.8% is labor productivity growth."}, "orig": "Economics 오답노트 L170 · 근거 SCH R6"}, {"id": "CON-M2-04", "src": "개념", "module": 2, "tag": "Total factor productivity from data", "vig": null, "stem": "A country's labor productivity grew 2.5% and its capital deepening contributed 1.0%. Its total factor productivity growth is:", "opts": {"A": "3.5%", "B": "2.5%", "C": "1.5%"}, "ans": "C", "en": "L189: Capital Deepening = Labor Productivity Growth – Total Factor Productivity / Total Factor Productivity = Labor Productivity Growth – Capital Deepening / → Labor - Capital Deepening 클수록 TFP 성장 큰 국가", "enLabel": "오답노트 원문", "ko": "TFP growth = labor productivity growth − capital deepening = 2.5% − 1.0% = 1.5%. Larger gap → larger TFP growth.", "trap": "", "f": "", "why": {"A": "TFP is labor productivity growth minus capital deepening.", "B": "Capital deepening must be subtracted."}, "orig": "Economics 오답노트 L189 · 근거 SCH R6"}, {"id": "CON-M2-05", "src": "개념", "module": 2, "tag": "Long-run equity market growth", "vig": null, "stem": "The most important driver of long-run stock market performance is:", "opts": {"A": "GDP growth", "B": "growth in the earnings-to-GDP ratio", "C": "growth in the P/E ratio"}, "ans": "A", "en": "L153: 장기 주가를 결정하는 것 = GDP growth\nL155: Earnings/GDP와 P/E ratio는 장기간 계속 증가할 수 없기 때문에 장기 예측에서는 영향이 제한적.\nL162: 장기적으로 real earnings growth ≈ potential GDP growth", "enLabel": "오답노트 원문", "ko": "Long run: GDP growth drives stock prices; earnings/GDP and P/E cannot keep rising, so their effect is limited. Long-run real earnings growth ≈ potential GDP growth.", "trap": "", "f": "", "why": {"B": "Earnings/GDP cannot rise forever.", "C": "The P/E ratio cannot grow at a finite rate forever."}, "orig": "Economics 오답노트 L153 · 근거 ECO Econ M2"}, {"id": "CON-M2-06", "src": "개념", "module": 2, "tag": "Population growth and per capita income", "vig": null, "stem": "Higher population growth:", "opts": {"A": "raises total GDP growth but does not raise per capita GDP growth", "B": "lowers total GDP growth", "C": "raises per capita GDP growth"}, "ans": "A", "en": "L156: population growth는 전체 GDP growth는 높일 수 있지만 per capita GDP growth 자체를 높이는 것은 아님\nL158: Labor productivity, investment, capital deepening, TFP, IT application ↑→ 생산성↑→ per capita income growth기여", "enLabel": "오답노트 원문", "ko": "Population growth raises GDP growth, not per capita growth; labor productivity, investment, capital deepening, TFP, and IT raise per capita income growth.", "trap": "", "f": "", "why": {"C": "Per capita growth needs productivity gains (investment, capital deepening, TFP).", "B": "More labor raises total output."}, "orig": "Economics 오답노트 L156 · 근거 SCH R6"}, {"id": "CON-M2-07", "src": "개념", "module": 2, "tag": "Steady state", "vig": null, "stem": "In the neoclassical steady state, the marginal product of capital (αY/K) is:", "opts": {"A": "zero", "B": "rising over time", "C": "constant, equal to the rental price of capital (r)"}, "ans": "C", "en": "L159: steady state = MPK(기울기) = α Y/K 가 r로 일정.", "enLabel": "오답노트 원문", "ko": "Steady state: MPK = αY/K = r, constant.", "trap": "", "f": "", "why": {"B": "In steady state the capital–output ratio is constant.", "A": "Capital still earns a positive return."}, "orig": "Economics 오답노트 L159 · 근거 SCH R6"}, {"id": "CON-M2-08", "src": "개념", "module": 2, "tag": "Dividend tax on foreign investors", "vig": null, "stem": "A new dividend tax on foreign investors is most likely to:", "opts": {"A": "increase foreign investment", "B": "have no effect on growth", "C": "reduce foreign equity inflows, lower investment, and slow growth"}, "ans": "C", "en": "L160: Dividend tax ↑ → Foreign investment ↓ → available capital ↓ → investment ↓ → economic growth ↓", "enLabel": "오답노트 원문", "ko": "Dividend tax↑ → foreign investment↓ → available capital↓ → investment↓ → growth↓.", "trap": "", "f": "", "why": {"A": "Taxing returns makes investing in the country less attractive.", "B": "Foreign capital helps finance domestic investment, so less of it slows growth."}, "orig": "Economics 오답노트 L160 · 근거 ECO Econ M2"}, {"id": "CON-M2-09", "src": "개념", "module": 2, "tag": "Potential GDP growth and real interest rates", "vig": null, "stem": "Higher potential GDP growth implies:", "opts": {"A": "no change in real interest rates", "B": "higher real interest rates", "C": "lower real interest rates"}, "ans": "B", "en": "L161: Potential GDP growth ↑→ Expected real income growth ↑→ Future consumption 효용 감소→ Saving에 더 높은 return 필요→Real interest rate ↑", "enLabel": "오답노트 원문", "ko": "Potential GDP growth↑ → expected real income growth↑ → saving needs a higher return → real interest rate↑.", "trap": "", "f": "", "why": {"C": "Higher expected future income lowers the utility of future consumption, so savers need a higher real return.", "A": "Real rates respond to expected income growth."}, "orig": "Economics 오답노트 L161 · 근거 SCH R6"}, {"id": "CON-M2-10", "src": "개념", "module": 2, "tag": "Neoclassical convergence", "vig": null, "stem": "Under neoclassical theory, convergence should occur more quickly when:", "opts": {"A": "economies are closed to trade", "B": "economies are open, with free trade and international borrowing and lending", "C": "technology is endogenous"}, "ans": "B", "en": "L163: Neoclassical = Capital accumulation → convergence\nL165: [neoclassical] convergence should occur more quickly if economies are open and there is free trade and international borrowing and lending", "enLabel": "오답노트 원문", "ko": "Neoclassical: capital accumulation → convergence, faster with open economies and free trade/capital flows.", "trap": "", "f": "", "why": {"A": "Closed economies converge more slowly.", "C": "Endogenous technology gives sustained growth, not convergence."}, "orig": "Economics 오답노트 L163 · 근거 SCH R6"}, {"id": "CON-M2-11", "src": "개념", "module": 2, "tag": "Growth theories", "vig": null, "stem": "Which theory says technological progress mainly raises population, pushing per capita income back to subsistence?", "opts": {"A": "Neoclassical growth theory", "B": "Endogenous growth theory", "C": "Classical growth theory"}, "ans": "C", "en": "L166: Endogenous = Technology / innovation / selection effect → sustained growth\nL167: technological progress translates into higher population growth → Classical\nL169: Classical: 기술 진보 → 1인당 소득 ↑ → 인구 ↑ → 생계 수준으로 회귀", "enLabel": "오답노트 원문", "ko": "Classical: technology → per capita income↑ → population↑ → back to subsistence. Endogenous: technology/innovation/selection → sustained growth.", "trap": "", "f": "", "why": {"A": "Neoclassical theory centers on capital accumulation and convergence.", "B": "Endogenous theory explains sustained growth from technology and innovation."}, "orig": "Economics 오답노트 L166 · 근거 SCH R6"}, {"id": "CON-M2-12", "src": "개념", "module": 2, "tag": "Capital deepening and capital per worker", "vig": null, "stem": "Which country gains most in labor productivity from an extra unit of capital?", "opts": {"A": "The country with the lowest capital per worker (K/L)", "B": "All countries gain equally", "C": "The country with the highest capital per worker"}, "ans": "A", "en": "L177: K/L = Total Capital ÷ Workforce  → 가장 낮은 나라가 capital deepening 효과가 가장 큼\nL179: 처음엔 가파르다가 점점 평평해지는(concave) 곡선 → K/L이 낮을수록 곡선의 가파른 구간 → 같은 자본 투입에도 생산성 증가폭이 큼K/L이 높을수록 곡선의 평평한 구간 → 자본을 더 넣어도 효과 미미 (MPK 체감)\nL190: K/L 가장 낮은 나라의 MPK가 가장 큼 (자본 늘렸을 때 생산성 가장 크게 증가)", "enLabel": "오답노트 원문", "ko": "Lowest K/L → steepest part of the concave curve → highest marginal product of capital → largest capital deepening effect.", "trap": "", "f": "", "why": {"C": "High K/L countries are on the flat part of the curve (diminishing marginal product).", "B": "The marginal product of capital diminishes with K/L."}, "orig": "Economics 오답노트 L177 · 근거 SCH R6"}, {"id": "CON-M2-13", "src": "개념", "module": 2, "tag": "Economic growth and equity returns", "vig": null, "stem": "Economic growth reaches equity returns mainly through:", "opts": {"A": "growth in earnings per share", "B": "changes in interest rates", "C": "changes in the exchange rate"}, "ans": "A", "en": "L186: economic growth이  equity return으로 가는 주 경로 =  earnings growth per share  (Economic growth → EPS growth → Equity returns)", "enLabel": "오답노트 원문", "ko": "Economic growth → EPS growth → equity returns.", "trap": "", "f": "", "why": {"B": "Interest rates are not the main channel described.", "C": "Exchange rates are not the main channel."}, "orig": "Economics 오답노트 L186 · 근거 SCH R6"}, {"id": "CON-M2-14", "src": "개념", "module": 2, "tag": "GDP growth vs equity returns", "vig": null, "stem": "Real GDP grew 3.0% a year while real earnings per share grew only 1.5% a year, with stable P/E and dividend yields. The gap is most likely explained by:", "opts": {"A": "share repurchases", "B": "net new share issuance (dilution)", "C": "rising P/E ratios"}, "ans": "B", "en": "L187: Economic growth → Equity returns의 차이 = 주식 수 변화(Dilution effect, ΔS) 즉, [ Share repurchases (+) 또는 New share issuance (−)]로 설명 가능", "enLabel": "오답노트 원문", "ko": "The gap between economic growth and per-share returns is explained by the change in shares outstanding: repurchases (+) or new issuance (−).", "trap": "", "f": "", "why": {"A": "Repurchases would make per-share growth higher, not lower.", "C": "P/E ratios were stable."}, "orig": "Economics 오답노트 L187 · 근거 ECO VAR-M2-03"}, {"id": "CON-M2-15", "src": "개념", "module": 2, "tag": "Dutch disease", "vig": null, "stem": "A country whose growth depends on strong demand for its natural resources may find growth limited over time because of:", "opts": {"A": "rapid currency depreciation", "B": "currency appreciation that makes its manufacturing uncompetitive (Dutch disease)", "C": "a limited supply of labor"}, "ans": "B", "en": "L188: Dutch disease = Resource boom → Currency appreciation → Manufacturing becomes globally uncompetitive  (환율 비싸지는데 다른 제조업은 못따라감)", "enLabel": "오답노트 원문", "ko": "Dutch disease: resource boom → currency appreciation → manufacturing becomes globally uncompetitive.", "trap": "", "f": "", "why": {"A": "The resource boom raises, not lowers, the currency.", "C": "Labor supply is not the mechanism described."}, "orig": "Economics 오답노트 L188 · 근거 ECO-M2-Q60"}, {"id": "CON-M2-16", "src": "개념", "module": 2, "tag": "Club convergence", "vig": null, "stem": "Lower-income countries that can converge to richer ones only by making institutional changes illustrate:", "opts": {"A": "club convergence", "B": "conditional convergence", "C": "absolute convergence"}, "ans": "A", "en": "L191: institutional change 로 부자나라에 수렴 가능 → club convergence", "enLabel": "오답노트 원문", "ko": "Club convergence: by institutional change, poorer countries can join the club and converge to richer ones.", "trap": "", "f": "", "why": {"C": "Absolute convergence needs no institutional change.", "B": "Conditional convergence depends on equal saving, population growth, and technology."}, "orig": "Economics 오답노트 L191 · 근거 ECO-M2-Q9"}, {"id": "CON-M2-17", "src": "개념", "module": 2, "tag": "Natural resources", "vig": null, "stem": "With respect to natural resources, what is most likely necessary for economic growth?", "opts": {"A": "Ownership of the resources", "B": "Access to the resources (including through trade)", "C": "The ability to refine the resources domestically"}, "ans": "B", "en": "L192: 천연 자원 관련, 경제 성장에 필요한 것: Access to resource(무역 포함). 꼭 소유하지 않아도 됨", "enLabel": "오답노트 원문", "ko": "Growth needs access to resources (including trade), not necessarily ownership.", "trap": "", "f": "", "why": {"A": "Ownership is not required.", "C": "Domestic refining is not required."}, "orig": "Economics 오답노트 L192 · 근거 ECO-M2-Q61"}, {"id": "CON-M2-18", "src": "개념", "module": 2, "tag": "Education spending", "vig": null, "stem": "Which education spending most benefits developed vs developing countries?", "opts": {"A": "Developed: post-secondary (innovation); developing: primary and secondary (applying technology)", "B": "Both benefit most from primary education", "C": "Developed: primary and secondary; developing: post-secondary"}, "ans": "A", "en": "L193: 교육 효과: 선진국 →  post-secondary eduction에 해야함(혁신)\nL195: 개도국 → 초·중등교육(primary/secondary) →(기술 적용)", "enLabel": "오답노트 원문", "ko": "Developed countries → post-secondary education (innovation); developing countries → primary/secondary education (applying technology).", "trap": "", "f": "", "why": {"C": "The roles are reversed.", "B": "Developed countries benefit most from post-secondary education."}, "orig": "Economics 오답노트 L193 · 근거 SCH R6"}], "vignettes": [], "modules": {"1": "Currency Exchange Rates: Understanding Equilibrium Value", "2": "Economic Growth"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "EconomicsConcept", KEY = "EconomicsConcept_quiz_state_v1", EXPKEY = "EconomicsConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Economics 개념 확인</h2>'+
+   '<p class="muted">Economics 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

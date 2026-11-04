@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Ethics Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Ethics 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Standard I(B) – IPO participation", "vig": null, "stem": "Under the recommended procedures for Standard I(B) Independence and Objectivity, firms should:", "opts": {"A": "ban all personal investing by employees", "B": "let employees buy IPO shares freely if they disclose afterward", "C": "restrict employee investments in equity IPOs and require prior approval of IPO purchases"}, "ans": "C", "en": "L5: Standard I(B): Independence and Objectivity: / • Firms should require prior approval for employees participating in initial public offering", "enLabel": "오답노트 원문", "ko": "I(B) recommended procedures: restrict employee investments in equity IPOs and private placements; require pre-approval of IPO purchases.", "trap": "", "f": "", "why": {"B": "Pre-approval is recommended, not after-the-fact disclosure.", "A": "A total ban is not required."}, "orig": "Ethics 오답노트 L5 · 근거 SCH Ethics I(B)"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Standard VI(C) – Referral fees", "vig": null, "stem": "A member receives a fee for referring clients to another firm. Under Standard VI(C), she must:", "opts": {"A": "disclose it after the client relationship begins", "B": "disclose the referral arrangement to her employer, clients, and prospective clients before entering into any business with them", "C": "disclose it only if a client asks"}, "ans": "B", "en": "L6: Referral fee : 사전에 고지", "enLabel": "오답노트 원문", "ko": "Referral fees must be disclosed in advance.", "trap": "", "f": "", "why": {"C": "Disclosure is required, not optional.", "A": "Disclosure must come before the business, so clients can evaluate the conflict."}, "orig": "Ethics 오답노트 L6 · 근거 SCH Ethics VI(C)"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "Standard III(E) – Exceptions to confidentiality", "vig": null, "stem": "Under Standard III(E) Preservation of Confidentiality, a member may disclose confidential client information when:", "opts": {"A": "it concerns the client's illegal activities, disclosure is required by law, or the client permits it", "B": "it would help the member's own firm win business", "C": "a competitor asks for it"}, "ans": "A", "en": "L7: Standard III(E) Preservation of Confidentiality\nL9: 예외 (공개 가능): ① 고객의 불법 행위에 관한 정보 ② 법이 공개를 요구 ③ 고객의 허락\nL10: 고객의 불법 행위(탈세, 자금세탁 등) → 당국에 보고 가능 (confidentiality 관련 법이 없는 국가여도 예외 ① 적용)", "enLabel": "오답노트 원문", "ko": "III(E) exceptions: (1) illegal activities of the client, (2) required by law, (3) client permits. Client illegal activity (tax evasion, money laundering) may be reported to authorities even where no confidentiality law requires it.", "trap": "", "f": "", "why": {"C": "Competitor requests are not an exception.", "B": "Business benefit is not an exception."}, "orig": "Ethics 오답노트 L7 · 근거 SCH Ethics III(E)"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "Client breaking the law", "vig": null, "stem": "A member learns that a pension account client is violating the law. The appropriate course is to:", "opts": {"A": "notify the supervisor or compliance and try to stop it; if it continues, seek legal advice on disclosure and dissociate", "B": "keep it confidential in all cases", "C": "continue the relationship and say nothing"}, "ans": "A", "en": "L11: Pension account 고객이 법을 위반하면: 먼저 supervisor에게 알리고 중단 시도 → 안 되면 법률 자문 후 공개 여부 결정, 관계 중단", "enLabel": "오답노트 원문", "ko": "Client illegal activity: inform supervisor/compliance, try to stop it; if not stopped, get legal advice on disclosure and end the relationship (dissociate).", "trap": "", "f": "", "why": {"B": "Confidentiality does not protect a client's illegal activity.", "C": "Continuing silently risks participating in the violation."}, "orig": "Ethics 오답노트 L11 · 근거 SCH Ethics I(A) / III(E)"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Standard III(A) – Soft dollars", "vig": null, "stem": "Client brokerage commissions (soft dollars) may be used to obtain research only when:", "opts": {"A": "the research benefits the clients whose commissions pay for it", "B": "the research benefits the firm's own operations", "C": "the broker offers the lowest commission"}, "ans": "A", "en": "L12: — Standard III(A): Soft dollar]\nL13: Soft dollar(soft commission): client의 brokerage commission으로 research 등 서비스를 받는 관행\nL14: 규칙: client brokerage는 **client에게 이익이 될 때만** 사용 (그렇지 않으면 loyalty 위반)", "enLabel": "오답노트 원문", "ko": "Soft dollars = obtaining services with client brokerage. Client brokerage belongs to the client: use only when it benefits the client; otherwise it violates loyalty.", "trap": "", "f": "", "why": {"B": "Using client brokerage for the firm's own benefit violates loyalty.", "C": "Lowest commission alone is not the test; client benefit and best execution are."}, "orig": "Ethics 오답노트 L12 · 근거 SCH Ethics III(A)"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "Soft dollar violation", "vig": null, "stem": "Which is a violation of Standard III(A) Loyalty, Prudence, and Care?", "opts": {"A": "Seeking best execution for client trades", "B": "Using client commissions to buy research that helps manage those clients' accounts", "C": "Directing client trades to a high-cost broker in exchange for paying firm expenses or personal travel"}, "ans": "C", "en": "L15: 위반 판정: 받은 혜택이 client에게 이익인가? 본인·회사의 이익을 위한 것이면 위반\nL16: 위반 예: client 거래를 비싼 broker에 몰아주고 회사 경비·개인 혜택(여행 등) 수령, best execution 실패", "enLabel": "오답노트 원문", "ko": "Violation test: does the benefit go to the client, or to the member/firm? Steering trades for firm expenses or personal perks and failing best execution violate loyalty.", "trap": "", "f": "", "why": {"B": "Client-benefiting research is permitted.", "A": "Best execution is required, not a violation."}, "orig": "Ethics 오답노트 L15 · 근거 SCH Ethics III(A)"}, {"id": "CON-M1-07", "src": "개념", "module": 1, "tag": "Cooperating with a PCP investigation", "vig": null, "stem": "A member submits confidential client information to the CFA Institute Professional Conduct Program (PCP) during an investigation. This:", "opts": {"A": "is allowed only with the client's written permission", "B": "does not violate Standard III(E)", "C": "violates Standard III(E)"}, "ans": "B", "en": "L17: PCP 조사에 협조해서 고객 정보 넘김 →  III(E) 비밀유지 위반 X\nL19: submits confidential client information to the PCP is not in violation of Standard III(E), Preservation of Confidentiality.", "enLabel": "오답노트 원문", "ko": "Standard III(E) does not prevent members from cooperating with a CFA Institute PCP investigation.", "trap": "", "f": "", "why": {"C": "III(E) is not intended to prevent cooperation with a PCP investigation.", "A": "No client permission is needed to cooperate with the PCP."}, "orig": "Ethics 오답노트 L17 · 근거 SCH Ethics III(E)"}], "vignettes": [], "modules": {"1": "Ethical and Professional Standards"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "EthicsConcept", KEY = "EthicsConcept_quiz_state_v1", EXPKEY = "EthicsConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Ethics 개념 확인</h2>'+
+   '<p class="muted">Ethics 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

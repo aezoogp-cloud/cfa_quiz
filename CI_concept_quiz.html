@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Corporate Issuers Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Corporate Issuers 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Dividend reinvestment for a tax-exempt investor", "vig": null, "stem": "A tax-exempt investor owns 1,000 shares priced at $50 before a $2 dividend and reinvests the dividend at the ex-dividend price. The number of new shares is closest to:", "opts": {"A": "41.67", "B": "40.00", "C": "38.46"}, "ans": "A", "en": "L7: Tax-exempt investors / → Dividend tax = Capital gains tax = 0 / → Ex-dividend Price = 배당 전 주가 − Dividend\nL8: New Shares = Dividend Received / Ex-dividend Price\nL89: Ex-div price = P − D (주가-배당금)", "enLabel": "오답노트 원문", "ko": "Tax-exempt: dividend tax = capital gains tax = 0. Ex-dividend price = cum price − dividend = 48. New shares = dividends received / ex-dividend price = 2,000/48 = 41.67.", "trap": "", "f": "", "why": {"B": "40.00 uses the cum-dividend price of $50; reinvestment happens at the ex-dividend price of $48.", "C": "38.46 divides by $52, which adds rather than subtracts the dividend."}, "orig": "Corporate Issuers 오답노트 L7 · 근거 SCH R13"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Signals from payout actions", "vig": null, "stem": "Which payout action is generally interpreted as a negative signal?", "opts": {"A": "A dividend initiation", "B": "A dividend cut or omission", "C": "A dividend increase"}, "ans": "B", "en": "L12: | Stock split | 🟢 Positive signal로 해석될 수 있음.  / fundamental value를 직접 증가시키는건 X |\nL13: | Dividend initiation | 🟢 Positive |\nL14: | Dividend increase | 🟢 Positive |\nL15: | Dividend cut/omission | 🔴 Negative |", "enLabel": "오답노트 원문", "ko": "Dividend initiation/increase → positive; cut/omission → negative. A stock split can be read as positive but does not directly raise fundamental value.", "trap": "", "f": "", "why": {"A": "Initiations are generally positive signals.", "C": "Increases are generally positive signals."}, "orig": "Corporate Issuers 오답노트 L12 · 근거 SCH R13"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "Price after a stock dividend", "vig": null, "stem": "A share trades at $52 before a 4% stock dividend. The expected price after the stock dividend is:", "opts": {"A": "$49.92", "B": "$52.00", "C": "$50.00"}, "ans": "C", "en": "L17: Stock Dividend\nL18: 4% stock dividend = 현재 보유 주식 수의 4%만큼 주식을 추가로 받는 것\nL19: New Price=(Old Price)/(1.04)", "enLabel": "오답노트 원문", "ko": "4% stock dividend = 4% more shares. New price = old price / 1.04 = 52/1.04 = 50.00.", "trap": "", "f": "", "why": {"A": "$49.92 multiplies by 0.96; the correct adjustment divides by 1.04.", "B": "The price falls because each share now represents a smaller piece of the company."}, "orig": "Corporate Issuers 오답노트 L17 · 근거 ECO-M1-Q37"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "Stock dividend – accounting and tax", "vig": null, "stem": "Which statement about a stock dividend is most accurate?", "opts": {"A": "It is a taxable event for shareholders", "B": "It moves value from retained earnings to contributed capital, leaving total equity unchanged, and is generally not taxable", "C": "It reduces total shareholders' equity like a cash dividend"}, "ans": "B", "en": "L20: Stock dividend : 주식 수만 증가(현금 X)→ taxable event가 아님.\nL21: 회사에 경제적인 자금 이동 X → Total shareholders' equity 그대로\nL52: stock dividend = Retained Earnings → Contributed Capital로 내부 이동\nL54: Stock dividend: RE ↓, Contributed Capital ↑, Total Equity = unchanged\nL56: cash dividend는 실제 현금이 나가므로 Total Shareholders' Equity ↓", "enLabel": "오답노트 원문", "ko": "Stock dividend: retained earnings↓, contributed capital↑, total equity unchanged; no cash moves; not a taxable event. Cash dividend → total equity↓.", "trap": "", "f": "", "why": {"C": "No cash leaves the company, so total equity is unchanged; a cash dividend reduces equity.", "A": "It only divides the same value into more shares, so it is generally not taxable."}, "orig": "Corporate Issuers 오답노트 L20 · 근거 ECO-M1-Q38"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Stock dividend – flotation costs", "vig": null, "stem": "Compared with a traditional share issuance, a stock dividend has:", "opts": {"A": "lower flotation costs (no underwriter fees, legal and registration costs, or negative price effect)", "B": "the same flotation costs", "C": "higher flotation costs"}, "ans": "A", "en": "L22: Flotation costs(주식을 외부에 발행할 때 드는 비용)가 traditional issuance보다 낮다\nL23: underwriters' fees, legal costs, registration expenses, and possible negative price effect 등등 없고, 현금도 안써서", "enLabel": "오답노트 원문", "ko": "Stock dividends avoid underwriters' fees, legal costs, registration expenses, and possible negative price effects → lower flotation costs.", "trap": "", "f": "", "why": {"C": "No shares are sold to the public, so these costs are avoided.", "B": "The usual issuance costs do not arise."}, "orig": "Corporate Issuers 오답노트 L22 · 근거 ECO-M1-Q38"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "Stock dividend – liquidity and volatility", "vig": null, "stem": "A company pays a stock dividend partly to dampen its share price volatility. The reasoning is that the stock dividend:", "opts": {"A": "raises the share price, which lowers volatility", "B": "increases the float and liquidity, narrowing spreads and dampening volatility", "C": "reduces the number of shares, which lowers volatility"}, "ans": "B", "en": "L57: stock dividend → 주당가격↓(배당비율만큼 정확히 희석) + 유통주식수↑ → float↑ → 유동성↑ → 가격변동성↓\nL59: 주당가격이 낮아지면 소액 투자자도 진입하기 쉬워지고, 유통 주식 수가 늘면서 거래가 더 활발 → 유동성 증가한 주식은 매수·매도 스프레드가 좁아지고 가격이 덜 변동", "enLabel": "오답노트 원문", "ko": "Stock dividend → lower price per share + more shares → float↑ → liquidity↑ → narrower spreads, lower price volatility.", "trap": "", "f": "", "why": {"A": "The price per share falls, not rises.", "C": "The number of shares rises."}, "orig": "Corporate Issuers 오답노트 L57 · 근거 ECO CI M1"}, {"id": "CON-M1-07", "src": "개념", "module": 1, "tag": "Greenmail", "vig": null, "stem": "Greenmail is a repurchase in which the company:", "opts": {"A": "buys shares pro rata from all shareholders at a fixed price", "B": "buys back a would-be acquirer's shares at a premium, to the detriment of remaining shareholders", "C": "buys shares gradually in the open market"}, "ans": "B", "en": "L24: Share Repurchase 방식\nL25: Greenmail transaction = 경영권 위협을 하는 주주에게 회사가 premium 주고 그 주식을 되사주는 거래\nL27: Unsuccessful takeover attempts have ended with the company buying back the would-be suitor’s shares at a premium to the market price\nL28: detriment of remaining shareholders (특정 주주에게만 premium 지급 → 나머지 주주 불리)", "enLabel": "오답노트 원문", "ko": "Greenmail: after an unsuccessful takeover attempt, the company buys back the suitor's shares at a premium; only that holder gets the premium.", "trap": "", "f": "", "why": {"A": "That is a fixed-price tender offer.", "C": "That is an open-market repurchase."}, "orig": "Corporate Issuers 오답노트 L24 · 근거 SCH R13"}, {"id": "CON-M1-08", "src": "개념", "module": 1, "tag": "Fastest repurchase method", "vig": null, "stem": "A company wants to repurchase shares quickly, at a premium, buying a pro rata portion from all interested shareholders. It should use:", "opts": {"A": "a negotiated purchase agreement", "B": "open-market purchases", "C": "a fixed-price tender offer"}, "ans": "C", "en": "L29: Fixed price tender offer\nL31: accomplished quickly, allow them to purchase a pro rata portion of shares from all interested shareholders.\nL86: Fixed price tender offer : 제일 빠른 share repurchase 방법\nL88: tender offer : Premium + 전체 주주 대상", "enLabel": "오답노트 원문", "ko": "Fixed-price tender offer: fastest; premium offered to all shareholders; pro rata purchase.", "trap": "", "f": "", "why": {"B": "Open-market purchases are flexible but gradual.", "A": "Negotiated purchases are with a specific large holder."}, "orig": "Corporate Issuers 오답노트 L29 · 근거 ECO-M1-Q34"}, {"id": "CON-M1-09", "src": "개념", "module": 1, "tag": "Repurchases to support the share price", "vig": null, "stem": "To support its stock price in the event of a market downturn, the most appropriate repurchase method is:", "opts": {"A": "open-market repurchases, because timing is flexible and they can be stopped", "B": "a Dutch auction", "C": "a fixed-price tender offer"}, "ans": "A", "en": "L32: Open-market\nL34: maximum flexibility → can stop/cancel repurchases.\nL99: To support its stock price in the event of a market downturn→ Open market share repurchase가 적절 ( 가장 유연.시점 선택, 중단 가능)\nL101: 주가가 떨어질 때마다 사서 받치려면 매입 시점을 고를 수 있어야 함", "enLabel": "오답노트 원문", "ko": "Open-market repurchases give maximum flexibility (choose timing, stop or cancel) → suited to supporting the price in downturns.", "trap": "", "f": "", "why": {"C": "A tender offer is a one-time event at a set time.", "B": "A Dutch auction is also a one-time event."}, "orig": "Corporate Issuers 오답노트 L32 · 근거 SCH R13"}, {"id": "CON-M1-10", "src": "개념", "module": 1, "tag": "Negotiated purchase price", "vig": null, "stem": "Negotiated (private) purchase agreements typically take place at:", "opts": {"A": "only the market price", "B": "either a discount or a premium to the market price", "C": "only a premium to the market price"}, "ans": "B", "en": "L102: negotiated purchase agreement는 discount/premium  둘 다 가능.", "enLabel": "오답노트 원문", "ko": "Negotiated purchases are almost as likely to be at a discount as at a premium (large holders needing liquidity).", "trap": "", "f": "", "why": {"C": "Many are at discounts when the seller needs liquidity.", "A": "They are privately negotiated, so the price can differ from market."}, "orig": "Corporate Issuers 오답노트 L102 · 근거 ECO-M1-Q34"}, {"id": "CON-M1-11", "src": "개념", "module": 1, "tag": "Debt-financed repurchase and EPS", "vig": null, "stem": "A debt-financed share repurchase increases EPS when:", "opts": {"A": "the earnings yield is below the pre-tax cost of borrowing", "B": "the dividend yield exceeds the pre-tax cost of borrowing", "C": "the earnings yield (E/P, using the price actually paid) exceeds the after-tax cost of borrowing"}, "ans": "C", "en": "L35: 세후 차입비용 < Earnings yield(E/P) → EPS 증가\nL36: earnings yield (e/p)> the after-tax cost of borrowed funds → EPS will increase if shares are repurchased using borrowed funds.\nL40: | 차입비용 < E/P | 증가 |\nL41: | 차입비용 > E/P | 감소 |\nL42: | 차입비용 = E/P | 불변 |\nL48: E/P의 P는 실제 지불가격(프리미엄 포함). 시장가가 아님\nL49: 비교 대상은 세후 차입비용 (세전 아님)\nL50: 잉여현금(무수익) 사용 시 이자 비용 0 → EPS 항상 증가\nL65: Earnings Yield=(EPS)/(Share Price)\nL67: earning yield > after-tax cost of dept  → 주식으로 버는 수익률> 이자 → 자사주 매입으로 EPS ↑\nL68: Debt-funded repurchase → Earnings yield < after-tax borrowing cost 비교 → 수익보다 이자가 더 큼 →  EPS 감소\nL92: E/P > 세후 cost of debt → 돈 빌려서 자사주 사면 EPS↑\nL94: Earning 감소보다 주식수 감소가 더 크니까", "enLabel": "오답노트 원문", "ko": "After-tax borrowing cost < E/P → EPS↑; > → EPS↓; = → unchanged. P = price actually paid (including premium). Repurchase with idle cash → EPS always rises.", "trap": "", "f": "", "why": {"A": "EPS falls when the earnings yield is below the borrowing cost; and the after-tax cost is the comparison.", "B": "The comparison uses the earnings yield and the after-tax cost."}, "orig": "Corporate Issuers 오답노트 L35 · 근거 ECO CI M1"}, {"id": "CON-M1-12", "src": "개념", "module": 1, "tag": "Debt-financed repurchase – EPS calculation", "vig": null, "stem": "Net income is $10m, shares outstanding are 5m, and the share price is $40. The company borrows $20m at an after-tax cost of 4% and buys back shares at $40. New EPS is closest to:", "opts": {"A": "$1.84", "B": "$2.22", "C": "$2.04"}, "ans": "C", "en": "L44: EPS = (순이익 − 세후 이자) / (주식 수 − 매입 주식 수) → 분자·분모가 동시에 감소 → 분모 감소폭이 커서 EPS 증가\nL47: \"이자 발생 → 이익 감소 → EPS 감소\": 분자만 본 오류. 분모(주식 수)도 감소함", "enLabel": "오답노트 원문", "ko": "Shares bought = 20m/40 = 0.5m. EPS = (10 − 0.8)/(5 − 0.5) = 9.2/4.5 = 2.04 (up from 2.00, since E/P 5% > 4%). Numerator and denominator both fall.", "trap": "", "f": "", "why": {"A": "$1.84 subtracts the after-tax interest but forgets that shares fall to 4.5m.", "B": "$2.22 reduces the shares but ignores the $0.8m after-tax interest."}, "orig": "Corporate Issuers 오답노트 L44 · 근거 SCH R13"}, {"id": "CON-M1-13", "src": "개념", "module": 1, "tag": "EPS increase vs shareholder value", "vig": null, "stem": "A debt-financed repurchase raises EPS. This means shareholder value has:", "opts": {"A": "definitely increased", "B": "definitely decreased", "C": "not necessarily increased, because higher leverage raises the cost of equity"}, "ans": "C", "en": "L46: 자사주 매입 = 수익률 E/P짜리 자산을 사는 것. 그 수익률 > 조달비용이면 이득\nL51: EPS 증가 ≠ 주주가치 증가: 레버리지 상승 → 자본비용 상승", "enLabel": "오답노트 원문", "ko": "EPS increase ≠ shareholder value increase: leverage↑ → cost of capital↑.", "trap": "", "f": "", "why": {"A": "EPS accretion is not the same as value creation.", "B": "It depends on whether the price paid is fair; it is not definitely a loss."}, "orig": "Corporate Issuers 오답노트 L46 · 근거 SCH R13"}, {"id": "CON-M1-14", "src": "개념", "module": 1, "tag": "Repurchase and book value per share", "vig": null, "stem": "Book value is $100m with 10m shares (BVPS $10). The company buys back 1m shares at $15. BVPS becomes closest to:", "opts": {"A": "$10.56", "B": "$9.44", "C": "$10.00"}, "ans": "B", "en": "L95: 매입가 > BVPS → BVPS↓\nL97: 매입가 < BVPS → BVPS↑\nL98: 같으면 불변", "enLabel": "오답노트 원문", "ko": "New BVPS = (100 − 15)/(10 − 1) = 85/9 = 9.44. Price paid > BVPS → BVPS↓; < → BVPS↑; = → unchanged.", "trap": "", "f": "", "why": {"A": "BVPS rises only if the buyback price is below BVPS.", "C": "BVPS changes because the price paid differs from BVPS."}, "orig": "Corporate Issuers 오답노트 L95 · 근거 SCH R13"}, {"id": "CON-M1-15", "src": "개념", "module": 1, "tag": "Repurchase with surplus cash", "vig": null, "stem": "When a company repurchases shares using surplus cash that earns nothing, EPS:", "opts": {"A": "rises, because earnings are unchanged while shares fall", "B": "is unchanged", "C": "falls, because cash is used"}, "ans": "A", "en": "L91: surplus cash 로 repurchase shares → eps = earning은 그대로, 주식수 ↓", "enLabel": "오답노트 원문", "ko": "Surplus cash repurchase → earnings unchanged, shares↓ → EPS↑.", "trap": "", "f": "", "why": {"C": "Idle cash earns nothing, so earnings do not fall.", "B": "Fewer shares with the same earnings raise EPS."}, "orig": "Corporate Issuers 오답노트 L91 · 근거 SCH R13"}, {"id": "CON-M1-16", "src": "개념", "module": 1, "tag": "FCFE coverage ratio", "vig": null, "stem": "FCFE is $120m, dividends are $50m, and share repurchases are $30m. The FCFE coverage ratio is:", "opts": {"A": "1.5", "B": "0.67", "C": "2.4"}, "ans": "A", "en": "L60: FCFE coverage ratio = FCFE/(Dividends + Share Repurchases)\nL62: FCFE = CFO – Capex + Net borrowing", "enLabel": "오답노트 원문", "ko": "FCFE coverage = FCFE / (dividends + share repurchases) = 120/80 = 1.5. FCFE = CFO − capex + net borrowing.", "trap": "", "f": "", "why": {"C": "2.4 ignores the share repurchases in the denominator.", "B": "0.67 inverts the ratio."}, "orig": "Corporate Issuers 오답노트 L60 · 근거 SCH R13"}, {"id": "CON-M1-17", "src": "개념", "module": 1, "tag": "Effective tax rate – double taxation", "vig": null, "stem": "Under a double taxation system, the corporate tax rate is 30% and the shareholder's dividend tax rate is 20%. The effective tax rate on earnings paid as dividends is:", "opts": {"A": "20%", "B": "44%", "C": "50%"}, "ans": "B", "en": "L63: Effective tax rate on dividends = Corporate tax rate on earnings allocated to dividends + (1 – Corporate tax rate on earnings allocated to dividends) × Shareholder tax rate on dividends\nL110: Double Taxation effective tax rate =  corp tax rate + (1 − corp tax) x investor tax rate", "enLabel": "오답노트 원문", "ko": "Effective rate = corporate rate + (1 − corporate rate) × shareholder rate = 0.30 + 0.70 × 0.20 = 44%.", "trap": "", "f": "", "why": {"C": "50% simply adds the rates; the shareholder tax applies to after-corporate-tax income.", "A": "20% ignores the corporate tax."}, "orig": "Corporate Issuers 오답노트 L63 · 근거 SCH R13"}, {"id": "CON-M1-18", "src": "개념", "module": 1, "tag": "Effective tax rate – imputation", "vig": null, "stem": "Under a dividend imputation system with a 30% corporate rate and a shareholder marginal rate of 22%, the effective tax rate on distributed earnings is:", "opts": {"A": "30%", "B": "22%", "C": "45.4%"}, "ans": "B", "en": "L109: Imputation: ETR = shareholder's marginal tax rate (주주 한계세율 만큼만)", "enLabel": "오답노트 원문", "ko": "Imputation: effective tax rate = shareholder's marginal tax rate.", "trap": "", "f": "", "why": {"A": "Under imputation, the corporate tax is credited to the shareholder.", "C": "45.4% is the double-taxation result."}, "orig": "Corporate Issuers 오답노트 L109 · 근거 ECO-M1-Q64"}, {"id": "CON-M1-19", "src": "개념", "module": 1, "tag": "Target payout adjustment", "vig": null, "stem": "Expected EPS is $4.00, the target payout ratio is 50%, last year's dividend was $1.40, and the company closes the gap over 3 years. The expected dividend increase is:", "opts": {"A": "$0.20", "B": "$0.30", "C": "$0.60"}, "ans": "A", "en": "L64: Expected increase in dividends = (Expected earnings × Target payout ratio − Previous dividend) / adjust기간( ex 3년 adjust → 3으로 나눔)\nL103: dividend adjustment\nL105: ΔD = (expected EPS × target payout − D_0) × (1 / N)", "enLabel": "오답노트 원문", "ko": "ΔD = (expected EPS × target payout − D₀) × (1/N) = (2.00 − 1.40)/3 = 0.20.", "trap": "", "f": "", "why": {"C": "$0.60 closes the whole gap in one year; it must be spread over 3 years.", "B": "$0.30 spreads the gap over 2 years, not 3."}, "orig": "Corporate Issuers 오답노트 L64 · 근거 SCH R13"}, {"id": "CON-M1-20", "src": "개념", "module": 1, "tag": "Overinvestment agency problem", "vig": null, "stem": "To limit managers' tendency to invest in negative-NPV projects (empire building), the company can:", "opts": {"A": "retain more earnings", "B": "pay out free cash flow as cash dividends", "C": "issue more equity"}, "ans": "B", "en": "L69: Overinvestment agency problem : 경영진이 NPV < 0 프로젝트에 돈을 쓰는 문제 (empire building) → increase internally financed cash dividend\nL71: Payout FCF as cash dividends (잉여현금을 현금배당으로 써버려서 과잉투자 억제)", "enLabel": "오답노트 원문", "ko": "Overinvestment agency problem → pay out free cash flow as cash dividends to restrain overinvestment.", "trap": "", "f": "", "why": {"A": "Retaining cash gives managers more to overinvest.", "C": "Raising more equity adds to the cash managers control."}, "orig": "Corporate Issuers 오답노트 L69 · 근거 SCH R13"}, {"id": "CON-M1-21", "src": "개념", "module": 1, "tag": "MM vs Graham and Dodd", "vig": null, "stem": "Compared with the Miller–Modigliani model, the model of Graham, Dodd, et al. predicts that a higher dividend yield leads to a share price that is:", "opts": {"A": "higher", "B": "lower", "C": "the same"}, "ans": "A", "en": "L72: Miller & Modigliani (MM)\nL74: → Perfect capital market에서는 dividend yield가 주가에 영향을 주지 않음.\nL75: Graham, Dodd et al.\nL77: → 투자자는 현재 받는 dividend를 미래의 불확실한 capital gain보다 선호한다고 봄.\nL79: → Dividend yield가 높을수록 cost of equity ↓ → share price ↑\nL83: | MM | 영향 없음 | 변화 없음 |\nL84: | Graham & Dodd | 긍정적 영향 | ↑ |", "enLabel": "오답노트 원문", "ko": "MM (perfect markets): dividend yield does not affect price. Graham & Dodd (bird in hand): investors prefer current dividends → higher yield → lower cost of equity → higher price.", "trap": "", "f": "", "why": {"B": "Graham and Dodd say investors prefer current dividends (bird in the hand).", "C": "The same price is the MM prediction."}, "orig": "Corporate Issuers 오답노트 L72 · 근거 ECO-M1-Q62"}, {"id": "CON-M1-22", "src": "개념", "module": 1, "tag": "Flotation costs and payout", "vig": null, "stem": "High flotation costs on new equity issues are associated with:", "opts": {"A": "no effect on payout", "B": "a higher dividend payout ratio", "C": "a lower dividend payout ratio"}, "ans": "C", "en": "L90: flotation costs on new equity issues ↑  → 배당 ↓", "enLabel": "오답노트 원문", "ko": "Flotation costs on new equity↑ → dividends↓.", "trap": "", "f": "", "why": {"B": "Expensive new equity makes companies retain more earnings.", "A": "Flotation costs affect payout decisions."}, "orig": "Corporate Issuers 오답노트 L90 · 근거 ECO-M1-Q15"}, {"id": "CON-M1-23", "src": "개념", "module": 1, "tag": "Global payout trends", "vig": null, "stem": "Based on global trends in payout policies, which has generally decreased over time?", "opts": {"A": "The percentage of companies paying cash dividends", "B": "Dividend payout ratios", "C": "Aggregate dividend amounts paid"}, "ans": "A", "en": "L106: global trend : 현금배당 하는 회사 비율 ↓ , 자사주 매입 회사 비율 ↑\nL108: 총배당액 & 배당성향은 대체로 증가 (dividend payout ratio & aggregate dividend amount paid ↑ )", "enLabel": "오답노트 원문", "ko": "Fraction of cash dividend payers↓, fraction of companies repurchasing↑; aggregate dividends and payout ratios generally↑.", "trap": "", "f": "", "why": {"B": "Payout ratios have generally increased.", "C": "Aggregate dividend amounts have generally increased."}, "orig": "Corporate Issuers 오답노트 L106 · 근거 ECO-M1-Q54"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "Two-tier board", "vig": null, "stem": "A two-tier board of directors consists of a:", "opts": {"A": "single board of executive and non-executive directors", "B": "management board that oversees a supervisory board", "C": "supervisory board that oversees a management board"}, "ans": "C", "en": "L114: Two-tier = 감독이사회(supervisory board)가 경영이사회(management board)를 감독(독일·러시아·아르헨티나 등 의무)\nL115: One-tier = 사내·사외이사가 한 이사회에 함께", "enLabel": "오답노트 원문", "ko": "Two-tier: supervisory board oversees management board (required in Germany, Russia, Argentina, etc.). One-tier: internal and external directors on one board.", "trap": "", "f": "", "why": {"A": "That is a one-tier board.", "B": "The supervisory board oversees, not the other way around."}, "orig": "Corporate Issuers 오답노트 L114 · 근거 SCH-R14-02"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "Governance terms", "vig": null, "stem": "CEO duality refers to the CEO:", "opts": {"A": "also being a shareholder of the company", "B": "holding shares with superior voting rights", "C": "also serving as chairperson of the board"}, "ans": "C", "en": "L116: CEO duality : CEO가 chairperson of board 겸임\nL117: insider : 주주=경영진 ( board director or manager is also a shareholder of a company)\nL118: dual-class : 우월 의결권(one or more share classes superior or even sole voting rights.)", "enLabel": "오답노트 원문", "ko": "CEO duality = CEO is also board chair. Insider = director/manager who is also a shareholder. Dual-class = some share classes have superior or sole voting rights.", "trap": "", "f": "", "why": {"A": "A director or manager who is also a shareholder is an insider.", "B": "Superior voting rights describe dual-class shares."}, "orig": "Corporate Issuers 오답노트 L116 · 근거 SCH-R14-03"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "Approaches to identifying ESG factors", "vig": null, "stem": "An analyst identifies ESG factors using frameworks from not-for-profit groups such as SASB and IIRC. This approach is:", "opts": {"A": "proprietary methods", "B": "ESG data providers", "C": "industry organizations"}, "ans": "C", "en": "L122: | ESG data providers  : 외부 ESG평가기관 (MSCI,Sustainalytics, RepRisk) | 벤더의 점수·순위 - 외부 전문기관이 제공하는 ESG 데이터 및 평가를 활용 | 주관적 해석 |\nL123: | Industry organizations /    (IIRC, SASB 등 비영리단체) / = Not-for-profit initiatives / (보고 기준 개발 기관) | 표준화 프레임워크 촉진 → 비영리기관이 개발한 지속가능성 보고 기준 및 프레임워크 활용 | 아직 완전 표준화 아님 |\nL124: | Proprietary methods : 자체 평가 / (10-K, 연차보고서, sustainability report, 뉴스) | 공개 자료를 투자자, 애널리스트가 직접 취합 ← 평가 방법과 판단이 자체적으로 이루어짐 | 기업 간 비일관적 공시 (공시가 voluntary → 기업마다 공개 수준이 달라 비교가 어려움 |", "enLabel": "오답노트 원문", "ko": "ESG data providers (vendor scores; subjective), industry organizations (not-for-profit reporting frameworks; not fully standardized), proprietary methods (own analysis of 10-K, reports, news; inconsistent voluntary disclosure).", "trap": "", "f": "", "why": {"B": "ESG data providers are vendors such as MSCI, Sustainalytics, RepRisk.", "A": "Proprietary methods use the analyst's own collection of public disclosures."}, "orig": "Corporate Issuers 오답노트 L122 · 근거 ECO VAR-M2-01"}, {"id": "CON-M2-04", "src": "개념", "module": 2, "tag": "Integrating ESG into equity valuation", "vig": null, "stem": "In equity analysis, a long-term structural ESG risk with uncertain timing and size (such as stranded assets) is usually reflected by:", "opts": {"A": "only adjusting next year's cash flow", "B": "raising the discount rate (adding a risk premium)", "C": "ignoring it until it occurs"}, "ans": "B", "en": "L126: integrating the ESG factor to Equity\nL128: Equity 분석에서 ESG 위험 반영 두 경로: ① 현금흐름 추정치 조정 ② 할인율 조정\nL129: good ESG  → 할인율↓ (위험이 낮으니) 또는 매출·마진 전망↑\nL130: bad ESG→ 할인율↑ (위험이 높으니) 또는 비용 전망↑, 매출 전망↓\nL131: 왜 할인율인가: Stranded asset처럼 언제·얼마나 터질지 불확실한 장기 구조적 위험은 개별 현금흐름 숫자 조정보다 할인율 인상(리스크 프리미엄 반영)으로 다루는 것이 표준 → 위험이 클수록·먼 미래에 걸쳐 있을수록 할인이라는 도구를 사용 / (채권 쪽 유사 논리: stranded asset 위험은 장기 채권에 더 민감하게 반영)\nL132: 채권 → credit spread/CDS 조정에만 집중", "enLabel": "오답노트 원문", "ko": "ESG in equity: adjust cash flow forecasts or the discount rate. Good ESG → lower discount rate or better forecasts; bad ESG → higher discount rate. Stranded-asset-type risk → discount rate. Bonds → credit spread/CDS adjustment.", "trap": "", "f": "", "why": {"A": "Uncertain long-term risks are standardly handled through the discount rate.", "C": "The risk should be reflected in valuation now."}, "orig": "Corporate Issuers 오답노트 L126 · 근거 SCH R14"}, {"id": "CON-M2-05", "src": "개념", "module": 2, "tag": "ESG in fixed-income analysis", "vig": null, "stem": "In fixed-income analysis, ESG integration is generally focused on:", "opts": {"A": "identifying downside (default and credit) risk", "B": "identifying both upside opportunities and downside risk equally", "C": "identifying growth opportunities only"}, "ans": "A", "en": "L155: Equity vs. Fixed-Income ESG Analysis\nL159: | 투자 관점 | 장기 성장 및 기업가치 상승 | 원금·이자 상환 및 Downside risk 관리 |\nL160: | ESG 분석 초점 | 성장 기회, 수익성, 기업가치 | Default risk 및 Credit risk 완화 |\nL161: | 투자기간 | 장기 성장 가능성 | 채권 만기 또는 상환 시점까지 |", "enLabel": "오답노트 원문", "ko": "Equity: long-term growth, profitability, value (both opportunities and risks). Fixed income: repayment and downside/default risk until maturity.", "trap": "", "f": "", "why": {"C": "Bondholders' upside is capped, so the focus is downside.", "B": "Both upside and downside is the equity view."}, "orig": "Corporate Issuers 오답노트 L155 · 근거 SCH-R14-04"}, {"id": "CON-M2-06", "src": "개념", "module": 2, "tag": "Green bonds", "vig": null, "stem": "Compared with the issuer's conventional bonds, a green bond most likely has:", "opts": {"A": "no greenwashing risk", "B": "a higher credit rating because the proceeds fund green projects", "C": "the same recourse and credit rating, with possible price premium and greenwashing risk"}, "ans": "C", "en": "L134: Green Bond : 용도만 친환경, credit rating에는 영향 X\nL136: Greenwashing = 부정적 위험\nL137: Tighter spreads = Market demand 증가\nL138: 가격 프리미엄 붙을 수 있음\nL142: | Market demand | 친환경 투자 수요 ↑ → Green bond 가격 프리미엄 → Credit spread ↓ |\nL143: | Greenwashing | 발행대금을 실제 친환경 목적에 사용하지 않는 위험 → 신뢰도↓→ 해당 기업 전체 채권의 Credit spread ↑ 가능 |\nL144: | Bondholder recourse | Green bonds와 일반 회사채의 상환청구권은 일반적으로 동일 |", "enLabel": "오답노트 원문", "ko": "Green bond: only use of proceeds is green; same recourse and rating. Strong demand → price premium, tighter spreads. Greenwashing → credibility↓, spreads can widen.", "trap": "", "f": "", "why": {"B": "Only the use of proceeds differs; the rating is the same.", "A": "Greenwashing (proceeds not used as advertised) is a key concern."}, "orig": "Corporate Issuers 오답노트 L134 · 근거 ECO VAR-M2-02"}, {"id": "CON-M2-07", "src": "개념", "module": 2, "tag": "Special voting arrangements", "vig": null, "stem": "Rules that give minority shareholders an advantage in board nomination and election are:", "opts": {"A": "shareholder activism", "B": "stewardship codes", "C": "special voting arrangements"}, "ans": "C", "en": "L147: Special voting arrangement. : Minority shareholders에게 특별한 의결권 또는 승인권을 부여\nL151: | Special voting arrangement | 소수주주에게 특별 의결권 부여 | Minority shareholder protection |\nL152: | Stewardship code | 기관투자자의 책임 있는 의결권 행사 및 기업 관여 유도 | Corporate governance 개선 |\nL153: | Shareholder activism | 주주가 기업에 변화를 요구하는 활동 | 기업의 의사결정 변화 |", "enLabel": "오답노트 원문", "ko": "Special voting arrangement → minority protection; stewardship code → responsible voting and engagement by institutions; activism → shareholders demand change.", "trap": "", "f": "", "why": {"B": "Stewardship codes guide institutional investors' engagement.", "A": "Activism is shareholders pushing for change."}, "orig": "Corporate Issuers 오답노트 L147 · 근거 ECO VAR-M2-05"}, {"id": "CON-M2-08", "src": "개념", "module": 2, "tag": "Principal–agent vs principal–principal", "vig": null, "stem": "The principal–agent problem is most severe under:", "opts": {"A": "dispersed ownership and dispersed voting power", "B": "concentrated ownership and concentrated voting power", "C": "dispersed ownership and concentrated voting power"}, "ans": "A", "en": "L163: Principal–Agent vs. Principal–Principal\nL164: Principal–Agent: dispersed ownership에서 주주들의 감시력 ↓, 경영진↑\nL165: Principal–Principal: concentrated ownership에서 지배주주가 소수주주를 희생시킴\nL169: | 주요 갈등 | 주주 vs. 경영진 | 지배주주 vs. 소수주주 |\nL170: | 발생 원인 | 소유권과 경영권 분리, 주주의 감시 약화 | 지배주주의 의결권 집중 |\nL171: | 주요 위험 | 경영진이 사적 이익을 위해 회사 자원을 사용 | 지배주주가 소수주주에게 불리하게 자원을 배분 |\nL172: | 대표 사례 | 경영진의 과도한 보수 및 사적 이익 추구 | 지배주주가 자신의 이익을 위한 거래 추진 |\nL173: | 관련 지배구조 | Dispersed ownership | Concentrated ownership |\nL175: |  | controlling shareholders로 완화 가능 |  |\nL176: |  | dispersed ownership & dispersed voting power | 나머지 조합 |", "enLabel": "오답노트 원문", "ko": "Principal–agent: shareholders vs managers (dispersed ownership and voting; weak monitoring). Principal–principal: controlling vs minority shareholders (concentrated control).", "trap": "", "f": "", "why": {"B": "Concentrated control creates principal–principal conflicts.", "C": "Concentrated voting power creates principal–principal conflicts."}, "orig": "Corporate Issuers 오답노트 L163 · 근거 SCH-R14-01"}, {"id": "CON-M2-09", "src": "개념", "module": 2, "tag": "Dual-class shares", "vig": null, "stem": "Founders own 15% of shares but control most votes through dual-class shares; the rest is widely held. The likely conflict is:", "opts": {"A": "principal–principal, between the controlling founders and minority shareholders", "B": "no conflict, because ownership is dispersed", "C": "principal–agent, between dispersed shareholders and strong managers"}, "ans": "A", "en": "L174: | Dual-class shares | 직접적인 핵심 원인은 아님 | 창업자의 의결권 집중 → 소수주주 이익 침해 가능 |\nL179: 차등의결권·피라미드 = dispersed ownership+ concentrated voting power", "enLabel": "오답노트 원문", "ko": "Dual-class shares / pyramids = dispersed ownership + concentrated voting power → principal–principal risk.", "trap": "", "f": "", "why": {"C": "Votes are concentrated, so the conflict is controller vs minority.", "B": "Concentrated voting power can hurt minority shareholders."}, "orig": "Corporate Issuers 오답노트 L174 · 근거 ECO VAR-M2-03"}, {"id": "CON-M2-10", "src": "개념", "module": 2, "tag": "Voting caps", "vig": null, "stem": "Voting caps, which restrict the voting rights of large share positions, create:", "opts": {"A": "dispersed ownership with dispersed voting power", "B": "concentrated ownership with dispersed voting power", "C": "dispersed ownership with concentrated voting power"}, "ans": "B", "en": "L178: Voting cap = concentrated ownership + dispersed voting", "enLabel": "오답노트 원문", "ko": "Voting cap = concentrated ownership + dispersed voting power.", "trap": "", "f": "", "why": {"C": "That combination describes dual-class shares and pyramids.", "A": "Ownership is concentrated; only votes are spread out."}, "orig": "Corporate Issuers 오답노트 L178 · 근거 ECO VAR-M2-04"}, {"id": "CON-M3-01", "src": "개념", "module": 3, "tag": "Choosing an ERP method", "vig": null, "stem": "An analyst wants an equity risk premium estimate that is less sensitive to recent returns and allows earnings, dividends, and prices to grow at different rates. She should use:", "opts": {"A": "survey-based estimates", "B": "a macroeconomic (Grinold–Kroner) model", "C": "the Gordon growth model"}, "ans": "B", "en": "L183: Grinold–Kroner : 미래의 Equity return을 이용해 ERP를 추정하는 방법\nL185: → Macroeconomic model → 최근 수익률에 덜 민감, 이익·배당·가격이 서로 다른 속도로 크는 것을 반영\nL200: Survey = 최근 수익률 편향\nL201: GGM = 이익·배당·가격 동일 성장(P/E 일정) 가정", "enLabel": "오답노트 원문", "ko": "Grinold–Kroner: forward-looking macro model; less sensitive to recent returns; different growth rates. Surveys → recency bias. Gordon growth model → same growth (constant P/E).", "trap": "", "f": "", "why": {"A": "Surveys are biased by recent returns.", "C": "The Gordon growth model assumes earnings, dividends, and prices grow at the same rate (constant P/E)."}, "orig": "Corporate Issuers 오답노트 L183 · 근거 ECO-M3-Q6"}, {"id": "CON-M3-02", "src": "개념", "module": 3, "tag": "Grinold–Kroner ERP calculation", "vig": null, "stem": "Dividend yield is 2.0%, expected real earnings growth is 2.0%, no change in P/E or shares is expected, the 10-year Treasury yield is 4.0%, and the 10-year TIPS yield is 1.5%. The Grinold–Kroner equity risk premium is closest to:", "opts": {"A": "2.50%", "B": "2.46%", "C": "6.46%"}, "ans": "B", "en": "L187: ERP = Expected Equity Return - R_f \nL190: ERP = [DY + Δ(P/E) + i -Δ S] - E(r_f)\nL193: Expected Equity Return = Dividend yield + real earnings growth + P/E growth + inflation\nL194: inflation : 명목 수익률(Treasury)과 실질 수익률(TIPS)의 차이\nL197: i = (1 + YTM_Treasury)/(1 + YTM_TIPS) - 1", "enLabel": "오답노트 원문", "ko": "Inflation = (1 + Treasury yield)/(1 + TIPS yield) − 1 = 1.04/1.015 − 1 = 2.46%. Expected return = 2.0 + 2.0 + 2.46 = 6.46%. ERP = 6.46 − 4.0 = 2.46%.", "trap": "", "f": "", "why": {"C": "6.46% is the expected equity return; the risk-free rate must be subtracted.", "A": "2.50% approximates inflation as 4.0% − 1.5%; use (1.04/1.015) − 1."}, "orig": "Corporate Issuers 오답노트 L187 · 근거 SCH R15"}, {"id": "CON-M3-03", "src": "개념", "module": 3, "tag": "Average systematic risk", "vig": null, "stem": "A stock with average systematic risk has a required return equal to:", "opts": {"A": "the risk-free rate only", "B": "the risk-free rate + 2 × ERP", "C": "the risk-free rate + 1 × ERP (beta = 1)"}, "ans": "C", "en": "L202: average systematic risk  → β = 1  (=시장 평균 수준의 체계적 위험 )\nL204: β = 1 → 요구수익률 = rf + 1 × ERP = rf + ERP (시장 전체의 기대수익률과 같음)\nL205: β > 1 above-average systematic risk\nL206: β < 1 below-average\nL218: average systematic risk :  beta = 1 이다.", "enLabel": "오답노트 원문", "ko": "Average systematic risk → β = 1 → required return = rf + ERP. β > 1 above average, β < 1 below average.", "trap": "", "f": "", "why": {"A": "A stock with average systematic risk still earns the ERP.", "B": "Beta = 1, not 2."}, "orig": "Corporate Issuers 오답노트 L202 · 근거 ECO-M3-Q5"}, {"id": "CON-M3-04", "src": "개념", "module": 3, "tag": "Risk-free rate for equity", "vig": null, "stem": "For long-term equity cash flows, the risk-free rate should be:", "opts": {"A": "a short-term T-bill rate", "B": "the highest point on an inverted yield curve", "C": "a long-term (e.g., 10-year) government bond yield"}, "ans": "C", "en": "L207: Rf: 주식(장기 현금흐름)에는 yield curve의 10-year 국채 사용, 단기금리·curve 역전은 방해 요소 (단기 사용 시 결과만 더 커짐)", "enLabel": "오답노트 원문", "ko": "Use a long-term (10-year) government yield for equity; short rates and inverted curves distort the estimate.", "trap": "", "f": "", "why": {"A": "Short-term rates mismatch long-duration equity cash flows.", "B": "An inverted curve's short end distorts the estimate."}, "orig": "Corporate Issuers 오답노트 L207 · 근거 ECO-M3-Q5"}, {"id": "CON-M3-05", "src": "개념", "module": 3, "tag": "Country risk premium (Damodaran)", "vig": null, "stem": "An emerging market's sovereign yield spread is 2.0%. Its equity index volatility is 24% and its government bond volatility is 16%. The country risk premium is:", "opts": {"A": "2.0%", "B": "1.33%", "C": "3.0%"}, "ans": "C", "en": "L208: Damodaran model\nL210: ERP = ERP(developed) + λ × CountryRiskPremium\nL211: CRP = sovereign yield spread × (σ_equity / σ_bond)\nL212: | 값 | 나라 |\nL214: | 기본 ERP | 본국(선진국) |\nL215: | σ_equity / σ_bond | 신흥국 |\nL216: | Sovereign yield spread | 신흥국 |\nL217: | λ | 신흥국에서의 노출도(매출 비중 등) |", "enLabel": "오답노트 원문", "ko": "CRP = sovereign yield spread × (σ_equity/σ_bond) = 2.0% × 24/16 = 3.0%. ERP = developed ERP + λ × CRP (λ = exposure, e.g., revenue share).", "trap": "", "f": "", "why": {"B": "1.33% inverts the volatility ratio.", "A": "2.0% ignores the equity/bond volatility adjustment."}, "orig": "Corporate Issuers 오답노트 L208 · 근거 ECO VAR-M3-01"}, {"id": "CON-M3-06", "src": "개념", "module": 3, "tag": "Top-down vs bottom-up factors", "vig": null, "stem": "Which is a bottom-up factor affecting a company's cost of capital?", "opts": {"A": "Capital availability", "B": "The risk-free rate", "C": "ESG risk"}, "ans": "C", "en": "L221: Top-down/bottom-up factor affecting a company's cost of capital\nL223: Top-down : rf , Capital availability\nL224: Bottom-up : ESG risk", "enLabel": "오답노트 원문", "ko": "Top-down: risk-free rate, capital availability. Bottom-up: company-specific factors such as ESG risk.", "trap": "", "f": "", "why": {"B": "The risk-free rate is a top-down (market-wide) factor.", "A": "Capital availability is a top-down factor."}, "orig": "Corporate Issuers 오답노트 L221 · 근거 ECO-M3-Q8"}, {"id": "CON-M3-07", "src": "개념", "module": 3, "tag": "Rate implicit in the lease vs incremental borrowing rate", "vig": null, "stem": "For a finance lease, the cost of debt should use the rate implicit in the lease unless lease terms are not disclosed or rates have changed significantly, in which case the analyst uses:", "opts": {"A": "the coupon rate on the company's oldest bond", "B": "the incremental borrowing rate (rate on a collateralized loan over the same term)", "C": "the risk-free rate"}, "ans": "B", "en": "L225: rate implicit in the lease (RIIL) : PV(리스료) + PV(잔존가치) = 자산 공정가치 + lessor 초기 직접비용 → 초기비용은 IBR로 사용하기도함\nL226: 리스 조건이 공시되면 RIIL을 우선 사용, 정보 없으면 IBR(incremental borrowing rate=담보대출금리) 을 대신 사용\nL228: IBR = the rate it would pay to borrow using a collateralized loan over the same term (같은 기간의 담보대출 금리)", "enLabel": "오답노트 원문", "ko": "RIIL: PV(lease payments) + PV(residual) = asset fair value + lessor's initial direct costs. If terms are not disclosed (or the rate is outdated), use the incremental borrowing rate.", "trap": "", "f": "", "why": {"A": "An old coupon does not reflect current conditions.", "C": "The risk-free rate ignores credit risk."}, "orig": "Corporate Issuers 오답노트 L225 · 근거 ECO-M3-Q7"}, {"id": "CON-M3-08", "src": "개념", "module": 3, "tag": "Cost of preferred equity", "vig": null, "stem": "A preferred share has a par value of $100, a 6% dividend rate, and a market price of $80. Its cost is:", "opts": {"A": "7.5%", "B": "4.8%", "C": "6.0%"}, "ans": "A", "en": "L229: DDM → 우선주 cost of equity 계산\nL231: cost of equity (=required return) :  r_e = (D1)/(P0) + g\nL232: D1 = par value × dividend rate (배당은 par value 기준 계약)\nL233: P0 = market value\nL234: g = 0 (우선주인 경우, 일반적으로 배당 고정, 성장 없음)\nL235: market value < par value → 할인 → cost of equity > dividend rate\nL236: Preferred equity의 Cost of Capital :  r_p = (D)/(P_0)  (g = 0, 만기 없는 고정 배당)", "enLabel": "오답노트 원문", "ko": "Preferred: D = par × dividend rate = 6; r_p = D/P₀ = 6/80 = 7.5% (g = 0). Market price < par → cost > dividend rate.", "trap": "", "f": "", "why": {"C": "6.0% is the dividend rate on par, not the yield at market price.", "B": "4.8% multiplies by the market price instead of par."}, "orig": "Corporate Issuers 오답노트 L229 · 근거 SCH R15"}, {"id": "CON-M3-09", "src": "개념", "module": 3, "tag": "Build-up method", "vig": null, "stem": "The build-up method estimates the cost of equity as:", "opts": {"A": "risk-free rate + beta × ERP", "B": "dividend yield + growth rate", "C": "risk-free rate + ERP + size premium + company-specific risk premium (no beta)"}, "ans": "C", "en": "L237: Build-up method : *re *= *rf *+ ERP + SP + SCRP (beta 사용 X!)", "enLabel": "오답노트 원문", "ko": "Build-up: r_e = rf + ERP + SP + SCRP; beta is not used.", "trap": "", "f": "", "why": {"A": "That is CAPM, which uses beta.", "B": "That is the Gordon growth model."}, "orig": "Corporate Issuers 오답노트 L237 · 근거 SCH R15"}, {"id": "CON-M3-10", "src": "개념", "module": 3, "tag": "Business model characteristics and cost of capital", "vig": null, "stem": "All else equal, which characteristic most likely leads to a lower cost of capital?", "opts": {"A": "Higher earnings predictability", "B": "Higher operating leverage", "C": "Higher revenue concentration"}, "ans": "A", "en": "L238: Revenue concentration : 매출이 소수의 고객에게 몰려 있는 정도 - 높을수록 cost of capital증가", "enLabel": "오답노트 원문", "ko": "Revenue concentration↑ → cost of capital↑; operating/financial leverage↑ → cost↑; earnings predictability and tangible assets → cost↓.", "trap": "", "f": "", "why": {"B": "Higher operating leverage raises earnings volatility and the cost of capital.", "C": "Revenue from few customers raises risk and the cost of capital."}, "orig": "Corporate Issuers 오답노트 L238 · 근거 ECO-M3-Q16"}, {"id": "CON-M3-11", "src": "개념", "module": 3, "tag": "Estimating the cost of debt", "vig": null, "stem": "For a publicly traded company with traded straight debt, the cost of debt is best estimated using:", "opts": {"A": "the YTM on its longest-maturity debt", "B": "the yield on its shortest-maturity commercial paper", "C": "the coupon rate on its existing debt"}, "ans": "A", "en": "L239: publicly traded company’s cost of debt =  가장 긴 만기의 YTM on the company’s existing debt\nL241: Cost of debt 추정 방법 (상황별)\nL245: | 공개 거래되는 /  straight debt | 가장 긴 만기 채무의 YTM / (거래가 뜸하면 신뢰할 만한 짧은 만기 채무의 YTM) |\nL246: | 거래 안 됨·뜸함 | Matrix pricing (같은 만기·등급인 거래 증권의 YTM) |\nL247: | 신용등급 없음 | 이자보상배율·D/E로 등급 추정 후 matrix pricing |\nL248: | 등급별 credit spread이용 | 등급별 credit spread + benchmark rate |\nL249: | 은행 대출 | 새 대출의 한계비용  / (기존 금리는 회사 특성·금리 수준이 바뀌면 부적절) |\nL250: | Finance lease | RIIL, 조건이 공시 안 되면 IBR |", "enLabel": "오답노트 원문", "ko": "Traded straight debt → YTM on longest maturity. Thinly traded → matrix pricing. No rating → estimate rating from coverage, D/E. Bank loans → marginal cost of new loans. Finance lease → RIIL or IBR.", "trap": "", "f": "", "why": {"C": "Coupons reflect rates at issuance, not today.", "B": "Short-term debt does not match long-term financing."}, "orig": "Corporate Issuers 오답노트 L239 · 근거 SCH R15"}, {"id": "CON-M3-12", "src": "개념", "module": 3, "tag": "Factors influencing the cost of debt", "vig": null, "stem": "Which statement about the cost of debt is most accurate?", "opts": {"A": "An issuer's credit rating always equals the ratings on its issued securities", "B": "Sovereign risk includes political stability, economic competitiveness, and human development", "C": "Amortizing loans typically have a lower cost of debt than non-amortizing loans"}, "ans": "C", "en": "L252: Amortizing loans : non-amortizing loans보다 부채 비용 ↓\nL253: 부채비용에 영향을 주는 요인\nL255: Amortizing loan < non-amortizing(bullet): 원금을 나눠 갚으면 부도 위험이 낮음 → Amortizing loans의 부채 비용이 더 ↓\nL256: Issuer rating ≠ issue rating: 발행자 등급은 개별 채무의 등급과 다를 수 있음 (seniority, 담보, 전환권 등)\nL257: Sovereign risk ⊂ country risk: sovereign risk = 국가의 채무불이행 가능성 / country risk = sovereign risk + 정치 안정성 + 경제 경쟁력 + 인간 개발\nL258: Callable 등 불리한 옵션은 risk premium 증가, putable·convertible은 차입 비용 감소", "enLabel": "오답노트 원문", "ko": "Amortizing < bullet cost (lower default risk). Issuer rating ≠ issue rating. Sovereign risk ⊂ country risk. Callable features raise the premium; putable/convertible lower borrowing cost.", "trap": "", "f": "", "why": {"A": "Issue ratings can differ by seniority, collateral, or conversion features.", "B": "Those factors describe country risk, of which sovereign risk is only a part."}, "orig": "Corporate Issuers 오답노트 L252 · 근거 ECO-M3-Q27"}, {"id": "CON-M4-01", "src": "개념", "module": 4, "tag": "Conglomerate discount", "vig": null, "stem": "A company's sum-of-the-parts value is $1,200m and its current trading enterprise value is $1,000m. The conglomerate discount is:", "opts": {"A": "$200m", "B": "−$200m", "C": "$2,200m"}, "ans": "A", "en": "L262: Conglomerate Discount=SOTP Value−Current Trading EV\nL263: SOTP = sum-of-the-part\nL264: 부호 기억하기! Sum-of-the-part > 시장 가격 → 차이만큼 discount (양수)", "enLabel": "오답노트 원문", "ko": "Conglomerate discount = SOTP value − current trading EV; SOTP > market → discount (positive).", "trap": "", "f": "", "why": {"B": "Discount = SOTP − trading EV, a positive number when SOTP is higher.", "C": "The values are subtracted, not added."}, "orig": "Corporate Issuers 오답노트 L262 · 근거 SCH R16"}, {"id": "CON-M4-02", "src": "개념", "module": 4, "tag": "Sum-of-the-parts valuation", "vig": null, "stem": "A company has several segments, each with its own peer EV/EBITDA multiple. Its sum-of-the-parts value is found by:", "opts": {"A": "applying one average multiple to total EBITDA", "B": "valuing each segment as its EBITDA × its peer multiple and adding them", "C": "using only the largest segment's multiple"}, "ans": "B", "en": "L220: 사업부문(segment)이 여러 개이고 각 segment별 peer multiple주어지면 → 각 segment별로 EV(=EBITDA × peer multiple) 계산 후 합산", "enLabel": "오답노트 원문", "ko": "Multiple segments with peer multiples → EV per segment (EBITDA × multiple), then sum.", "trap": "", "f": "", "why": {"A": "One multiple ignores differences across segments.", "C": "All segments must be valued."}, "orig": "Corporate Issuers 오답노트 L220 · 근거 SCH R16"}, {"id": "CON-M4-03", "src": "개념", "module": 4, "tag": "Unreimbursed operating expenses", "vig": null, "stem": "A property has effective gross income of $2,832,750, property management fees of $119,510, other operating expenses of $1,175,000, and no expense reimbursement. Unreimbursed operating expenses as a share of effective gross income are closest to:", "opts": {"A": "54.3%", "B": "45.7%", "C": "41.5%"}, "ans": "B", "en": "L265: unreimbursed operating expenses (미반영 비용) : 번 돈(EGI) 중 몇 %가 운영비용으로 빠져나가는가\nL267: 미반영 비용 비율 = (Property management fees + Other operating expenses)/(Effective gross income)\nL270: NOI = EGI − Property management fees − Other operating expenses", "enLabel": "오답노트 원문", "ko": "Unreimbursed ratio = (property management fees + other operating expenses − expense reimbursement revenue) / effective gross income; here reimbursement is zero: 1,294,510/2,832,750 = 45.7%. NOI = EGI − fees − other operating expenses.", "trap": "", "f": "", "why": {"C": "41.5% leaves out the property management fees.", "A": "54.3% is NOI as a share of effective gross income."}, "orig": "Corporate Issuers 오답노트 L265 · 근거 ECO AI M2"}, {"id": "CON-M4-04", "src": "개념", "module": 4, "tag": "Real estate cycle", "vig": null, "stem": "During the expansion phase of the real estate cycle:", "opts": {"A": "interest rates, NOI, and debt service coverage fall while loan-to-value rises", "B": "interest rates and NOI peak while loan-to-value bottoms", "C": "interest rates, NOI, and debt service coverage rise while loan-to-value falls"}, "ans": "C", "en": "L272: | Phase | 경기 국면 | 주요 특징 | 금리 · NOI · DSC | LTV |\nL274: | Recovery | 경기저점 직후 | 신용경색, 신규건설 저조 | 바닥 → 상승 | 정점 → 하락 |\nL275: | Expansion | 경기개선 | 임금↑, 신용개선, 신규건설 촉발 | 계속 상승 | 계속 하락 |\nL276: | Oversupply | 경기둔화 시작 | 공급과잉 물량 출하, 공실률↑ | 정점 → 하락 | 바닥 → 상승 |\nL277: | Recession | 경기계속악화 | 신용긴축, 가격·공실 계속악화 | 계속 하락 | 계속 상승 |", "enLabel": "오답노트 원문", "ko": "Recovery: rates/NOI/DSC bottom and rise, LTV peaks and falls. Expansion: continue to rise, LTV falls. Oversupply: peak and fall, LTV bottoms and rises. Recession: continue to fall, LTV rises.", "trap": "", "f": "", "why": {"A": "That describes the recession phase.", "B": "That describes the start of the oversupply phase."}, "orig": "Corporate Issuers 오답노트 L272 · 근거 SCH AI"}, {"id": "CON-M4-05", "src": "개념", "module": 4, "tag": "Loss to lease", "vig": null, "stem": "A property's gross rental income is above its gross potential rental income (negative loss to lease). This most likely signals:", "opts": {"A": "oversupply (current leases are above market rents, so rents face downward pressure)", "B": "nothing about supply", "C": "undersupply (market rents rising faster than leases)"}, "ans": "A", "en": "L279: Oversupply 물어보면 Loss to Lease 확인 ! 음수다 → loss 아닌 potential 보다 이익 보고있다 → 공금과잉 신호\nL281: Loss to lease = Gross rental income − Gross potential rental income\nL282: (-) :  potential < rental 임대료 → Oversupplying 신호 (임대료 하락압력)\nL283: (+) : 기존계약  < 시장potential→ 공급부족 신호 (시장임대료가 빠르게 상승 중)", "enLabel": "오답노트 원문", "ko": "Loss to lease = gross potential − gross rental income (ECO sign). Negative → leases above market → oversupply signal; positive → market rents above leases → undersupply. ※ Note line 281 writes the formula the other way around (rental − potential).", "trap": "", "f": "", "why": {"C": "Undersupply shows rental income below potential (positive loss to lease).", "B": "The gap between contract and market rents signals the supply phase."}, "orig": "Corporate Issuers 오답노트 L279 · 근거 ECO AI M2"}, {"id": "CON-M4-06", "src": "개념", "module": 4, "tag": "Appraisal-based real estate indexes", "vig": null, "stem": "Appraisal lag in appraisal-based real estate indexes causes:", "opts": {"A": "smoothed returns, lower measured volatility and correlation, and overstated Sharpe ratios and diversification benefits", "B": "more volatile returns and higher correlations", "C": "understated Sharpe ratios"}, "ans": "A", "en": "L284: appraisal-based index의 문제점 : Appraisal lag(평가 지연) → smoothing→  변동성 축소 & 다른 자산과의 상관관계 축소 →  Sharpe ratio 과대평가 & 다른 자산과 분산투자 효과 과대평과 → overstate the diversification benefits of real estate", "enLabel": "오답노트 원문", "ko": "Appraisal lag → smoothing → volatility↓, correlation↓ → Sharpe ratio and diversification benefits overstated.", "trap": "", "f": "", "why": {"B": "Lag smooths, not increases, volatility.", "C": "Lower volatility overstates Sharpe ratios."}, "orig": "Corporate Issuers 오답노트 L284 · 근거 ECO AI M2"}, {"id": "CON-M4-07", "src": "개념", "module": 4, "tag": "Synergy-adjusted acquisition multiple", "vig": null, "stem": "A target's EV is $6,000m, its EBITDA is $400m, and expected EBITDA synergies are $100m. The synergy-adjusted EV/EBITDA multiple is:", "opts": {"A": "60.0x", "B": "12.0x", "C": "15.0x"}, "ans": "B", "en": "L285: Synergy-adjusted acquisition multiple = EV / (target EBITDA + EBITDA synergies)", "enLabel": "오답노트 원문", "ko": "Synergy-adjusted multiple = EV / (target EBITDA + synergies) = 6,000/500 = 12.0x.", "trap": "", "f": "", "why": {"C": "15.0x ignores the synergies.", "A": "60.0x uses only the synergies as the denominator."}, "orig": "Corporate Issuers 오답노트 L285 · 근거 ECO-M4-Q15"}, {"id": "CON-M4-08", "src": "개념", "module": 4, "tag": "Comparable transactions", "vig": null, "stem": "A proposed acquisition multiple equals the median multiple of comparable transactions. The price is best described as:", "opts": {"A": "clearly overpaid relative to comparable transactions", "B": "supported by comparable transactions", "C": "unrelated to comparable transactions"}, "ans": "B", "en": "L219: Comparable transactions의 median과 동일하다⇒  supported by comparable transaction", "enLabel": "오답노트 원문", "ko": "A multiple equal to the median of comparable transactions ⇒ supported by comparable transactions.", "trap": "", "f": "", "why": {"A": "Being at the median is not an overpayment relative to peers.", "C": "The median of comparable deals is the benchmark being matched."}, "orig": "Corporate Issuers 오답노트 L219 · 근거 SCH R16"}, {"id": "CON-M4-09", "src": "개념", "module": 4, "tag": "Restructuring evaluation steps", "vig": null, "stem": "The initial evaluation phase of a corporate restructuring typically includes:", "opts": {"A": "determining the materiality of the restructuring", "B": "modeling the pro forma financial statements", "C": "conducting a preliminary valuation"}, "ans": "A", "en": "L286: Corporate Restructuring — 분석 4단계\nL290: | • Initial evaluation | What, Why, When, Is it material?  / (정보원: 보도자료, 공시, 컨퍼런스콜) |\nL291: | • Preliminary valuation | 상대가치법 등으로 대략적 가치 평가 |\nL292: | • Modeling & valuation | Pro forma 재무제표 → EPS, 순부채/EBITDA, WACC 변화 → DCF |\nL293: | • Update investment thesis | 결과를 투자 논리에 반영 |", "enLabel": "오답노트 원문", "ko": "Steps: (1) initial evaluation – what, why, when, is it material; (2) preliminary valuation; (3) modeling and valuation – pro forma EPS, net debt/EBITDA, WACC, DCF; (4) update investment thesis.", "trap": "", "f": "", "why": {"B": "Pro forma modeling is step 3.", "C": "Preliminary valuation is step 2."}, "orig": "Corporate Issuers 오답노트 L286 · 근거 ECO-M4-Q17"}, {"id": "CON-M4-10", "src": "개념", "module": 4, "tag": "Materiality", "vig": null, "stem": "A company with revenue of $400m and EV of $2b announces a cost restructuring expected to save $45m a year. Based on size, the restructuring is:", "opts": {"A": "not material, because cost restructurings are never material", "B": "material, because savings exceed 10% of revenue", "C": "not material, because savings are only 2.25% of EV"}, "ans": "B", "en": "L295: Materiality 판단 (Step 1)\nL296: Size: 거래 가치 ÷ 인수 회사 EV (비용 구조조정은 절감액 ÷ 매출) → 10% 초과면 일반적으로 material\nL297: Fit: 기존 전략·이전 행동과의 부합 여부\nL298: 발표 시 주가 변동은 시장이 기대하는 가치 창출·파괴의 지표 (완료 확률·소요 시간 반영, 단기 반응은 틀리는 경우가 많음)", "enLabel": "오답노트 원문", "ko": "Materiality: size (deal value ÷ acquirer EV; cost restructuring savings ÷ sales; > 10% generally material) and fit. Announcement price moves show expected value creation, but short-term reactions are often wrong.", "trap": "", "f": "", "why": {"C": "Cost restructurings are measured against sales, not EV.", "A": "Cost restructurings can be material."}, "orig": "Corporate Issuers 오답노트 L295 · 근거 ECO VAR-M4-03"}, {"id": "CON-M4-11", "src": "개념", "module": 4, "tag": "Pro forma EPS", "vig": null, "stem": "An acquirer has net income of $500m and 100m shares. The target's pretax income is $200m, synergies are $50m, additional amortization is $30m, and the tax rate is 25%. The acquirer issues 20m new shares. Pro forma EPS is closest to:", "opts": {"A": "$5.54", "B": "$6.00", "C": "$6.65"}, "ans": "A", "en": "L299: Pro forma EPS = (Pro forma net income)/(Pro forma shares outstanding)\nL300: Pro forma net income = textacquirer's NI + (target's pre-tax income + synergies − additional amortization) x (1-t)\nL301: Pro forma shares outstanding = acquirer's existing shares + new shares issued", "enLabel": "오답노트 원문", "ko": "Pro forma NI = acquirer NI + (target pretax income + synergies − additional amortization) × (1 − t) = 500 + 220 × 0.75 = 665. Shares = 100 + 20 = 120. EPS = 5.54.", "trap": "", "f": "", "why": {"B": "$6.00 adds the target's income before tax.", "C": "$6.65 forgets the 20m new shares."}, "orig": "Corporate Issuers 오답노트 L299 · 근거 SCH R16"}], "vignettes": [], "modules": {"1": "Analysis of Dividends and Share Repurchases", "2": "Environmental, Social, and Governance (ESG) Considerations in Investment Analysis", "3": "Cost of Capital: Advanced Topics", "4": "Corporate Restructuring"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "CorpIssuerConcept", KEY = "CorpIssuerConcept_quiz_state_v1", EXPKEY = "CorpIssuerConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Corporate Issuers 개념 확인</h2>'+
+   '<p class="muted">Corporate Issuers 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

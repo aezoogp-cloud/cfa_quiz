@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Quant Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Quant 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Error term", "vig": null, "stem": "In the multiple regression Yᵢ = b₀ + b₁X₁ᵢ + b₂X₂ᵢ + εᵢ, the error term εᵢ represents:", "opts": {"A": "the intercept", "B": "the deterministic part of the model", "C": "the stochastic (random) part of the model"}, "ans": "C", "en": "L7: error term ε_i* *represents the stochastic part of the model\nL10: Y_i = b_0 + b_1X_1i + b_2X_2i + b_3X_3i_Deterministic(결정론적) + ε_i_Stochastic(확률적)", "enLabel": "오답노트 원문", "ko": "Deterministic part = b₀ + ΣbⱼXⱼ; the error term εᵢ is the stochastic part.", "trap": "", "f": "", "why": {"B": "The deterministic part is b₀ + b₁X₁ + b₂X₂.", "A": "The intercept is b₀."}, "orig": "Quant 오답노트 L7 · 근거 SCH R1"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Setting up hypotheses", "vig": null, "stem": "An analyst wants statistical support for the claim that a slope coefficient is positive. The claim belongs in:", "opts": {"A": "either hypothesis; it does not matter", "B": "the null hypothesis (H₀: b > 0)", "C": "the alternative hypothesis (Hₐ: b > 0)"}, "ans": "C", "en": "L17:  H_a = 내가 통계적으로 뒷받침받고 싶은 주장 → H_0 을 기각하면 참", "enLabel": "오답노트 원문", "ko": "Hₐ = the claim you want to support; it is supported when H₀ is rejected.", "trap": "", "f": "", "why": {"B": "The null is what you hope to reject; the claim goes in the alternative.", "A": "The claim must be the alternative so that rejecting the null supports it."}, "orig": "Quant 오답노트 L17 · 근거 ECO VAR-M2-03"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "t-statistic with a non-zero null", "vig": null, "stem": "A slope coefficient is 1.30 with a standard error of 0.10. To test H₀: b = 1, the t-statistic is:", "opts": {"A": "0.3", "B": "3.0", "C": "13.0"}, "ans": "B", "en": "L16: t=(추정치-귀무가설의 값)/(추정치의 표준오차) ⇒   t=(β-β_H_0)/(SE(β))\nL18: H_0: b = 0일땐 t = b / SE (= coefficient / se)\nL19: H₀가 0이 아니면 (예: H_0: b = 1) 분자에서 그 값을 빼야 함 → t = (b - 1)/SE", "enLabel": "오답노트 원문", "ko": "t = (estimate − hypothesized value) / standard error = (1.30 − 1) / 0.10 = 3.0. Only when H₀: b = 0 is t = coefficient / standard error.", "trap": "", "f": "", "why": {"C": "13.0 tests H₀: b = 0; the hypothesized value 1 must be subtracted.", "A": "0.3 is the numerator only; divide by the standard error 0.10."}, "orig": "Quant 오답노트 L16 · 근거 SCH R1"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "t-test degrees of freedom and decision", "vig": null, "stem": "A regression has n = 50 observations and k = 3 independent variables. A slope has |t| = 2.5 and the two-tailed 5% critical value is 2.01. The degrees of freedom and the decision are:", "opts": {"A": "46; reject H₀", "B": "49; fail to reject H₀", "C": "46; fail to reject H₀"}, "ans": "A", "en": "L14: t-value\nL59: | t-test (개별 coefficient) | b_j = 0 | X_j가 Y를 유의하게 설명 | t = (b̂ − b_H₀)/SE, df = n − k − 1 |\nL82: |t| > critical 또는 p-value < α → H₀ reject", "enLabel": "오답노트 원문", "ko": "Slope t-test: df = n − k − 1. Reject H₀ when |t| > critical value or p-value < α.", "trap": "", "f": "", "why": {"B": "Degrees of freedom are n − k − 1 = 46, and 2.5 > 2.01 rejects H₀.", "C": "Since |t| = 2.5 exceeds 2.01, H₀ is rejected."}, "orig": "Quant 오답노트 L14 · 근거 SCH R1"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Standard error of the forecast", "vig": null, "stem": "Compared with the standard error of the regression, the standard error of a forecast of Y is:", "opts": {"A": "the same, because both use the residuals", "B": "larger, because it adds sampling error in the estimated coefficients to model error", "C": "smaller, because the forecast uses all coefficients"}, "ans": "B", "en": "L20: SE(forecast of Y) > SE(regression) / \nL22: 미래 Y를 예측할 때의 표준오차 > 회귀식 자체의 표준오차\nL23: Standard error of regression : model error만 반영\nL24: model error = residual\nL25: Standard error of forecast = model error + sampling error\nL26: sampling error :β ≠ β (미래 예측에서 추가되는 오차)", "enLabel": "오답노트 원문", "ko": "Standard error of regression = model error (residual) only. Standard error of forecast = model error + sampling error → larger.", "trap": "", "f": "", "why": {"C": "The forecast adds uncertainty; it cannot be smaller.", "A": "The forecast also includes sampling error (estimated b ≠ true b)."}, "orig": "Quant 오답노트 L20 · 근거 Regression theory"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "Error term correlated with an independent variable", "vig": null, "stem": "If the error term is correlated with an independent variable, the most likely problem and fix are:", "opts": {"A": "heteroskedasticity; use White-corrected standard errors", "B": "omitted variable bias; add the omitted variable and re-estimate", "C": "multicollinearity; drop a variable"}, "ans": "B", "en": "L30: error term correlated with X → omitted variable bias → include important omitted variables and re-estimate\nL32: Error term이 X와 상관 →빠진 변수가 오차항에 들어가 있다는 신호(omitted variable bias) → 빠진 변수를 넣고 다시 추정합니다.", "enLabel": "오답노트 원문", "ko": "Error term correlated with X → the omitted variable sits in the error term (omitted variable bias) → include it and re-estimate.", "trap": "", "f": "", "why": {"A": "Robust standard errors do not fix biased coefficients from an omitted variable.", "C": "Multicollinearity is correlation among independent variables, not with the error term."}, "orig": "Quant 오답노트 L30 · 근거 SCH R1"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "AIC vs BIC", "vig": null, "stem": "Which is correct about the Akaike (AIC) and Bayesian (BIC) information criteria?", "opts": {"A": "AIC is preferred for forecasting, BIC for best goodness of fit; lower is better for both", "B": "AIC is preferred for goodness of fit, BIC for forecasting; higher is better", "C": "Both are preferred for forecasting; higher is better"}, "ans": "A", "en": "L13: AIC (prediction) & BIC (fit) → 낮을수록 좋음", "enLabel": "오답노트 원문", "ko": "AIC → prediction, BIC → fit (BIC penalizes overfitting more); lower is better.", "trap": "", "f": "", "why": {"B": "The roles are reversed and lower values are better.", "C": "Lower, not higher, values are better, and BIC is used for fit."}, "orig": "Quant 오답노트 L13 · 근거 SCH R1 / ECO-M2-Q2"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "Overall F-test", "vig": null, "stem": "The null hypothesis of the overall F-test in a multiple regression is that:", "opts": {"A": "at least one slope coefficient equals zero", "B": "the intercept equals zero", "C": "all slope coefficients equal zero"}, "ans": "C", "en": "L60: | F-test (overall) | 모든 slope = 0 | 적어도 하나의 X가 유의 → model 유용 | F = MSR/MSE, 단측 |", "enLabel": "오답노트 원문", "ko": "Overall F-test: H₀ all slopes = 0; reject → at least one X is significant → model is useful. F = MSR/MSE, one-tailed.", "trap": "", "f": "", "why": {"B": "The F-test is about the slopes, not the intercept.", "A": "Rejecting H₀ means at least one slope is non-zero; that is the alternative."}, "orig": "Quant 오답노트 L60 · 근거 SCH R1"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "Joint F-test calculation", "vig": null, "stem": "A restricted model drops 2 variables. SSE (restricted) = 120, SSE (unrestricted) = 100, n = 60, and the unrestricted model has k = 4 independent variables. The joint F-statistic is:", "opts": {"A": "5.50", "B": "6.00", "C": "11.00"}, "ans": "A", "en": "L61: | Joint F-test (nested) | 제외한 변수의 coefficient 모두 = 0 | 제외 변수 중 적어도 하나 유의 → unrestricted model 사용 | F = [(SSE_R − SSE_U)/q] / [SSE_U/(n−k−1)] |", "enLabel": "오답노트 원문", "ko": "F = [(SSE_R − SSE_U)/q] / [SSE_U/(n − k − 1)] = (20/2) / (100/55) = 10 / 1.818 = 5.50.", "trap": "", "f": "", "why": {"B": "6.00 divides SSE (unrestricted) by n instead of n − k − 1 = 55.", "C": "11.00 forgets to divide the SSE difference by q = 2."}, "orig": "Quant 오답노트 L61 · 근거 SCH R1"}, {"id": "CON-M3-01", "src": "개념", "module": 3, "tag": "Breusch–Godfrey degrees of freedom", "vig": null, "stem": "A regression has 5 independent variables and 100 observations. A Breusch–Godfrey test for serial correlation up to lag 2 has an F-distribution with degrees of freedom:", "opts": {"A": "2 and 92", "B": "2 and 94", "C": "5 and 92"}, "ans": "A", "en": "L27: BG F-test df=n-p-k-1 (auto-correlation test)\nL29: F=p (그룹 수)\nL63: | Breusch-Godfrey (BG) | No serial correlation (lagged residual coef. = 0) | Serial correlation 존재 → Newey-West SE | F, df = p, n − p − k − 1 (여러 lag 가능) |", "enLabel": "오답노트 원문", "ko": "Breusch–Godfrey F: numerator df = p (lags), denominator df = n − p − k − 1 = 100 − 2 − 5 − 1 = 92.", "trap": "", "f": "", "why": {"B": "94 = n − k − 1 ignores the p = 2 lags.", "C": "The numerator is the number of lags tested (p = 2), not k."}, "orig": "Quant 오답노트 L27 · 근거 SCH R1 / ECO-M3-Q12"}, {"id": "CON-M3-02", "src": "개념", "module": 3, "tag": "Serial correlation with a lagged dependent variable", "vig": null, "stem": "If residuals are serially correlated and an independent variable is the lagged dependent variable (Yₜ₋₁), the coefficient estimates are:", "opts": {"A": "consistent; only the standard errors are wrong", "B": "unbiased and efficient", "C": "inconsistent"}, "ans": "C", "en": "L33: Serial correlation 존재 + lagged Y → coefficients inconsistent\nL35: Serial correlation만 있으면 coefficients는 정상 , 표준오차만 문제\nL36: Y_t-1있으면 lagged Y → coefficient inconsistent", "enLabel": "오답노트 원문", "ko": "Serial correlation alone → coefficients fine, standard errors wrong. With a lagged Y → coefficients inconsistent.", "trap": "", "f": "", "why": {"A": "That is true only when there is no lagged dependent variable.", "B": "Serial correlation with a lagged Y makes the coefficients inconsistent."}, "orig": "Quant 오답노트 L33 · 근거 ECO-M3-Q16"}, {"id": "CON-M3-03", "src": "개념", "module": 3, "tag": "Positive serial correlation – effect", "vig": null, "stem": "Positive serial correlation in a regression's residuals (with no lagged dependent variable) typically causes:", "opts": {"A": "standard errors that are too small, inflated t- and F-statistics, and more Type I errors", "B": "standard errors that are too large and more Type II errors", "C": "inconsistent regression coefficients"}, "ans": "A", "en": "L35: Serial correlation만 있으면 coefficients는 정상 , 표준오차만 문제\nL45: Positive Serial Correlation in residual: SE↓ → t, F↑ → Type I↑ (귀무가설 너무 자주 기각)", "enLabel": "오답노트 원문", "ko": "Positive serial correlation: standard error↓ → t, F↑ → Type I error↑ (null rejected too often).", "trap": "", "f": "", "why": {"C": "Coefficients stay consistent when there is no lagged dependent variable.", "B": "The standard errors are understated, not overstated."}, "orig": "Quant 오답노트 L35 · 근거 ECO-M3-Q8"}, {"id": "CON-M3-04", "src": "개념", "module": 3, "tag": "Remedies for multicollinearity", "vig": null, "stem": "Which is a remedy for multicollinearity?", "opts": {"A": "Using White-corrected (robust) standard errors", "B": "Using Newey–West standard errors", "C": "Increasing the sample size"}, "ans": "C", "en": "L37: Multicollinearity 제거 방법\nL39: 1. excluding one or more of the regression variables.\nL41: 2. using a different proxy for one of the variables.\nL43: 3. increasing the sample size", "enLabel": "오답노트 원문", "ko": "Multicollinearity fixes: exclude one or more variables, use a different proxy, increase the sample size.", "trap": "", "f": "", "why": {"A": "Robust standard errors address heteroskedasticity.", "B": "Newey–West standard errors address serial correlation."}, "orig": "Quant 오답노트 L37 · 근거 ECO-M3-Q4"}, {"id": "CON-M3-05", "src": "개념", "module": 3, "tag": "Breusch–Pagan test", "vig": null, "stem": "In a Breusch–Pagan test, the null hypothesis and the action if it is rejected are:", "opts": {"A": "H₀: conditional heteroskedasticity; if rejected, drop a variable", "B": "H₀: no serial correlation; if rejected, use Newey–West standard errors", "C": "H₀: no conditional heteroskedasticity; if rejected, use White-corrected (robust) standard errors"}, "ans": "C", "en": "L46: Breusch–Pagan (BP) test \nL48: H0 = 등분산 (Homoskedastic)\nL49: p -value < 0.05 → Hetero→ White-corrected(robust) 표준오차로 t를 다시 계산해야함\nL62: | Breusch-Pagan (BP) | No conditional heteroskedasticity | Conditional heteroskedasticity 존재 → SE 신뢰 불가 → robust(White) SE | BP = n × R²(squared residual 회귀), χ² df = k, 단측 |", "enLabel": "오답노트 원문", "ko": "Breusch–Pagan: H₀ = homoskedastic. p-value < 0.05 → heteroskedastic → recompute t with White-corrected (robust) standard errors.", "trap": "", "f": "", "why": {"B": "That describes the Breusch–Godfrey test.", "A": "The null is homoskedasticity, and the fix is robust standard errors."}, "orig": "Quant 오답노트 L46 · 근거 SCH R1"}, {"id": "CON-M3-06", "src": "개념", "module": 3, "tag": "Breusch–Pagan statistic", "vig": null, "stem": "Squared residuals are regressed on the independent variables, giving R² = 0.10 with n = 60 observations. The Breusch–Pagan statistic is:", "opts": {"A": "60.0", "B": "0.6", "C": "6.0 (compared with a chi-square with df = k)"}, "ans": "C", "en": "L62: | Breusch-Pagan (BP) | No conditional heteroskedasticity | Conditional heteroskedasticity 존재 → SE 신뢰 불가 → robust(White) SE | BP = n × R²(squared residual 회귀), χ² df = k, 단측 |", "enLabel": "오답노트 원문", "ko": "Breusch–Pagan = n × R² (from the squared-residual regression) = 60 × 0.10 = 6.0, chi-square with df = k, one-tailed.", "trap": "", "f": "", "why": {"B": "0.6 is not n × R².", "A": "60.0 is n, not n × R²."}, "orig": "Quant 오답노트 L62 · 근거 SCH R1"}, {"id": "CON-M3-07", "src": "개념", "module": 3, "tag": "Breusch–Godfrey test – fix", "vig": null, "stem": "If the Breusch–Godfrey test rejects its null hypothesis, the appropriate fix is:", "opts": {"A": "dropping the intercept", "B": "White-corrected standard errors only", "C": "Newey–West (serial-correlation-consistent) standard errors"}, "ans": "C", "en": "L63: | Breusch-Godfrey (BG) | No serial correlation (lagged residual coef. = 0) | Serial correlation 존재 → Newey-West SE | F, df = p, n − p − k − 1 (여러 lag 가능) |", "enLabel": "오답노트 원문", "ko": "Breusch–Godfrey: H₀ no serial correlation; reject → serial correlation → Newey–West standard errors.", "trap": "", "f": "", "why": {"B": "White standard errors correct heteroskedasticity only.", "A": "The intercept is unrelated to serial correlation."}, "orig": "Quant 오답노트 L63 · 근거 SCH R1"}, {"id": "CON-M3-08", "src": "개념", "module": 3, "tag": "Variance inflation factor", "vig": null, "stem": "A variance inflation factor (VIF) above 10 for an independent variable indicates:", "opts": {"A": "serious multicollinearity", "B": "no multicollinearity", "C": "serious heteroskedasticity"}, "ans": "A", "en": "L67: H₀ 없는 지표: VIF > 5 조사 필요, > 10 심각한 multicollinearity / DW ≈ 2면 serial correlation 없음 (single lag)", "enLabel": "오답노트 원문", "ko": "VIF > 5 → investigate; VIF > 10 → serious multicollinearity. Durbin–Watson ≈ 2 → no (single-lag) serial correlation.", "trap": "", "f": "", "why": {"B": "VIF above 5 already warrants investigation.", "C": "VIF measures multicollinearity, not heteroskedasticity."}, "orig": "Quant 오답노트 L67 · 근거 SCH R1"}, {"id": "CON-M4-01", "src": "개념", "module": 4, "tag": "Logistic regression coefficient", "vig": null, "stem": "In a logistic regression, a slope coefficient measures the change in:", "opts": {"A": "the log odds of the event for a one-unit change in the variable", "B": "the odds of the event", "C": "the probability of the event"}, "ans": "A", "en": "L50: Logistic regression coefficient = log odds의 변화량\nL52: 확률 P → odds = P/(1−P) → ln(odds) → + b → e^결과 = 새 odds → P = odds/(1+odds)", "enLabel": "오답노트 원문", "ko": "Logistic coefficient = change in log odds. Probability P → odds = P/(1 − P) → ln(odds) → + b → e^(result) = new odds → P = odds/(1 + odds).", "trap": "", "f": "", "why": {"C": "Probability is found only after converting log odds back.", "B": "The coefficient changes the natural log of the odds, not the odds directly."}, "orig": "Quant 오답노트 L50 · 근거 SCH R1 / ECO-M4-Q13"}, {"id": "CON-M4-02", "src": "개념", "module": 4, "tag": "Logistic regression – probability calculation", "vig": null, "stem": "The current probability of an event is 0.65. A dummy variable with a logistic coefficient of 0.80 switches from 0 to 1. The new probability is closest to:", "opts": {"A": "0.93", "B": "0.73", "C": "0.81"}, "ans": "C", "en": "L52: 확률 P → odds = P/(1−P) → ln(odds) → + b → e^결과 = 새 odds → P = odds/(1+odds)\nL53: 예: P = 0.65 → odds 1.8571 → ln = 0.6190 → +0.80 = 1.4190 → e^1.4190 = 4.1331 → P = 4.1331/5.1331 = 0.805 ≈ 0.81", "enLabel": "오답노트 원문", "ko": "Odds = 0.65/0.35 = 1.857 → ln = 0.619 → + 0.80 = 1.419 → e^1.419 = 4.133 → P = 4.133/5.133 = 0.805 ≈ 0.81.", "trap": "", "f": "", "why": {"B": "0.73 does not come from adding 0.80 to the log odds.", "A": "0.93 does not come from converting the new odds back with P = odds/(1 + odds)."}, "orig": "Quant 오답노트 L52 · 근거 ECO-M4-Q13"}, {"id": "CON-M4-03", "src": "개념", "module": 4, "tag": "Likelihood ratio test", "vig": null, "stem": "For a logistic regression, the log-likelihood is −120 for the restricted model and −110 for the unrestricted model. The likelihood ratio statistic is:", "opts": {"A": "20", "B": "10", "C": "−20"}, "ans": "A", "en": "L64: | LR test (logistic) | 제외한 변수의 coefficient 모두 = 0 | 제외 변수가 jointly 유의 → unrestricted model | LR = −2(lnL_R − lnL_U), χ² df = q |", "enLabel": "오답노트 원문", "ko": "LR = −2(lnL_R − lnL_U), chi-square with df = q (number of excluded variables).", "trap": "", "f": "", "why": {"B": "The difference must be multiplied by −2.", "C": "LR = −2(lnL_R − lnL_U) is positive here: −2(−120 + 110) = 20."}, "orig": "Quant 오답노트 L64 · 근거 SCH R1"}, {"id": "CON-M4-04", "src": "개념", "module": 4, "tag": "Studentized residuals", "vig": null, "stem": "An observation is flagged as an outlier when:", "opts": {"A": "its leverage is exactly zero", "B": "the absolute value of its studentized residual exceeds the t critical value", "C": "its studentized residual is below the t critical value"}, "ans": "B", "en": "L65: | Studentized residual | (outlier 아님) | |t*| > t critical → outlier | t-분포 critical value와 비교 |", "enLabel": "오답노트 원문", "ko": "Studentized residual: |t*| > t critical value → outlier.", "trap": "", "f": "", "why": {"C": "Small studentized residuals indicate the observation is not an outlier.", "A": "Outliers are judged by studentized residuals here, not by zero leverage."}, "orig": "Quant 오답노트 L65 · 근거 SCH R1"}, {"id": "CON-M5-01", "src": "개념", "module": 5, "tag": "Testing serial correlation in an AR model", "vig": null, "stem": "To test for serial correlation in an autoregressive (AR) model, you should use:", "opts": {"A": "the Durbin–Watson statistic", "B": "t-tests on the residual autocorrelations", "C": "the Breusch–Pagan test"}, "ans": "B", "en": "L73: | Residual autocorrelation t-test (AR model) | ρ_k = 0 (각 lag) | Residual에 serial correlation → AR model misspecified → lag 추가 | t = (ρ_k)/((1/√T)),  / AR model에 DW 사용 ✖ |\nL97: lagged dependent variable이 들어간 AR regression에서는 residual autocorrelation의 t-statistic을 봐야 함 (DW 사용 X)\nL115: AR 모형(종속변수의 lag 포함)에서는 DW를 쓰지 않고 잔차 자기상관의 t-통계량을 봄", "enLabel": "오답노트 원문", "ko": "In an AR model (lagged dependent variable included), do not use Durbin–Watson; use the t-statistics of residual autocorrelations.", "trap": "", "f": "", "why": {"A": "The Durbin–Watson test is not valid when a lagged dependent variable is included.", "C": "Breusch–Pagan tests heteroskedasticity."}, "orig": "Quant 오답노트 L73 · 근거 SCH R2"}, {"id": "CON-M5-02", "src": "개념", "module": 5, "tag": "Residual autocorrelation t-test", "vig": null, "stem": "An AR model is estimated with 100 observations. A residual autocorrelation at lag 2 is 0.25. With a critical value of 1.97, the lag-2 autocorrelation is:", "opts": {"A": "not significant, because t = 0.25", "B": "significant, because t = 0.25 / (1/√100) = 2.5", "C": "not significant, because t = 0.25 × √100 / 100 = 0.025"}, "ans": "B", "en": "L110: AR residual autocorrelation\nL112: 각 lag의 autocorrelation ρ에 대해 H_0: ρ = 0\nL113: 표준오차 SE = 1/√T (T = 회귀에 쓴 Observations 수)\nL114: t = ρ / SE, |t| > 임계값(1.97)이면 H₀ 기각 → 그 lag에 유의한 자기상관 있음", "enLabel": "오답노트 원문", "ko": "Residual autocorrelation: standard error = 1/√T (T = observations used); t = ρ / standard error; |t| > 1.97 → significant.", "trap": "", "f": "", "why": {"A": "The autocorrelation must be divided by its standard error 1/√T = 0.1.", "C": "The standard error is 1/√T = 0.1, so t = 2.5."}, "orig": "Quant 오답노트 L110 · 근거 SCH R2"}, {"id": "CON-M5-03", "src": "개념", "module": 5, "tag": "Seasonality", "vig": null, "stem": "An AR(1) model on quarterly data shows no significant residual autocorrelation at lags 1–3 but a significant one at lag 4. The analyst should:", "opts": {"A": "add a seasonal lag (lag 4) to the model", "B": "first-difference the data", "C": "use the Durbin–Watson test instead"}, "ans": "A", "en": "L74: | Seasonality | Seasonal lag의 ρ = 0 (분기 lag 4, 월 lag 12) | Seasonality 존재 → seasonal lag 추가 | 위와 같은 t-test |\nL152: Residual autocorrelation으로 AR lag결정할 때, 유의한 residual autocorrelation이 나타난 가장 큰 lag까지 모델의 lag를 확장", "enLabel": "오답노트 원문", "ko": "Seasonality: seasonal lag autocorrelation significant (quarterly lag 4, monthly lag 12) → add the seasonal lag; extend the model to the largest significant lag.", "trap": "", "f": "", "why": {"C": "Durbin–Watson is not valid for AR models.", "B": "A significant seasonal lag calls for adding that lag, not differencing."}, "orig": "Quant 오답노트 L74 · 근거 ECO VAR-M5-07"}, {"id": "CON-M5-04", "src": "개념", "module": 5, "tag": "Dickey–Fuller test hypotheses", "vig": null, "stem": "In the Dickey–Fuller test, the null hypothesis is that the series:", "opts": {"A": "has a unit root (g = b₁ − 1 = 0), so it is not covariance stationary", "B": "has no serial correlation", "C": "is covariance stationary"}, "ans": "A", "en": "L75: | Dickey-Fuller (DF) | g = b₁ − 1 = 0 (unit root, not covariance stationary) | Covariance stationary → AR 사용 가능 | Fail to reject → first-difference, 특수 critical value |\nL147: Dickey–Fuller test H0 :i *g*1 = 0 ( *b*1 = 1  → unit root O & not stationary) H1 : *g*1 < 0", "enLabel": "오답노트 원문", "ko": "Dickey–Fuller: H₀: g₁ = 0 (b₁ = 1, unit root, not stationary); H₁: g₁ < 0. Reject → covariance stationary → AR can be used.", "trap": "", "f": "", "why": {"C": "Covariance stationarity is the alternative.", "B": "That is a serial correlation test, not Dickey–Fuller."}, "orig": "Quant 오답노트 L75 · 근거 SCH R2"}, {"id": "CON-M5-05", "src": "개념", "module": 5, "tag": "Dickey–Fuller result", "vig": null, "stem": "A Dickey–Fuller test statistic has a p-value of 0.90. At a 5% significance level, the series:", "opts": {"A": "is covariance stationary", "B": "has a unit root and is not covariance stationary", "C": "is cointegrated"}, "ans": "B", "en": "L144: Dickey–Fuller test statistic is 0.12 with a *p*-value of 0.90 :\nL146: p-value=0.90 >a =0.05→ H0기각 실패 → 단위근 있다 , non - stationary", "enLabel": "오답노트 원문", "ko": "p-value 0.90 > 0.05 → fail to reject H₀ → unit root, non-stationary → first-difference.", "trap": "", "f": "", "why": {"A": "With p = 0.90 the null of a unit root is not rejected.", "C": "Cointegration involves two series and the residual test."}, "orig": "Quant 오답노트 L144 · 근거 SCH R2"}, {"id": "CON-M5-06", "src": "개념", "module": 5, "tag": "Which tests are good when rejected", "vig": null, "stem": "For which tests is rejecting the null hypothesis the 'good' result?", "opts": {"A": "Durbin–Watson and ARCH", "B": "Breusch–Pagan and Breusch–Godfrey", "C": "Dickey–Fuller and Engle–Granger (Dickey–Fuller on residuals)"}, "ans": "C", "en": "L83: DF, DF-EG는 reject가 \"좋은 결과\" (stationary, cointegrated) / 나머지 진단 test는 reject가 \"문제 발견\"", "enLabel": "오답노트 원문", "ko": "Dickey–Fuller and Engle–Granger: reject = good (stationary, cointegrated). Other diagnostic tests: reject = problem found.", "trap": "", "f": "", "why": {"B": "Rejecting these means a problem was found.", "A": "Rejecting these also means a problem was found."}, "orig": "Quant 오답노트 L83 · 근거 SCH R2"}, {"id": "CON-M5-07", "src": "개념", "module": 5, "tag": "Running the Dickey–Fuller test", "vig": null, "stem": "To run the Dickey–Fuller test on xₜ = b₀ + b₁xₜ₋₁ + εₜ, the analyst:", "opts": {"A": "first-differences the series and stops", "B": "tests whether b₁ = 0", "C": "subtracts xₜ₋₁ from both sides and tests whether g₁ = b₁ − 1 = 0"}, "ans": "C", "en": "L149: to run Dickey–Fuller test  → 양변에서 xt-1 (first lag)를 빼서 H0 : g1(b1-1)=0 검정\nL150: DF (= 단위근test) ≠ 차분 (=단위근 고치는 방법)", "enLabel": "오답노트 원문", "ko": "Dickey–Fuller: subtract the first lag from both sides and test H₀: g₁ (= b₁ − 1) = 0. The test ≠ differencing (differencing fixes a unit root).", "trap": "", "f": "", "why": {"A": "Differencing is the fix for a unit root, not the test.", "B": "The unit root test is about b₁ = 1, i.e., g₁ = 0."}, "orig": "Quant 오답노트 L149 · 근거 SCH R2"}, {"id": "CON-M5-08", "src": "개념", "module": 5, "tag": "ARCH(1) test", "vig": null, "stem": "To test for ARCH(1) errors, the analyst:", "opts": {"A": "regresses residuals on the independent variables and tests R²", "B": "regresses squared residuals on the previous period's squared residuals and tests the slope", "C": "computes the Durbin–Watson statistic"}, "ans": "B", "en": "L76: | ARCH(1) | a₁ = 0 (ε̂²_t = a₀ + a₁ε̂²_t−1) | ARCH 존재 → SE invalid → GLS, 분산 예측 가능 | σ̂²_t+1 = a₀ + a₁ε̂²_t |\nL119: ARCH : variance가 일정하지 않지만, 과거 정보로 conditional variance를 예측할 수 있음. (heteroskedastic, variance predictable)\nL120: ARCH(1) → squared residual regression의 lag coefficient c_1 유의성 확인 → c_1≠0이면 ARCH(1)\nL122: η_t^2=c_0+c_1η_t-1^2+u_t\nL124: 이전 시계열 모델의 residual을 제곱한 값을 1시차의 squared residual에 regression", "enLabel": "오답노트 원문", "ko": "ARCH(1): ε̂²ₜ = a₀ + a₁ε̂²ₜ₋₁; if a₁ is significant → ARCH → standard errors invalid (use generalized least squares), variance is predictable.", "trap": "", "f": "", "why": {"A": "That is closer to the Breusch–Pagan setup.", "C": "Durbin–Watson tests serial correlation, not ARCH."}, "orig": "Quant 오답노트 L76 · 근거 SCH R2"}, {"id": "CON-M5-09", "src": "개념", "module": 5, "tag": "ARCH(1) variance forecast", "vig": null, "stem": "An ARCH(1) model is ε̂²ₜ = 0.5 + 0.4ε̂²ₜ₋₁. If the latest residual is 2, the forecast of next period's error variance is:", "opts": {"A": "0.9", "B": "2.1", "C": "1.3"}, "ans": "B", "en": "L76: | ARCH(1) | a₁ = 0 (ε̂²_t = a₀ + a₁ε̂²_t−1) | ARCH 존재 → SE invalid → GLS, 분산 예측 가능 | σ̂²_t+1 = a₀ + a₁ε̂²_t |\nL151: ARCH(1) → 다음 기간 variance = intercept + coefficient × 직전 residual²  → 제곱 꼭 하기!!!", "enLabel": "오답노트 원문", "ko": "Next-period variance = a₀ + a₁ × (latest residual)² = 0.5 + 0.4 × 4 = 2.1. Always square the residual.", "trap": "", "f": "", "why": {"C": "1.3 uses the residual (2) instead of the squared residual (4).", "A": "0.9 ignores the residual entirely."}, "orig": "Quant 오답노트 L76 · 근거 SCH R2"}, {"id": "CON-M5-10", "src": "개념", "module": 5, "tag": "ARCH(p)", "vig": null, "stem": "In an ARCH(2) model, the variance of the current error term depends linearly on:", "opts": {"A": "the errors (not squared) from the previous two periods", "B": "the dependent variable from the previous two periods", "C": "the squared errors from the previous two periods"}, "ans": "C", "en": "L137: ARCH(p): 이번 기 오차 분산 = 직전 p기 오차²들의 linear함수\nL139: ARCH(2) → 직전 2개 분기의 오차²\nL140: ARCH(*p*) model : variance of the error term in the current period depends linearly on the squared errors from the previous *p* period\nL142: ARCH(2) process : the variance of the error term depend linearly on the squared errors from the previous two quarters.", "enLabel": "오답노트 원문", "ko": "ARCH(p): current error variance = linear function of the squared errors from the previous p periods.", "trap": "", "f": "", "why": {"A": "ARCH uses squared errors.", "B": "ARCH models the error variance, not the dependent variable."}, "orig": "Quant 오답노트 L137 · 근거 SCH R2"}, {"id": "CON-M5-11", "src": "개념", "module": 5, "tag": "Cointegration test", "vig": null, "stem": "Two series both have unit roots. One is regressed on the other and a Dickey–Fuller test on the residuals rejects the unit root. The series are:", "opts": {"A": "cointegrated, so the regression is reliable", "B": "not cointegrated, so the regression is spurious", "C": "covariance stationary individually"}, "ans": "A", "en": "L77: | DF-EG (cointegration) | Residual에 unit root (not cointegrated) | Cointegrated → 두 series의 regression 신뢰 가능 | 둘 다 unit root일 때만 시행 |\nL131: Cointegration test: 두 series가 모두 Unit Root인지 확인 → 둘을 regression한 뒤 residual에 DF test → residual의 Unit Root를 기각하면(Covariance stationary) Cointegrated.\nL133: error term에 대한 Dickey–Fuller test에서 Unit Root를 기각하면 → Cointegrated\nL134: H_0: residual에 Unit Root 있음 → ❌ Cointegration 없음\nL135: H_0 기각: residual이 stationary → ✅ Cointegrated", "enLabel": "오답노트 원문", "ko": "Engle–Granger: H₀ residual has a unit root (not cointegrated). Reject → residual stationary → cointegrated → regression is reliable. Run it only when both series have unit roots.", "trap": "", "f": "", "why": {"B": "Rejecting a unit root in the residuals means they are cointegrated.", "C": "Each series still has a unit root; it is the residual that is stationary."}, "orig": "Quant 오답노트 L77 · 근거 SCH R2"}, {"id": "CON-M5-12", "src": "개념", "module": 5, "tag": "Durbin–Watson interpretation", "vig": null, "stem": "In a trend model, a Durbin–Watson statistic far below 2 indicates:", "opts": {"A": "negative serial correlation", "B": "no serial correlation", "C": "positive serial correlation"}, "ans": "C", "en": "L78: | DW (trend model) | No serial correlation | DW가 2에서 크게 벗어나면 serial correlation | Trend model용 |\nL87: DW가 낮을수록 positive serial correlation 가능성이 높음\nL89: DW ≈ 2 → serial correlation 없음\nL90: DW < 2 → positive serial correlation\nL91: DW가 아주 낮음 → 강한 positive serial correlation\nL92: DW > 2 → negative serial correlation\nL93: 문제에서 critical value 주어지면 2 대신 critical value 기준으로 판단", "enLabel": "오답노트 원문", "ko": "Durbin–Watson ≈ 2 → none; < 2 → positive (very low → strong positive); > 2 → negative. Use critical values if given. Used for trend models.", "trap": "", "f": "", "why": {"A": "Values above 2 indicate negative serial correlation.", "B": "Values near 2 indicate no serial correlation."}, "orig": "Quant 오답노트 L78 · 근거 SCH R2"}, {"id": "CON-M5-13", "src": "개념", "module": 5, "tag": "Stationarity vs model fit", "vig": null, "stem": "A model's residuals show no autocorrelation. This means:", "opts": {"A": "the model's residuals look well specified, not that the time series itself is stationary", "B": "the series has a unit root", "C": "the time series is covariance stationary"}, "ans": "A", "en": "L94: Stationarity ≠ Model fit\nL96: DW가 좋다, residual autocorrelation이 없다 → 모형의 잔차에 문제가 적다라는 뜻 O, 시계열 자체가 stationary 라는건 X", "enLabel": "오답노트 원문", "ko": "Stationarity ≠ model fit. Good Durbin–Watson / no residual autocorrelation = few residual problems, not that the series is stationary.", "trap": "", "f": "", "why": {"C": "Residual diagnostics do not test stationarity of the series.", "B": "No residual autocorrelation does not imply a unit root."}, "orig": "Quant 오답노트 L94 · 근거 SCH R2"}, {"id": "CON-M5-14", "src": "개념", "module": 5, "tag": "First-differenced series", "vig": null, "stem": "A first-differenced series yₜ = xₜ − xₜ₋₁ is modeled as yₜ = b₀ + b₁yₜ₋₁ + εₜ. Both b₀ and b₁ are not significant and residuals show no autocorrelation. This means:", "opts": {"A": "the original series xₜ is a random walk (unit root), and the differenced series is covariance stationary", "B": "the original series xₜ is covariance stationary", "C": "the differenced series still has a unit root"}, "ans": "A", "en": "L98: first-differenced series  y_t = b_0 + b_1y_t−1 + εt, where  *y_t = x_t − x_t−1* 검증\nL100: 1. intercept coefficient 검증\nL101: 1. H_0 기각 실패 → b_0 = 0\nL102: 2. Lag coefficient (x_t−1 − x_t−2 ) 검증\nL103: 1. H_0 기각 실패 → b_1 = 0\nL104: 3. Residual autocorrelation 확인\nL105: 1. H_0:ρ_2=0 기각 실패 →residual autocorrelation 없음\nL107: → y_t=ε_t → covariance stationary\nL108: 1차 차분 회귀에서 b_0=0, b_1=0이고 residual autocorrelation이 없으면 → 원래 series는 Random Walk → Unit Root 존재\nL118: yt = xt − xt−1 = εt → 평균 0, 분산 σ² 일정→ covariance stationary", "enLabel": "오답노트 원문", "ko": "b₀ = 0, b₁ = 0, no residual autocorrelation → yₜ = εₜ → covariance stationary; the original series is a random walk with a unit root.", "trap": "", "f": "", "why": {"B": "If xₜ were stationary, no differencing would be needed; here it is a random walk.", "C": "yₜ = εₜ has constant mean 0 and variance σ², so it is stationary."}, "orig": "Quant 오답노트 L98 · 근거 SCH R2"}, {"id": "CON-M5-15", "src": "개념", "module": 5, "tag": "Random walk forecast", "vig": null, "stem": "A series follows a random walk xₜ = xₜ₋₁ + εₜ and its current value is 50. The best forecast of next period's value is:", "opts": {"A": "the long-run mean of the series", "B": "0", "C": "50"}, "ans": "C", "en": "L136: Random Walk의 best forecast of next period= 현재 값\nL153: Random walk: xt = xt−1 + εt → next period’s best forecast = current 값", "enLabel": "오답노트 원문", "ko": "Random walk: best forecast of next period = current value.", "trap": "", "f": "", "why": {"B": "The expected error is zero, so the forecast is the current value.", "A": "A random walk has no mean-reverting level."}, "orig": "Quant 오답노트 L136 · 근거 SCH R2"}, {"id": "CON-M5-16", "src": "개념", "module": 5, "tag": "Log-linear trend growth rate", "vig": null, "stem": "In a log-linear trend model ln(yₜ) = b₀ + b₁t, b₁ = 0.02. The implied growth rate per period is closest to:", "opts": {"A": "2.02%", "B": "2.00%", "C": "1.02%"}, "ans": "A", "en": "L143: Log-linear model 에서 성장률=exp(*b*1) - 1", "enLabel": "오답노트 원문", "ko": "Log-linear model growth rate = e^b₁ − 1 = e^0.02 − 1 = 2.02%.", "trap": "", "f": "", "why": {"B": "2.00% is b₁ itself; the growth rate is e^b₁ − 1.", "C": "1.02% has no basis in the model."}, "orig": "Quant 오답노트 L143 · 근거 SCH R2"}, {"id": "CON-M5-17", "src": "개념", "module": 5, "tag": "Choosing a trend model", "vig": null, "stem": "A series grows at a constant rate (exponential trend). To fit a linear trend, the analyst should:", "opts": {"A": "take the natural log of the series (log-linear model)", "B": "use the Durbin–Watson statistic", "C": "first-difference twice"}, "ans": "A", "en": "L125: Trend 형태 + Stationarity + Residual serial correlation보고 모델 선택할\nL127: Exponential trend → log transformation으로 linear trend로 만듬\nL128: First difference로 trend 제거\nL129: Unit Root = No : 추가적인 차분 필요 X\nL130: Residual serial correlation 있음 → AR(1)로 시간적 패턴", "enLabel": "오답노트 원문", "ko": "Exponential trend → log transformation → linear trend. First difference removes a trend; if no unit root remains, no more differencing; residual serial correlation → model it with AR(1).", "trap": "", "f": "", "why": {"C": "Differencing removes trends but is not the standard fix for an exponential trend.", "B": "Durbin–Watson is a diagnostic, not a transformation."}, "orig": "Quant 오답노트 L125 · 근거 SCH R2"}, {"id": "CON-M5-18", "src": "개념", "module": 5, "tag": "Correctly specified AR model", "vig": null, "stem": "An AR(p) model is considered correctly specified when:", "opts": {"A": "the Durbin–Watson statistic equals 2", "B": "the residual autocorrelations are not significantly different from zero", "C": "R² is above 0.9"}, "ans": "B", "en": "L109: AR model: Autocorrelations of the error term are not significantly different from zero\nL117: AR(p)에 residual autocorrelation 없으면 → 그 AR(p)채택", "enLabel": "오답노트 원문", "ko": "AR model: residual autocorrelations not significantly different from zero → adopt that AR(p).", "trap": "", "f": "", "why": {"A": "Durbin–Watson is not used for AR models.", "C": "A high R² does not show correct specification."}, "orig": "Quant 오답노트 L109 · 근거 SCH R2"}, {"id": "CON-M6-01", "src": "개념", "module": 6, "tag": "CART", "vig": null, "stem": "Which machine learning algorithm needs no hyperparameter k or distance measure and gives a visual explanation of its predictions?", "opts": {"A": "K-nearest neighbor", "B": "Classification and regression tree (CART)", "C": "Support vector machine"}, "ans": "B", "en": "L157: CART = Supervised (label 있음), classification·regression 모두 가능\nL158: hyperparameter(k), similarity(distance) measure 필요x\nL159: visual explanation and rationale for the prediction : 트리로 예측 근거를 시각적으로 설명 (노드마다 feature와 cut-off 값)", "enLabel": "오답노트 원문", "ko": "CART: supervised (labeled), classification and regression; no k or similarity measure needed; the tree shows the feature and cut-off at each node.", "trap": "", "f": "", "why": {"A": "K-nearest neighbor needs k and a distance measure, and gives no visual explanation.", "C": "Support vector machine gives no visual explanation."}, "orig": "Quant 오답노트 L157 · 근거 ECO-M6-Q22"}, {"id": "CON-M6-02", "src": "개념", "module": 6, "tag": "K-nearest neighbor", "vig": null, "stem": "K-nearest neighbor (KNN) requires the analyst to specify:", "opts": {"A": "the hyperparameter k and a distance (similarity) measure", "B": "nothing; it has no hyperparameters", "C": "only the number of hidden layers"}, "ans": "A", "en": "L160: K-NN = Supervised (label 있음), classification\nL161: hyperparameter k를 지정해야 함\nL162: similarity(distance) measure를 지정해야 함", "enLabel": "오답노트 원문", "ko": "KNN = supervised classification; must specify k and the similarity (distance) measure.", "trap": "", "f": "", "why": {"C": "Hidden layers belong to neural networks.", "B": "KNN needs k and a distance measure."}, "orig": "Quant 오답노트 L160 · 근거 SCH R3"}, {"id": "CON-M6-03", "src": "개념", "module": 6, "tag": "K-means clustering", "vig": null, "stem": "K-means clustering is:", "opts": {"A": "supervised; it needs labeled data", "B": "unsupervised; it groups observations into a pre-set number k of clusters by similarity", "C": "supervised; it predicts a continuous target"}, "ans": "B", "en": "L163: K-means = Unsupervised (label 없음), 사전에 정한 k개 군집으로 유사성에 따라 묶음\nL164: k(군집 수)와 distance measure 지정 필요", "enLabel": "오답노트 원문", "ko": "K-means = unsupervised (no labels); groups into k clusters chosen in advance; needs k and a distance measure.", "trap": "", "f": "", "why": {"A": "K-means needs no labels.", "C": "K-means does not predict a target."}, "orig": "Quant 오답노트 L163 · 근거 ECO-M6-Q3"}, {"id": "CON-M6-04", "src": "개념", "module": 6, "tag": "Overfitting – bias and variance", "vig": null, "stem": "An overfitted model has:", "opts": {"A": "high bias error and low variance error", "B": "low bias error and high variance error", "C": "high bias error and high variance error"}, "ans": "B", "en": "L165: overfitting : low bias error + high variance error\nL166: Bias error → Underfitting: Training data부터 잘 못 맞춤 → 모델이 너무 단순하거나 가정이 잘못됨. (못배움)\nL167: Variance error → Overfitting: Training data는 잘 맞추지만 Validation/Test에서 성능 급락 → 데이터의 noise까지 학습해서 불안정. (너무 많이 배움)", "enLabel": "오답노트 원문", "ko": "Bias error → underfitting (poor fit even on training data). Variance error → overfitting (good on training, poor on validation/test; learns noise).", "trap": "", "f": "", "why": {"A": "High bias error means underfitting.", "C": "Overfitting fits the training data well, so bias error is low."}, "orig": "Quant 오답노트 L165 · 근거 SCH R3"}, {"id": "CON-M6-05", "src": "개념", "module": 6, "tag": "Cost of overfitting", "vig": null, "stem": "Data scientists express the cost side of the overfitting trade-off as:", "opts": {"A": "computational time and resource expenses", "B": "the variance error less the base error", "C": "the difference between in-sample and out-of-sample error rates"}, "ans": "C", "en": "L168: overfitting의 cost : in-sample error와 out-of-sample error의 차이", "enLabel": "오답노트 원문", "ko": "Cost of overfitting = difference between in-sample and out-of-sample error rates.", "trap": "", "f": "", "why": {"B": "This is not how the cost is defined.", "A": "The cost refers to error rates, not computing expense."}, "orig": "Quant 오답노트 L168 · 근거 ECO-M6-Q17"}, {"id": "CON-M6-06", "src": "개념", "module": 6, "tag": "LASSO", "vig": null, "stem": "In LASSO regression, setting λ (the regularization parameter) to zero gives:", "opts": {"A": "the strongest regularization", "B": "all slope coefficients equal to zero", "C": "ordinary least squares, with no penalty"}, "ans": "C", "en": "L169: LASSO : Lambda λ = regularization 강도\nL170: regularization 작동 → 설명력 X 변수의 계수를 0으로 밀어냄\nL171: Lasso=least absolute shrinkage and selection operator\nL172: penalized regression algorithm.\nL177: | 0 | 벌점 없음 → 그냥 OLS |\nL178: | 작지만 0보다 큼 | 약한 regularization 작동 |\nL179: | 클수록 | 강한 regularization, 일부 계수를 0으로 만들 수 있음 |", "enLabel": "오답노트 원문", "ko": "LASSO (least absolute shrinkage and selection operator) is a penalized regression; λ = 0 → OLS; small λ → weak regularization; larger λ → stronger, some coefficients become zero.", "trap": "", "f": "", "why": {"A": "Larger λ means stronger regularization.", "B": "Coefficients are pushed to zero only with large λ."}, "orig": "Quant 오답노트 L169 · 근거 ECO VAR-M6-01"}, {"id": "CON-M6-07", "src": "개념", "module": 6, "tag": "Regularization in regression trees", "vig": null, "stem": "In a regression (decision) tree, the role of regularization is played by:", "opts": {"A": "increasing k", "B": "pruning", "C": "adding hidden layers"}, "ans": "B", "en": "L173: regression tree : pruning이 regularization 역할", "enLabel": "오답노트 원문", "ko": "Regression tree: pruning acts as regularization.", "trap": "", "f": "", "why": {"C": "Hidden layers belong to neural networks.", "A": "k belongs to K-nearest neighbor and K-means."}, "orig": "Quant 오답노트 L173 · 근거 SCH R3"}, {"id": "CON-M6-08", "src": "개념", "module": 6, "tag": "Deep learning networks", "vig": null, "stem": "Deep learning networks are neural networks with:", "opts": {"A": "exactly one hidden layer", "B": "many hidden layers – at least 2, but often more than 20", "C": "no hidden layers"}, "ans": "B", "en": "L181: NN hidden layer : 최소 2개 이상, 보통 20개 이상\nL182: Complex, subjective, non-linear에 NN모델 적합", "enLabel": "오답노트 원문", "ko": "Deep learning networks: at least 2 hidden layers, often more than 20; suited to complex, non-linear problems.", "trap": "", "f": "", "why": {"A": "One hidden layer is a simple neural network.", "C": "Neural networks have hidden layers."}, "orig": "Quant 오답노트 L181 · 근거 SCH R3"}, {"id": "CON-M6-09", "src": "개념", "module": 6, "tag": "Support vector machine target", "vig": null, "stem": "A support vector machine (SVM) is suitable for:", "opts": {"A": "binary classification (it is a linear classifier)", "B": "clustering unlabeled data", "C": "predicting a continuous variable such as firm value"}, "ans": "A", "en": "L183: SVM → binary로 분류하는 linear classifer\nL185: 연속형엔 안맞음", "enLabel": "오답노트 원문", "ko": "SVM = linear classifier for binary targets; not suitable for continuous targets.", "trap": "", "f": "", "why": {"C": "SVM requires a binary target, so continuous targets do not fit.", "B": "SVM is supervised; clustering is unsupervised."}, "orig": "Quant 오답노트 L183 · 근거 ECO-M6-Q15"}, {"id": "CON-M6-10", "src": "개념", "module": 6, "tag": "SVM margin", "vig": null, "stem": "In a support vector machine, adding a new observation far from the boundary (beyond the support vectors) will:", "opts": {"A": "not change the boundary", "B": "always widen the margin", "C": "always move the boundary toward the new point"}, "ans": "A", "en": "L184: 두 집단을 나누는 경계 중 관측치에서 가장 멀리 떨어진 경계(margin 최대화)를 찾아 정확한 예측 확률을 높임 → Maximum margin\nL186: margin은 경계에 가장 가까운 관측치(support vector)로 결정 → support vector에서 먼 데이터를 추가해도 경계 불변", "enLabel": "오답노트 원문", "ko": "SVM finds the boundary farthest from observations (maximum margin); the margin is set by the support vectors, so far-away data do not move it.", "trap": "", "f": "", "why": {"B": "The margin is set by the support vectors only.", "C": "Points far from the boundary do not affect it."}, "orig": "Quant 오답노트 L184 · 근거 SCH R3"}, {"id": "CON-M6-11", "src": "개념", "module": 6, "tag": "Soft margin classification", "vig": null, "stem": "Soft margin classification in a support vector machine optimizes the trade-off between:", "opts": {"A": "a larger k and a smaller distance", "B": "more hidden layers and fewer nodes", "C": "a wider margin and a lower total misclassification penalty"}, "ans": "C", "en": "L187: Soft margin classification = margin을 넓히는 것과 총 오분류 벌점을 낮추는 것의 trade-off를 최적화", "enLabel": "오답노트 원문", "ko": "Soft margin = trade-off between widening the margin and lowering the total misclassification penalty.", "trap": "", "f": "", "why": {"B": "Hidden layers belong to neural networks.", "A": "k and distance belong to K-nearest neighbor."}, "orig": "Quant 오답노트 L187 · 근거 SCH R3"}, {"id": "CON-M7-01", "src": "개념", "module": 7, "tag": "Extraction", "vig": null, "stem": "Creating a new variable from an existing one, such as computing age from a date of birth, is called:", "opts": {"A": "filtration", "B": "selection", "C": "extraction"}, "ans": "C", "en": "L191: Extraction: 기존 변수 →  새로운 변수 생성, 예: 날짜→나이\nL193: Aggregation(관련 변수 둘을 가중 합쳐 하나로)\nL194: Filtration(불필요한 '관측치(행)' 제거)\nL195: Selection(불필요한 '특성(열)' 제거)\nL196: Conversion(명목·순서 등 데이터 형식 변환", "enLabel": "오답노트 원문", "ko": "Extraction: create a new variable from existing ones (date → age). Aggregation: combine two related variables. Filtration: remove rows. Selection: remove columns. Conversion: change data type.", "trap": "", "f": "", "why": {"A": "Filtration removes unneeded observations (rows).", "B": "Selection removes unneeded features (columns)."}, "orig": "Quant 오답노트 L191 · 근거 SCH R4"}, {"id": "CON-M7-02", "src": "개념", "module": 7, "tag": "Filtration vs selection", "vig": null, "stem": "Removing unneeded rows (observations) from a dataset is called:", "opts": {"A": "selection", "B": "filtration", "C": "aggregation"}, "ans": "B", "en": "L194: Filtration(불필요한 '관측치(행)' 제거)\nL195: Selection(불필요한 '특성(열)' 제거)", "enLabel": "오답노트 원문", "ko": "Filtration = remove unneeded observations (rows); selection = remove unneeded features (columns).", "trap": "", "f": "", "why": {"A": "Selection removes columns (features).", "C": "Aggregation combines related variables into one."}, "orig": "Quant 오답노트 L194 · 근거 SCH R4"}, {"id": "CON-M7-03", "src": "개념", "module": 7, "tag": "Normalization", "vig": null, "stem": "A feature has a minimum of 10 and a maximum of 50. The normalized value of an observation equal to 30 is:", "opts": {"A": "0.50", "B": "0.60", "C": "0.67"}, "ans": "A", "en": "L197: X_normalized=(X-X_min)/(X_max-X_min) (0~1 범위로 변환)", "enLabel": "오답노트 원문", "ko": "Normalized X = (X − min) / (max − min) = (30 − 10)/(50 − 10) = 0.50 (scales to 0–1).", "trap": "", "f": "", "why": {"B": "0.60 is 30/50; normalization subtracts the minimum.", "C": "0.67 is 20/30; the denominator is max − min = 40."}, "orig": "Quant 오답노트 L197 · 근거 SCH R4"}, {"id": "CON-M7-04", "src": "개념", "module": 7, "tag": "Standardization", "vig": null, "stem": "A feature has a mean of 3.0, a standard deviation of 0.5, a minimum of 1.0, and a maximum of 11.0. The standardized value of an observation equal to 5.0 is:", "opts": {"A": "2.0", "B": "0.4", "C": "4.0"}, "ans": "C", "en": "L198: X_standardized=(X-μ)/(σ) → 평균 0, 표준편차 1로 변환", "enLabel": "오답노트 원문", "ko": "Standardized X = (X − μ)/σ = (5 − 3)/0.5 = 4.0 (mean 0, standard deviation 1).", "trap": "", "f": "", "why": {"B": "0.4 is the normalized value (5 − 1)/(11 − 1).", "A": "2.0 forgets to divide by the standard deviation."}, "orig": "Quant 오답노트 L198 · 근거 ECO VAR-M7-01"}, {"id": "CON-M7-05", "src": "개념", "module": 7, "tag": "Word cloud", "vig": null, "stem": "A visualization that shows word frequency through font size is a:", "opts": {"A": "word cloud", "B": "scatter plot", "C": "document term matrix"}, "ans": "A", "en": "L199: wordcloud = 단어 빈도를 글자 크기로 시각화", "enLabel": "오답노트 원문", "ko": "Word cloud = word frequency shown by font size.", "trap": "", "f": "", "why": {"B": "A scatter plot shows the relation between two numeric variables.", "C": "A document term matrix is a table, not a visualization."}, "orig": "Quant 오답노트 L199 · 근거 SCH R4"}, {"id": "CON-M7-06", "src": "개념", "module": 7, "tag": "Very high and very low term frequency", "vig": null, "stem": "Tokens with the highest term frequency (mostly stop words) and the lowest term frequency (rare words) should be:", "opts": {"A": "both removed, because the high ones cause underfitting and the low ones cause overfitting", "B": "only the low-frequency tokens removed", "C": "kept, because they carry the most information"}, "ans": "A", "en": "L200: high TF  → underfitting 유발, low TF → overfitting 유발 → 둘 다 제거\nL202: high TF→ stop words처럼 거의 모든 문서에 등장 → 구분력이 낮아 underfitting\nL203: low TF → 특정 문서에만 드물게 등장 → noise로 작용해 overfitting 유발", "enLabel": "오답노트 원문", "ko": "High term frequency → appear in almost every document → low discriminating power → underfitting. Low term frequency → noise → overfitting. Remove both.", "trap": "", "f": "", "why": {"C": "Intermediate-frequency tokens carry the most information.", "B": "High-frequency tokens also hurt the model and should be removed."}, "orig": "Quant 오답노트 L200 · 근거 ECO-M7-Q20"}, {"id": "CON-M7-07", "src": "개념", "module": 7, "tag": "Intermediate term frequency", "vig": null, "stem": "At the collection level, tokens most likely to carry information useful for differentiating sentiment have term frequency values that are:", "opts": {"A": "intermediate", "B": "low", "C": "high"}, "ans": "A", "en": "L211: tokens with intermediate TF values potentially carry important information useful for differentiating the sentiment embedded in the text", "enLabel": "오답노트 원문", "ko": "Tokens with intermediate term frequency potentially carry important information for differentiating sentiment.", "trap": "", "f": "", "why": {"B": "Rare tokens act as noise.", "C": "Very frequent tokens are mostly stop words."}, "orig": "Quant 오답노트 L211 · 근거 ECO-M7-Q25"}, {"id": "CON-M7-08", "src": "개념", "module": 7, "tag": "Feature selection vs feature engineering", "vig": null, "stem": "Which is correct?", "opts": {"A": "Feature selection helps prevent overfitting; feature engineering helps prevent underfitting", "B": "Both mainly prevent underfitting", "C": "Feature selection helps prevent underfitting; feature engineering helps prevent overfitting"}, "ans": "A", "en": "L204: Feature selection → 불필요한 feature 제거 → Overfitting 방지\nL205: Feature engineering → 유용한 feature 추가 → Underfitting 완화", "enLabel": "오답노트 원문", "ko": "Feature selection → remove unneeded features → prevent overfitting. Feature engineering → add useful features → reduce underfitting.", "trap": "", "f": "", "why": {"C": "The roles are reversed.", "B": "Feature selection removes unneeded features, which addresses overfitting."}, "orig": "Quant 오답노트 L204 · 근거 ECO VAR-M7-02"}, {"id": "CON-M7-09", "src": "개념", "module": 7, "tag": "Text curation step", "vig": null, "stem": "In a text-based big data project, the data (text) curation step involves:", "opts": {"A": "removing stop words and lemmatizing", "B": "gathering relevant external text data via web services or programs that extract raw content", "C": "cleansing and preprocessing text into a structured format"}, "ans": "B", "en": "L206: data (text) curation step: gathering relevant external text data via web services or programs that extract raw content from a source", "enLabel": "오답노트 원문", "ko": "Data (text) curation: gathering relevant external text data via web services or programs that extract raw content from a source.", "trap": "", "f": "", "why": {"C": "That describes text preparation and wrangling.", "A": "That is part of wrangling (preprocessing)."}, "orig": "Quant 오답노트 L206 · 근거 ECO Quant M7"}, {"id": "CON-M7-10", "src": "개념", "module": 7, "tag": "Diagnosing overfitting", "vig": null, "stem": "A model's training error is small but its cross-validation error is much larger. The model:", "opts": {"A": "is well fitted", "B": "has high bias error and is underfitted", "C": "has high variance error and is overfitted"}, "ans": "C", "en": "L207: AUC는 높을수록 좋고, Train과 Cross-Validation의 차이도 작아야 함.\nL209: Train error는 작고 CV error가 훨씬 큼 → 차이가 크다 = high variance = overfitting.", "enLabel": "오답노트 원문", "ko": "Small training error, much larger cross-validation error → high variance → overfitting. A good model has a high AUC and a small gap between training and cross-validation.", "trap": "", "f": "", "why": {"B": "Underfitting shows high error on training data too.", "A": "A large gap between training and validation error is not a good fit."}, "orig": "Quant 오답노트 L207 · 근거 ECO VAR-M7-03"}, {"id": "CON-M7-11", "src": "개념", "module": 7, "tag": "Strength of regularization", "vig": null, "stem": "If a model is only slightly regularized, it is most likely to be:", "opts": {"A": "perfectly fitted", "B": "overfitted (complex, high variance)", "C": "underfitted (too simple)"}, "ans": "B", "en": "L208: LASSO: 불필요한 변수의 계수를 축소/선택해서 모델 복잡도를 낮춤 →  overfitting 완화\nL210: Slight regularization = 규제가 약함 → 모델 복잡 → High variance → Overfitting", "enLabel": "오답노트 원문", "ko": "Slight regularization = weak penalty → complex model → high variance → overfitting. LASSO shrinks/selects coefficients → lower complexity → less overfitting.", "trap": "", "f": "", "why": {"C": "Strong regularization tends toward underfitting.", "A": "Weak regularization leaves the model too complex."}, "orig": "Quant 오답노트 L208 · 근거 SCH R3"}, {"id": "CON-M7-12", "src": "개념", "module": 7, "tag": "TF-IDF", "vig": null, "stem": "Which statement about TF-IDF is correct?", "opts": {"A": "TF at the collection level is multiplied by IDF", "B": "TF-IDF values depend on the number of documents, so performance can be unstable with few documents", "C": "IDF equals the inverse of document frequency, without a log"}, "ans": "B", "en": "L212: TF-IDF = sentence· document 수준TF × IDF (not collection)\nL214: IDF = log(inverse DF)\nL216: 문서 수 적으면 TF-IDF performance 불안정", "enLabel": "오답노트 원문", "ko": "TF-IDF = sentence/document-level TF × IDF (not collection); IDF = log(1/DF); with few documents, TF-IDF performance is unstable.", "trap": "", "f": "", "why": {"C": "IDF is the log of the inverse of document frequency.", "A": "TF at the sentence (document) level, not the collection level, is used."}, "orig": "Quant 오답노트 L212 · 근거 ECO-M7-Q26"}, {"id": "CON-M7-13", "src": "개념", "module": 7, "tag": "IDF calculation", "vig": null, "stem": "A token appears in 2 of 10 documents. Its inverse document frequency (IDF) is closest to:", "opts": {"A": "0.20", "B": "1.61", "C": "5.00"}, "ans": "B", "en": "L214: IDF = log(inverse DF)", "enLabel": "오답노트 원문", "ko": "DF = 2/10 = 0.2; IDF = ln(1/DF) = ln(5) = 1.61.", "trap": "", "f": "", "why": {"C": "5.00 is 1/DF without the log.", "A": "0.20 is the document frequency itself."}, "orig": "Quant 오답노트 L214 · 근거 ECO-M7-Q44"}, {"id": "CON-M7-14", "src": "개념", "module": 7, "tag": "No ground truth", "vig": null, "stem": "A dataset has no ground truth (no known target). The share of data that should go to a training subset is:", "opts": {"A": "60%", "B": "20%", "C": "0%, because unsupervised learning needs no train/validation split"}, "ans": "C", "en": "L217: No ground truth → Unsupervised learning → split X", "enLabel": "오답노트 원문", "ko": "No ground truth → unsupervised learning → no split.", "trap": "", "f": "", "why": {"B": "Without labels there is nothing to train against.", "A": "Splitting is used for supervised learning."}, "orig": "Quant 오답노트 L217 · 근거 ECO-M7-Q27"}, {"id": "CON-M7-15", "src": "개념", "module": 7, "tag": "Model training steps", "vig": null, "stem": "The correct order of model training steps is:", "opts": {"A": "tuning → method selection → performance evaluation", "B": "method selection → performance evaluation → tuning", "C": "performance evaluation → method selection → tuning"}, "ans": "B", "en": "L218: ML Training순서: ① Method selection → ② Performance evaluation → ③ Tuning\nL220: Method selection : data size, data type, Supervised vs Unsupervised\nL221: Performance evaluation : ROC, RMSE, Error analysis\nL222: Tuning : Bias error / Variance error (model fitting error)", "enLabel": "오답노트 원문", "ko": "Method selection (data size, data type, supervised vs unsupervised) → performance evaluation (ROC, RMSE, error analysis) → tuning (bias and variance error).", "trap": "", "f": "", "why": {"C": "The method must be chosen before it can be evaluated.", "A": "Tuning comes last, after evaluation."}, "orig": "Quant 오답노트 L218 · 근거 ECO-M7-Q31"}, {"id": "CON-M7-16", "src": "개념", "module": 7, "tag": "Unequal class distribution", "vig": null, "stem": "With an unequal class distribution, the most appropriate overall performance measure is:", "opts": {"A": "accuracy", "B": "the F1 score", "C": "precision alone"}, "ans": "B", "en": "L223: class 불균형한 데이터 주어지면 F1이 적절 ! F1= (2PR)/(P+R)", "enLabel": "오답노트 원문", "ko": "Class imbalance → F1 score = 2PR/(P + R) (harmonic mean of precision and recall).", "trap": "", "f": "", "why": {"A": "Accuracy can mislead when one class dominates.", "C": "Precision ignores recall."}, "orig": "Quant 오답노트 L223 · 근거 ECO-M7-Q35"}, {"id": "CON-M7-17", "src": "개념", "module": 7, "tag": "F1 score calculation", "vig": null, "stem": "A model has precision of 0.75 and recall of 0.60. Its F1 score is closest to:", "opts": {"A": "0.45", "B": "0.68", "C": "0.67"}, "ans": "C", "en": "L223: class 불균형한 데이터 주어지면 F1이 적절 ! F1= (2PR)/(P+R)", "enLabel": "오답노트 원문", "ko": "F1 = 2PR/(P + R) = 2 × 0.75 × 0.60 / 1.35 = 0.667.", "trap": "", "f": "", "why": {"B": "0.68 (0.675) is the simple average; F1 is the harmonic mean.", "A": "0.45 is the product P × R."}, "orig": "Quant 오답노트 L223 · 근거 ECO-M7-Q30"}, {"id": "CON-M7-18", "src": "개념", "module": 7, "tag": "Text cleansing vs wrangling", "vig": null, "stem": "Which task belongs to text wrangling (preprocessing) rather than text cleansing?", "opts": {"A": "Removing HTML tags", "B": "Removing stop words", "C": "Removing punctuation and extra white space"}, "ans": "B", "en": "L224: Text preparation(cleansing) & wrangling(preprocessing)\nL228: | • html tag, numbers, puctuation, white space제거 | • Stop words제거 /   • lowercasing /   • token화 /   • stemming·lemmatization |", "enLabel": "오답노트 원문", "ko": "Cleansing: remove HTML tags, numbers, punctuation, white space. Wrangling: remove stop words, lowercasing, tokenization, stemming/lemmatization.", "trap": "", "f": "", "why": {"A": "Removing HTML tags is cleansing.", "C": "Removing punctuation and white space is cleansing."}, "orig": "Quant 오답노트 L224 · 근거 SCH R4"}, {"id": "CON-M7-19", "src": "개념", "module": 7, "tag": "N-grams, POS, NER", "vig": null, "stem": "A feature engineering technique that keeps multi-word patterns together as one token (e.g., expansionary_monetary_policy) is:", "opts": {"A": "named entity recognition (NER)", "B": "parts of speech (POS) tagging", "C": "N-grams"}, "ans": "C", "en": "L230: | N-gram | • multi-word token /   • 여러 단어를 하나의 토큰으로 묶어 순서 유지 / (예:expansionary_monetary_policy) |\nL232: | POS | • part of speech token (품사) |\nL233: | NER | • token with object class /   • 조직·장소·날짜 등 개체 태그. |", "enLabel": "오답노트 원문", "ko": "N-gram = multi-word token that keeps word order; POS = part-of-speech tag; NER = object class tag (organization, place, date).", "trap": "", "f": "", "why": {"B": "POS tags each token with its part of speech.", "A": "NER tags tokens with object classes such as organization or place."}, "orig": "Quant 오답노트 L230 · 근거 ECO-M7-Q42"}, {"id": "CON-M7-20", "src": "개념", "module": 7, "tag": "Type I and Type II errors", "vig": null, "stem": "In a confusion matrix, a Type II error is a:", "opts": {"A": "false negative (predicted negative, actually positive)", "B": "true negative", "C": "false positive (predicted positive, actually negative)"}, "ans": "A", "en": "L235: Type I error = FP : predicted positive & actual negative\nL236: Type I error = FN : predicted (-) & actual (+)", "enLabel": "오답노트 원문", "ko": "Type I error = false positive; Type II error = false negative. ※ Note line 236 labels the false negative as 'Type I'; it should be Type II.", "trap": "", "f": "", "why": {"C": "A false positive is a Type I error.", "B": "A true negative is a correct prediction."}, "orig": "Quant 오답노트 L235 · 근거 SCH R4"}], "vignettes": [], "modules": {"1": "Basics of Multiple Regression and Underlying Assumptions", "2": "Evaluating Regression Model Fit and Interpreting Model Results", "3": "Model Misspecification", "4": "Extensions of Multiple Regression", "5": "Time-Series Analysis", "6": "Machine Learning", "7": "Big Data Projects"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "QuantConcept", KEY = "QuantConcept_quiz_state_v1", EXPKEY = "QuantConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Quant 개념 확인</h2>'+
+   '<p class="muted">Quant 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Alternative Investments Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Alternative Investments 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Seasonality in commodities", "vig": null, "stem": "A commodity investor wishing to exploit seasonal variability in demand is most likely to trade:", "opts": {"A": "livestock", "B": "energy", "C": "grains"}, "ans": "B", "en": "L7: seasonal variability in demand : energy\nL9: 가솔린 → 여름, 석유 → 겨울 등\nL13: | Energy | 날씨에 따른 사용량 변화 | Seasonal demand  |\nL14: | Grains | 수확 시기 및 생산량. / 수요는 연중 내내 존재 | Seasonal supply /  |\nL15: | Livestock | 날씨·목초·사료에 따른 성장 및 도축 가능 물량 / 수요는 연중 내내 존재 | Seasonal supply |", "enLabel": "오답노트 원문", "ko": "Energy: weather-driven seasonal demand (gasoline in summer, heating oil in winter). Grains and livestock: seasonal supply, year-round demand.", "trap": "", "f": "", "why": {"C": "Grain seasonality is mainly in supply (harvests); demand is year-round.", "A": "Livestock seasonality is mainly in supply; demand is year-round."}, "orig": "Alternative Investments 오답노트 L7 · 근거 ECO-M1-Q39"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Commodity swaps", "vig": null, "stem": "An airline wants protection only when fuel prices rise above a benchmark. The most suitable swap is a:", "opts": {"A": "total return swap", "B": "basis swap", "C": "excess return swap"}, "ans": "C", "en": "L17: swap종류와 용도\nL21: | Total return swap | Price change + collateral return (지수 하락 시long이 fixed payment 지급) | Institutional investor의 commodity exposure, 실물 보유·futures roll over 불필요 /   •nvestor가 commodity return exposure를 얻으려 함 |\nL22: | Excess return swap | Benchmark를 초과한 가격 부분 | 초과분 exposure /   • Producer·buyer가 price 상승(또는 초과 변동)을 hedge |\nL23: | Basis swap | 두 commodity 가격의 차이 / → liquidity 관리 | • Liquid futures가 없는 input의 basis risk를 hedge   (liquid futures hedge + basis swap) |\nL24: | Volatility swap | 가격 volatility | Volatility exposure |\nL25: | Variance swap | 가격 variance | Variance exposure |\nL30: airline hedging against rising fuel price : excess return swap\nL31: Fuel price가 benchmark보다 상승 → 초과분 × notional을 airline이 수령 → 비싸진 fuel cost를 보전\nL32: Fuel price가 benchmark 이하     → payment 없음 (손해 보는 쪽은 없고, airline은 낮은 fuel cost의 이익을 유지)", "enLabel": "오답노트 원문", "ko": "Excess return swap: payments on the price above a benchmark → producers/buyers hedge price rises (airline receives the excess; nothing paid below the benchmark). Total return swap: price change + collateral return, used by institutions for commodity exposure. Basis swap: difference between two prices (hedges an input without liquid futures). Volatility/variance swaps: volatility/variance exposure.", "trap": "", "f": "", "why": {"A": "A total return swap gives full index exposure, used by institutional investors.", "B": "A basis swap hedges the difference between two commodity prices."}, "orig": "Alternative Investments 오답노트 L17 · 근거 SCH R30"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "Who uses total return swaps", "vig": null, "stem": "A pension fund wants broad commodity index exposure for diversification and inflation hedging, without holding physicals or rolling futures. It should use a:", "opts": {"A": "excess return swap", "B": "total return swap", "C": "volatility swap"}, "ans": "B", "en": "L27: 전체 상품 비중 조정(allocation), 지수 수익률 노출 → total return swap\nL28: 투자 이유: 주식·채권과 낮은 상관관계, 인플레이션 헤지(ALM)\nL29: Total return swap은 일반적으로 생산자·구매자가 아니라 대형 기관 투자자(연기금 등)가 사용", "enLabel": "오답노트 원문", "ko": "Total return swap: used by large institutions for index exposure (low correlation with stocks/bonds, inflation hedge); when the index falls, the long pays.", "trap": "", "f": "", "why": {"A": "An excess return swap pays only on moves above a benchmark.", "C": "A volatility swap gives volatility exposure, not price exposure."}, "orig": "Alternative Investments 오답노트 L27 · 근거 ECO-M1-Q8"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "Commodity market participants", "vig": null, "stem": "A participant who takes positions to absorb imbalances when producers and consumers are not in the market at the same time, earning a return for providing that service, is a:", "opts": {"A": "informed investor", "B": "arbitrageur", "C": "liquidity provider"}, "ans": "C", "en": "L33: liquidity provider(헤저에게 보험 제공의 대가로 기대수익)\nL34: 수요·공급 불균형에 대응해 포지션을 잡는 것 = 생산자와 소비자가 동시에 시장에 없을 때 대신 사고팔아줌\nL35: Arbitrageur = 실물 저장으로 현물-선물 괴리 이용 / Informed investor = 정보 우위.", "enLabel": "오답노트 원문", "ko": "Liquidity provider: fills producer/consumer timing gaps and earns an expected return for providing insurance. Arbitrageur: physical storage vs futures gaps. Informed investor: information edge.", "trap": "", "f": "", "why": {"B": "Arbitrageurs exploit spot–futures gaps using physical storage.", "A": "Informed investors trade on information advantages."}, "orig": "Alternative Investments 오답노트 L33 · 근거 SCH R30"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Theories of the futures curve", "vig": null, "stem": "Which theory explains backwardation by producers' short hedging but cannot explain contango?", "opts": {"A": "Hedging pressure hypothesis", "B": "Insurance theory", "C": "Theory of storage"}, "ans": "B", "en": "L39: | Insurance theory | Producer의 short hedge → futures < spot → normal backwardation (long speculator에게 보상) / → Contango 설명 못함 |\nL40: | Hedging pressure hypothesis | Producer(short hedge) + consumer(long hedge). Producer 우세 → backwardation,  / user 우세 → contango |\nL41: | Theory of storage | Storage cost vs physical inventory의 benefit(convenience yield). Storage cost 우세 → contango |", "enLabel": "오답노트 원문", "ko": "Insurance theory: producers' short hedge → futures < spot (normal backwardation); cannot explain contango. Hedging pressure: producers dominate → backwardation; users dominate → contango. Storage: storage cost vs convenience yield.", "trap": "", "f": "", "why": {"A": "Hedging pressure adds consumers' long hedging, allowing contango.", "C": "Theory of storage explains contango through storage costs."}, "orig": "Alternative Investments 오답노트 L39 · 근거 ECO-M1-Q5"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "Theory of storage", "vig": null, "stem": "Under the theory of storage, futures prices are pushed lower by:", "opts": {"A": "a higher convenience yield, which rises when inventories are low", "B": "higher storage costs", "C": "larger inventories"}, "ans": "A", "en": "L43: Theory of storage\nL45: Futures price: storage cost ↑ → 높아짐, convenience yield ↑ → 낮아짐\nL46: Convenience yield: physical inventory의 benefit, stock이 적을수록 높음\nL47: Curve shape는 current inventory, 예상 supply·demand에 의존\nL48: 세 theory 모두 완전하지 않음: hedging pressure, convenience yield는 관측 불가, storage cost는 공시 안 됨", "enLabel": "오답노트 원문", "ko": "Futures price: storage cost↑ → higher; convenience yield↑ → lower. Convenience yield is higher when stocks are low. None of the theories is complete (hedging pressure and convenience yield are unobservable; storage costs are not reported).", "trap": "", "f": "", "why": {"B": "Higher storage costs raise futures prices.", "C": "Large inventories mean a low convenience yield."}, "orig": "Alternative Investments 오답노트 L43 · 근거 SCH R30"}, {"id": "CON-M1-07", "src": "개념", "module": 1, "tag": "Roll return", "vig": null, "stem": "To maximize roll return, an index should roll into contracts where the curve shows:", "opts": {"A": "the most contango", "B": "the most liquidity regardless of shape", "C": "the most backwardation (or least contango)"}, "ans": "C", "en": "L49: Backwardation: 근월물 > 원월물 → 더 싼 원월물로 갈아타며 더 많은 contract 보유 → Roll return ↑ / Contango:      근월물 < 원월물 → 더 비싼 원월물로 갈아타며 더 적은 contract 보유 → Roll return ↓\nL51: Backwardation이 가장 큰 (또는 contango가 가장 작은) 원월물 선택 → Roll return 최대화\nL52: Commodity = 배당, 쿠폰같은 cashflow안만듬\nL54: When futures contracts are in contango :value tends to erode over time.", "enLabel": "오답노트 원문", "ko": "Backwardation: near > far → roll into cheaper contracts, hold more → roll return↑. Contango: near < far → fewer contracts → roll return↓; positions tend to erode in value. Commodities produce no cash flows (no dividends or coupons).", "trap": "", "f": "", "why": {"A": "Contango lowers roll return (rolling into pricier contracts).", "B": "Liquidity alone has no systematic effect on roll return."}, "orig": "Alternative Investments 오답노트 L49 · 근거 ECO-M1-Q62"}, {"id": "CON-M1-08", "src": "개념", "module": 1, "tag": "Commodity futures total return", "vig": null, "stem": "A fully collateralized long natural gas position: futures price rose from 2.93 to 2.99, the position was rolled from 2.99 into a contract at 3.03, and collateral earns 3% a year for the 3-month period. The total return is closest to:", "opts": {"A": "1.46%", "B": "4.14%", "C": "0.71%"}, "ans": "A", "en": "L53: Total return 계산 시 Short이면 가격·롤 수익률 부호 반대, 담보수익률은 그대로(+)", "enLabel": "오답노트 원문", "ko": "Price return = (2.99 − 2.93)/2.93 = 2.05%; roll return = (2.99 − 3.03)/2.99 = −1.34%; collateral = 3% × 0.25 = 0.75%; total = 1.46%. For a short position, price and roll returns flip sign, but collateral stays positive.", "trap": "", "f": "", "why": {"B": "4.14% adds the roll yield instead of subtracting it (contango gives a negative roll).", "C": "0.71% leaves out the collateral return."}, "orig": "Alternative Investments 오답노트 L53 · 근거 ECO-M1-Q14"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "Due diligence for a fully leased building", "vig": null, "stem": "A building is 100% occupied. Which due diligence step best checks that next year's NOI projection is correct?", "opts": {"A": "Future lease outlook", "B": "Current lease review (expiry dates, rents, payment history)", "C": "Documentation review"}, "ans": "B", "en": "L60: 100% occupied 일 때 next year's NOI projection 확인 → Current lease review\nL61: 공실 없음/완전 임대 → Current lease review →  지금 걸린 임대계약의 만기일, 임대료, 연체이력 분석 → 내년 NOI유지될지 판단 가능 → 만기 도래 임차인의 재계약 여부가 핵심\nL62: 공실 있음/임대 저조 → Future lease outlook → 빈 공간을 앞으로 어떻게 채울지(re-leasing) 전망\nL63: 100% occupied → future lease outlook은 적용 상황 자체가 없음", "enLabel": "오답노트 원문", "ko": "Fully leased → current lease review (whether expiring tenants renew is key). Vacancies → future lease outlook (re-leasing).", "trap": "", "f": "", "why": {"A": "Future lease outlook applies to vacant space to be re-leased.", "C": "Documentation review does not test the NOI projection."}, "orig": "Alternative Investments 오답노트 L60 · 근거 ECO-M2-Q3"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "Maximum loan amount", "vig": null, "stem": "A property has NOI of $15.6m and is priced at $283m. Lenders require LTV ≤ 65% and DSCR ≥ 1.65 on an interest-only loan at 5.25%. The maximum loan is closest to:", "opts": {"A": "$111.5m", "B": "$180.1m", "C": "$184.0m"}, "ans": "B", "en": "L64: Debt Service=(NOI)/(DSCR) → Loan Amount=(Debt Service)/(Interest Rate)", "enLabel": "오답노트 원문", "ko": "Debt service = NOI/DSCR = 15.6/1.65 = 9.4545m → loan = debt service / interest rate = 9.4545/0.0525 = 180.1m; LTV allows 0.65 × 283 = 184.0m; the lower amount (180.1m) is the maximum.", "trap": "", "f": "", "why": {"C": "$184.0m meets the LTV limit but gives a DSCR of only 1.62, below 1.65.", "A": "$111.5m wrongly applies the LTV percentage to price/DSCR."}, "orig": "Alternative Investments 오답노트 L64 · 근거 ECO-M2-Q5"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "Real estate cycle", "vig": null, "stem": "In the oversupply phase of the real estate cycle:", "opts": {"A": "interest rates, NOI, and DSC bottom and begin to rise while LTV peaks", "B": "interest rates, NOI, and DSC peak and begin to fall while LTV bottoms and begins to rise", "C": "interest rates, NOI, and DSC continue to rise while LTV falls"}, "ans": "B", "en": "L66: | 단계 | 경기 위치 | 특징 | 금리·NOI·DSC | LTV |\nL68: | Recovery | 경기 저점 직후 | 신용 경색, 신규 건설 저조, 임대료 하방압력 | 바닥 찍고 상승 시작 | 정점 찍고 하락 시작 |\nL69: | Expansion | 경기 개선기 | 임금↑, 신용 개선, 임대료 상승 → 신규 건설 촉발 | 계속 상승 | 계속 하락 |\nL70: | Oversupply | 경기 둔화 시작 | 공급 과잉 물량이 시장에 쏟아짐, 공실률↑ | 정점 찍고 하락 시작 | 바닥 찍고 상승 시작 |\nL71: | Recession | 경기 계속 악화 | 신용 긴축, 가격·공실률 계속 악화 | 계속 하락 | 계속 상승 |", "enLabel": "오답노트 원문", "ko": "Recovery: bottom → rise, LTV peaks → falls. Expansion: keep rising, LTV falls. Oversupply: peak → fall, LTV bottoms → rises. Recession: keep falling, LTV rises.", "trap": "", "f": "", "why": {"C": "That describes the expansion phase.", "A": "That describes the recovery phase."}, "orig": "Alternative Investments 오답노트 L66 · 근거 SCH R31"}, {"id": "CON-M2-04", "src": "개념", "module": 2, "tag": "Unreimbursed operating expenses", "vig": null, "stem": "An office property has effective gross income of $5,554,000, property management fees of $203,160, other operating expenses of $2,100,000, and expense reimbursement revenue of $333,333. Unreimbursed operating expenses as a share of EGI are closest to:", "opts": {"A": "41.5%", "B": "35.5%", "C": "58.5%"}, "ans": "B", "en": "L73: unreimbursed operating expenses = 미반영비용\nL74: 분자 = 총 운영비용 (Property mgmt + Other opex)  ← 보전 여부와 무관하게 전체 금액\nL75: 분모 = Effective Gross Income (reimbursement revenue가 이미 포함된 수입)\nL76: Reimbursement: 임차인이 건물주에게 돌려주는(갚아주는) 운영비용 보전금.\nL78: Reimbursement가 클수록 → unreimbursed(건물주가 떠안는 몫)는 작아짐\nL79: Unreimbursed : 임차인이 안 돌려줘서 건물주가 떠안는 운영비용\nL80: unreimbursed operating expenses (미반영 비용) : 번 돈(EGI) 중 몇 %가 운영비용으로 빠져나가는가\nL82: 미반영 비용 비율 = (Property management fees + Other operating expenses)/(Effective gross income)\nL85: NOI = EGI − Property management fees − Other operating expenses", "enLabel": "오답노트 원문", "ko": "Unreimbursed ratio = (management fees + other opex − reimbursements)/EGI = (2,303,160 − 333,333)/5,554,000 = 35.5%. Larger reimbursements → smaller unreimbursed share. NOI = EGI − fees − other opex. ※ Note line 74 says to use total opex regardless of reimbursement; ECO nets out reimbursement.", "trap": "", "f": "", "why": {"A": "41.5% ignores the expense reimbursements tenants pay back.", "C": "58.5% is NOI as a share of EGI."}, "orig": "Alternative Investments 오답노트 L73 · 근거 ECO AI M2"}, {"id": "CON-M2-05", "src": "개념", "module": 2, "tag": "Terminal value and terminal cap rate", "vig": null, "stem": "For a 5-year holding period, the undiscounted terminal value is year-6 NOI of $3,439,613 divided by the terminal cap rate of 6%. The terminal value is closest to:", "opts": {"A": "$55.7m", "B": "$57.3m", "C": "$52.9m"}, "ans": "B", "en": "L87: Terminal cap rate = Discount rate - g_T → T+1\nL89: Discount rate − (보유기간 마지막 해에서 그다음 해로 넘어갈 때의 NOI 성장률)", "enLabel": "오답노트 원문", "ko": "Terminal value = NOI_(n+1) / terminal cap rate. Terminal cap rate = discount rate − NOI growth from the last holding year to the next.", "trap": "", "f": "", "why": {"A": "$55.7m uses year-5 NOI; terminal value uses the next year's NOI.", "C": "$52.9m divides by the going-in cap rate instead of the terminal cap rate."}, "orig": "Alternative Investments 오답노트 L87 · 근거 ECO-M2-Q11"}, {"id": "CON-M2-06", "src": "개념", "module": 2, "tag": "Sales comparison approach", "vig": null, "stem": "A comparable sold for $10.0m and needs a +5% adjustment for differences. A buyer offers $11.0m for the subject property. The offer is overvalued by about:", "opts": {"A": "10.0%", "B": "4.76%", "C": "4.55%"}, "ans": "B", "en": "L90: Sales Comparison : 조정가격 = 매매가 × (1 + 조정률)\nL92: 조정가격 계산해서 Implied value(추정가치) 구한 후 구매 가격과 비교\nL95: 고평가율 = (구매가 - 추정가치)/(추정가치)", "enLabel": "오답노트 원문", "ko": "Adjusted price = sale price × (1 + adjustment) = 10.5m = implied value. Overvaluation = (purchase price − estimated value)/estimated value = 0.5/10.5 = 4.76%.", "trap": "", "f": "", "why": {"C": "4.55% divides by the offer price instead of the estimated value.", "A": "10.0% ignores the 5% adjustment."}, "orig": "Alternative Investments 오답노트 L90 · 근거 SCH R31"}, {"id": "CON-M2-07", "src": "개념", "module": 2, "tag": "Appraisal-based indexes", "vig": null, "stem": "Appraisal lag in appraisal-based real estate indexes leads to:", "opts": {"A": "smoothed returns, understated volatility and correlations, and overstated Sharpe ratios and diversification benefits", "B": "understated Sharpe ratios", "C": "overstated volatility"}, "ans": "A", "en": "L98: appraisal-based index의 문제점\nL100: Appraisal lag(평가 지연) → smoothing→  변동성 축소 & 다른 자산과의 상관관계 축소 →  Sharpe ratio 과대평가→ 분산효과 과대 평가", "enLabel": "오답노트 원문", "ko": "Appraisal lag → smoothing → volatility↓, correlation↓ → Sharpe ratio and diversification overstated.", "trap": "", "f": "", "why": {"C": "Lag smooths returns, lowering measured volatility.", "B": "Lower measured volatility raises Sharpe ratios."}, "orig": "Alternative Investments 오답노트 L98 · 근거 ECO AI M2"}, {"id": "CON-M2-08", "src": "개념", "module": 2, "tag": "Gross vs net lease", "vig": null, "stem": "Under a gross lease, operating expenses are paid by the:", "opts": {"A": "lender", "B": "tenant", "C": "owner (landlord)"}, "ans": "C", "en": "L101: gross lease : owner pay the operating expense (건물주가 비용 부담)\nL102: Net lease: 세입자가 운영비용을 (전부 또는 일부) 부담", "enLabel": "오답노트 원문", "ko": "Gross lease: owner pays operating expenses. Net lease: tenant pays some or all operating expenses.", "trap": "", "f": "", "why": {"B": "Tenants pay operating expenses under a net lease.", "A": "Lenders do not pay operating expenses."}, "orig": "Alternative Investments 오답노트 L101 · 근거 SCH R31"}, {"id": "CON-M2-09", "src": "개념", "module": 2, "tag": "Who performs due diligence", "vig": null, "stem": "A lease and rent review as part of property due diligence is most likely performed by:", "opts": {"A": "the seller of the building", "B": "an investor buying REIT shares", "C": "the REIT investment manager buying the building"}, "ans": "C", "en": "L103: REIT investment manager conduct a lease and rent review as part of the real estate investment due diligence process\nL105: REIT investment manager = REIT 주주 대신 건물 사는 사람\nL106: Due diligence = 매수자가, 매도자가 숨겼을 수 있는 문제를 찾아내는 과정 → seller는 Due diligence의 대상이지 하는 사람 아님\nL110: | Direct investor /  (REIT investment manager, 직접 매입자, 감정평가사, 대출기관) | 개별 건물 | 임대차 계약, 임대료, 공실, 재무상태, 물리적 상태 |\nL111: | Indirect investor (REIT 주식을 사는 일반 투자자) | REIT의 주식 | 재무제표, 분기보고서, 투자자 설명회 |", "enLabel": "오답노트 원문", "ko": "Direct investors (REIT managers, direct buyers, appraisers, lenders) review leases, rents, vacancies, finances, physical condition. Indirect investors (REIT shareholders) review financial statements and reports.", "trap": "", "f": "", "why": {"A": "The seller is the subject of due diligence, not the one doing it.", "B": "Indirect investors review financial statements and reports, not leases."}, "orig": "Alternative Investments 오답노트 L103 · 근거 SCH R31"}, {"id": "CON-M2-10", "src": "개념", "module": 2, "tag": "Loss to lease", "vig": null, "stem": "A property's gross potential rental income at market rents is below its gross rental income under existing leases (negative loss to lease). This most likely signals:", "opts": {"A": "oversupply, with downward pressure on rents", "B": "undersupply, with rents rising", "C": "nothing about the market phase"}, "ans": "A", "en": "L113: Gpri : 모든 공간을 지금 시장 임대료로 임대했다고 가정한 소득\nL114: Loss to lease = GPRI − GRI (GPRI = 시장 임대료 기준 소득, GRI = 체결된 계약 기준 소득)\nL116: (+): 시장 임대료 > 계약 임대료 → 공급부족 신호 (임대료 상승 중, 갱신 시 인상 가능)\nL117: (−): 시장 임대료 < 계약 임대료 → Oversupply 신호 (임대료 하락 압력, 갱신 시 인하)\nL118: Oversupply를 묻는 문제 → loss to lease가 음수인지 확인", "enLabel": "오답노트 원문", "ko": "GPRI = income if all space were leased at current market rents. Loss to lease = GPRI − GRI. Positive → market > contract rents → undersupply. Negative → market < contract → oversupply signal.", "trap": "", "f": "", "why": {"B": "Undersupply shows market rents above contract rents (positive loss to lease).", "C": "The sign of loss to lease signals the supply phase."}, "orig": "Alternative Investments 오답노트 L113 · 근거 ECO AI M2"}, {"id": "CON-M3-01", "src": "개념", "module": 3, "tag": "What NAVPS should include", "vig": null, "stem": "Which statement about NAVPS is correct?", "opts": {"A": "Shares trading at a discount to NAVPS indicate overvaluation", "B": "NAVPS should include the value of non-asset-based income streams, non-real-estate assets, and management", "C": "NAVPS should exclude the value added by management"}, "ans": "B", "en": "L122: NAVPS → non-asset-based income streams, 비부동산자산, 경영 가치 포함해야함\nL124: NAVPS는 REIT 전체가치 반영 → 경영역량·추가수익원도 실제 가치에 기여하면 반영돼야 함\nL125: REITs whose shares trade below NAVPS or have high leverage (NAVPS 대비 할인거래·high leverage) → 신주발행 시 기존주주 희석 → 자금조달 어려움 → limit long-term growth\nL126: Shares priced at discounts to NAVPS = 저평가 신호", "enLabel": "오답노트 원문", "ko": "NAVPS reflects the whole REIT, including non-asset income, non-real-estate assets, and management. Trading below NAVPS or high leverage → harder to raise capital → limits growth. Discount to NAVPS → potential undervaluation.", "trap": "", "f": "", "why": {"A": "A discount to NAVPS suggests undervaluation.", "C": "Management's value should be included if it adds to real value."}, "orig": "Alternative Investments 오답노트 L122 · 근거 ECO AI M3"}, {"id": "CON-M3-02", "src": "개념", "module": 3, "tag": "NAVPS calculation", "vig": null, "stem": "Next-year cash NOI is $350,000 and the cap rate is 7%. The REIT has cash of $200,000, receivables of $100,000, debt of $1,500,000, and other liabilities of $300,000, with 50,000 shares. NAVPS is:", "opts": {"A": "$64.00", "B": "$100.00", "C": "$70.00"}, "ans": "C", "en": "L136: NAV = NOI/Cap rate + Cash + Account Receivable - Debt&Liability\nL148: cap rate 보이면 → NAV(자산 기반) ≠ 상대가치", "enLabel": "오답노트 원문", "ko": "Property value = NOI/cap rate = 5,000,000. NAV = 5,000,000 + 200,000 + 100,000 − 1,500,000 − 300,000 = 3,500,000 → NAVPS = 70.00.", "trap": "", "f": "", "why": {"A": "$64.00 leaves out cash and receivables.", "B": "$100.00 ignores cash, receivables, and liabilities."}, "orig": "Alternative Investments 오답노트 L136 · 근거 ECO-M3-Q6"}, {"id": "CON-M3-03", "src": "개념", "module": 3, "tag": "NOI for NAV", "vig": null, "stem": "A property bought during the year contributed $3.6m of NOI over its first 4 months. To build a full-year pro forma NOI, the analyst adds:", "opts": {"A": "$7.2m (the missing 8 months)", "B": "$3.6m", "C": "$10.8m"}, "ans": "A", "en": "L127: NAV용 NOI = 보고된 NOI − non-cash rent(straight-line 등) ± 연중 인수·매각 조정 → 그 후 forward 성장률 적용\nL128: 연중 인수 부동산: 이미 반영된 개월 수 외의 빠진 개월분만 추가 (예: 4개월 반영 시 3.6 × 8/4 = 7.2)\nL129: 순서: pro forma LTM cash NOI → × (1 + g) → ÷ cap rate (연환산을 먼저, 성장률은 나중)\nL139: next cash NOI = (올해 12개월 NOI − non-cash rent) × (1 + g)", "enLabel": "오답노트 원문", "ko": "NAV NOI = reported NOI − non-cash rent (straight-line) ± acquisition/disposal adjustments; add only missing months (3.6 × 8/4 = 7.2); then × (1 + g); then ÷ cap rate. Next cash NOI = (12-month NOI − non-cash rent) × (1 + g).", "trap": "", "f": "", "why": {"C": "$10.8m annualizes the full year instead of only adding the missing months.", "B": "$3.6m adds only 4 more months."}, "orig": "Alternative Investments 오답노트 L127 · 근거 SCH R32"}, {"id": "CON-M3-04", "src": "개념", "module": 3, "tag": "FFO vs AFFO", "vig": null, "stem": "AFFO is considered a better measure of dividend-paying capacity than FFO because it:", "opts": {"A": "excludes interest expense", "B": "adds back depreciation", "C": "deducts recurring maintenance capital expenditures, a real cash outflow"}, "ans": "C", "en": "L130: AFFO가 더 우수한 지표인 이유: 배당지속가능성을 더 잘 반영 (실제 현금유출인 유지보수비용 capex 차감)\nL131: FFO는 이자비용 차감한 NI에서 출발하는 levered income → leverage잘 반영\nL133: leverage ↑ → 요구 수익률 ↑ → P/FFO ↓\nL169: REIT Leverage ↑ → equity holder가 부담하는 financial risk ↑→ investor가 요구하는 return(required return) ↑ → 같은 FFO에 대해 지불하려는 price ↓ → P/FFO multiple ↓", "enLabel": "오답노트 원문", "ko": "AFFO better reflects dividend sustainability (subtracts maintenance capex). FFO starts from net income after interest → levered: leverage↑ → required return↑ → P/FFO↓.", "trap": "", "f": "", "why": {"B": "FFO already adds back depreciation.", "A": "Both start from net income after interest."}, "orig": "Alternative Investments 오답노트 L130 · 근거 SCH R32"}, {"id": "CON-M3-05", "src": "개념", "module": 3, "tag": "Property-type risks", "vig": null, "stem": "For a self-storage REIT, a key risk is:", "opts": {"A": "long-term lease rollover", "B": "obsolescence of old office buildings", "C": "new competing facilities, because barriers to entry are low"}, "ans": "C", "en": "L134: storage REIT →  진입장벽 낮음 → 신규 경쟁 시설이 핵심 risk\nL135: obsolescence (진부화): 노후 office, 산업용 건물의 risk", "enLabel": "오답노트 원문", "ko": "Storage REIT: low barriers → overbuilding risk. Obsolescence: aging office and industrial buildings.", "trap": "", "f": "", "why": {"B": "Obsolescence is a key risk for old office and industrial buildings.", "A": "Storage leases are short-term."}, "orig": "Alternative Investments 오답노트 L134 · 근거 ECO AI M3"}, {"id": "CON-M3-06", "src": "개념", "module": 3, "tag": "P/FFO valuation", "vig": null, "stem": "A REIT has FFO of $2.0m and 1.0m shares. Peers trade at an average P/FFO of 15×. The value per share is:", "opts": {"A": "$30.00", "B": "$15.00", "C": "$2.00"}, "ans": "A", "en": "L137: value per share of FFO = FFO/shares x average P/FFO multiple\nL149: P/FFO 배수 ↑ 요인: FFO 성장 ↑ / CF 변동성 ↓ / 레버리지 ↓\nL150: cashflow 안정적일수록 P/FFO 배수 높아짐", "enLabel": "오답노트 원문", "ko": "Value per share = FFO/shares × average P/FFO = 2.00 × 15 = 30.00. P/FFO higher with faster FFO growth, lower cash flow variability, lower leverage.", "trap": "", "f": "", "why": {"B": "$15.00 is the multiple, not the value.", "C": "$2.00 is FFO per share."}, "orig": "Alternative Investments 오답노트 L137 · 근거 SCH R32"}, {"id": "CON-M3-07", "src": "개념", "module": 3, "tag": "REIT valuation approaches", "vig": null, "stem": "A valuation that uses NOI, a cap rate, cash, receivables, and liabilities is a(n):", "opts": {"A": "asset-based approach (NAV)", "B": "income-based approach (DDM)", "C": "relative value approach (P/FFO)"}, "ans": "A", "en": "L140: REIT 가치평가 접근법 분류\nL144: | Asset-based | NAV | cap rate, NOI, cash·AR, liability |\nL145: | Relative/Market-ibased | P/FFO, P/AFFO | forward FFO/AFFO, expected growth,  Cash flow variability, Leverage |\nL146: | Income-based | DDM, DCF | 배당·CF 예측, r, g |\nL148: cap rate 보이면 → NAV(자산 기반) ≠ 상대가치", "enLabel": "오답노트 원문", "ko": "Asset-based: NAV (cap rate, NOI, cash, AR, liabilities). Relative: P/FFO, P/AFFO (forward FFO, growth, CF variability, leverage). Income: DDM, DCF.", "trap": "", "f": "", "why": {"C": "Relative value uses P/FFO or P/AFFO multiples.", "B": "Income-based uses dividend or cash flow forecasts."}, "orig": "Alternative Investments 오답노트 L140 · 근거 SCH R32"}, {"id": "CON-M3-08", "src": "개념", "module": 3, "tag": "REIT qualification", "vig": null, "stem": "In most countries, tax-advantaged REITs must:", "opts": {"A": "distribute at least 50% of income and hold at least 50% in real estate", "B": "distribute 90%–100% of taxable income, hold at least 75% of assets in real estate, and earn at least 75% of income from rents or mortgage interest", "C": "retain all earnings to fund development"}, "ans": "B", "en": "L138: REITs → pass-through → no double taxation\nL151: Tax-advantaged REIT의 qualification\nL155: | Taxable income distribute | 90%~100% 이상을 dividend로 distribute |\nL156: | Asset 구성 | 최소 75%를 real estate에 투자 |\nL157: | Income 구성 | 최소 75%를 rental income 또는 mortgage interest에서 얻음 |\nL159: 세 조건을 모두 충족해야 함\nL160: 분배 의무의 대가로 corporate income tax 면제 → shareholder level에서 과세\nL167: U.S.: 100명 초과 owner, 5/50 rule (5명 이하가 50% 초과 소유 불가), family-owned trust는 대체로 REIT 불가\nL168: 단점: retained earnings 제한 (분배 의무)", "enLabel": "오답노트 원문", "ko": "REIT: all three conditions (distribution 90%–100%, ≥75% real estate assets, ≥75% rental/mortgage income) → no corporate tax, taxed at shareholder level (pass-through, no double taxation). US: >100 owners, 5/50 rule. Drawback: limited retained earnings.", "trap": "", "f": "", "why": {"A": "The thresholds are 90%–100% distribution and 75% asset/income tests.", "C": "REITs must distribute most income, limiting retained earnings."}, "orig": "Alternative Investments 오답노트 L138 · 근거 SCH R32"}, {"id": "CON-M3-09", "src": "개념", "module": 3, "tag": "REIT vs REOC", "vig": null, "stem": "Compared with REITs, REOCs:", "opts": {"A": "are ordinary taxable companies that can retain earnings and do more development for sale", "B": "are tax-advantaged and must distribute 90% of income", "C": "have the lowest development exposure"}, "ans": "A", "en": "L162: |  | REIT | REOC |\nL164: | 세금 | Tax-advantaged | Ordinary taxable |\nL165: | 주된 business | Income-producing real estate 소유 | 개발 후 매각, REIT를 허용하지 않는 국가 등 |\nL173: Development exposure: REIT 는 가장 적음 (분배의무 때문에)\nL175: Development는 equity capital을 먼저 투입 (lender는 equity가 들어간 뒤에 debt 제공) → 현금을 쌓아둘 수 있어야 함\nL176: REIT: 분배 의무 + 개발·매각(merchant development) 제한\nL177: REOC: 분배 의무 없음, 더 다양한 capital structure·leverage 사용 가능\nL181: | 분배 의무 | 있음 (90%~100%) | 없음 | 없음 |\nL182: | Retained earnings | 제한 | 자유 | 자유 |\nL183: | 활동 범위 | 임대·이자 외 활동에 income·asset 한도 | 제한 없음 | 제한 없음 |\nL184: | Development exposure | 가장 낮음 | 높음 | 높음 |", "enLabel": "오답노트 원문", "ko": "REIT: tax-advantaged, owns income-producing property, distribution requirement, lowest development exposure. REOC: ordinary taxable, development for sale, countries without REIT regimes, flexible capital structure.", "trap": "", "f": "", "why": {"B": "That describes REITs.", "C": "REITs have the lowest development exposure because of distribution rules."}, "orig": "Alternative Investments 오답노트 L162 · 근거 ECO AI M3"}, {"id": "CON-M3-10", "src": "개념", "module": 3, "tag": "Public vs private real estate returns", "vig": null, "stem": "Compared with public real estate, private real estate is considered to have greater:", "opts": {"A": "liquidity", "B": "transparency", "C": "short-term stability of returns (because of appraisal smoothing)"}, "ans": "C", "en": "L170: private real estate has greater short-term stability of return than public (appraisal smoothing)\nL172: appraisal 기반 valuation으로 return이 smoothing → 단기에는 안정적으로 보이지만 실제 risk는 과소평가될 수 있음", "enLabel": "오답노트 원문", "ko": "Private RE: appraisal-based valuation → smoothing → more stable short-term returns (risk may be understated). Public RE: higher volatility, high short-term equity correlation.", "trap": "", "f": "", "why": {"B": "Private real estate has low transparency.", "A": "Private real estate is less liquid."}, "orig": "Alternative Investments 오답노트 L170 · 근거 ECO AI M2"}, {"id": "CON-M4-01", "src": "개념", "module": 4, "tag": "Equity market-neutral", "vig": null, "stem": "Equity market-neutral strategies typically:", "opts": {"A": "take large directional market bets", "B": "hold few positions and trade rarely", "C": "use a relative value approach (e.g., pairs trading) with high diversification and high turnover"}, "ans": "C", "en": "L188: Equity market-neutral strategies use a relative value approach\nL190: pairs trading - 두 종목간 relative price로 수익 냄\nL221: Equity market–neutral :  diversification ↑  &  turnover ratios ↑\nL223: 많은 종목을 long과 short으로 들고 있음 → diversification ↑\nL224: turnover ratio: 매매가 잦음. 퀀트, pairs, 평균회귀 전략이라 가격 괴리가 해소되면 바로 청산하고 새 기회로 갈아탐", "enLabel": "오답노트 원문", "ko": "EMN: relative value (pairs trading); many longs and shorts → diversification↑; quant/mean-reversion → turnover↑.", "trap": "", "f": "", "why": {"A": "Market-neutral means beta near zero.", "B": "They hold many long and short positions and trade often."}, "orig": "Alternative Investments 오답노트 L188 · 근거 ECO-M4-Q2"}, {"id": "CON-M4-02", "src": "개념", "module": 4, "tag": "Long volatility for crises", "vig": null, "stem": "To keep a high Sharpe ratio even in a crisis when equities fall, a specialist strategy should:", "opts": {"A": "buy longer-dated out-of-the-money options on VIX index futures", "B": "sell equity volatility to collect the volatility risk premium", "C": "trade cross-asset volatility between two markets"}, "ans": "A", "en": "L191: VIX : 금융 위기에도 높은 Sharp Ratio 유지\nL193: 금융 위기에 돈을 버는 포지션 = Long volatility\nL194: 주식 폭락 → VIX 급등 (상관관계 -80% )\nL195: buying longer-dated out-of-the-money options on VIX index futures\nL197: 장기 option : vega(volatility 민감도) ↑ ⇒ 변동성 노출 ↑\nL198: OTM : premium이 저렴\nL235: selling volatility provides a volatility risk premium or compensation for taking on the risk of providing insurance\nL237: long volatility positioning exhibits positive convexity→  useful for hedging purposes.", "enLabel": "오답노트 원문", "ko": "Long volatility (VIX jumps when stocks crash, correlation about −80%): longer-dated options have more vega; OTM options are cheap. Long volatility has positive convexity (hedging); selling volatility earns a volatility risk premium for providing insurance.", "trap": "", "f": "", "why": {"B": "Selling volatility loses in crises.", "C": "Relative volatility trades do not reliably pay off in crashes."}, "orig": "Alternative Investments 오답노트 L191 · 근거 ECO-M4-Q7"}, {"id": "CON-M4-03", "src": "개념", "module": 4, "tag": "Variance constraint", "vig": null, "stem": "A portfolio's variance must stay below 90% of the current level. If current standard deviation is 10%, the new standard deviation must be below:", "opts": {"A": "9.00%", "B": "8.10%", "C": "9.49%"}, "ans": "C", "en": "L199: 분산(variance) 제약(예: 현재의 90% 미만) → 표준편차로 바꿀 때 √(비율)을 곱함: σ_new < √0.9 × σ_current(0.9를 바로 곱하면 ✖)", "enLabel": "오답노트 원문", "ko": "Variance limit → standard deviation limit uses the square root: σ_new < √0.9 × 10% = 9.49%.", "trap": "", "f": "", "why": {"A": "9.00% applies 0.9 to standard deviation instead of variance.", "B": "8.10% multiplies by 0.9 twice."}, "orig": "Alternative Investments 오답노트 L199 · 근거 ECO-M4-Q9"}, {"id": "CON-M4-04", "src": "개념", "module": 4, "tag": "Sortino ratio", "vig": null, "stem": "When large negative events are the main concern, the best risk-adjusted measure for choosing among portfolios is the:", "opts": {"A": "standard deviation alone", "B": "Sharpe ratio", "C": "Sortino ratio (highest is best)"}, "ans": "C", "en": "L200: 큰 손실(large negative events)이 우려되는 위험조정수익 비교 → Sortino ratio(downside deviation 기준)가 가장 큰 포트폴리오 선택\nL201: Negative events, downside→ Sortino", "enLabel": "오답노트 원문", "ko": "Downside / negative events → Sortino ratio (excess return / downside deviation); pick the highest.", "trap": "", "f": "", "why": {"B": "Sharpe treats upside and downside volatility the same.", "A": "Standard deviation ignores return and downside focus."}, "orig": "Alternative Investments 오답노트 L200 · 근거 ECO-M4-Q9"}, {"id": "CON-M4-05", "src": "개념", "module": 4, "tag": "Opportunistic strategies", "vig": null, "stem": "Compared with managed futures, global macro funds tend to be:", "opts": {"A": "more systematic, using time-series momentum", "B": "less levered and less liquid", "C": "more heterogeneous across managers, with discretionary positioning that is often early"}, "ans": "C", "en": "L202: Opportunistic : Leverage ↑ , Liquidity ↑ , Reft tail (Global macro&Managed futures 둘 다)\nL204: Global macro가 더 heterogeneous → 매니저별 결과 편차 큼\nL205: Managed futures: crisis alpha\nL298: Global macro: discretionary → 남보다 먼저 추세를 예상해 positioning → 너무 이르게 들어가는 경향\nL299: Managed futures: systematic → 더 꾸준한 α , time-series momentum(상승 자산 매수·하락 자산 매도)", "enLabel": "오답노트 원문", "ko": "Opportunistic (global macro, managed futures): high leverage, high liquidity. Global macro: discretionary, heterogeneous, tends to enter early. Managed futures: systematic, time-series momentum, 'crisis alpha', more consistent alpha.", "trap": "", "f": "", "why": {"A": "Managed futures are the systematic, momentum-driven ones.", "B": "Both opportunistic strategies use high leverage and liquid instruments."}, "orig": "Alternative Investments 오답노트 L202 · 근거 SCH R33"}, {"id": "CON-M4-06", "src": "개념", "module": 4, "tag": "Factor coefficients and option-like exposure", "vig": null, "stem": "A hedge fund has a positive coefficient on changes in the VIX. Its exposure is most like:", "opts": {"A": "a long put (bought insurance), gaining in crises", "B": "no exposure to market stress", "C": "a short put (sold insurance), losing in crises"}, "ans": "A", "en": "L207: Long deep OTM Put : 평소에는 조용하다가 위기 때만 켜지는 보험\nL208: Fund coefficient 해석\nL210: fund 수익 = coefficient x factor 수익률\nL211: 음수 coefficient : 시장과 반대 방향 → 하락장에 이익 → Long put과 같은 효과\nL212: (+) VIX  = 보험을 산 쪽(long put) → 위기 때 이익\nL213: (-) VIX 계수 = 보험을 판 쪽(short put) → 평소 premium, 위기 때 Loss", "enLabel": "오답노트 원문", "ko": "Fund return = coefficient × factor return. Positive VIX coefficient = long put (insurance bought). Negative VIX coefficient = short put (earns premium normally, loses in crises). Negative market coefficient → gains in down markets, like a long put. Long deep OTM put = quiet insurance that pays in crises.", "trap": "", "f": "", "why": {"C": "A negative VIX coefficient behaves like a short put.", "B": "A VIX coefficient measures exposure to stress."}, "orig": "Alternative Investments 오답노트 L207 · 근거 SCH R33"}, {"id": "CON-M4-07", "src": "개념", "module": 4, "tag": "Merger arbitrage", "vig": null, "stem": "Why would an institutional investor include a merger arbitrage fund?", "opts": {"A": "As an uncorrelated source of alpha in normal markets", "B": "Because it has no beta or left-tail risk", "C": "To earn an illiquidity premium"}, "ans": "A", "en": "L215: Merger Arb → uncorrelated source of alpha\nL217: 평상시: corr ↓ (deal이 수익 결정) → 편입 이유 = uncorrelated α\nL218: 위기 시: 높아짐 (딜 동시 무산) → left-tail, 숨은 β\nL219: Put 매도와 같은 모양(평소 delta≈0, 폭락 시 큰 손실)\nL220: 베타 위험 없다 → ❌ / 평상시 상관관계 낮다→ ✅", "enLabel": "오답노트 원문", "ko": "Merger arbitrage: low correlation normally (deal outcomes drive returns); correlation rises in crises (deals fail together) → left-tail, like a short put. 'No beta risk' is wrong; 'low normal-time correlation' is right.", "trap": "", "f": "", "why": {"C": "Merger arbitrage is relatively liquid.", "B": "Deals fail together in crises, adding hidden beta and left-tail risk."}, "orig": "Alternative Investments 오답노트 L215 · 근거 ECO-M4-Q29"}, {"id": "CON-M4-08", "src": "개념", "module": 4, "tag": "Distressed securities", "vig": null, "stem": "Distressed securities investing (also called capital structure arbitrage) typically has:", "opts": {"A": "returns driven mainly by market beta", "B": "high leverage and high liquidity", "C": "idiosyncratic alpha, low leverage, high illiquidity, and a long bias"}, "ans": "C", "en": "L214: Capital structure arbitrage →  distressed securities\nL225: Distressed securities\nL227: idiosyncratic α : 결과가 그 기업의 구조조정에 걸려있음\nL228: Leverage ↓ & Liquidity ↓ : 회생 오래걸림\nL229: Long-bias : 부도난 기업을 싸게 사서 회생을 기다림", "enLabel": "오답노트 원문", "ko": "Distressed: outcome tied to the company's restructuring (idiosyncratic alpha); low leverage; illiquid (long workout); mostly long (buy cheap, wait for recovery).", "trap": "", "f": "", "why": {"B": "Distressed investing uses little leverage and is illiquid.", "A": "Returns depend on each company's restructuring."}, "orig": "Alternative Investments 오답노트 L214 · 근거 SCH R33"}, {"id": "CON-M4-09", "src": "개념", "module": 4, "tag": "Duration-neutral fixed-income arbitrage", "vig": null, "stem": "A duration-neutral fixed-income arbitrage fund is hedged against:", "opts": {"A": "large yield changes", "B": "small parallel shifts in the yield curve", "C": "a steepening yield curve"}, "ans": "B", "en": "L230: Duration-neutral: long과 short의 duration을 맞춰 interest rate risk를 immunize\nL232: Small parallel shift에 대해서만 금리 위험 제거. 큰 금리 변화나 곡선 모양 변화(steepening)는 hedge X\nL233: hedge 범위가 small parallel shift로 제한되므로, 큰 shock이나 curve shape 변화에서는 손실 가능성 Ospsp", "enLabel": "오답노트 원문", "ko": "Duration-neutral: match long and short durations → immunized only for small parallel shifts; large shocks and curve-shape changes can cause losses.", "trap": "", "f": "", "why": {"A": "Duration hedges fail for large moves (convexity).", "C": "Duration matching does not hedge shape changes."}, "orig": "Alternative Investments 오답노트 L230 · 근거 ECO-M4-Q38"}, {"id": "CON-M4-10", "src": "개념", "module": 4, "tag": "Long/short equity skill", "vig": null, "stem": "The skill of long/short equity managers in delivering alpha comes mainly from:", "opts": {"A": "currency hedging", "B": "stock selection", "C": "market timing with futures"}, "ans": "B", "en": "L239: skill of long/short equity managers in delivering alpha derives mainly from stock selection", "enLabel": "오답노트 원문", "ko": "Long/short equity alpha derives mainly from stock selection.", "trap": "", "f": "", "why": {"C": "Market timing is not the main source.", "A": "Currency hedging is not the main source."}, "orig": "Alternative Investments 오답노트 L239 · 근거 SCH R33"}, {"id": "CON-M4-11", "src": "개념", "module": 4, "tag": "Convertible bond arbitrage", "vig": null, "stem": "A convertible bond (par €1,000) trades at 115 and converts into 50 shares, so its conversion price is €23; the share price is €28. Buying the convertible and shorting 50 shares, for small share price changes the profit per share is:", "opts": {"A": "higher if the share price falls", "B": "higher if the share price rises", "C": "€5, regardless of whether the share price rises or falls"}, "ans": "C", "en": "L206: long CB + short stock, small price changes → 손익은 주가와 무관\nL253: Convertible arbitrage 손익 계산\nL255: (S₀ − K) + 쿠폰/주 − borrowing cost\nL256: K=채권 시장가 ÷ conversion ratio\nL257: 주가 변화는 long 채권과 short 주식이 상쇄 → 주가가 얼마나 변해도 결과 동일\nL258: 가격이 \"105\"로 나오면 → 액면의 105%로 읽고 시장가치 = 액면 × 1.05\nL261: Profit = (S_1 - K)_long bond 이익 + coupon + (S_0 - S_1)_short stock 이익 - borrowing cost\nL266: | Conversion price | bond 시장가치 / conversion ratio |\nL267: | Long bond 이익 | ending stock price − conversion price |\nL268: | Coupon/share | 5% × par / conversion ratio |\nL269: | Short stock 이익 | starting price − ending price |\nL270: | Borrowing cost | −4 |", "enLabel": "오답노트 원문", "ko": "Profit = (S₁ − K) + coupon + (S₀ − S₁) − borrowing cost, K = bond market value / conversion ratio = 23 → 28 − 23 = 5 (plus coupon per share, minus borrowing cost). A price of '105' means 105% of par.", "trap": "", "f": "", "why": {"B": "Gains on the bond are offset by losses on the short.", "A": "Losses on the bond are offset by gains on the short."}, "orig": "Alternative Investments 오답노트 L206 · 근거 ECO-M4-Q14"}, {"id": "CON-M4-12", "src": "개념", "module": 4, "tag": "Convertible arbitrage – mechanics and environment", "vig": null, "stem": "A convertible bond arbitrage strategy (long convertible, short stock) most likely:", "opts": {"A": "buys implied volatility and must short more stock as the share price rises (delta increases)", "B": "works best in illiquid markets with acute credit stress", "C": "has a delta that falls as the share price rises"}, "ans": "A", "en": "L240: convertible bond arbitrage strategy ( buys convertible bond & short position in the underlying stock) → 주식 가격 증가 시  delta ↑\nL242: CB 매수 + delta hedge → option mispricing으로 이익보기\nL272: Convertible bond = regular bond + long call\nL273: strategy = implied volatility 매수 + short stock으로 delta·gamma hedge\nL274: 잘 작동하는 환경: normal market(liquidity, 완만한 volatility, 신규 발행 풍부), 약한 환경: illiquidity, acute credit weakness", "enLabel": "오답노트 원문", "ko": "Convertible = bond + long call. Strategy = buy implied volatility, delta/gamma hedge with short stock; profit from option mispricing. Good: normal markets (liquidity, moderate volatility, new issuance). Bad: illiquidity, acute credit weakness.", "trap": "", "f": "", "why": {"B": "It works best in normal markets with liquidity and new issuance.", "C": "Delta rises with the share price."}, "orig": "Alternative Investments 오답노트 L240 · 근거 SCH R33"}, {"id": "CON-M4-13", "src": "개념", "module": 4, "tag": "Hedge fund indexes", "vig": null, "stem": "The most appropriate benchmark for a small long/short equity fund open to new investment is the:", "opts": {"A": "HFRI index (equal-weighted, funds open to new investment)", "B": "Credit Suisse Hedge Fund Index", "C": "HFRX index"}, "ans": "A", "en": "L243: Hedge fund index\nL245: Equal-weighted: 평균적인 manager 성과\nL246: Asset-weighted: AUM 큰 fund가 좌우\nL250: | HFRI | Equal-weighted | Open to new investment만 | Replicate 가능, small fund 반영 |\nL251: | HFRX | Equal-weighted | Open + closed | Closed fund 포함 → real-time replicate 불가 |\nL252: | Credit Suisse HF Index | Asset-weighted | 전체 | 큰 fund(multi-strategy 등) 영향 큼 |", "enLabel": "오답노트 원문", "ko": "Equal-weighted → average manager; asset-weighted → large funds dominate. HFRI: equal-weighted, open funds only. HFRX: equal-weighted, open and closed. Credit Suisse: asset-weighted.", "trap": "", "f": "", "why": {"C": "HFRX includes funds closed to new investment, so it cannot be replicated in real time.", "B": "Credit Suisse is asset-weighted, dominated by large funds."}, "orig": "Alternative Investments 오답노트 L243 · 근거 ECO-M4-Q45"}, {"id": "CON-M4-14", "src": "개념", "module": 4, "tag": "Fund-of-funds net return", "vig": null, "stem": "A fund-of-funds invests equally in two funds with gross returns of 10% and 20%. Each underlying fund charges 2% management and 20% incentive (on returns net of the management fee). The FoF charges 1% and 10% on the same basis. The FoF investor's net return is closest to:", "opts": {"A": "10.40%", "B": "8.46%", "C": "9.36%"}, "ans": "B", "en": "L276: FoF net return = underlying fund net return의 평균에서 (base fee 차감) × (1 − incentive fee)\nL277: 순서: 각 fund (gross − mgmt fee) × (1 − incentive) → 평균 → (평균 − base fee) × (1 − incentive)\nL281: 1. 각 underlying fund net return = (gross − management fee) × (1 − incentive %)\nL282: 2. FoF gross return = underlying net return의 가중평균\nL283: 3. FoF net return = (FoF gross − base fee) × (1 − incentive %)\nL285: Incentive fee는 \"net of management fee\" 조건이면 management fee 차감 후 return 기준", "enLabel": "오답노트 원문", "ko": "Underlying net: (10 − 2) × 0.8 = 6.4%; (20 − 2) × 0.8 = 14.4%. FoF gross = average = 10.4%. FoF net = (10.4 − 1) × 0.9 = 8.46%.", "trap": "", "f": "", "why": {"A": "10.40% is the FoF's gross return before its own fees.", "C": "9.36% forgets to subtract the FoF's 1% base fee first."}, "orig": "Alternative Investments 오답노트 L276 · 근거 SCH R33"}, {"id": "CON-M4-15", "src": "개념", "module": 4, "tag": "Multi-strategy funds vs funds of funds", "vig": null, "stem": "Compared with a fund-of-funds, a multi-strategy fund typically has:", "opts": {"A": "faster tactical allocation and better fee netting, but higher operational risk and stricter redemption terms", "B": "lower operational risk", "C": "slower reallocation across strategies"}, "ans": "A", "en": "L287: multi-strategy 펀드는 더 나은 수수료 구조와 빠른 전술적 배분 → outperform FoF. But 분기별 환매 한도(gate) 등 redemption provision이 더 엄격", "enLabel": "오답노트 원문", "ko": "Multi-strategy: better fee structure (netting at strategy level), faster tactical allocation → often outperform FoF; but stricter redemption provisions (gates) and higher operational risk.", "trap": "", "f": "", "why": {"B": "Consolidated operations make multi-strategy funds' operational risk higher.", "C": "Multi-strategy funds can reallocate more quickly."}, "orig": "Alternative Investments 오답노트 L287 · 근거 ECO-M4-Q40"}, {"id": "CON-M4-16", "src": "개념", "module": 4, "tag": "Systematic vs discretionary", "vig": null, "stem": "The herding effect is a particular risk for:", "opts": {"A": "fundamental equity long-only funds", "B": "systematic trend-following funds using similar signals", "C": "discretionary managers who rely on instinct"}, "ans": "B", "en": "L288: Opportunistic strategy\nL292: | Analysis | Technical | 과거 가격 변화로 미래 가격 예측 |\nL293: |  | Fundamental | 경제 데이터로 가격·market·sector 간 관계 분석 |\nL294: | Implementation | Systematic | Algorithm·rule 기반 |\nL295: |  | Discretionary | Manager의 instinct 기반 → herding effect 회피  가능 |\nL297: Herding effect: 비슷한 signal을 쓰는 systematic trend-following fund가 많아져 crowding → 동시 반전 시 execution slippage, liquidity 압도, 가격 일시 왜곡", "enLabel": "오답노트 원문", "ko": "Analysis: technical vs fundamental. Implementation: systematic (rules) vs discretionary (instinct, can avoid herding). Herding: crowded trend signals → simultaneous reversals, slippage, liquidity strain, price distortion.", "trap": "", "f": "", "why": {"C": "Discretionary managers can avoid herding.", "A": "Herding here refers to crowded systematic signals."}, "orig": "Alternative Investments 오답노트 L288 · 근거 SCH R33"}, {"id": "CON-M4-17", "src": "개념", "module": 4, "tag": "Illiquidity and performance measures", "vig": null, "stem": "Which measure helps detect return smoothing from illiquid holdings?", "opts": {"A": "First-order serial autocorrelation (rho)", "B": "Sortino ratio", "C": "Sharpe ratio"}, "ans": "A", "en": "L300: Hedge fund 평가 지표와 liquidity\nL302: Illiquid security → appraisal·stale price → return smoothing → measured standard deviation ↓ → Sharpe·Sortino 인위적 상승, rho ↑\nL303: Illiquid asset의 return은 시장 가격이 아니라 estimate에 의존해서 smoothing이 생김 →  변동성이 과소평가됨 → rho로 판단 필요\nL304: Rho ↑ :  return이 smoothing된 흔적 → underlying security의 illiquidity, 낮은 거래 빈도(infrequent trading)를 시사\nL305: Appraisal lag → smoothing → 변동성 과소평가 → Sharpe ratio 높게, correlation 낮게  잘못 측정\nL309: | Sharpe ratio | excess return / standard deviation (upside·downside 모두 risk) | ✖ (smoothing으로 부풀려짐) |\nL310: | Sortino ratio | excess return / downside deviation | ✖ (left-tail risk가 있는 hedge fund에 Sharpe보다 우수하지만 smoothing 영향은 받음) |\nL311: | First-order serial autocorrelation (rho) | 이번 return과 lagged return의 correlation | ✔ (높은 rho = smoothing, illiquidity·infrequent trading 신호) |", "enLabel": "오답노트 원문", "ko": "Illiquid assets → stale/appraisal prices → smoothing → lower measured volatility → inflated Sharpe/Sortino. High rho signals smoothing, illiquidity, infrequent trading.", "trap": "", "f": "", "why": {"C": "Smoothing inflates the Sharpe ratio.", "B": "Sortino is better for left-tail risk but is also inflated by smoothing."}, "orig": "Alternative Investments 오답노트 L300 · 근거 ECO-M4-Q52"}], "vignettes": [], "modules": {"1": "Introduction to Commodities and Commodity Derivatives", "2": "Overview of Types of Real Estate Investment", "3": "Investments in Real Estate through Publicly Traded Securities", "4": "Hedge Fund Strategies"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "AlternativeInvestmentsConcept", KEY = "AlternativeInvestmentsConcept_quiz_state_v1", EXPKEY = "AlternativeInvestmentsConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Alternative Investments 개념 확인</h2>'+
+   '<p class="muted">Alternative Investments 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Derivatives Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Derivatives 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Clean vs full price", "vig": null, "stem": "The full (dirty, invoice) price of a bond equals:", "opts": {"A": "clean price − accrued interest", "B": "clean price × conversion factor", "C": "clean (quoted, flat) price + accrued interest"}, "ans": "C", "en": "L7: Clean price= quoted price = flat price호가되는 가격, AI 제외\nL8: Full price= dirty price = invoice price실제 결제 금액, AI 포함\nL9: Full price=Clean price+Accrued interest", "enLabel": "오답노트 원문", "ko": "Clean = quoted = flat price (excludes AI). Full = dirty = invoice price actually paid = clean + AI.", "trap": "", "f": "", "why": {"A": "Accrued interest is added, not subtracted.", "B": "The conversion factor applies to futures prices, not to bond full prices."}, "orig": "Derivatives 오답노트 L7 · 근거 SCH R28"}, {"id": "CON-M1-02", "src": "개념", "module": 1, "tag": "Accrued interest", "vig": null, "stem": "A bond pays a 6% annual coupon semiannually ($3 per $100 each period). It has been 60 days since the last coupon in a 180-day period (30/360). Accrued interest per $100 is:", "opts": {"A": "$0.50", "B": "$2.00", "C": "$1.00"}, "ans": "C", "en": "L12: AI = (지난 날수 / 쿠폰기간) × 쿠폰\nL13: semi annual → n/180 !\nL189: AI = (Days since last coupon)/(Days in coupon period) / × Coupon payment", "enLabel": "오답노트 원문", "ko": "AI = (days since last coupon / days in coupon period) × coupon payment = 60/180 × 3 = 1.00.", "trap": "", "f": "", "why": {"B": "$2.00 uses the full $6 annual coupon.", "A": "$0.50 divides by 360 days instead of the 180-day coupon period."}, "orig": "Derivatives 오답노트 L12 · 근거 SCH R28"}, {"id": "CON-M1-03", "src": "개념", "module": 1, "tag": "Treasury futures price", "vig": null, "stem": "A deliverable bond has a clean price of 105 and accrued interest of 1.00. The risk-free rate is 2% (annual), the contract expires in 0.25 years, no coupons are paid before expiry, accrued interest at expiry will be 2.50, and the conversion factor is 0.90. The quoted futures price is closest to:", "opts": {"A": "93.62", "B": "115.58", "C": "118.36"}, "ans": "B", "en": "L10: Future Price = (Full price × (1+r)^T) − FV(쿠폰) − AI_T\nL11: Quoted futures price = Future Price ÷ conversion factor\nL102: Bond futures 가격 = [full price를 만기까지 FV − 만기 시점 AI − FVCI] ÷ CF\nL104: 현재 AI는 더하고(full price로 매수), 만기 AI는 뺌(futures는 clean으로 호가)\nL105: Q_0 = ((B_0 + AI_0)(1+r)^T - AI_T - FVCI)/(CF)\nL191: QF구할 때 현재 AI는 더하고 만기 AI는 뺌", "enLabel": "오답노트 원문", "ko": "Q₀ = [(B₀ + AI₀)(1 + r)^T − AI_T − FVCI] / CF = [106 × 1.02^0.25 − 2.50] / 0.90 = (106.526 − 2.50)/0.90 = 115.58. Add today's AI (buy at full price), subtract AI at expiry (futures quoted clean).", "trap": "", "f": "", "why": {"C": "118.36 forgets to subtract the accrued interest at expiry.", "A": "93.62 multiplies by the conversion factor instead of dividing."}, "orig": "Derivatives 오답노트 L10 · 근거 SCH R28"}, {"id": "CON-M1-04", "src": "개념", "module": 1, "tag": "Conversion factor and accrued interest", "vig": null, "stem": "In Treasury futures, the invoice price paid at delivery is:", "opts": {"A": "futures price ÷ conversion factor + accrued interest", "B": "futures price × conversion factor + accrued interest (the conversion factor is not applied to accrued interest)", "C": "(futures price + accrued interest) × conversion factor"}, "ans": "B", "en": "L37: 3. Conversion Factor 방향\nL39: | 내가 알고 있는 것 | 구하려는 것 | CF |\nL41: | Futures price | 채권의 delivery price | × CF |\nL42: | 채권 가격 | Futures theoretical price | ÷ CF |\nL44: Futures → Bond  : `Delivery Price = Futures Price × Conversion Factor`\nL45: Bond → Futures : `Theoretical Futures Price = Carry-adjusted Bond Price ÷ Conversion Factor`\nL52: conversion factor in a futures contract does not apply to accrued interest\nL54: Invoice price = F × CF + AI_T → AI에는 CF를 곱하지 않음\nL55: No-arbitrage: F × CF + AI_T + FVCI = (B_0 + AI_0)(1+r)^T / ", "enLabel": "오답노트 원문", "ko": "Invoice = F × CF + AI_T. No-arbitrage: F × CF + AI_T + FVCI = (B₀ + AI₀)(1 + r)^T. Futures → bond: × CF; bond → futures: ÷ CF.", "trap": "", "f": "", "why": {"C": "The conversion factor does not apply to accrued interest.", "A": "To go from futures to bond price, multiply by CF."}, "orig": "Derivatives 오답노트 L37 · 근거 ECO-M1-Q40"}, {"id": "CON-M1-05", "src": "개념", "module": 1, "tag": "Cash-and-carry arbitrage profit", "vig": null, "stem": "Using the bond above (carry-adjusted full price at expiry 106.526, AI at expiry 2.50, CF 0.90), the futures trades at 117.00. The cash-and-carry arbitrage profit per 100 is closest to:", "opts": {"A": "−1.23", "B": "1.02", "C": "1.27"}, "ans": "C", "en": "L24: Treasury Futures: Cash-and-Carry Arbitrage\nL26: 1. Futures가 고평가 → Cash-and-Carry\nL28: Buy bond→ Finance & hold→ Short futures→ Deliver bond\nL29: Arbitrage Profit : `Delivery Proceeds − Cost of Carry`\nL31: 2. Cost of Carry : `Bond Purchase Price + Financing Cost − Coupon Income`\nL33: → 채권을 사서 만기까지 보유하는 순비용\nL35: Delivery proceeds `= Futures quoted × Conversion Factor + AI at expiration`", "enLabel": "오답노트 원문", "ko": "Futures overpriced → buy bond, finance and hold, short futures, deliver. Profit = delivery proceeds (117 × 0.90 + 2.50 = 107.80) − cost of carry (106.526) = 1.27.", "trap": "", "f": "", "why": {"A": "−1.23 leaves out the accrued interest received at delivery.", "B": "1.02 wrongly multiplies the accrued interest by the conversion factor."}, "orig": "Derivatives 오답노트 L24 · 근거 SCH R28"}, {"id": "CON-M1-06", "src": "개념", "module": 1, "tag": "FRA settlement", "vig": null, "stem": "A long 6 × 9 FRA on $20m has a fixed rate of 0.70%. At expiry, 3-month MRR is 1.10%. The settlement amount paid at FRA expiry is closest to:", "opts": {"A": "$20,000", "B": "$19,965", "C": "$19,945"}, "ans": "C", "en": "L14: FRA는 FRA 만기 시점에 결제 → 이자 차이(payoff)를 기초 대출 기간만큼 할인\nL15: 할인 기간 = 기초 대출 기간 (6 × 9면 9 − 6 = 3개월), 할인율 = 만기에 확정된 그 기간의 MRR\nL46: 3개월 금리가 0.9%  → 1+ 0.009x0.25  / ", "enLabel": "오답노트 원문", "ko": "FRA settles at FRA expiry: payoff (1.10% − 0.70%) × 90/360 × 20m = 20,000, discounted over the underlying 3 months at the realized MRR: 20,000/(1 + 0.011 × 0.25) = 19,945.", "trap": "", "f": "", "why": {"A": "$20,000 is the payoff at the end of the loan period; it must be discounted back 3 months.", "B": "$19,965 discounts at the FRA fixed rate; use the MRR set at expiry."}, "orig": "Derivatives 오답노트 L14 · 근거 ECO-M1-Q20"}, {"id": "CON-M1-07", "src": "개념", "module": 1, "tag": "FRA rate", "vig": null, "stem": "90-day MRR is 2.0% and 270-day MRR is 3.0%. The 3 × 9 FRA rate is closest to:", "opts": {"A": "1.74%", "B": "3.48%", "C": "3.50%"}, "ans": "B", "en": "L184: FRA₀ =  ([1 + L_T·t_T] )/( [1 + L_h·t_h]) − 1   t_m\nL186: t_m = FRA 기간\nL187: L_t = Long-period MRR, L_h = short period MRR\nL188: 1+기간별 금리임!!!!", "enLabel": "오답노트 원문", "ko": "FRA = {[1 + L_T × t_T]/[1 + L_h × t_h] − 1}/t_m = [(1 + 0.03 × 0.75)/(1 + 0.02 × 0.25) − 1]/0.5 = (1.0225/1.005 − 1)/0.5 = 3.48%.", "trap": "", "f": "", "why": {"C": "3.50% subtracts simple interest without compounding through (1 + rate × period).", "A": "1.74% is the 6-month periodic rate, not annualized."}, "orig": "Derivatives 오답노트 L184 · 근거 SCH R28"}, {"id": "CON-M1-08", "src": "개념", "module": 1, "tag": "Interest rate swap value", "vig": null, "stem": "A pay-fixed swap on $10m was entered at 2.0%. The current swap rate for the remaining term is 2.5%, and the sum of remaining discount factors is 2.8. The value to the pay-fixed party is:", "opts": {"A": "−$140,000", "B": "+$140,000", "C": "+$50,000"}, "ans": "B", "en": "L16: Interest Rate Swap Value / V = N_A × (FS_t − FS_p) × Annuity Factor\nL17: N_A = Notional amount\nL18: FS_t = 현재 시장의 forward swap rate\nL19: FS_p = 최초 계약 당시 swap rate\nL20: Annuity Factor = 남은 각 지급시점의 PV factor 합계\nL22: FS_t = (1 - PVF_t) / ΣPVF\nL47: Swap Value propto 기존 Fixed Rate - 현재 SFR\nL70: V(pay-fixed) = NA × (FS_t − FS_0) × ΣPV\nL72: | Swap Value | Formula |\nL74: | Receive fixed / Pay floating | N(FS_0-FS_t)Σ PVF |\nL75: | Pay fixed / Receive floating | N(FS_t-FS_0)Σ PVF |", "enLabel": "오답노트 원문", "ko": "Pay-fixed: V = N × (FS_t − FS₀) × ΣPV = 10m × 0.005 × 2.8 = 140,000. Receive-fixed: N × (FS₀ − FS_t) × ΣPV. Swap rate FS = (1 − PVF_n)/ΣPVF.", "trap": "", "f": "", "why": {"A": "The pay-fixed party gains when current rates exceed the original fixed rate.", "C": "$50,000 forgets to multiply by the annuity factor (2.8)."}, "orig": "Derivatives 오답노트 L16 · 근거 SCH R28"}, {"id": "CON-M1-09", "src": "개념", "module": 1, "tag": "Carry vs reverse carry arbitrage", "vig": null, "stem": "If a forward is underpriced relative to its no-arbitrage value, the arbitrage is:", "opts": {"A": "reverse carry: short the underlying and go long the forward", "B": "no arbitrage is possible", "C": "carry: buy the underlying and short the forward"}, "ans": "A", "en": "L56: reverse carry arbitrage opportunity : Forward가 underpriced 돼있을 때 long forward + short underlying\nL58: | 상황 | 전략 |\nL60: | Forward overpriced | Carry arbitrage |\nL61: | Forward underpriced | Reverse carry arbitrage |\nL62: | Carry | Buy underlying + Short forward |\nL63: | Reverse carry | Short underlying + Long forward |", "enLabel": "오답노트 원문", "ko": "Forward overpriced → carry arbitrage (buy underlying + short forward). Underpriced → reverse carry (short underlying + long forward).", "trap": "", "f": "", "why": {"C": "Carry arbitrage applies when the forward is overpriced.", "B": "Any mispricing relative to F₀ = FV(S₀) allows arbitrage."}, "orig": "Derivatives 오답노트 L56 · 근거 ECO-M1-Q9"}, {"id": "CON-M1-10", "src": "개념", "module": 1, "tag": "Rules of arbitrage", "vig": null, "stem": "Which describes how an arbitrageur operates?", "opts": {"A": "She invests her own capital in the underlying", "B": "She takes market price risk on the total trade", "C": "She never uses her own money and invests short-sale proceeds at the risk-free rate"}, "ans": "C", "en": "L48: arbitrageur never uses her own money to purchase the underlying security and always invests any proceeds from short selling transactions at the risk-free rate.", "enLabel": "오답노트 원문", "ko": "Arbitrageur: never uses own money (short-sale proceeds invested at the risk-free rate) and takes no market price risk on the total trade.", "trap": "", "f": "", "why": {"A": "Arbitrage is self-financing.", "B": "The total trade has no market price risk."}, "orig": "Derivatives 오답노트 L48 · 근거 ECO-M1-Q30"}, {"id": "CON-M1-11", "src": "개념", "module": 1, "tag": "FRA positions", "vig": null, "stem": "In an FRA, the party that receives the fixed rate is:", "opts": {"A": "short the FRA (short Euribor)", "B": "long the FRA (long Euribor)", "C": "neither long nor short"}, "ans": "A", "en": "L65: fixed-rate receiver = Short FRA = Short Euribor\nL66: Floating rate receiver = Long FRA =Long Euribor\nL94: FRA is cash-settled → Euribor deposit (예금) 의무 아님", "enLabel": "오답노트 원문", "ko": "Fixed-rate receiver = short FRA = short Euribor; floating-rate receiver = long FRA = long Euribor. FRAs are cash-settled; no Euribor deposit is required.", "trap": "", "f": "", "why": {"B": "The floating-rate receiver is long.", "C": "Every FRA has a long and a short side."}, "orig": "Derivatives 오답노트 L65 · 근거 ECO-M1-Q39"}, {"id": "CON-M1-12", "src": "개념", "module": 1, "tag": "Futures value after daily settlement", "vig": null, "stem": "After daily marking to market, the market value of a futures contract is:", "opts": {"A": "the futures price", "B": "zero", "C": "the cumulative gain since inception"}, "ans": "B", "en": "L67: future contract’s market value at the end of each day is zero", "enLabel": "오답노트 원문", "ko": "Futures are settled daily → value returns to zero at the end of each day.", "trap": "", "f": "", "why": {"C": "Gains are paid out daily, resetting value.", "A": "The price is not the contract's value."}, "orig": "Derivatives 오답노트 L67 · 근거 ECO-M1-Q40"}, {"id": "CON-M1-13", "src": "개념", "module": 1, "tag": "Floating-rate bond at reset", "vig": null, "stem": "When pricing a plain vanilla swap by replication, the value of the floating-rate bond at initiation (or any reset date) is:", "opts": {"A": "zero", "B": "par", "C": "the value of the fixed-rate bond minus par"}, "ans": "B", "en": "L68: Floating-rate bond = reset date 직후 par→ 따라서 swap valuation에서 reset 시점에서 floating leg= 1\nL99: 처음 fixed rate = 현재 fixed rate →  Swap  value= zero\nL101: swap value = NA × (FSt − FS0) × ΣPV  (PV factors 계산 필요 X)\nL180: value of a floating-rate bond at the reset date (including initiation) is 1 (par) because the interest payment is set to match the discount rate", "enLabel": "오답노트 원문", "ko": "A floating-rate bond is worth par right after a reset (coupon set to the discount rate); in swap valuation the floating leg = 1 at reset. At initiation the swap value is zero.", "trap": "", "f": "", "why": {"A": "It is the swap, not the floating-rate bond, that is worth zero at initiation.", "C": "The floater is worth par because its coupon resets to the discount rate."}, "orig": "Derivatives 오답노트 L68 · 근거 ECO-M1-Q55"}, {"id": "CON-M1-14", "src": "개념", "module": 1, "tag": "Equity swap fixed rate", "vig": null, "stem": "The fixed rate on a receive-equity, pay-fixed equity swap equals:", "opts": {"A": "the expected equity return", "B": "zero", "C": "the rate on a same-maturity fixed-for-floating interest rate swap"}, "ans": "C", "en": "L49: equity swap : pay fixed rate → notional * fixed rate / swap 주기 = 내가 주는 이자\nL51: 고정금리 채권을 빌려서 short → 받은 돈으로 주식 삼 → 주식 수익은 내꺼고, fixed rate 주면 됨\nL77: equity-for-equity swaps은 별도 pricing 필요 X\nL79: Equity-for-Equity = Equity for  Fixed + Fixed for Equity\nL80: fixed rate = same-maturity fixed-for-floating IRS rate", "enLabel": "오답노트 원문", "ko": "Equity swap: fixed leg = fixed-rate bond, equity leg = index investment worth par at start → fixed rate = same-maturity IRS rate. Equity-for-equity needs no separate pricing (= equity-for-fixed + fixed-for-equity). Pay fixed: notional × fixed rate / payments per year.", "trap": "", "f": "", "why": {"A": "The fixed leg is priced like a fixed-rate bond, not from equity expectations.", "B": "A fixed leg pays a positive rate."}, "orig": "Derivatives 오답노트 L49 · 근거 ECO Deriv M1"}, {"id": "CON-M1-15", "src": "개념", "module": 1, "tag": "Equity swap value", "vig": null, "stem": "A receive-equity, pay-fixed equity swap has notional $10m. The index is up 5% since the last reset, and the fixed leg is now worth $10.1m. The swap value to the equity receiver is:", "opts": {"A": "+$0.4m", "B": "−$0.4m", "C": "+$0.5m"}, "ans": "A", "en": "L81: 기존 equity swap의 현재가치 :  V_t = N(F_0 - F_t) (short 관점)\nL83: Forward value = (Old Forward Price-Current Forward Price) × N\nL84: Equity swap value (receive-equity, pay-fixed) = equity leg value − fixed leg(bond) value\nL86: Equity leg = NA × S_t / S_t−1\nL88: S_t−1 = 마지막 결제(reset)일의 가격 (첫 결제 전이면 S_0)\nL89: Fixed leg = C × ΣPV + NA × PV_n", "enLabel": "오답노트 원문", "ko": "Value (receive equity) = equity leg (N × S_t/S_{t−1}, S_{t−1} = price at last reset) − fixed leg (C × ΣPV + N × PV_n) = 10.5 − 10.1 = 0.4m. Short equity forward value = N(F₀ − F_t).", "trap": "", "f": "", "why": {"B": "The equity leg (10.5m) is worth more than the fixed leg (10.1m), so the receiver gains.", "C": "+$0.5m ignores the change in the fixed leg's value."}, "orig": "Derivatives 오답노트 L81 · 근거 SCH R28"}, {"id": "CON-M1-16", "src": "개념", "module": 1, "tag": "Carry costs", "vig": null, "stem": "Which is a carry cost in forward pricing?", "opts": {"A": "Storage costs", "B": "The cost of borrowing to buy the asset", "C": "Dividends received"}, "ans": "A", "en": "L90: Forward Price=FV(Spot)+FV(Carry Costs)-FV(Carry Benefits))\nL92: Carry costs : storage, insurance. interest\nL93: borrowing cost는 carry cost X. (이미 discount/interest rate에 반영돼있음)", "enLabel": "오답노트 원문", "ko": "F = FV(spot) + FV(carry costs) − FV(carry benefits). Carry costs: storage, insurance. Borrowing cost is not a separate carry cost (already in r).", "trap": "", "f": "", "why": {"B": "Financing is already reflected in compounding at the risk-free rate.", "C": "Dividends are a carry benefit."}, "orig": "Derivatives 오답노트 L90 · 근거 ECO-M1-Q47"}, {"id": "CON-M1-17", "src": "개념", "module": 1, "tag": "Swap payment timing", "vig": null, "stem": "Swap floating rates are 'advance set, settled in arrears'. The net payment at the 6-month date of a pay-fixed swap is based on:", "opts": {"A": "the MRR set at time 0 for the 0–6 month period, minus the fixed rate", "B": "the MRR observed at the 6-month date", "C": "the fixed rate only"}, "ans": "A", "en": "L95: Swap 변동금리 = advanced set, settled in arrears\nL97: t시점 net cash flow  = 직전 reset 시점(t−1)의 MRR로 계산\nL98: ex. t=1시점의 지급 : t=0시점의 (MRR - fixed rate)\nL179: pay-fixed, receive-floating net cash flow at *t* = 6 months는 fixed - t=0~6기간의 MRR", "enLabel": "오답노트 원문", "ko": "Advance set, settled in arrears: the payment at t uses the MRR set at t − 1.", "trap": "", "f": "", "why": {"B": "The rate paid at 6 months was set at the start of the period.", "C": "The floating leg also determines the payment."}, "orig": "Derivatives 오답노트 L95 · 근거 SCH R28"}, {"id": "CON-M1-18", "src": "개념", "module": 1, "tag": "Currency swap value", "vig": null, "stem": "The value of a currency swap to the party receiving currency a and paying currency b is:", "opts": {"A": "V_a + S_t × V_b", "B": "V_a − S_t × V_b (S_t = current exchange rate, a per b)", "C": "V_b − S_t × V_a"}, "ans": "B", "en": "L181: V_CS=Va−St×Vb\nL183: 받는 통화(a) − (현재환율) × 주는 통화(b)", "enLabel": "오답노트 원문", "ko": "V_CS = value of currency received − current exchange rate × value of currency paid.", "trap": "", "f": "", "why": {"C": "This is the value for the opposite party.", "A": "The paid leg is subtracted."}, "orig": "Derivatives 오답노트 L181 · 근거 SCH R28"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "Call replication and mispricing", "vig": null, "stem": "A call trades above its binomial model value. The arbitrage is to:", "opts": {"A": "buy both the call and the replicating portfolio", "B": "buy the call and sell the replicating portfolio", "C": "sell the call and buy the replicating portfolio (buy h shares, borrow)"}, "ans": "C", "en": "L109: Call replication = Buy h shares + Borrow.\nL111: Underpriced option → Buy option + Sell replication\nL112: Overpriced option → Sell option + Buy replication", "enLabel": "오답노트 원문", "ko": "Call replication = buy h shares + borrow. Overpriced option → sell option + buy replication; underpriced → buy option + sell replication.", "trap": "", "f": "", "why": {"B": "That is the trade when the call is underpriced.", "A": "Buying both gives no hedge."}, "orig": "Derivatives 오답노트 L109 · 근거 ECO Deriv M2"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "Put replication", "vig": null, "stem": "Replicating a long put in a one-period binomial model involves:", "opts": {"A": "buying the underlying and borrowing", "B": "short selling the underlying and borrowing", "C": "short selling the underlying and lending part of the proceeds"}, "ans": "C", "en": "L178: Put replication = short stock → short sale proceeds 발생 → Time 0 positive cash flow.\nL216: Long put 복제 = short S + borrow ← t=0 cash flow : (+)\nL218: 공매도해서 돈들어오니까", "enLabel": "오답노트 원문", "ko": "Long put replication = short stock + lend (long bond); the short sale gives a positive time-0 cash flow. ※ Note line 216 says 'short S + borrow'; it should be lend.", "trap": "", "f": "", "why": {"A": "Buying shares with borrowing replicates a call.", "B": "The put replication lends (invests in bonds), not borrows. Note line 216 says 'borrow'; Schweser and ECO say lend."}, "orig": "Derivatives 오답노트 L178 · 근거 ECO Deriv M2 / SCH R29"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "Gamma of puts", "vig": null, "stem": "A long put has:", "opts": {"A": "negative delta and positive gamma", "B": "negative delta and negative gamma", "C": "positive delta and positive gamma"}, "ans": "A", "en": "L113: Put Delta < 0, but Put Gamma > 0\nL115: Long option → Positive Gamma (+Γ)\nL116: Short option → Negative Gamma (−Γ)", "enLabel": "오답노트 원문", "ko": "Put delta < 0, but long options (calls or puts) have positive gamma; short options have negative gamma.", "trap": "", "f": "", "why": {"B": "Long options always have positive gamma.", "C": "A put's delta is negative."}, "orig": "Derivatives 오답노트 L113 · 근거 ECO-M2-Q17"}, {"id": "CON-M2-04", "src": "개념", "module": 2, "tag": "Implied vs historical volatility", "vig": null, "stem": "Using historical volatility, a model gives a put value above the option's market price. The implied volatility is most likely:", "opts": {"A": "equal to the historical volatility", "B": "less than the historical volatility", "C": "greater than the historical volatility"}, "ans": "B", "en": "L117: Model price(historical σ 사용) > Market price → Implied volatility < Historical volatility\nL119: 이유: option 가격은 σ가 클수록 높음 (vega > 0) → 시장가격이 더 낮다 = 시장이 쓰는 σ가 더 낮다\nL120: Historical volatility = 과거 수익률의 표준편차 (이 문제에서 모델에 넣은 σ)\nL121: Implied volatility = 시장가격에서 역산한 σ\nL122: 시장이 예상하는 미래 volatility (forward-looking), strike·maturity에 따라 달라짐 (smile·skew, term structure)\nL123: Historical data로 계산 X\nL124: Implied volatility : 현재 option 가격에서 역산한 미래 변동성의 시장 기대치 → moneyness와 만기가 다른 option의 상대적 가치를 비교하는 데 활용", "enLabel": "오답노트 원문", "ko": "Model price > market price → implied vol < historical vol. Implied vol = forward-looking, backed out of prices, varies by strike and maturity (smile/skew, term structure); used to compare options' relative value.", "trap": "", "f": "", "why": {"C": "A lower market price implies lower volatility, since vega > 0.", "A": "The prices differ, so the volatilities differ."}, "orig": "Derivatives 오답노트 L117 · 근거 ECO-M2-Q14"}, {"id": "CON-M2-05", "src": "개념", "module": 2, "tag": "Volatility skew", "vig": null, "stem": "In a volatility skew for equity index options:", "opts": {"A": "implied volatility is the same at all strikes", "B": "implied volatility rises as the exercise price falls, so OTM puts are expensive relative to OTM calls", "C": "implied volatility rises at both very low and very high strikes equally"}, "ans": "B", "en": "L125: Volatility skew tends to steepen whenever the market price of hedging is rising\nL126: volatility skew : Exercise price 낮을수록  Implied Volatility 커짐\nL128: | 모양 | IV 패턴 | 결론 |\nL130: | Skew | 행사가 ↓ → IV ↑ | OTM put 비쌈, OTM call 쌈 |\nL131: | Smile | 양쪽 끝(OTM put, OTM call) IV ↑ | OTM 모두 ATM보다 비쌈 |\nL133: OTM Put : 지수가 많이 떨어지면 돈이 되는\" option → 하락 대비 보험(hedge) → 투자자들은 주가 폭락을 대비하기 위해 OTM Put을 많이 삼 → OTM Call (상승 배팅) 대비 수요 ↑\nL134: OTM Call : 상승 배팅 / \nL153: Low Strike → High IV 인 경우, OTM Put 이 OTM call보다 비쌈\nL196: Market participants use the term volatility smile to describe the implied volatility of a stock option with respect to the exercise price", "enLabel": "오답노트 원문", "ko": "Skew: lower strike → higher IV (OTM puts bought as crash insurance). Smile: both OTM ends higher than ATM. The skew steepens when the market price of hedging rises. 'Volatility smile' describes IV vs exercise price.", "trap": "", "f": "", "why": {"C": "That is a smile.", "A": "Implied volatility varies with strike."}, "orig": "Derivatives 오답노트 L125 · 근거 ECO-M2-Q21"}, {"id": "CON-M2-06", "src": "개념", "module": 2, "tag": "Vega by moneyness", "vig": null, "stem": "Vega is highest for options that are:", "opts": {"A": "deep out of the money", "B": "at the money", "C": "deep in the money"}, "ans": "B", "en": "L135: Vega highest → ATM, Vega lower → ITM / OTM\nL137: Deep ITM → 이미 행사될 가능성이 매우 높음\nL138: Deep OTM → 행사될 가능성이 매우 낮음\nL139: ATM → 행사될지 말지 가장 불확실함", "enLabel": "오답노트 원문", "ko": "Vega highest at the money (most uncertain exercise); lower for ITM/OTM.", "trap": "", "f": "", "why": {"C": "Deep ITM options will almost surely be exercised, so volatility matters less.", "A": "Deep OTM options will almost surely expire worthless."}, "orig": "Derivatives 오답노트 L135 · 근거 ECO-M2-Q19"}, {"id": "CON-M2-07", "src": "개념", "module": 2, "tag": "Delta–gamma approximation", "vig": null, "stem": "A call has delta 0.60 and gamma 0.04. If the stock rises by $2, the call value changes by approximately:", "opts": {"A": "$1.28", "B": "$1.20", "C": "$1.36"}, "ans": "A", "en": "L140: for small change in the stock price→ Delta + Gamma\nL142: hedge ratio Gamma 고려 = 주가 변화 후 Delta가 어떻게 바뀌는지 반영\nL147: Delta : option price’s rate of change for a change in the underlying → rate of change of option price\nL148: Gamma :  how the rate of change of an option price speeds up or slows down for a given change in the price of the underlying index. → rate of change of delta / acceleration", "enLabel": "오답노트 원문", "ko": "Δc ≈ delta × ΔS + ½ × gamma × ΔS² = 0.6 × 2 + 0.5 × 0.04 × 4 = 1.28. Gamma captures how delta changes as the stock moves.", "trap": "", "f": "", "why": {"B": "$1.20 uses delta only.", "C": "$1.36 omits the ½ in the gamma term."}, "orig": "Derivatives 오답노트 L140 · 근거 SCH R29"}, {"id": "CON-M2-08", "src": "개념", "module": 2, "tag": "American vs European calls", "vig": null, "stem": "An American call on a non-dividend-paying stock is worth:", "opts": {"A": "more than the European call", "B": "the same as an otherwise identical European call", "C": "less than the European call"}, "ans": "B", "en": "L143: American call on non-dividend stock = European call\nL145: 배당 있는 주식의 call: 배당락 직전 조기행사가 유리할 수 있음 → American > European", "enLabel": "오답노트 원문", "ko": "No dividends → American call = European call. With dividends, early exercise just before ex-dividend can be optimal → American > European.", "trap": "", "f": "", "why": {"A": "Early exercise is never optimal without dividends.", "C": "The American option cannot be worth less."}, "orig": "Derivatives 오답노트 L143 · 근거 SCH R29"}, {"id": "CON-M2-09", "src": "개념", "module": 2, "tag": "BSM assumptions", "vig": null, "stem": "Which is an assumption of the Black–Scholes–Merton model?", "opts": {"A": "Annualized returns are normally distributed", "B": "Early exercise is permitted and short selling is not", "C": "Continuously compounded returns are normally distributed, volatility is known and constant, and options are European"}, "ans": "C", "en": "L146: Binomial with very short/many steps → BSM\nL149: BSM 모델 assumption → short selling 가능 & 옵션 조기행사 불가 (European option이라)\nL151: Volatility can be predicted with certainty. (volatility가 일정하고 알려져 있다)\nL152: continuously compounded return (or the logarithmic return), not the annualized return, is normally distributed.", "enLabel": "오답노트 원문", "ko": "BSM: short selling allowed, European options, known constant volatility, log returns normal (prices lognormal). A binomial model with very many short steps converges to BSM.", "trap": "", "f": "", "why": {"A": "BSM assumes log (continuously compounded) returns are normal.", "B": "BSM allows short selling and assumes no early exercise."}, "orig": "Derivatives 오답노트 L146 · 근거 ECO-M2-Q37 / ECO-M2-Q56"}, {"id": "CON-M2-10", "src": "개념", "module": 2, "tag": "Option valuation probabilities", "vig": null, "stem": "Binomial option values are found using:", "opts": {"A": "the investor's expected probabilities and a risk-adjusted rate", "B": "risk-neutral probabilities and a risk-adjusted rate", "C": "risk-neutral probabilities and the risk-free rate"}, "ans": "C", "en": "L154: option valuation : risk-neutral probability + risk free rate.\nL156: risk-adjusted periodic rate 라고 하면 오답!", "enLabel": "오답노트 원문", "ko": "Option valuation: risk-neutral probability + risk-free rate; 'risk-adjusted rate' is wrong.", "trap": "", "f": "", "why": {"A": "Investor outlooks do not enter no-arbitrage pricing.", "B": "Discounting uses the risk-free rate, not a risk-adjusted rate."}, "orig": "Derivatives 오답노트 L154 · 근거 ECO-M2-Q22"}, {"id": "CON-M2-11", "src": "개념", "module": 2, "tag": "Black model for options on futures", "vig": null, "stem": "Under the Black model, a European put on a futures contract equals:", "opts": {"A": "the bond component minus the futures component", "B": "the futures component plus the bond component", "C": "the futures component minus the bond component"}, "ans": "A", "en": "L194: Black model → futures price를 underlying으로 사용\nL197: Black model →  futures contract에 대한 option을 평가\nL199: Black Call = Futures component − Bond component\nL200: Black Put = Bond component − Futures component", "enLabel": "오답노트 원문", "ko": "Black model: underlying = futures price. Call = futures component − bond component; put = bond component − futures component.", "trap": "", "f": "", "why": {"C": "That replicates a call.", "B": "Components are netted, not added."}, "orig": "Derivatives 오답노트 L194 · 근거 ECO-M2-Q83"}, {"id": "CON-M2-12", "src": "개념", "module": 2, "tag": "Swaptions under the Black model", "vig": null, "stem": "Under the Black model, a payer swaption is valued like:", "opts": {"A": "a call on the swap rate: PVA × [FS × N(d₁) − X × N(d₂)]", "B": "a forward with no optionality", "C": "a put on the swap rate"}, "ans": "A", "en": "L157: Black model에서 Payer Swaption = Swap component - bond component\nL159: Receiver swaption = Bond componet - Swap component", "enLabel": "오답노트 원문", "ko": "Payer swaption ≈ call on the swap rate (swap component − bond component); receiver ≈ put (bond component − swap component).", "trap": "", "f": "", "why": {"C": "The receiver swaption is the put-like one.", "B": "A swaption is an option."}, "orig": "Derivatives 오답노트 L157 · 근거 SCH R29"}, {"id": "CON-M2-13", "src": "개념", "module": 2, "tag": "Standard market model", "vig": null, "stem": "For an option on an interest rate (e.g., MRR in six months), the standard market model uses as the underlying:", "opts": {"A": "the futures price", "B": "the current spot MRR", "C": "the current forward (FRA) rate, with the value adjusted for the accrual period"}, "ans": "C", "en": "L192: standard market model assumes that actual option premium needs to be adjusted for the accrual period\nL195: Standard Market Model → forward interest rate를 underlying으로 사용 + accrual period adjustment", "enLabel": "오답노트 원문", "ko": "Standard market model: forward interest rate as underlying + accrual period adjustment; option expiry = when the rate is set.", "trap": "", "f": "", "why": {"B": "The underlying is the forward rate for that future period.", "A": "The futures price is the Black model's underlying for futures options."}, "orig": "Derivatives 오답노트 L192 · 근거 ECO-M2-Q15"}, {"id": "CON-M2-14", "src": "개념", "module": 2, "tag": "Theta near expiration", "vig": null, "stem": "As expiration approaches, a long option's theta:", "opts": {"A": "becomes positive", "B": "approaches zero", "C": "becomes more negative (its absolute value increases)"}, "ans": "C", "en": "L161: Expiration approaches⇒ Θ becomes more negative⇒ |Θ| increases\nL163: As expiration approaches, theta becomes more negative, so the absolute value of theta increases.", "enLabel": "오답노트 원문", "ko": "Expiration approaches ⇒ theta more negative ⇒ |theta| increases.", "trap": "", "f": "", "why": {"A": "Long options lose value with time.", "B": "Time decay accelerates near expiry."}, "orig": "Derivatives 오답노트 L161 · 근거 ECO-M2-Q19"}, {"id": "CON-M2-15", "src": "개념", "module": 2, "tag": "Delta hedging", "vig": null, "stem": "An investor owns 1,000 shares. A put has delta −0.50. To make the position delta-neutral using puts, she should:", "opts": {"A": "buy 2,000 puts", "B": "sell 2,000 puts", "C": "buy 500 puts"}, "ans": "A", "en": "L164: 주식 + 옵션을 이용해서 Delta = 0 만들기 → Number of options=(|Δ_stock position|)/(|Δ_option|)\nL166: Delta hedge : 주식의 총 Delta를 옵션 1개의 Delta로 나누는 것\nL167: Long stock = +Delta → 반대 방향인 −Delta가 필요 → Short call 또는 Long put.\nL171: | Long stock | + | 음의 Delta 필요 | Buy puts |\nL172: | Long stock | + | 음의 Delta 필요 | Short calls |\nL173: | Short stock | − | 양의 Delta 필요 | Buy calls |\nL174: | Short stock | − | 양의 Delta 필요 | Short puts |\nL204: Delta Neutral : 포트폴리오의 delta를 0으로 만들려면 필요한 hedge 수단의 개수\nL207: N_H = -(포트폴리오 delta)/(hedge 수단의 delta)\nL210: ex. call delta = 0.6 → 내 delta = call을 사면 +0.6, call을 팔면 -0.6\nL211: ex. put delta = 0.4 → 내 delta = put을 사면 -0.4, put을 팔면 +0.4\nL212: N_H > 0 → 매수 / N_H < 0 → 매도", "enLabel": "오답노트 원문", "ko": "Number of options = |position delta| / |option delta| = 1,000/0.5 = 2,000. Long stock (+delta) → buy puts or short calls; short stock (−delta) → buy calls or short puts. N_H = −portfolio delta / hedge delta (positive → buy).", "trap": "", "f": "", "why": {"C": "500 puts give only −250 delta.", "B": "Selling puts adds positive delta."}, "orig": "Derivatives 오답노트 L164 · 근거 SCH R29"}, {"id": "CON-M2-16", "src": "개념", "module": 2, "tag": "Delta-neutral with the hedge-ratio formula", "vig": null, "stem": "A trader is short calls on 100 shares (call delta 0.60) and holds no stock. To make the position delta-neutral using puts with delta −0.40, the trader should:", "opts": {"A": "sell puts on 150 shares", "B": "buy puts on 150 shares", "C": "sell puts on 60 shares"}, "ans": "A", "en": "L169: | 현재 포지션 | Delta | Hedge 방법 | 옵션 포지션 |\nL207: N_H = -(포트폴리오 delta)/(hedge 수단의 delta)\nL212: N_H > 0 → 매수 / N_H < 0 → 매도\nL213: 100주 있고, short call일 때 내 delta =  → 100 x -0.6 = -60 → delta neutral로 만들려면 put을 팔아서 + 60 해야함 → -60 / 0.4 만큼 put 팔기\nL214: Put으로: N_H = −(−60)/(−0.4) = −150 → 150주 분량의 put 매도\nL215: 주식으로: N_H = −(−60)/1 = +60 → 주식 60주 매수", "enLabel": "오답노트 원문", "ko": "Position delta = 100 × (−0.60) = −60. N_H = −(portfolio delta)/(hedge delta) = −(−60)/(−0.40) = −150 → sell 150. Using stock: N_H = −(−60)/1 = +60 → buy 60 shares.", "trap": "", "f": "", "why": {"B": "Buying puts adds negative delta, making the −60 position worse.", "C": "60 is the number of shares to buy if hedging with stock, not puts."}, "orig": "Derivatives 오답노트 L169 · 근거 SCH R29"}, {"id": "CON-M2-17", "src": "개념", "module": 2, "tag": "Dynamic replication", "vig": null, "stem": "In a two-period binomial model, dynamic replication:", "opts": {"A": "sets up one portfolio at time 0 and never changes it", "B": "adjusts the replicating portfolio so it matches the option's value at each node", "C": "matches only the final payoff, ignoring intermediate nodes"}, "ans": "B", "en": "L176: Dynamic replication is intended to exactly match the exercise value of the option at each time node\nL177: 중간노드 옵션가치를 이미 주면, terminal rate는 계산안하고 바로 backward induction.", "enLabel": "오답노트 원문", "ko": "Dynamic replication exactly matches the option's value at each time node. If intermediate option values are given, go straight to backward induction.", "trap": "", "f": "", "why": {"A": "The hedge must be rebalanced at each node.", "C": "Values must match at every node."}, "orig": "Derivatives 오답노트 L176 · 근거 ECO-M2-Q47"}, {"id": "CON-M2-18", "src": "개념", "module": 2, "tag": "Delta hedge and large moves", "vig": null, "stem": "A delta-hedged long call position (long call, short stock) experiences a large rise in the stock price. The position most likely:", "opts": {"A": "gains, because positive gamma makes the call rise more than delta predicts", "B": "is unchanged, because the hedge is perfect", "C": "loses, because delta hedging protects only against declines"}, "ans": "A", "en": "L201: Delta hedge는 작은 주가 변동에는 잘 작동하지만, 큰 변동에서는 hedge 깨짐\nL203: Long Call :  Gamma가 양수 →  주가가 크게 오르면 실제 Call 가치가 Delta로 예상한 것보다 더 많이 증가 → 전체 delta-hedged position의 가치가 증가", "enLabel": "오답노트 원문", "ko": "Delta hedges work for small moves; with long gamma, large moves increase the hedged position's value.", "trap": "", "f": "", "why": {"C": "Gamma helps the long-option side for large moves either way.", "B": "Delta hedges work only for small moves."}, "orig": "Derivatives 오답노트 L201 · 근거 SCH R29"}, {"id": "CON-M2-19", "src": "개념", "module": 2, "tag": "Greek signs for a long option", "vig": null, "stem": "A long straddle profits from which combination?", "opts": {"A": "Low realized volatility and falling implied volatility", "B": "High realized volatility (gamma) and rising implied volatility (vega), while losing value as time passes (theta)", "C": "The passage of time (positive theta)"}, "ans": "B", "en": "L220: | Greek | 부호 | 의미 |\nL222: | Gamma | + | 지수가 크게 움직이면 이익 (realized volatility ↑ → 이익 ) /  realized volatility 낮다 = gamma 이익 ↓ |\nL223: | Vega | + | implied volatility ↑ → 이익 |\nL224: | Theta | − | 시간이 지나면 옵션 가치가 감소 (매일 나가는 비용) |", "enLabel": "오답노트 원문", "ko": "Long options: gamma + (big moves / high realized vol → profit), vega + (implied vol↑ → profit), theta − (time decay cost).", "trap": "", "f": "", "why": {"A": "Long options lose with low realized and implied volatility.", "C": "Long options have negative theta."}, "orig": "Derivatives 오답노트 L220 · 근거 SCH R29"}, {"id": "CON-M2-20", "src": "개념", "module": 2, "tag": "Rho", "vig": null, "stem": "A decrease in the risk-free rate will:", "opts": {"A": "increase the value of a long put", "B": "decrease the value of a long put", "C": "increase the value of a long call"}, "ans": "A", "en": "L226: Rho = 무위험금리 변화에 대한 option 가격의 민감도\nL227: Call rho (+): 금리 ↑ → 가치 ↑ / Put rho (−): 금리 ↑ → 가치 ↓\nL228: C = S N(d_1) - Xe^-rTN(d_2)\nL229: 금리 ↑ → 행사가의 PV(Xe^-rT) ↓ → 빼는 항이 줄어 call ↑\nL230: Call: 주식 대신 call을 사면 행사가를 나중에 내므로 그 사이 이자를 받음 → 금리 ↑일수록 유리\nL231: Put: 주식을 팔고 받을 행사가를 나중에 받으므로 이자를 못 받는 손해 → 금리 ↑일수록 불리", "enLabel": "오답노트 원문", "ko": "Rho: call + (rates↑ → PV of strike↓ → call↑); put − (rates↑ → put↓). C = S·N(d₁) − X·e^(−rT)·N(d₂).", "trap": "", "f": "", "why": {"B": "Put rho is negative: lower rates raise put value.", "C": "Call rho is positive: lower rates reduce call value."}, "orig": "Derivatives 오답노트 L226 · 근거 ECO-M2-Q85"}], "vignettes": [], "modules": {"1": "Pricing and Valuation of Forward Commitments", "2": "Valuation of Contingent Claims"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "DerivativesConcept", KEY = "DerivativesConcept_quiz_state_v1", EXPKEY = "DerivativesConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Derivatives 개념 확인</h2>'+
+   '<p class="muted">Derivatives 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Equity Concept Quiz — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 64px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+header.bar .wrap{padding-bottom:0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px;align-items:center}
+.stats b{font-size:16px}
+.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.progress{margin-top:9px;height:8px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:#8FB0FF;width:0;transition:width .3s}
+.ptext{font-size:12.5px;opacity:.8;margin-top:5px;display:flex;justify-content:space-between}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:8px 14px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn.primary:hover{background:#2343AA}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:22px 22px 18px;margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:12px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.src-wrong{background:var(--bad-soft);color:var(--bad)}
+.pill.src-rel{background:#EEF0F4;color:var(--ink2)}
+.pill.src-sch{background:var(--ok-soft);color:var(--ok)}
+.pill.src-var{background:var(--amber-soft);color:var(--amber)}
+.tagline{color:var(--ink2)}
+.qno{font-weight:700;color:var(--ink)}
+details.case{background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:8px;margin:0 0 16px}
+details.case summary{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);list-style:none}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"▸ ";}
+details.case[open] summary::before{content:"▾ ";}
+.casebody{padding:0 16px 14px;font-size:14.5px;max-height:460px;overflow:auto}
+.casebody p{margin:.5em 0}
+.tbl{overflow-x:auto;margin:.6em 0}
+.tbl table{border-collapse:collapse;font-size:13px;min-width:60%}
+.tbl td{border:1px solid var(--line);padding:4px 8px;white-space:nowrap;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.tbl td.lbl{background:#FAFBFD;font-weight:600;white-space:normal}
+.stem{font-size:17px;font-weight:600;margin:4px 0 16px}
+.stem p{margin:.35em 0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:4px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}
+.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:18px;border-radius:10px;padding:16px 18px}
+.fb.ok{background:var(--ok-soft);border:1px solid #BFE3D1}
+.fb.bad{background:var(--bad-soft);border:1px solid #F0C7C7}
+.fb h3{margin:0 0 8px;font-size:17px}
+.fb.ok h3{color:var(--ok)} .fb.bad h3{color:var(--bad)}
+.fb h4{margin:14px 0 6px;font-size:14.5px;color:var(--ink)}
+.fb p{margin:.35em 0}
+.trap{background:var(--amber-soft);border-left:4px solid #E3A33A;padding:9px 12px;border-radius:6px;margin-top:10px;font-size:14.5px}
+.trap b{color:var(--amber);margin-right:8px}
+.formula{background:#fff;border:1px dashed #9AA8BF;border-radius:6px;padding:9px 12px;margin-top:10px;font-size:14.5px}
+.formula b{color:var(--cobalt);margin-right:8px}
+details.en{margin-top:10px;font-size:14px}
+details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
+.enbody{margin-top:6px;color:#2D3748}
+.why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.result h2{margin:0 0 4px;font-size:24px}
+.big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
+.mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.mbar{height:12px;background:#E3E8F0;border-radius:6px;overflow:hidden}
+.mbar i{display:block;height:100%}
+.weak{margin:8px 0 0;padding-left:18px}
+.weak li{margin:4px 0}
+.muted{color:var(--ink2);font-size:13.5px}
+.setup label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.setup select{font-family:inherit;font-size:15px;padding:6px 8px;border-radius:6px;border:1px solid var(--line)}
+.kbd{font-size:12px;color:var(--ink2)}
+@media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#side{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--sheet);border-right:1px solid var(--line);overflow-y:auto;z-index:20;transform:translateX(-100%);transition:transform .18s;padding-bottom:40px}
+body.side-open #side{transform:none}
+#sideBack{display:none;position:fixed;inset:0;background:#0006;z-index:19}
+.sd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:14px;position:sticky;top:0;background:var(--sheet)}
+.sd-top button{border:1px solid var(--line);background:var(--sheet);border-radius:6px;padding:2px 9px;cursor:pointer;font:inherit}
+.sd-hdr{display:flex;align-items:center;gap:6px;width:100%;text-align:left;padding:8px 14px 6px;font:600 12px/1.3 inherit;color:var(--ink2);background:none;border:0;border-top:1px solid var(--line);cursor:pointer}
+.sd-hdr:hover{background:var(--paper)}
+.sd-caret{font-size:9px;transition:transform .15s}
+.sd-hdr.collapsed .sd-caret{transform:rotate(-90deg)}
+.sd-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-cnt{font-size:10px;padding:1px 6px;border-radius:9px;background:var(--paper)}
+.sd-cnt.done{background:var(--ok-soft);color:var(--ok)}
+.sd-grp.collapsed{display:none}
+.sd-q{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:5px 14px;font:12px/1.35 inherit;color:var(--ink2);background:none;border:0;border-left:3px solid transparent;cursor:pointer}
+.sd-q:hover{background:var(--paper);color:var(--ink)}
+.sd-q.active{border-left-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.sd-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--line)}
+.sd-dot.ok{background:var(--ok)}.sd-dot.bad{background:var(--bad)}
+.sd-num{min-width:26px;color:var(--ink2);font-size:11px}
+.sd-tag{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd-empty{padding:14px;color:var(--ink2);font-size:13px}
+@media (min-width:1000px){body.side-open{padding-left:250px}}
+@media (max-width:999px){body.side-open #sideBack{display:block}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand">
+    <h1>Equity 개념 확인 퀴즈<span>CFA Level II, Schweser 기준</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="ptext"><span id="ptxt">0 / 0</span><span id="pmode"></span></div>
+</div></header>
+<aside id="side" aria-label="문제 목록"></aside><div id="sideBack"></div>
+<main class="wrap">
+  <div class="tools">
+    <button class="btn" id="bSide">☰ 문제 목록</button>
+    <button class="btn" id="bHome">처음 화면</button>
+    <button class="btn" id="bResult">결과 보기</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
+    <input type="file" id="fImport" accept=".json,application/json" hidden>
+  </div>
+  <div id="view"></div>
+</main>
+<script id="quizdata" type="application/json">{"questions": [{"id": "CON-M1-01", "src": "개념", "module": 1, "tag": "Valuing public equity", "vig": null, "stem": "An analyst valuing a publicly traded stock to decide whether it is mispriced estimates its:", "opts": {"A": "liquidation value", "B": "investment value to a specific buyer", "C": "intrinsic value"}, "ans": "C", "en": "L7: public equity → intrinsic value로 분석", "enLabel": "오답노트 원문", "ko": "Public equity is analyzed with intrinsic value.", "trap": "", "f": "", "why": {"A": "Liquidation value applies when the company is not a going concern.", "B": "Investment value includes buyer-specific synergies."}, "orig": "Equity 오답노트 L7 · 근거 SCH R17"}, {"id": "CON-M2-01", "src": "개념", "module": 2, "tag": "H-model", "vig": null, "stem": "D₀ = $1.00, the short-term growth rate is 10%, falling linearly to a long-term 4% over 10 years (H = 5), and r = 9%. The H-model value is:", "opts": {"A": "$20.80", "B": "$26.80", "C": "$27.04"}, "ans": "B", "en": "L8: H-model\nL10: V_0 = (D_0 × (1 + g_L))/(r - g_L) + (D_0 × H × (g_S - g_L))/(r - g_L)\nL12: 초과성장 기간이 매우 길거나 성장률 차이 크면 spreadsheet model 사용 (근사 오차가 커지므로 )", "enLabel": "오답노트 원문", "ko": "V₀ = D₀(1 + g_L)/(r − g_L) + D₀ × H × (g_S − g_L)/(r − g_L) = 1.04/0.05 + 1 × 5 × 0.06/0.05 = 20.80 + 6.00 = 26.80. If the high-growth period is very long or the growth gap large, use a spreadsheet model.", "trap": "", "f": "", "why": {"A": "$20.80 is only the constant-growth part; the extra-growth term D₀ × H × (g_S − g_L)/(r − g_L) is missing.", "C": "$27.04 uses D₁ instead of D₀ in the extra-growth term."}, "orig": "Equity 오답노트 L8 · 근거 SCH R18"}, {"id": "CON-M2-02", "src": "개념", "module": 2, "tag": "When a DDM is appropriate", "vig": null, "stem": "A dividend discount model is most appropriate when the company:", "opts": {"A": "pays dividends unrelated to its earnings capacity", "B": "has a dividend policy with a consistent relationship to profitability and the analyst takes a non-control perspective", "C": "is the target of a change-of-control transaction"}, "ans": "B", "en": "L13: DDM 적합:  historically consistent payout ratio +  consistent relationship to company’s profitability + noncontrol 관점\nL15: 배당이 몇 년 중단되어도 재개 시점과 이후 배당을 예측하면 DDM 적용 가능\nL16: 자사주매입 규모·시기를 신뢰성 있게 예측할 수 있다면 GGM 사용 가능 (g를 자사주매입 효과에 맞게 조정해서)", "enLabel": "오답노트 원문", "ko": "DDM fits: historically consistent payout, consistent relation to profitability, non-control view. If dividends stop for a few years but resumption can be forecast, a DDM can still be used. Predictable buybacks can be built into g for the Gordon growth model.", "trap": "", "f": "", "why": {"A": "Dividends must reflect the company's profitability.", "C": "A control perspective calls for free cash flow models."}, "orig": "Equity 오답노트 L13 · 근거 SCH R18"}, {"id": "CON-M2-03", "src": "개념", "module": 2, "tag": "PVGO and the leading P/E", "vig": null, "stem": "A stock has expected earnings E₁ = $4, required return r = 10%, and price V₀ = $60. The growth component of its leading P/E (PVGO/E₁) is:", "opts": {"A": "5.0", "B": "15.0", "C": "10.0"}, "ans": "A", "en": "L17: growth component of the leading P/E : (PVGO)/(E1)\nL19: V_0 = (E_1)/(r) + PVGO\nL21: Leading P/E = 1/r + (PVGO)/(E1)\nL24: PVGO = V_0 - (E_1)/(r) = (D_1)/(r-g)_V_growth=V_0 - (E_1)/(r)_V_no-growth", "enLabel": "오답노트 원문", "ko": "PVGO = V₀ − E₁/r = 60 − 40 = 20. Leading P/E = 1/r + PVGO/E₁ = 10 + 5 = 15; growth component = 5.0.", "trap": "", "f": "", "why": {"B": "15.0 is the whole leading P/E.", "C": "10.0 is 1/r, the no-growth part."}, "orig": "Equity 오답노트 L17 · 근거 SCH R18"}, {"id": "CON-M2-04", "src": "개념", "module": 2, "tag": "Implied growth and capital gains yield", "vig": null, "stem": "A stock is fairly priced at $50 with an expected dividend D₁ = $2.00 and a required return of 9%. Under the Gordon growth model, the expected capital gains yield is:", "opts": {"A": "4%", "B": "5%", "C": "9%"}, "ans": "B", "en": "L27: [GGM] Stock price = fair value라면, 주가는 g로 성장 → Capital Gains Yield = g (기대 자본 이익 수익률= 배당성장률)\nL29: 시장가격, r 주어지고 Implied growth rate 구하라 → g역산", "enLabel": "오답노트 원문", "ko": "g = r − D₁/P₀ = 9% − 4% = 5%. If price = fair value, the price grows at g, so the capital gains yield = g.", "trap": "", "f": "", "why": {"A": "4% is the dividend yield D₁/P₀.", "C": "9% is the total required return."}, "orig": "Equity 오답노트 L27 · 근거 SCH R18"}, {"id": "CON-M2-05", "src": "개념", "module": 2, "tag": "Two-stage DDM", "vig": null, "stem": "In a two-stage DDM, the value of the stock at the end of the first stage equals:", "opts": {"A": "the present value (at that date) of the second-stage dividends", "B": "today's price", "C": "the sum of first-stage dividends"}, "ans": "A", "en": "L30: 2-stage DDM → 1단계 말 주식 가치 = pv of 2단계 future dividends\nL32: 오늘 시점 주식 가치 = pv of 1+2 단계 future div ‘", "enLabel": "오답노트 원문", "ko": "Value at end of stage 1 = PV of stage-2 dividends; today's value = PV of stage-1 dividends + PV of that terminal value.", "trap": "", "f": "", "why": {"C": "First-stage dividends are already paid by then.", "B": "The terminal value is measured at the end of stage 1, not today."}, "orig": "Equity 오답노트 L30 · 근거 SCH R18"}, {"id": "CON-M2-06", "src": "개념", "module": 2, "tag": "Growth phase", "vig": null, "stem": "A company's EPS grew at a compound 5.7% over four years. Real GDP growth is 3.7% and inflation is 2%. The company is most likely in the:", "opts": {"A": "transition phase", "B": "supernormal growth phase", "C": "mature phase"}, "ans": "C", "en": "L39: growth stage 물을 때 → `Nominal GDP growth`와 `EPS CAGR ` 비교\nL41: EPS CAGR = (EPS_현재)/(EPS_과거)^1/n-1\nL42: Nominal growth = Real GDP + Inflaitton\nL46: | Supernormal | 기업 성장률 > 경제 Nominal growth |\nL47: | Transition | Nominal growth 보다 높지만 성장률이 하락 중 |\nL48: | Mature | 기업 성장률 ≈ 경제 Nominal growth |", "enLabel": "오답노트 원문", "ko": "Compare company growth with nominal GDP growth (real + inflation = 5.7%). Supernormal > nominal; transition: above but falling; mature ≈ nominal. EPS CAGR = (EPS_now/EPS_past)^(1/n) − 1.", "trap": "", "f": "", "why": {"B": "Supernormal growth means growing faster than nominal GDP.", "A": "Transition means above nominal growth but slowing."}, "orig": "Equity 오답노트 L39 · 근거 ECO-M2-Q58"}, {"id": "CON-M2-07", "src": "개념", "module": 2, "tag": "Dividend growth from historical data", "vig": null, "stem": "Dividends per share were $1.00 in the first year and $1.4641 in the fifth year (five annual observations). The compound dividend growth rate for the Gordon growth model is:", "opts": {"A": "7.9%", "B": "46.4%", "C": "10.0%"}, "ans": "C", "en": "L50: 최근 5년간 배당성장률을 이용해 GGM의 장기 성장률 (g) 추정 → DPS CAGR 사용\nL52: DPS CAGR=((DPS_현재)/(DPS_과거))^1/n-1]\nL54: EPS CAGR: EPS 성장률 계산\nL55: DPS CAGR: 과거 배당성장률을 이용해 GGM의 (g) 추정\nL56: n: 첫 관측 연도와 마지막 관측 연도 사이의 기간 (5개 연도 데이터면 n=4)", "enLabel": "오답노트 원문", "ko": "DPS CAGR = (DPS_now/DPS_past)^(1/n) − 1 with n = years between first and last observation = 4: 1.4641^(1/4) − 1 = 10%.", "trap": "", "f": "", "why": {"A": "7.9% uses n = 5; five observations span n = 4 periods.", "B": "46.4% is the total growth, not the annual rate."}, "orig": "Equity 오답노트 L50 · 근거 SCH R18"}, {"id": "CON-M2-08", "src": "개념", "module": 2, "tag": "Partial adjustment (Lintner) dividend", "vig": null, "stem": "D₀ = $1.00, expected EPS = $3.00, the target payout is 40%, and the adjustment period is 4 years. The expected dividend D₁ is:", "opts": {"A": "$1.20", "B": "$1.05", "C": "$1.10"}, "ans": "B", "en": "L57: Lintner(partial adjustment): D₁ = D₀ + (목표 배당 − D₀) × 조정 계수, 조정 계수 = 1 / 조정 기간, 목표 배당 = 예상 EPS × 목표 payout", "enLabel": "오답노트 원문", "ko": "D₁ = D₀ + (target dividend − D₀) × adjustment factor; target = 3.00 × 40% = 1.20; factor = 1/4 → 1.00 + 0.20 × 0.25 = 1.05.", "trap": "", "f": "", "why": {"A": "$1.20 adjusts fully to the target in one year.", "C": "$1.10 uses an adjustment period of 2 years."}, "orig": "Equity 오답노트 L57 · 근거 SCH R18"}, {"id": "CON-M3-01", "src": "개념", "module": 3, "tag": "Depreciation in free cash flow", "vig": null, "stem": "When computing FCFF from net income, depreciation is:", "opts": {"A": "ignored because it is non-cash", "B": "added back using the change in accumulated depreciation only", "C": "added back using the current year's income statement amount"}, "ans": "C", "en": "L61: depreciate expense = ncc → 당해년도 꺼 그대로 더해주기\nL95: I/S 항목(flow)은 그 해의 값, B/S 항목(stock)은 두 해의 차이(Δ)\nL97: depreciation expense → I/S 비용 항목 → 그 해 값 그대로\nL98: accumulated depreciation → B/S항목 → Δ  / ", "enLabel": "오답노트 원문", "ko": "Depreciation expense (income statement flow) → add the year's amount. Balance sheet items (stock) → use the change between years.", "trap": "", "f": "", "why": {"B": "Accumulated depreciation is a balance sheet item; use the income statement expense.", "A": "Non-cash charges are added back, not ignored."}, "orig": "Equity 오답노트 L61 · 근거 SCH R19"}, {"id": "CON-M3-02", "src": "개념", "module": 3, "tag": "What affects FCFE", "vig": null, "stem": "Which of the following changes FCFE?", "opts": {"A": "A dividend payment", "B": "A change in leverage (net borrowing)", "C": "A share repurchase"}, "ans": "B", "en": "L62: stock repurchase, div payment는 FCFE에 영향 안 줌\nL63: Leverage 증가는 FCFE에 영향 미침\nL111: 배당·자사주 매입·주식 발행은 FCFF와 FCFE에 영향 X", "enLabel": "오답노트 원문", "ko": "Dividends, repurchases, and share issuance do not affect FCFF or FCFE; changes in leverage (net borrowing) affect FCFE.", "trap": "", "f": "", "why": {"C": "Repurchases are a use of FCFE, not a source.", "A": "Dividends are a use of FCFE, not a source."}, "orig": "Equity 오답노트 L62 · 근거 ECO-M3-Q56"}, {"id": "CON-M3-03", "src": "개념", "module": 3, "tag": "Total firm value and equity value", "vig": null, "stem": "The value of operating assets from an FCFF model is $1,000m. The company also holds non-operating land worth $50m, debt (market value) of $300m, preferred stock of $100m, and accounts payable of $80m. Common equity value is:", "opts": {"A": "$570m", "B": "$650m", "C": "$600m"}, "ans": "B", "en": "L64: Total Firm Value(기업 전체가치) 물으면: Value of Operating Assets(FCFF모형) + Non-operating Assets(비영업자산, 예: 투자목적 토지)따로 가산\nL65: Common Stock Value(보통주 가치) 물으면: 위 Total Firm Value − Debt(부채) − Preferred Stock(우선주) → 남는 게 보통주주 몫\nL66: 비영업자산(토지 등)은 FCFF 계산에 원래 안 잡혀있으므로 별도로 더해줘야 함\nL99: FCFF value로 equity value계산할 때: interest-bearing debt(short/Long term debt, note payable 등)만 차감 (FCFF·WACC의 자금 제공자 = debt holder + equity holder)\nL101: Current liabilities 대부분(AP, accrued expense) = operating liabilities → FCFF의 working capital investment에 이미 반영 → 또 차감하면 이중 차감 ✖\nL102: 단, current liabilities 안의 short-term debt, current portion of LTD는 interest-bearing → 차감\nL103: Equity value = Firm value − (아래 claim들) + non-operating assets\nL104: 기준: 이자를 받는 자금 제공자·주주보다 먼저 받을 claim이면 차감 / 영업 활동에서 생긴 부채는 FCFF에 이미 반영돼서 차감 ✖\nL105: 시험: 보통 \"market value of debt\"(+ preferred 있으면)만 차감", "enLabel": "오답노트 원문", "ko": "Total firm value = operating assets + non-operating assets. Equity = firm value − debt − preferred. Operating liabilities (accounts payable, accruals) are not subtracted; short-term debt and current portion of long-term debt are.", "trap": "", "f": "", "why": {"C": "$600m forgets to add the non-operating land.", "A": "$570m also subtracts accounts payable, which is already in the FCFF working capital."}, "orig": "Equity 오답노트 L64 · 근거 ECO-M3-Q37"}, {"id": "CON-M3-04", "src": "개념", "module": 3, "tag": "Three-stage FCFF model", "vig": null, "stem": "Which feature is most likely in a three-stage FCFF model for a company in an industry expected to grow faster than the economy?", "opts": {"A": "Operating assets decline in stage 2 because growth slows", "B": "The stage 3 growth rate must be set below GDP growth", "C": "Most of the value comes from the stage 3 terminal value"}, "ans": "C", "en": "L67: 3-Stage FCFF Model 오답노트\nL68: \"성장률이 둔화(declining growth)\"해도 여전히 양(+)의 성장이면 → 영업자산(operating assets)은 계속 증가(감소 아님)\nL69: 3단계(장기 안정성장률) 성장률은 \"산업이 GDP보다 빨리 성장할 것으로 예상\"되면 → GDP성장률보다 높게 설정 가능(낮게 X)\nL70: Terminal Value(3단계)는 전체 밸류에이션에서 가장 큰 비중을 차지하는 경우가 많음 — Stage 1·2보다 Stage 3(terminal value)에 귀속되는 가치 비중이 훨씬 큰 게 일반적", "enLabel": "오답노트 원문", "ko": "Declining but positive growth → operating assets still increase. Stage 3 growth can exceed GDP growth for a faster-growing industry. Terminal value usually carries the largest share of value.", "trap": "", "f": "", "why": {"A": "Slower but still positive growth means operating assets keep growing.", "B": "If the industry will outgrow the economy, stage 3 growth can be slightly above GDP growth."}, "orig": "Equity 오답노트 L67 · 근거 ECO-M3-Q60"}, {"id": "CON-M3-05", "src": "개념", "module": 3, "tag": "Working capital investment", "vig": null, "stem": "Accounts receivable rise by $20m, inventory by $30m, accounts payable by $15m, accrued liabilities by $5m, and cash by $10m. Working capital investment is:", "opts": {"A": "$50m", "B": "$40m", "C": "$30m"}, "ans": "C", "en": "L71: WC 계산: Cash 제외 Current asset(AR, 재고 등) + Current Liabilities(전체 또는 AP만,  단기차입금 제외)\nL72: Long-term Debt, Note payable는 포함 X\nL73: Note-payalbe\nL76: WC = (Current Assets - Cash) - Current Liabilities =  Δ AR + Δ Inventory - Δ AP - Δ Accrued Liabilities\nL89: | Current Assets(현금제외) | ✅ | ❌ |\nL90: | Current Liabilities | ✅ | ❌ |", "enLabel": "오답노트 원문", "ko": "WCInv = ΔAR + ΔInventory − ΔAP − ΔAccrued liabilities (cash and short-term debt excluded) = 20 + 30 − 15 − 5 = 30.", "trap": "", "f": "", "why": {"A": "$50m ignores the increase in operating liabilities.", "B": "$40m wrongly includes the change in cash."}, "orig": "Equity 오답노트 L71 · 근거 SCH R19"}, {"id": "CON-M3-06", "src": "개념", "module": 3, "tag": "Net borrowing", "vig": null, "stem": "Long-term debt rises from $400m to $450m, notes payable from $50m to $70m, and accounts payable from $100m to $130m. Net borrowing for FCFE is:", "opts": {"A": "$100m", "B": "$70m", "C": "$50m"}, "ans": "B", "en": "L79: Net Borrowing =  Δ Long-term Debt + Δ Note Payable\nL80: 사용 항목: Long-term Debt, short-term borrowing, Note payable, Bond Payable\nL81: Current Liabilities는 포함 x (이미 WCInv 계산에서 다 처리됐으므로 중복 반영 금지)\nL84: Net Borrowing = Long-term Debt_올해 - Long-term Debt_작년\nL91: | Long-term Debt | ❌ | ✅ |\nL93: > 🔑 Current Liabilities와 Long-term Debt는 서로 배타적으로 각자 다른 계산(WCInv / Net Borrowing)에만 쓰임 — 하나의 부채항목이 두 계산에 동시에 들어가는 일은 없음 / -  Current Liabilities(AP 등)는 영업활동, Long-term Debt는 재무활동(financing) — 성격 자체가 다름", "enLabel": "오답노트 원문", "ko": "Net borrowing = Δ long-term debt + Δ notes payable/short-term borrowing. Current operating liabilities go to WCInv, not net borrowing (no double counting).", "trap": "", "f": "", "why": {"A": "$100m includes accounts payable, which belongs in working capital investment.", "C": "$50m leaves out notes payable, which is interest-bearing debt."}, "orig": "Equity 오답노트 L79 · 근거 SCH R19"}, {"id": "CON-M3-07", "src": "개념", "module": 3, "tag": "FCF vs DDM, FCFF vs FCFE", "vig": null, "stem": "FCFF valuation is preferred over FCFE valuation when:", "opts": {"A": "the capital structure is unstable or changing", "B": "the company pays dividends equal to FCFE", "C": "the analyst takes a minority, non-control perspective"}, "ans": "A", "en": "L106: FCFF가 DDM 보다 superior 인 상황\nL108: dividend is substantially different from its FCFE\nL109: change in control\nL110: 불안정 지배구조 → FCFF > FCFE", "enLabel": "오답노트 원문", "ko": "Free cash flow models beat DDM when dividends differ substantially from FCFE or control changes are expected. FCFF beats FCFE when the capital structure is unstable.", "trap": "", "f": "", "why": {"B": "Dividends equal to FCFE favor a DDM or FCFE model.", "C": "A control perspective, not minority, favors free cash flow models."}, "orig": "Equity 오답노트 L106 · 근거 ECO-M3-Q69"}, {"id": "CON-M3-08", "src": "개념", "module": 3, "tag": "Inventory reduction as a growth source", "vig": null, "stem": "An analyst does not treat cash freed by inventory reductions as a long-term source of FCF growth. This is reasonable because:", "opts": {"A": "inventory is a financing item", "B": "inventory cannot fall below zero and growing sales usually raise inventory", "C": "inventory reductions are never a source of cash"}, "ans": "B", "en": "L113: 재고 감소 = 일시적 cash source, 장기 FCF 성장 원천 ✖\nL114: 재고는 0 아래로 줄일 수 없음 (한계 존재)\nL115: 성장 기업은 매출 증가 → 재고 증가 (오히려 cash 사용)\nL116: 예측 시 working capital 감소로 늘어난 FCF는 Long-term source of growth로 보지 않음", "enLabel": "오답노트 원문", "ko": "Inventory decline = temporary cash source; it has a limit (cannot go below zero) and growth firms build inventory.", "trap": "", "f": "", "why": {"C": "A decrease in working capital is a source of cash, but only temporarily.", "A": "Inventory is an operating item."}, "orig": "Equity 오답노트 L113 · 근거 ECO-M3-Q27"}, {"id": "CON-M3-09", "src": "개념", "module": 3, "tag": "FCFF sensitivity analysis", "vig": null, "stem": "Valuations under low and high estimates are: cost of debt $540m / $240m; cost of equity $470m / $310m; growth rate $330m / $420m. Value is most sensitive to the:", "opts": {"A": "growth rate", "B": "cost of equity", "C": "cost of debt"}, "ans": "C", "en": "L117: FCFF Sensitivity물으면 → growth rate, cost of debt, cost of equity 등 각 변수의 low/high 추정치로 계산한 'Firm value’의 범위를 비교\nL143: Sensitivity Analysis: Range = Valuation with Low Estimate - Valuation with High Estimate\nL145: Sensitivity = (High 값 - Low 값)/(Base case 값)\nL148: Low esitmate로 추정한 값(valuation)으로 판단! Low estimate (%)아님", "enLabel": "오답노트 원문", "ko": "Sensitivity: compare the range of valuations (valuation with low estimate vs high estimate), not the range of input percentages.", "trap": "", "f": "", "why": {"B": "Its valuation range ($160m) is smaller than that of cost of debt ($300m).", "A": "Its valuation range ($90m) is the smallest."}, "orig": "Equity 오답노트 L117 · 근거 ECO-M3-Q87"}, {"id": "CON-M3-10", "src": "개념", "module": 3, "tag": "EBITDA as a cash flow proxy", "vig": null, "stem": "For a high-growth company, EBITDA tends to overstate cash flow mainly because:", "opts": {"A": "it includes non-operating assets", "B": "it ignores capital expenditures that exceed depreciation and working capital investment", "C": "it deducts interest twice"}, "ans": "B", "en": "L118: 고성장 기업의 EBITDA → 감가상각보다 설비 투자를 더 많이 → cashflow 과대평가\nL206: current asset(매출채권, 재고) ↑  → WCInv가 (+) → 실제 FCFF/CFO에서 차감되는 항목이 커짐 → 근데 EBITDA는 이 차감을 전혀 안 하니, EBITDA가 실제 현금흐름보다 부풀려짐", "enLabel": "오답노트 원문", "ko": "Growth firms invest more than depreciation and build current assets; EBITDA deducts neither → overstates cash flow.", "trap": "", "f": "", "why": {"C": "EBITDA is before interest.", "A": "That is not the issue."}, "orig": "Equity 오답노트 L118 · 근거 ECO-M3-Q61"}, {"id": "CON-M3-11", "src": "개념", "module": 3, "tag": "Non-cash gains in FCFF", "vig": null, "stem": "A non-cash gain included in net income (such as the reversal of a non-cash charge) should be:", "opts": {"A": "subtracted when computing FCFF", "B": "added when computing FCFF", "C": "left as is"}, "ans": "A", "en": "L119: tax reversal of NCC → FCFF계산 때 차감 (비현금 이익이니까)", "enLabel": "오답노트 원문", "ko": "Reversal of non-cash charges (non-cash gains) → subtract in FCFF.", "trap": "", "f": "", "why": {"B": "Non-cash gains raised net income without cash, so they are removed.", "C": "Leaving it overstates cash flow."}, "orig": "Equity 오답노트 L119 · 근거 SCH R19"}, {"id": "CON-M4-01", "src": "개념", "module": 4, "tag": "Choosing the P/E", "vig": null, "stem": "For a cyclical company, the analyst should base P/E on:", "opts": {"A": "earnings including restructuring charges", "B": "normalized (mid-cycle) earnings", "C": "trough-year earnings"}, "ans": "B", "en": "L125: 대형 M&A(인수·매각)가 있으면 → Forward(Leading) P/E 사용 (미래 예상실적에 그 효과가 반영되므로)\nL126: 경기순환산업(cyclical industry)이면 → Normalized Earnings 기반 P/E 사용 (경기저점/구조조정비용 왜곡 제거, mid-cycle 수준 반영)", "enLabel": "오답노트 원문", "ko": "Large acquisitions/divestitures → forward (leading) P/E. Cyclical industry → P/E on normalized earnings (removes trough and restructuring distortions).", "trap": "", "f": "", "why": {"C": "Trough earnings inflate the P/E.", "A": "One-off charges distort earnings."}, "orig": "Equity 오답노트 L125 · 근거 SCH R20"}, {"id": "CON-M4-02", "src": "개념", "module": 4, "tag": "Cash flow measure after interest and working capital", "vig": null, "stem": "Which cash flow measure is after interest expense and reflects working capital investment?", "opts": {"A": "FCFE", "B": "EBITDA", "C": "Cash flow (net income + non-cash charges)"}, "ans": "A", "en": "L127: \"이자차감후 + 운전자본반영\" 두 조건 만족하는 지표 = FCFE", "enLabel": "오답노트 원문", "ko": "After interest + reflects working capital → FCFE.", "trap": "", "f": "", "why": {"B": "EBITDA is before interest and ignores working capital.", "C": "Simple cash flow ignores working capital investment."}, "orig": "Equity 오답노트 L127 · 근거 SCH R20"}, {"id": "CON-M4-03", "src": "개념", "module": 4, "tag": "PEG ratio", "vig": null, "stem": "A stock has a P/E of 18 and expected earnings growth of 12%. The industry average PEG is 1.5. The stock is most likely:", "opts": {"A": "fairly valued", "B": "undervalued", "C": "overvalued"}, "ans": "A", "en": "L131: PEG = P/E ÷ 예상이익성장률(%)\nL132: PEG가 낮을수록 attractive\nL133: 계산된 PEG가 업종평균과 비슷하면 → 적정평가(fairly valued)\nL134: PEG가 range 중간에 위치 + 업종평균과 근접 = 적정평가의 근거", "enLabel": "오답노트 원문", "ko": "PEG = P/E ÷ growth (%) = 18/12 = 1.5. Lower PEG = more attractive; PEG near the industry average (middle of range) → fairly valued.", "trap": "", "f": "", "why": {"B": "Its PEG (1.5) equals the industry average, not below it.", "C": "Its PEG is not above the industry average."}, "orig": "Equity 오답노트 L131 · 근거 ECO-M4-Q15"}, {"id": "CON-M4-04", "src": "개념", "module": 4, "tag": "Harmonic mean", "vig": null, "stem": "An analyst wants to reduce the effect of large outliers but not small ones (near zero) when averaging P/Es. She should use the:", "opts": {"A": "harmonic mean", "B": "arithmetic mean", "C": "median"}, "ans": "A", "en": "L138: \"큰 이상치만 완화하고, 작은 이상치(0에 가까운 값)는 그대로 반영\"하고 싶을 때 → 조화평균(Harmonic Mean)\nL139: 이유: 역수를 취하므로 큰 값의 영향력은 자동 축소, 작은 값은 오히려 더 민감해지지만 0이 하한선이라 왜곡 제한적\nL140: 중앙값(Median): 크든 작든 이상치를 모두 무시 → 비대칭적 요구 충족 못 함\nL141: 산술평균(Arithmetic Mean): 큰 이상치에 가장 취약", "enLabel": "오답노트 원문", "ko": "Harmonic mean: reduces large outliers' impact; small outliers can matter more but are bounded at zero.", "trap": "", "f": "", "why": {"C": "The median ignores both large and small outliers.", "B": "The arithmetic mean is most affected by large outliers."}, "orig": "Equity 오답노트 L138 · 근거 ECO-M4-Q16"}, {"id": "CON-M4-05", "src": "개념", "module": 4, "tag": "Enterprise value", "vig": null, "stem": "Enterprise value equals:", "opts": {"A": "market value of common stock + all current liabilities", "B": "market value of common + preferred + interest-bearing debt + minority interest − cash and investments", "C": "book value of equity + accounts payable"}, "ans": "B", "en": "L149: EV = MV of (보통주 + 우선주 + debt) + minority interest - cash&investment\nL150: Debt=Long-term Debt+단기차입금(Short-term Borrowings/Notes Payable)\nL152: current Liability X (AP, 미지급비용 등은 제외)\nL153: ❌ 제외: 매입채무(AP), 미지급비용 등 이자를 안 낳는 일반 영업활동상 부채", "enLabel": "오답노트 원문", "ko": "EV = MV(common + preferred + debt) + minority interest − cash & investments; debt = long-term debt + short-term borrowings/notes payable; exclude accounts payable and accruals.", "trap": "", "f": "", "why": {"A": "Operating current liabilities (accounts payable, accruals) are excluded.", "C": "EV uses market values and interest-bearing debt."}, "orig": "Equity 오답노트 L149 · 근거 SCH R20"}, {"id": "CON-M4-06", "src": "개념", "module": 4, "tag": "Normalized EPS – average ROE method", "vig": null, "stem": "Over the last cycle the average ROE was 10% and the average EPS was $4.32. Current BVPS is $50 and the latest EPS is $3.68. Normalized EPS using the preferred method is:", "opts": {"A": "$4.32", "B": "$3.68", "C": "$5.00"}, "ans": "C", "en": "L159: ① Historical Average EPS Method\nL161: Normalized EPS = 최근 경기순환주기 동안의 평균EPS\nL163: ② Average ROE Method (더 선호되는 방법)\nL165: Normalized EPS = Average ROE × current BVPS\nL167: Average ROE Method가 더 선호되는 이유: 현재 BVPS를 기준으로 계산해서 회사 규모변화(size effect)를 더 정확히 반영함(Historical Average EPS Method는 규모변화를 무시함)\nL168: 목적: 경기순환에 따른 \"Molodovsky Effect\"(경기저점=EPS낮음→P/E높음, 경기고점=EPS높음→P/E낮음) 왜곡을 제거하기 위함", "enLabel": "오답노트 원문", "ko": "Average ROE method (preferred): average ROE × current BVPS = 10% × 50 = 5.00; reflects size changes. Purpose: remove the Molodovsky effect (low EPS at trough → high P/E).", "trap": "", "f": "", "why": {"A": "$4.32 is the historical average EPS method, which ignores the company's change in size.", "B": "$3.68 is the latest, cycle-distorted EPS."}, "orig": "Equity 오답노트 L159 · 근거 ECO-M4-Q76"}, {"id": "CON-M4-07", "src": "개념", "module": 4, "tag": "Earnings yield vs normalized EPS", "vig": null, "stem": "When some companies have zero or negative earnings, an analyst who wants to rank stocks consistently should use:", "opts": {"A": "the earnings yield (E/P)", "B": "normalized EPS", "C": "the P/E ratio"}, "ans": "A", "en": "L174: | E/P(Earnings Yield) | 이익이 극도로 낮거나, 0이거나, 음수일 때 → 순위매기기(ranking) 불가능 문제 | 이익을 분자, 가격을 분모로 뒤집어서 사용 (가격은 절대 음수 안 됨 → 항상 일관된 순위 가능) |\nL175: | Normalized EPS | 비경상항목(non-recurring items), 경기순환(business cycle) 영향으로 이익 자체가 왜곡됨 | ① Historical Average EPS Method(최근 경기순환주기 평균 EPS) / ② Average ROE Method(평균ROE×현재BVPS, 더 선호됨) |\nL177: E/P (earning yield) →  rank security (싼거 → 비싼거)\nL178: non-recurreing 항목·cycle 문제 해결 불가 ← Normalized EPS의 역할\nL179: E/P는 이익 왜곡을 바로잡아주지 않음\nL207: earning yield = E/P", "enLabel": "오답노트 원문", "ko": "E/P (price always positive) allows consistent ranking with low/zero/negative earnings; it does not fix non-recurring or cyclical distortions (that is normalized EPS).", "trap": "", "f": "", "why": {"B": "Normalized EPS addresses non-recurring and cyclical distortions, not ranking with negative earnings.", "C": "P/E is meaningless with zero or negative earnings."}, "orig": "Equity 오답노트 L174 · 근거 ECO-M4-Q61"}, {"id": "CON-M4-08", "src": "개념", "module": 4, "tag": "Drawbacks of FCFE as a multiple base", "vig": null, "stem": "A disadvantage of using FCFE in price multiples is that FCFE:", "opts": {"A": "ignores working capital", "B": "is more volatile than cash flow and can be negative", "C": "ignores interest expense"}, "ans": "B", "en": "L180: Free cash flow to equity (FCFE) is more volatile than cash flow for many businesses (단점)\nL181: FCFE → 음수 가능 (단점)", "enLabel": "오답노트 원문", "ko": "FCFE is more volatile than cash flow for many businesses and can be negative.", "trap": "", "f": "", "why": {"C": "FCFE is after interest.", "A": "FCFE reflects working capital investment."}, "orig": "Equity 오답노트 L180 · 근거 SCH R20"}, {"id": "CON-M4-09", "src": "개념", "module": 4, "tag": "Terminal value with comparables", "vig": null, "stem": "Using a comparables approach with an industry average trailing P/E of 15, year-n EPS of $4.00, and year n+1 EPS of $4.27, the terminal value is:", "opts": {"A": "$64.05", "B": "the Gordon growth value D_n(1 + g)/(r − g)", "C": "$60.00"}, "ans": "C", "en": "L185: ① Comparables 기반 (정답 방식)\nL187: \nL188: V_n = Industry Average P/E × E_n\nL191: 산업평균 P/E × n년차 이익 = terminal value\nL192: V_n = Trailing P/E benchmark × E_n(Trailing 기준)\nL193: V_n = Forward P/E benchmark × E_n+1 (Forward 기준)\nL195: ② Fundamentals 기반 (Gordon Growth, comparables와 다른 방법)\nL198: V_n = (D_n)/(r-g)  (trailing) qquad V_n = (D_n(1+g))/(r-g)  (forward, 1기 성장 반영)\nL201: > 🔑 함정: 문제가 \"comparables 기반 terminal multiple\"을 물으면 → 무조건 산업평균 P/E × 이익만 쓰면 됨, r·g·payout ratio 등으로 복잡하게 계산하면 안 됨(그건 fundamentals 방식, 다른 질문) / 🔑 Comparables 방식과 Fundamentals 방식은 서로 다른 두 접근법", "enLabel": "오답노트 원문", "ko": "Comparables: V_n = benchmark trailing P/E × E_n, or forward P/E × E_{n+1}. Fundamentals: V_n = D_n/(r − g) or D_n(1 + g)/(r − g). Do not mix the two.", "trap": "", "f": "", "why": {"A": "$64.05 multiplies the trailing P/E by next-year EPS; a trailing P/E pairs with E_n.", "B": "That is the fundamentals approach, a different method."}, "orig": "Equity 오답노트 L185 · 근거 SCH R20"}, {"id": "CON-M4-10", "src": "개념", "module": 4, "tag": "EV/EBITDA vs P/E", "vig": null, "stem": "When comparing companies with very different capital structures, the more appropriate multiple is:", "opts": {"A": "EV/EBITDA", "B": "P/B", "C": "P/E"}, "ans": "A", "en": "L203: 자본구조가 다른 회사들끼리 비교할 땐 EV/EBITDA > P/E(더 적절)\nL205: EBITDA : 이자 전 수치 → financial leverage차이에 영향 X", "enLabel": "오답노트 원문", "ko": "EBITDA is before interest → unaffected by leverage differences → EV/EBITDA is better than P/E across capital structures.", "trap": "", "f": "", "why": {"C": "P/E reflects financial leverage.", "B": "P/B is also affected by leverage."}, "orig": "Equity 오답노트 L203 · 근거 SCH R20"}, {"id": "CON-M4-11", "src": "개념", "module": 4, "tag": "P/E vs P/S", "vig": null, "stem": "Compared with P/E, the P/S ratio:", "opts": {"A": "reflects financial leverage more strongly", "B": "is more volatile because sales fluctuate more than earnings", "C": "is more stable and does not reflect financial leverage"}, "ans": "C", "en": "L243: P/E reflects financial leverage\nL244: P/S 는 재무구조 반영 X\nL245: stability : P/S > P/E (Sales가 earning 보다 더 안정적)", "enLabel": "오답노트 원문", "ko": "P/E reflects financial leverage; P/S does not. Sales are more stable than earnings → P/S more stable.", "trap": "", "f": "", "why": {"B": "Sales are more stable than earnings.", "A": "P/S does not reflect the capital structure; P/E does."}, "orig": "Equity 오답노트 L243 · 근거 SCH R20"}, {"id": "CON-M4-12", "src": "개념", "module": 4, "tag": "Underlying EPS", "vig": null, "stem": "Reported diluted EPS is $2.00, including a non-recurring gain of $0.30 and a non-recurring loss of $0.10 per share. The price is $36. The trailing P/E on underlying EPS is:", "opts": {"A": "16.4", "B": "18.0", "C": "20.0"}, "ans": "C", "en": "L246: trailing P/E using underlying EPS 계산 시,  Underlying EPS = Reported − nonrecurring gains + nonrecurring losses\nL247: diluted EPS 나오면 non recurring 항목 조정하기!", "enLabel": "오답노트 원문", "ko": "Underlying EPS = reported − non-recurring gains + non-recurring losses = 2.00 − 0.30 + 0.10 = 1.80; P/E = 36/1.80 = 20.0.", "trap": "", "f": "", "why": {"B": "18.0 uses reported EPS without removing non-recurring items.", "A": "16.4 adds back the gain instead of removing it."}, "orig": "Equity 오답노트 L246 · 근거 ECO-M4-Q24"}, {"id": "CON-M4-13", "src": "개념", "module": 4, "tag": "Fed and Yardeni models", "vig": null, "stem": "Under the Fed model, the equity market is undervalued when:", "opts": {"A": "the earnings yield is below the Treasury yield", "B": "the consensus five-year growth rate exceeds the Treasury yield", "C": "the market earnings yield exceeds the 10-year Treasury yield"}, "ans": "C", "en": "L249: Fed model: 시장 earnings yield (E/P) > 국채 수익률 → 시장 저평가 (E/P < 국채수익률이면 고평가)\nL251: 성장률은 고려X\nL252: 가격에 비해 시장에서 가격이 낮다 → 고평가\nL253: Yardeni model: Fed model + 성장률\nL255: Earnings yield 비교 대상 = 회사채 수익률 (Moody's A rated), 컨센서스 5년 이익성장률의 가중 반영\nL256: (E)/(P) = CBY - d × LTEG\nL257: CBY = 회사채 수익률, d = 성장률 반영 계수, LTEG = 5년 성장률 컨센서스", "enLabel": "오답노트 원문", "ko": "Fed model: E/P > 10-year Treasury → undervalued (ignores growth). Yardeni: E/P = corporate bond yield (A-rated) − d × consensus five-year growth.", "trap": "", "f": "", "why": {"A": "That would indicate overvaluation.", "B": "Growth enters the Yardeni model, not the Fed model."}, "orig": "Equity 오답노트 L249 · 근거 ECO-M4-Q27"}, {"id": "CON-M4-14", "src": "개념", "module": 4, "tag": "Momentum indicators", "vig": null, "stem": "Standardized unexpected earnings (SUE) equals:", "opts": {"A": "a stock's performance relative to its group", "B": "(actual EPS − expected EPS) ÷ expected EPS", "C": "(actual EPS − expected EPS) ÷ standard deviation of past unexpected earnings"}, "ans": "C", "en": "L258: relative strength = 그룹 또는 자기 과거 대비 성과\nL259: SUE = (실제 − 예상 EPS) / σ(과거 unexpected earnings surprise)", "enLabel": "오답노트 원문", "ko": "SUE = unexpected earnings / σ(past unexpected earnings). Relative strength = performance vs group or own history.", "trap": "", "f": "", "why": {"B": "Scaling is by the standard deviation of past surprises.", "A": "That is relative strength."}, "orig": "Equity 오답노트 L258 · 근거 SCH R20"}, {"id": "CON-M5-01", "src": "개념", "module": 5, "tag": "When residual income models fit", "vig": null, "stem": "A residual income model is most appropriate when the company:", "opts": {"A": "pays no or irregular dividends and is expected to have negative free cash flow for years", "B": "smooths earnings using accounting flexibility", "C": "has many items bypassing net income through OCI"}, "ans": "A", "en": "L33: OCI 항목이 많으면 RI 부적합 (net income이 경제 상황 반영 잘X)\nL34: RI 모형 선호 조건\nL36: 배당 X or 불규칙\nL37: 예측기간 내 FCF 음수 : Capex > CFO → (-) FCF음수\nL38: 회계 투명성\nL281: | cash flow의 변동성/불확실성 | ✅ RI모형 지지 | RI모형은 회계이익(NI)과 장부가치(B0) 기반이라, 현금흐름이 불안정하거나 마이너스여도 여전히 안정적으로 계산 가능 (FCFE모형 대비 강점) |\nL282: | Earnings Smoothing | ❌ RI모형 약화 | 회계기준의 유연성을 이용한 이익조작 → RI모형이 의존하는 핵심재료(NI)의 신뢰도 훼손 |\nL283: | 이자비용 understate(한계자본비용 미반영) /  low marginal cost of capital | ❌ RI모형 약화 | 이자비용 낮춰서 보고 → NI 과대계상 → RI 계산 자체가 왜곡됨(RI모형은 보고된 이자비용이 실제 자본비용을 정확히 반영한다는 전제에 의존) |\nL285: RI모형이 FCFE보다 유리한 이유:현금흐름 불안정성/마이너스에도 적용 가능한 점\nL286: RI모형은 NI가 정확하다는 전제에 크게 의존 → 이익조작·비용왜곡이 있으면 오히려 부적합해짐", "enLabel": "오답노트 원문", "ko": "RI favored: no/irregular dividends, negative FCF in the forecast period, transparent accounting, volatile cash flows. Weakened by many OCI items, earnings smoothing, understated interest expense.", "trap": "", "f": "", "why": {"C": "Many OCI items make net income less reliable for RI.", "B": "Earnings manipulation weakens the RI model, which relies on net income."}, "orig": "Equity 오답노트 L33 · 근거 SCH R21"}, {"id": "CON-M5-02", "src": "개념", "module": 5, "tag": "Residual income at the horizon", "vig": null, "stem": "In a multistage residual income model, the terminal value at the end of the forecast period reflects:", "opts": {"A": "book value only", "B": "the sum of all past residual incomes", "C": "expected market value minus book value at that date (the premium over book)"}, "ans": "C", "en": "L208: The residual income after the forecast period is: Expected MV – BV after the forecast period\nL209: Terminal value = p - b\nL297: Multistage RI Model - Terminal Value of RI 계산 시, 마지막 연도  P = B → terminal 항 = 0", "enLabel": "오답노트 원문", "ko": "Residual income after the forecast period = expected MV − BV at the horizon (P − B). If P = B at the horizon, the terminal term is 0.", "trap": "", "f": "", "why": {"A": "Terminal value is the premium over book, not book itself.", "B": "Past residual income is already in book value."}, "orig": "Equity 오답노트 L208 · 근거 SCH R21"}, {"id": "CON-M5-03", "src": "개념", "module": 5, "tag": "Adjustments that change book value", "vig": null, "stem": "Which adjustment changes the book value per share used in a residual income model?", "opts": {"A": "Revaluing assets and liabilities to fair value", "B": "Excluding non-recurring gains from forecast earnings", "C": "Capitalizing operating leases"}, "ans": "A", "en": "L213: 실제로 Book Value per Share를 변화시키는 adjustment?\nL215: Book Value(B0)를 바꾸는 조정 = 자산·부채의 \"가치측정\" 자체를 변경하는 것(FV 조정)\nL216: Book Value를 안 바꾸는 조정 = ①상쇄되는 것(운용리스) ②이미 과거에 반영된 것(비경상항목, 미래예측에만 영향)\nL220: | 자산·부채를 fair value로 재평가 | 변화시킴✅ |\nL221: | 운용리스를 자산·부채에 포함 | 변화❌ |\nL222: | non-recurring g&l을 RI 계산에서 제외 | ❌ ❌ |\nL224: operational lease 반영 시 asset & Liab 동시 ↑\nL226: 사용권자산(자산↑)과 리스부채(부채↑)가 같은 크기로 동시에 늘어남 → 상쇄되어 순자산 불변\nL227: 대신 I/S expense성격이 바뀌어 미래이익(RI 추정)에는 영향 줄 수 있음\nL228: non-recurring G&I : 미래 RI 예측에서만 걸러내야 하는 대상\nL230: 과거에 실제 발생한 non-recurring G&I 은 이미 현재 (B0)에 반영되어 있음 → 또 조정하면 이중조정", "enLabel": "오답노트 원문", "ko": "Fair value revaluation changes B₀. Operating lease capitalization offsets (affects future earnings only). Non-recurring items are filtered from future RI, not B₀ (avoid double adjustment).", "trap": "", "f": "", "why": {"C": "Lease assets and liabilities rise equally, so equity is unchanged.", "B": "Past non-recurring items are already in B₀; they affect only future forecasts."}, "orig": "Equity 오답노트 L213 · 근거 ECO-M5-Q52"}, {"id": "CON-M5-04", "src": "개념", "module": 5, "tag": "Clean surplus relation", "vig": null, "stem": "Which item is least likely to violate the clean surplus relation?", "opts": {"A": "Foreign currency gains and losses on ordinary import/export transactions", "B": "Unrealized gains on available-for-sale securities", "C": "Translation adjustments for a subsidiary using the current rate method"}, "ans": "A", "en": "L232: Clean Surplus 일때 RI =DDM (같은 값을 냄)\nL233: clean surplus 위반\nL234: Transaction Exposure(개별 수출입거래)는 회계기준·자회사성격과 무관하게 항상 I/S 반영 → OCI로 우회할 경로 자체가 없어 위반 불가능\nL235: Translation Exposure(자회사 전체, Current Rate Method 적용) + Available-for-Sale 는 둘 다 I/S 우회 → OCI 직행 → 위반\nL239: | Available-for-Sale  / 미실현손익 | ✅ OCI로 우회 | ✅ 위반 |\nL240: | 일반 수출입거래 / (Transaction Exposure) | ❌ 항상 I/S 반영 | 위반 ❌ |\nL241: | 자기완결적 자회사 FX손익(Translation, Current Rate Method) | ✅ OCI로 우회 | ✅ 위 |", "enLabel": "오답노트 원문", "ko": "Clean surplus holds → RI value = DDM value. Transaction exposure always hits the income statement (no violation); available-for-sale and current-rate translation go to OCI (violation).", "trap": "", "f": "", "why": {"B": "Available-for-sale gains bypass the income statement through OCI.", "C": "Current rate translation adjustments go to OCI."}, "orig": "Equity 오답노트 L232 · 근거 ECO-M5-Q63"}, {"id": "CON-M5-05", "src": "개념", "module": 5, "tag": "EVA", "vig": null, "stem": "NOPAT is $120m, WACC is 8%, and total capital is $1,000m at the beginning of the year and $1,100m at the end. EVA is:", "opts": {"A": "$32m", "B": "$120m", "C": "$40m"}, "ans": "C", "en": "L263: EVA : 한 해 동안 경영진이 주주에게 만든 가치  =  NOPAT - WACC\nL264: WACC = WACC × 기초 total capital\nL267: Residual income = 순이익 − 자기자본 비용 (r × 기초 equity) / EVA = NOPAT − 자본 전체 비용 / ", "enLabel": "오답노트 원문", "ko": "EVA = NOPAT − $WACC; $WACC = WACC × beginning total capital = 0.08 × 1,000 = 80 → EVA = 40. RI = NI − r × beginning equity (equity only); EVA uses total capital.", "trap": "", "f": "", "why": {"A": "$32m uses ending capital; the capital charge uses beginning capital.", "B": "$120m ignores the capital charge."}, "orig": "Equity 오답노트 L263 · 근거 SCH R21"}, {"id": "CON-M5-06", "src": "개념", "module": 5, "tag": "Market value added", "vig": null, "stem": "The market value of a company's debt and equity is $1,500m and the book value of its invested capital is $1,200m. Market value added is:", "opts": {"A": "$300m", "B": "$2,700m", "C": "$1,500m"}, "ans": "A", "en": "L265: MVA : 회사 설립 이후 경영진의 결정이 만든 누적 가치\nL266: = Market Value (D+E) - 투자된 자본의 BV (기말 total capital)", "enLabel": "오답노트 원문", "ko": "MVA = market value of (debt + equity) − book value of invested capital: cumulative value created by management decisions.", "trap": "", "f": "", "why": {"C": "MVA subtracts the capital invested.", "B": "The values are subtracted, not added."}, "orig": "Equity 오답노트 L265 · 근거 ECO-M5-Q9"}, {"id": "CON-M5-07", "src": "개념", "module": 5, "tag": "Single-stage residual income model", "vig": null, "stem": "B₀ = $20, ROE = 12%, r = 10%, and g = 4%. The single-stage residual income value is:", "opts": {"A": "$24.00", "B": "$26.67", "C": "$20.00"}, "ans": "B", "en": "L269: intrinsic value per share of the equity :\nL271: V0 = B0 + B0(ROE − r)/(r − g)", "enLabel": "오답노트 원문", "ko": "V₀ = B₀ + B₀(ROE − r)/(r − g) = 20 + 20 × 0.02/0.06 = 26.67.", "trap": "", "f": "", "why": {"C": "$20.00 is book value; the ROE > r adds a premium.", "A": "$24.00 does not use (r − g) in the denominator."}, "orig": "Equity 오답노트 L269 · 근거 SCH R21"}, {"id": "CON-M5-08", "src": "개념", "module": 5, "tag": "Improving EVA", "vig": null, "stem": "Which action is least likely to increase EVA?", "opts": {"A": "Moving financial leverage to the optimal level", "B": "Cutting R&D spending", "C": "Increasing operating efficiency"}, "ans": "B", "en": "L272: EVA 조정 : R&D 비용 ↓ → NOPAT ↓ → EVA ↓\nL274: financial leverage 최적화 → cost of capital ↓ → EVA ↑\nL275: R&D costs are added back to NOPAT when calculating EVA (자본화)", "enLabel": "오답노트 원문", "ko": "R&D is added back (capitalized) to NOPAT when computing EVA, so cutting R&D lowers, not raises, EVA. Optimizing leverage lowers the cost of capital → EVA↑.", "trap": "", "f": "", "why": {"A": "Optimal leverage lowers the cost of capital and raises EVA.", "C": "Higher efficiency raises NOPAT."}, "orig": "Equity 오답노트 L272 · 근거 ECO-M5-Q64"}, {"id": "CON-M5-09", "src": "개념", "module": 5, "tag": "Fading residual income", "vig": null, "stem": "With a long forecast horizon and strong competition, residual income at the horizon is expected to:", "opts": {"A": "stay at its current level", "B": "grow at the GDP rate forever", "C": "fade toward zero as ROE converges to the cost of equity"}, "ans": "C", "en": "L288: Long horizon → ROE fades → RI fades → terminal premium ≈ 0에 수렴\nL289: 예측기간이 길고 경쟁이 치열하면 ROE가 자기자본비용으로 수렴 → RI → 0 → BV 대비 premium ≈ 0", "enLabel": "오답노트 원문", "ko": "Long horizon + competition → ROE → cost of equity → RI → 0 → premium over book ≈ 0.", "trap": "", "f": "", "why": {"B": "Competition erodes excess returns.", "A": "Persistence is unlikely under strong competition."}, "orig": "Equity 오답노트 L288 · 근거 SCH R21"}, {"id": "CON-M6-01", "src": "개념", "module": 6, "tag": "Private company WACC", "vig": null, "stem": "A private company with a suboptimal debt ratio is likely to have a WACC estimate that is:", "opts": {"A": "above its optimal WACC because of a higher weight on equity", "B": "below its optimal WACC because of a lower weight on debt", "C": "equal to its optimal WACC"}, "ans": "A", "en": "L301: Private companies : have WACC estimates above their optimal WACC because of a higher weight on equity.", "enLabel": "오답노트 원문", "ko": "Private companies: higher weight on equity → WACC above optimal.", "trap": "", "f": "", "why": {"B": "A lower weight on cheaper debt raises, not lowers, WACC.", "C": "A suboptimal structure means WACC differs from optimal."}, "orig": "Equity 오답노트 L301 · 근거 ECO-M6-Q4"}, {"id": "CON-M6-02", "src": "개념", "module": 6, "tag": "Capitalized cash flow method", "vig": null, "stem": "A private company's FCFF₀ is $10m, its long-term growth rate is 3%, and its WACC is 9%. Its value under the capitalized cash flow method is closest to:", "opts": {"A": "$171.7m (enterprise value)", "B": "$166.7m (enterprise value)", "C": "$171.7m (equity value)"}, "ans": "A", "en": "L287: Capitalization Rate=WACC−g\nL302: CCM → EV = FCFF0 x (1+g) / (WACC - g)\nL303: FCFF1 쓰는 거 유의!! (FCFF0 x (1+g)\nL304: FCFE로 CCM 계산 시, 결과 = Equity Value\nL306: ≠ EV (Dept + Equity Value)\nL307: CCM의  capitalization rate  = WACC - g", "enLabel": "오답노트 원문", "ko": "CCM: EV = FCFF₀(1 + g)/(WACC − g) = 10.3/0.06 = 171.7. Capitalization rate = WACC − g. Using FCFE gives equity value, not EV.", "trap": "", "f": "", "why": {"B": "$166.7m uses FCFF₀ instead of FCFF₁ = FCFF₀ × (1 + g).", "C": "FCFF discounted at WACC gives enterprise value; FCFE would give equity value."}, "orig": "Equity 오답노트 L287 · 근거 ECO-M6-Q30"}, {"id": "CON-M6-03", "src": "개념", "module": 6, "tag": "Excess earnings method", "vig": null, "stem": "The excess earnings method is most commonly used to value:", "opts": {"A": "publicly traded debt", "B": "intangible assets", "C": "entire businesses"}, "ans": "B", "en": "L308: EEM → 주로 무형자산 평가용. 기업 전체 평가에는 유용X", "enLabel": "오답노트 원문", "ko": "EEM → mainly for intangible assets; less useful for valuing entire businesses.", "trap": "", "f": "", "why": {"C": "It relies on multiple discount rates and is less useful for whole businesses.", "A": "It is not a debt valuation method."}, "orig": "Equity 오답노트 L308 · 근거 ECO-M6-Q9"}, {"id": "CON-M6-04", "src": "개념", "module": 6, "tag": "Expanded CAPM", "vig": null, "stem": "Risk-free rate 3%, beta 1.2, equity risk premium 5.5%, small-stock premium 3.5%, and company-specific premium 1%. The expanded CAPM required return is:", "opts": {"A": "14.1%", "B": "13.0%", "C": "9.6%"}, "ans": "A", "en": "L309: Expanded CAPM = rf + β × ERP + size 프리미엄 + company specific premium\nL310: expected inflation 은 사용 X", "enLabel": "오답노트 원문", "ko": "Expanded CAPM = rf + β × ERP + size premium + company-specific premium = 3 + 6.6 + 3.5 + 1 = 14.1% (expected inflation is not a separate term).", "trap": "", "f": "", "why": {"B": "13.0% is the build-up method, which does not apply beta.", "C": "9.6% is plain CAPM without the size and company-specific premiums."}, "orig": "Equity 오답노트 L309 · 근거 ECO-M6-Q23"}, {"id": "CON-M6-05", "src": "개념", "module": 6, "tag": "Management ownership in a private company", "vig": null, "stem": "Which characteristic most likely has a positive effect on a private company's valuation?", "opts": {"A": "A shareholder agreement restricting sales of shares", "B": "Senior management owning a controlling interest", "C": "Limited financial statement disclosure"}, "ans": "B", "en": "L311: management own controlling interest → principal-agent 문제 ↓ , 장기적 의사결정 가능 → 가치에 긍정적\nL312: 주식 매각 제한 → 시장성 ↓ : 부정적 요인", "enLabel": "오답노트 원문", "ko": "Management control → fewer principal–agent problems, long-term decisions → positive. Restrictions on selling shares → lower marketability → negative.", "trap": "", "f": "", "why": {"A": "Sale restrictions reduce marketability, a negative.", "C": "Limited disclosure increases risk, a negative."}, "orig": "Equity 오답노트 L311 · 근거 ECO-M6-Q42"}, {"id": "CON-M6-06", "src": "개념", "module": 6, "tag": "Purposes of private company valuation", "vig": null, "stem": "A private company valuation done for tax reporting is classified as:", "opts": {"A": "compliance-related", "B": "transaction-related", "C": "litigation-related"}, "ans": "A", "en": "L293: | Compliance-related | 법/규정 준수 | Tax reporting, financial reporting |\nL294: | Transaction-related | 소유권·자금조달과 관련된 거래 | M&A, restructuring, financing |\nL295: | Litigation-related | 법적 분쟁 | Damages, lost profits, shareholder disputes, divorce |", "enLabel": "오답노트 원문", "ko": "Compliance-related: tax and financial reporting. Transaction-related: M&A, restructuring, financing. Litigation-related: damages, lost profits, shareholder disputes, divorce.", "trap": "", "f": "", "why": {"B": "Transaction-related covers M&A, restructuring, and financing.", "C": "Litigation-related covers damages, lost profits, and disputes."}, "orig": "Equity 오답노트 L293 · 근거 ECO-M6-Q38"}], "vignettes": [], "modules": {"1": "Equity Valuation: Applications and Processes", "2": "Discounted Dividend Valuation", "3": "Free Cash Flow Valuation", "4": "Market-Based Valuation: Price and EV Multiples", "5": "Residual Income Valuation", "6": "Private Company Valuation"}}</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById('quizdata').textContent);
+var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules;
+var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
+var SUBJECT = "EquityConcept", KEY = "EquityConcept_quiz_state_v1", EXPKEY = "EquityConcept_quiz_exports_v1";
+
+/* ---------- storage with memory fallback ---------- */
+var mem = {};
+var store = {
+  get:function(k){ try{ var v=window.localStorage.getItem(k); return v===null?null:JSON.parse(v);}catch(e){ return mem[k]===undefined?null:mem[k]; } },
+  set:function(k,v){ try{ window.localStorage.setItem(k, JSON.stringify(v)); }catch(e){ mem[k]=v; } }
+};
+var S = store.get(KEY);
+function fresh(order, mode){
+  return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
+}
+function save(){ store.set(KEY,S); }
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function rich(text){ // paragraphs + tab tables
+  var lines = String(text||"").split("\n"), html="", tbl=[];
+  function isRow(l){ return l!=null && l.indexOf("\t")>=0; }
+  function isLabel(l){ var t=String(l==null?"":l).trim(); return !!t && !isRow(l) && t.length<=90 && !/^(Exhibit|Note|Panel|\([A-C]\)|[A-C] is )/i.test(t); }
+  function flush(){
+    if(!tbl.length) return;
+    var n=0; tbl.forEach(function(r){ if(r.c && r.c.length>n) n=r.c.length; });
+    html+='<div class="tbl"><table>'+tbl.map(function(r,i){
+      if(r.l!=null) return '<tr><td class="lbl" colspan="'+n+'">'+esc(r.l)+'</td></tr>';
+      var c=r.c.slice();
+      if(i===0 && c.length===n-1) c.unshift(""); // header missing its empty corner cell
+      while(c.length<n) c.push("");
+      return "<tr>"+c.map(function(x){return "<td>"+esc(x)+"</td>";}).join("")+"</tr>";
+    }).join("")+"</table></div>"; tbl=[];
+  }
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(isRow(l)){ tbl.push({c:l.split("\t").map(function(x){return x.trim();})}); continue; }
+    if(tbl.length){
+      if(l.length && !l.trim()) continue; // whitespace-only line inside a table
+      var j=i; while(j<lines.length && j-i<3 && isLabel(lines[j])) j++;
+      if(j>i && isRow(lines[j])){ for(;i<j;i++) tbl.push({l:lines[i].trim()}); i--; continue; } // section label between rows
+    }
+    flush(); if(l.trim()) html+="<p>"+esc(l)+"</p>";
+  }
+  flush(); return html;
+}
+function mname(m){ return "Module "+m+" – "+MN[m]; }
+function srcClass(s){ return s==="ECO 오답"?"src-wrong":s==="ECO 관련유형"?"src-rel":s==="Schweser MQ"?"src-sch":"src-var"; }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function $(id){ return document.getElementById(id); }
+
+/* ---------- stats ---------- */
+function roundStats(){
+  var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
+  return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
+}
+function header(){
+  if(!S){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
+  var st=roundStats();
+  $("nOk").textContent=st.ok; $("nBad").textContent=st.bad;
+  $("pbar").style.width=(st.total?st.answered/st.total*100:0)+"%";
+  $("ptxt").textContent=st.answered+" / "+st.total+" 풀이 완료";
+  $("pmode").textContent=S.mode==="review"?"틀린 문제 다시 풀기":"전체 풀기";
+}
+
+/* ---------- setup screen ---------- */
+function shuffled(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function setup(){
+  S && (S.view="setup", save());
+  var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
+  var opts='<option value="all">전체 모듈 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
+  var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
+  var remote = REMOTE ? '<button class="btn" id="bRemote">저장된 기록에서 이어서 풀기 ('+REMOTE.answered+'/'+REMOTE.total+', '+esc(REMOTE.date)+')</button> ' : '';
+  $("view").innerHTML =
+   '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">Equity 개념 확인</h2>'+
+   '<p class="muted">Equity 오답노트의 개념을 한 문제에 하나씩 짧게 묻는 3지선다입니다('+Q.length+'문제). 보기를 보기 전에 답을 먼저 떠올려 보세요. 정답·오답을 확인하면 해당 오답노트 원문 줄이 바로 나옵니다. 문제 순서는 매번 섞입니다. 정답은 Schweser와 ECO 원문 해설로 확인했습니다.</p>'+
+   '<label>범위 <select id="selMod">'+opts+'</select></label>'+
+   '<p class="kbd">단축키: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제</p>'+
+   '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">섞어서 풀기</button> <button class="btn" id="bWeak">지난번 틀린 것만</button></div></section>';
+  if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
+  if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
+  function inRange(q){ var m=$("selMod").value; return m==="all"||String(q.module)===m; }
+  function weak(q){ var a=S&&S.all&&S.all[q.id]; return a && a.lastCorrect===false; }
+  function labels(){
+    var n=Q.filter(inRange), w=n.filter(weak).length;
+    $("bStart").textContent="섞어서 풀기 ("+n.length+")"; $("bWeak").textContent="지난번 틀린 것만 ("+w+")"; $("bWeak").disabled=!w;
+  }
+  function start(onlyWeak){
+    var order=shuffled(Q.filter(function(q){ return inRange(q) && (!onlyWeak || weak(q)); }).map(function(q){return q.id;}));
+    if(!order.length){ alert("이 범위에 풀 문제가 없습니다."); return; }
+    S=fresh(order,onlyWeak?"review":"all"); save(); render();
+  }
+  $("selMod").onchange=labels; labels();
+  $("bStart").onclick=function(){ start(false); };
+  $("bWeak").onclick=function(){ start(true); };
+  header();
+}
+
+/* ---------- quiz screen ---------- */
+function quiz(){
+  var id=S.order[S.idx], q=BYID[id], r=S.round[id];
+  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var optsHtml = ["A","B","C"].map(function(L){
+    var cls="opt";
+    if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
+    return '<button class="'+cls+'" data-l="'+L+'" '+(r?'disabled':'')+' aria-label="선택지 '+L+'"><span class="bubble">'+L+'</span><span class="txt">'+esc(q.opts[L])+'</span></button>';
+  }).join("");
+  var html='<section class="card"><div class="meta"><span class="qno">Q'+(S.idx+1)+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+'</span><span class="tagline">'+esc(q.tag)+'</span></div>'+
+    vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
+    '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
+    '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  $("view").innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
+  $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  header();
+}
+function feedback(q,r){
+  var f = q.f ? '<div class="formula"><b>공식</b>  '+esc(q.f)+'</div>' : '';
+  var en = q.en ? '<details class="en" open><summary>'+esc(q.enLabel||'English explanation (원문 해설)')+'</summary><div class="enbody">'+rich(q.en)+'</div></details>' : '';
+  if(r.correct){
+    return '<div class="fb ok"><h3>정답입니다 ('+q.ans+')</h3><h4>핵심 포인트</h4>'+rich(q.ko)+f+en+'</div>';
+  }
+  var why = q.why && q.why[r.sel] ? '<div class="why">'+rich(q.why[r.sel])+'</div>' : '<div class="why"><p>'+esc(r.sel)+'번 선지는 아래 개념과 맞지 않습니다. 정답 '+q.ans+'의 근거를 확인하세요.</p></div>';
+  var trap = q.trap ? '<div class="trap"><b>함정 패턴</b>  '+esc(q.trap)+'</div>' : '';
+  return '<div class="fb bad"><h3>오답 — 고른 답 '+r.sel+', 정답 '+q.ans+'</h3>'+
+    '<h4>왜 '+r.sel+'가 틀렸나</h4>'+why+
+    '<h4>올바른 개념</h4>'+rich(q.ko)+f+trap+en+'</div>';
+}
+function answer(L){
+  var id=S.order[S.idx], q=BYID[id]; if(S.round[id]) return;
+  var ok = (L===q.ans);
+  S.round[id]={sel:L,correct:ok};
+  var a=S.all[id]||{attempts:0,correctCount:0,history:[]};
+  a.attempts++; if(ok) a.correctCount++; a.last=L; a.lastCorrect=ok; a.history.push({sel:L,correct:ok,at:new Date().toISOString()});
+  if(a.history.length>20) a.history=a.history.slice(-20);
+  S.all[id]=a; save(); quiz();
+  var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
+// 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
+function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
+function skip(){
+  var id=S.order[S.idx]; if(S.round[id]) return next();
+  if(S.idx<S.order.length-1) S.idx++;
+  else { var j=firstOpen(id); if(j<0){ S.finished=true; S.view="result"; save(); result(); return; } S.idx=j; }
+  save(); quiz(); window.scrollTo(0,0);
+}
+
+/* ---------- results ---------- */
+function summarize(){
+  var mod={}, tagBad={}, st=roundStats();
+  S.order.forEach(function(id){
+    var q=BYID[id], r=S.round[id], m=q.module;
+    mod[m]=mod[m]||{total:0,answered:0,correct:0};
+    mod[m].total++;
+    if(r){ mod[m].answered++; if(r.correct) mod[m].correct++; else { var k=mname(m)+" / "+q.tag; tagBad[k]=(tagBad[k]||0)+1; } }
+  });
+  var weak=Object.keys(tagBad).sort(function(a,b){return tagBad[b]-tagBad[a];}).map(function(k){return {concept:k,wrong:tagBad[k]};});
+  return {st:st,mod:mod,weak:weak};
+}
+function result(){
+  var sm=summarize(), st=sm.st, pct=st.answered?Math.round(st.ok/st.answered*100):0;
+  var rows=Object.keys(sm.mod).sort().map(function(m){
+    var x=sm.mod[m], p=x.answered?Math.round(x.correct/x.answered*100):0;
+    var col=p>=70?"var(--ok)":p>=50?"#D69E2E":"var(--bad)";
+    return '<div class="mrow"><span>'+esc(mname(m))+'</span><span class="mbar"><i style="width:'+p+'%;background:'+col+'"></i></span><b>'+p+'%</b></div><div class="muted" style="margin:-6px 0 6px">'+x.correct+' / '+x.answered+' 정답'+(x.answered<x.total?' · 미풀이 '+(x.total-x.answered):'')+'</div>';
+  }).join("");
+  var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
+  var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"?"오답 복습 결과":"라운드 결과")+'</h2>'+
+    '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
+    (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
+    '<h3 style="margin:18px 0 6px">모듈별 정답률</h3>'+rows+
+    '<h3 style="margin:18px 0 6px">취약 개념</h3>'+weak+
+    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
+    '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
+    (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
+    '<button class="btn" id="bBack">문제로 돌아가기</button>'+
+    '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
+  $("bRetry").onclick=function(){ if(!wrongIds.length) return; S.order=wrongIds; S.idx=0; S.mode="review"; S.round={}; S.finished=false; S.view="quiz"; save(); render(); };
+  $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
+  if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
+  $("bExport2").onclick=exportResults;
+  header();
+}
+
+/* ---------- export ---------- */
+function exportResults(){
+  if(!S){ alert("아직 풀이 기록이 없습니다."); return; }
+  var sm=summarize(), st=sm.st, d=today();
+  var modAcc={}; Object.keys(sm.mod).forEach(function(m){ var x=sm.mod[m]; modAcc[mname(m)]={total:x.total,answered:x.answered,correct:x.correct,accuracy:x.answered?+(x.correct/x.answered).toFixed(4):null}; });
+  var attempt={
+    exportedAt:new Date().toISOString(), mode:S.mode, startedAt:S.started,
+    totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
+    accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
+    questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+    moduleAccuracy:modAcc,
+    weakConcepts:sm.weak
+  };
+  var all=store.get(EXPKEY)||{};
+  all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
+  S.updatedAt=attempt.exportedAt; save();
+  var file={subject:SUBJECT, date:d, latest:{totalQuestions:attempt.totalQuestions, answered:attempt.answered, correct:attempt.correct, wrong:attempt.wrong}, attempts:all[d]};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_results_"+d+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
+/* ---------- import ---------- */
+// 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
+function applyResults(d, quiet){
+  if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], order=[], round={};
+  (at.questions||[]).forEach(function(x){
+    var q=BYID[x.id]; if(!q) return;
+    order.push(x.id);
+    if(x.selected) round[x.id]={sel:x.selected, correct:x.selected===q.ans};
+  });
+  if(!order.length){ if(!quiet) alert("불러올 문제가 없습니다."); return false; }
+  if(!quiet && S && S.order && Object.keys(S.round||{}).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var all=(S&&S.all)||{};
+  (at.questions||[]).forEach(function(x){
+    if(!BYID[x.id] || all[x.id] || !x.selected) return;
+    var ok=x.selected===BYID[x.id].ans;
+    all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
+  });
+  var idx=0; while(idx<order.length && round[order[idx]]) idx++;
+  var done=idx>=order.length;
+  S={order:order, idx:done?order.length-1:idx, mode:at.mode==="review"?"review":"all", round:round, all:all,
+     started:at.startedAt||new Date().toISOString(), finished:done, view:done?"result":"quiz", updatedAt:at.exportedAt||""};
+  save(); render(); window.scrollTo(0,0);
+  return true;
+}
+function importResults(file){
+  var rd=new FileReader();
+  rd.onload=function(){
+    var d;
+    try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; }
+    applyResults(d,false);
+  };
+  rd.readAsText(file);
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ if(this.files && this.files[0]) importResults(this.files[0]); };
+
+// 저장된 기록: 이 브라우저의 마지막 풀이·내보내기·불러오기보다 늦게 내보낸 기록이면 자동으로 이어 풀고, 아니면 처음 화면에 버튼만 보여 준다.
+var REMOTE=null;
+function localTime(){
+  var t=(S&&S.updatedAt)||"";
+  if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
+  return t;
+}
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d || d.subject!==SUBJECT || !d.attempts || !d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    REMOTE={data:d, date:d.date||"", answered:at.answered||0, total:at.totalQuestions||0};
+    if((at.exportedAt||"")>localTime()){ applyResults(d,true); }
+    else if(S.view==="setup"){ setup(); }
+  })["catch"](function(){});
+}
+
+/* ---------- routing ---------- */
+function render(){
+  if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
+  if(S.view==="result") return result();
+  if(S.idx>=S.order.length) S.idx=S.order.length-1;
+  quiz();
+}
+
+/* ---------- question list sidebar ---------- */
+var SIDEKEY = SUBJECT + "_side_v1", SIDE = store.get(SIDEKEY) || {open: window.innerWidth >= 1000, closed: {}};
+function sideSave(){ store.set(SIDEKEY, SIDE); }
+function sideOpen(v){ SIDE.open = v; sideSave(); document.body.classList.toggle("side-open", v); if(v) renderSide(); }
+function renderSide(){
+  var el = $("side"); if(!el) return;
+  document.body.classList.toggle("side-open", !!SIDE.open);
+  var top = '<div class="sd-top"><span>문제 목록</span><button id="sdClose" title="닫기">✕</button></div>';
+  if(!S || !S.order || !S.order.length){ el.innerHTML = top + '<p class="sd-empty">문제를 시작하면 여기에 번호가 나옵니다.</p>'; $("sdClose").onclick = function(){ sideOpen(false); }; return; }
+  var groups = {}, keys = [];
+  S.order.forEach(function(id, i){ var m = String(BYID[id].module); if(!groups[m]){ groups[m] = []; keys.push(m); } groups[m].push(i); });
+  keys.sort(function(a, b){ return (+a) - (+b); });
+  var cur = S.view === "quiz" ? S.idx : -1, html = top;
+  keys.forEach(function(m){
+    var list = groups[m], done = list.filter(function(i){ return S.round[S.order[i]]; }).length, closed = !!SIDE.closed[m];
+    html += '<button class="sd-hdr' + (closed ? ' collapsed' : '') + '" data-m="' + esc(m) + '"><span class="sd-caret">▼</span><span class="sd-name">' + esc(mname(m)) + '</span><span class="sd-cnt' + (done === list.length ? ' done' : '') + '">' + done + '/' + list.length + '</span></button><div class="sd-grp' + (closed ? ' collapsed' : '') + '">';
+    list.sort(function(a, b){ return a - b; }).forEach(function(i){
+      var id = S.order[i], r = S.round[id];
+      html += '<button class="sd-q' + (i === cur ? ' active' : '') + '" data-i="' + i + '"><span class="sd-dot' + (r ? (r.correct ? ' ok' : ' bad') : '') + '"></span><span class="sd-num">Q' + (i + 1) + '</span><span class="sd-tag">' + esc(BYID[id].tag) + '</span></button>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+  $("sdClose").onclick = function(){ sideOpen(false); };
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-hdr"), function(b){ b.onclick = function(){ var m = b.getAttribute("data-m"); SIDE.closed[m] = !SIDE.closed[m]; sideSave(); renderSide(); }; });
+  Array.prototype.forEach.call(el.querySelectorAll(".sd-q"), function(b){ b.onclick = function(){ S.idx = +b.getAttribute("data-i"); S.view = "quiz"; save(); quiz(); window.scrollTo(0, 0); if(window.innerWidth < 1000) sideOpen(false); }; });
+  var a = el.querySelector(".sd-q.active"); if(a && a.scrollIntoView) a.scrollIntoView({block: "center"});
+}
+var _header = header; header = function(){ _header(); renderSide(); };
+$("bSide").onclick = function(){ sideOpen(!SIDE.open); };
+$("sideBack").onclick = function(){ sideOpen(false); };
+$("bHome").onclick=setup;
+$("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
+$("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
+document.addEventListener("keydown",function(e){
+  if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
+  if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
+  if(map[k] && !e.metaKey && !e.ctrlKey){ answer(map[k]); }
+  else if(e.key==="Enter"){ next(); }
+  else if(e.key==="ArrowRight"){ skip(); }
+  else if(e.key==="ArrowLeft"){ prev(); }
+});
+render();
+loadRemote();
+})();
+</script>
+</body>
+</html>
