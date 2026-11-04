@@ -119,6 +119,7 @@ details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
     <button class="btn" id="bResult">결과 보기</button>
     <button class="btn" id="bExport">결과 내보내기</button>
     <button class="btn" id="bImport">결과 불러오기</button>
+    <button class="btn" id="bHistory">풀이 기록 내보내기</button>
     <input type="file" id="fImport" accept=".json,application/json" hidden>
   </div>
   <div id="view"></div>
@@ -339,6 +340,19 @@ function exportResults(){
   document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
 }
 
+/* ---------- history export ---------- */
+// 이 브라우저에 쌓인 문제별 풀이 기록(첫 풀이 포함)과 지금까지 내보낸 결과를 한 파일로 내려받는다.
+function exportHistory(){
+  var exps=store.get(EXPKEY)||{};
+  if((!S||!S.all||!Object.keys(S.all).length) && !Object.keys(exps).length){ alert("이 브라우저에는 풀이 기록이 없습니다."); return; }
+  var file={subject:SUBJECT, kind:"history", exportedAt:new Date().toISOString(), device:navigator.userAgent,
+    all:(S&&S.all)||{}, exports:exps,
+    state:S?{order:S.order, mode:S.mode, round:S.round, started:S.started, updatedAt:S.updatedAt||""}:null};
+  var blob=new Blob([JSON.stringify(file,null,2)],{type:"application/json"});
+  var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=SUBJECT+"_history_"+today()+".json";
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},500);
+}
+
 /* ---------- import ---------- */
 // 결과 JSON(내보내기 파일 또는 results/{과목}/latest.json)의 마지막 attempt로 진행 상태를 복원한다.
 function applyResults(d, quiet){
@@ -404,6 +418,7 @@ function render(){
 $("bHome").onclick=setup;
 $("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} S.view="result"; save(); result(); };
 $("bExport").onclick=exportResults;
+$("bHistory").onclick=exportHistory;
 document.addEventListener("keydown",function(e){
   if(!S||S.view!=="quiz"||!document.querySelector(".opt")) return;
   if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
