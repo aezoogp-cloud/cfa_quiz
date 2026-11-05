@@ -1,0 +1,143 @@
+{
+  "subject": "FSAConcept",
+  "date": "2026-11-05",
+  "latest": {
+    "totalQuestions": 11,
+    "answered": 5,
+    "correct": 5,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-05T09:09:51.917Z",
+      "mode": "review",
+      "startedAt": "2026-11-05T08:42:25.700Z",
+      "totalQuestions": 11,
+      "answered": 5,
+      "correct": 5,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "CON-M2-06",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Forecasting share-based compensation",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "CON-M2-03",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Pension – actual cash outflow",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "CON-M2-17",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "IFRS remeasurements",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "CON-M2-32",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Restricted stock unit dilution – calculation",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "CON-M2-14",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Discount rate ↓ – bond-heavy plan assets",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "CON-M2-04",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Payments by the plan",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-25",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "US GAAP periodic pension cost",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-09",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Tax windfall – IFRS vs US GAAP effective tax rate",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-24",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Plan asset roll-forward",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-01",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Discounted cash flow – net interest expense",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-30",
+          "module": "Module 2 – Employee Compensation",
+          "concept": "Other comprehensive income and funded status",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 2 – Employee Compensation": {
+          "total": 11,
+          "answered": 5,
+          "correct": 5,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}
