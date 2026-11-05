@@ -1,0 +1,182 @@
+{
+  "subject": "CorpIssuer",
+  "date": "2026-10-28",
+  "latest": {
+    "totalQuestions": 14,
+    "answered": 10,
+    "correct": 8,
+    "wrong": 2
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-10-28T07:54:40.935Z",
+      "mode": "all",
+      "startedAt": "2026-10-28T07:25:26.670Z",
+      "totalQuestions": 14,
+      "answered": 10,
+      "correct": 8,
+      "wrong": 2,
+      "accuracy": 0.8,
+      "questions": [
+        {
+          "id": "ECO-M4-Q4",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Sum-of-the-parts EV (세그먼트별 배수)",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q5",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Comparable company analysis 장단점",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q8",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "인수 후 자본구조(자기자본 비중)",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q10",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount 계산",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q11",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "수직계열화 → Acquisition",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q13",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "CTA: 중앙값 P/E로 적정 인수가",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q15",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Synergy-adjusted 인수 배수",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q16",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Cost restructuring: 영업비용 감축률",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q17",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "구조조정 분석 4단계: Initial evaluation",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q18",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "신주 조달 인수 → WACC",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q23",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "인수 후 부채 비중 계산",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M4-Q29",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount: 본사비용 배분",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M4-Q30",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount: 세그먼트별 다른 배수",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M4-Q31",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "사업부 매각 최소 수용가격(peer 중앙값)",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Reading 16 – Corporate Restructuring": {
+          "total": 14,
+          "answered": 10,
+          "correct": 8,
+          "accuracy": 0.8
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Reading 16 – Corporate Restructuring / CTA: 중앙값 P/E로 적정 인수가",
+          "wrong": 1
+        },
+        {
+          "concept": "Reading 16 – Corporate Restructuring / Cost restructuring: 영업비용 감축률",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}

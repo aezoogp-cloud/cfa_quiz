@@ -1,151 +1,179 @@
 {
   "subject": "CorpIssuer",
-  "date": "2026-10-26",
+  "date": "2026-10-28",
   "latest": {
-    "totalQuestions": 10,
+    "totalQuestions": 14,
     "answered": 10,
-    "correct": 5,
-    "wrong": 5
+    "correct": 8,
+    "wrong": 2
   },
   "attempts": [
     {
-      "exportedAt": "2026-10-26T08:02:22.881Z",
+      "exportedAt": "2026-10-28T07:54:40.935Z",
       "mode": "all",
-      "startedAt": "2026-10-26T07:29:18.677Z",
-      "totalQuestions": 10,
+      "startedAt": "2026-10-28T07:25:26.670Z",
+      "totalQuestions": 14,
       "answered": 10,
-      "correct": 5,
-      "wrong": 5,
-      "accuracy": 0.5,
+      "correct": 8,
+      "wrong": 2,
+      "accuracy": 0.8,
       "questions": [
         {
-          "id": "SCH-R14-01",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "소유구조와 principal–agent 문제",
-          "source": "Schweser MQ",
+          "id": "ECO-M4-Q4",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Sum-of-the-parts EV (세그먼트별 배수)",
+          "source": "ECO 오답",
           "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q5",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Comparable company analysis 장단점",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q8",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "인수 후 자본구조(자기자본 비중)",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q10",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount 계산",
+          "source": "ECO 오답",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q11",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "수직계열화 → Acquisition",
+          "source": "ECO 오답",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q13",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "CTA: 중앙값 P/E로 적정 인수가",
+          "source": "ECO 오답",
+          "selected": "B",
           "correctAnswer": "A",
           "isCorrect": false,
           "attempts": 1
         },
         {
-          "id": "SCH-R14-02",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "Two-tier board",
-          "source": "Schweser MQ",
+          "id": "ECO-M4-Q15",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Synergy-adjusted 인수 배수",
+          "source": "ECO 오답",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "ECO-M4-Q16",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Cost restructuring: 영업비용 감축률",
+          "source": "ECO 오답",
           "selected": "B",
           "correctAnswer": "C",
           "isCorrect": false,
           "attempts": 1
         },
         {
-          "id": "SCH-R14-03",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "CEO duality",
-          "source": "Schweser MQ",
-          "selected": "A",
-          "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "SCH-R14-04",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "채권 ESG 분석 초점",
-          "source": "Schweser MQ",
-          "selected": "A",
-          "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 1
-        },
-        {
-          "id": "VAR-M2-01",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "ESG 식별 방법: Industry organizations",
-          "source": "변형",
+          "id": "ECO-M4-Q17",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "구조조정 분석 4단계: Initial evaluation",
+          "source": "ECO 오답",
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
           "attempts": 1
         },
         {
-          "id": "VAR-M2-02",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "Green bond 특징",
-          "source": "변형",
-          "selected": "A",
-          "correctAnswer": "B",
-          "isCorrect": false,
-          "attempts": 1
-        },
-        {
-          "id": "VAR-M2-03",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "차등의결권 → principal–principal",
-          "source": "변형",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 1
-        },
-        {
-          "id": "VAR-M2-04",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "Voting caps",
-          "source": "변형",
+          "id": "ECO-M4-Q18",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "신주 조달 인수 → WACC",
+          "source": "ECO 오답",
           "selected": "C",
-          "correctAnswer": "A",
-          "isCorrect": false,
+          "correctAnswer": "C",
+          "isCorrect": true,
           "attempts": 1
         },
         {
-          "id": "VAR-M2-05",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "Special voting arrangements",
-          "source": "변형",
-          "selected": "B",
+          "id": "ECO-M4-Q23",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "인수 후 부채 비중 계산",
+          "source": "ECO 오답",
+          "selected": null,
           "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
         },
         {
-          "id": "VAR-M2-06",
-          "module": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis",
-          "concept": "주식 ESG 통합: 할인율 조정",
-          "source": "변형",
-          "selected": "A",
+          "id": "ECO-M4-Q29",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount: 본사비용 배분",
+          "source": "ECO 오답",
+          "selected": null,
           "correctAnswer": "A",
-          "isCorrect": true,
-          "attempts": 1
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M4-Q30",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "Conglomerate discount: 세그먼트별 다른 배수",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "ECO-M4-Q31",
+          "module": "Reading 16 – Corporate Restructuring",
+          "concept": "사업부 매각 최소 수용가격(peer 중앙값)",
+          "source": "ECO 오답",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
         }
       ],
       "moduleAccuracy": {
-        "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis": {
-          "total": 10,
+        "Reading 16 – Corporate Restructuring": {
+          "total": 14,
           "answered": 10,
-          "correct": 5,
-          "accuracy": 0.5
+          "correct": 8,
+          "accuracy": 0.8
         }
       },
       "weakConcepts": [
         {
-          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / 소유구조와 principal–agent 문제",
+          "concept": "Reading 16 – Corporate Restructuring / CTA: 중앙값 P/E로 적정 인수가",
           "wrong": 1
         },
         {
-          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Two-tier board",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / CEO duality",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Green bond 특징",
-          "wrong": 1
-        },
-        {
-          "concept": "Reading 14 – Environmental, Social, and Governance (ESG) Considerations in Investment Analysis / Voting caps",
+          "concept": "Reading 16 – Corporate Restructuring / Cost restructuring: 영업비용 감축률",
           "wrong": 1
         }
       ]
