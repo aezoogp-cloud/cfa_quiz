@@ -620,6 +620,18 @@ function importJSON(event){
 }
 
 loadFromStorage(); refreshCounts(); applyFilter('all',null);
+
+// GitHub의 results/all_module_review/ 기록을 열 때 자동으로 합친다(이 브라우저 기록은 지우지 않고, 없는 풀이·별표만 추가)
+(function loadRemote(){
+  if(!window.fetch) return;
+  fetch('results/all_module_review/cfa2_all_review_progress.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d || !d.state || typeof d.state.answers!=='object') return;
+    let added=0;
+    Object.keys(d.state.answers).forEach(k=>{ if(!state.answers[k]){ state.answers[k]=d.state.answers[k]; added++; } });
+    Object.keys(d.starred||{}).forEach(k=>{ if(d.starred[k] && !starred[k]){ starred[k]=true; added++; } });
+    if(added){ saveToStorage(); refreshCounts(); applyFilter(currFilter.type, currFilter.subj); }
+  }).catch(()=>{});
+})();
 </script>
 </body>
 </html>
