@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "cfa2_all_review",
-  "exportedAt": "2026-11-05T09:09:59.569Z",
+  "exportedAt": "2026-11-05T23:04:05.476Z",
   "exportedFrom": "MacIntel · Chromium",
   "state": {
     "answers": {
@@ -58,9 +58,32 @@
       "22.3_99": true,
       "132_6": true,
       "1512_15": true,
-      "1512_16": true
+      "1512_16": true,
+      "163_25": true,
+      "14_15": true,
+      "21_21": true,
+      "24_30": true,
+      "25_36": true,
+      "32_46": true,
+      "33_49": true,
+      "41_53": true,
+      "43_59": true,
+      "301_1": true,
+      "301_3": true,
+      "313_18": true,
+      "4011_1": true,
+      "412_6": true,
+      "412_9": true,
+      "413_15": true,
+      "416_21": true,
+      "416_23": true,
+      "417_24": true,
+      "417_25": true,
+      "417_27": true,
+      "418_31": true,
+      "lm1_3": true
     },
-    "lastUpdatedAt": "2026-11-05T06:22:31.642Z"
+    "lastUpdatedAt": "2026-11-05T22:48:39.357Z"
   },
   "starred": {
     "19.5_36": true,
