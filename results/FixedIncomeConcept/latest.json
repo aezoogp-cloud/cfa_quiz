@@ -2,102 +2,177 @@
   "subject": "FixedIncomeConcept",
   "date": "2026-11-06",
   "latest": {
-    "totalQuestions": 7,
-    "answered": 2,
-    "correct": 2,
-    "wrong": 0
+    "totalQuestions": 14,
+    "answered": 9,
+    "correct": 8,
+    "wrong": 1
   },
   "attempts": [
     {
-      "exportedAt": "2026-11-06T04:02:15.012Z",
-      "mode": "review",
-      "startedAt": "2026-11-06T04:01:47.611Z",
-      "totalQuestions": 7,
-      "answered": 2,
-      "correct": 2,
-      "wrong": 0,
-      "accuracy": 1,
+      "exportedAt": "2026-11-06T06:40:34.919Z",
+      "mode": "all",
+      "startedAt": "2026-11-06T06:16:07.940Z",
+      "totalQuestions": 14,
+      "answered": 9,
+      "correct": 8,
+      "wrong": 1,
+      "accuracy": 0.8889,
       "questions": [
         {
-          "id": "CON-M1-11",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Spreads and their uses",
+          "id": "CON-M2-08",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Estimating volatility",
           "source": "개념",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "CON-M1-04",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Factor model yield change",
+          "id": "CON-M2-12",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Monte Carlo drift adjustment",
           "source": "개념",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "CON-M1-09",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Yield curve moves",
+          "id": "CON-M2-09",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Calibration rules",
           "source": "개념",
-          "selected": null,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-05",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Ho–Lee model",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-14",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Arbitrage-free methods",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-07",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Building the tree",
+          "source": "개념",
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
-          "id": "CON-M1-13",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Rate volatility by maturity",
+          "id": "CON-M2-13",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Sequence from benchmark prices to the tree",
           "source": "개념",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M1-06",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Bootstrapping calculation",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M1-05",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Par rate and bootstrapping",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M1-07",
-          "module": "Module 1 – Term Structure & Interest Rate Dynamics",
-          "concept": "Riding the yield curve – return",
-          "source": "개념",
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
+        },
+        {
+          "id": "CON-M2-02",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Purpose of tree calibration",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-01",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Types of arbitrage",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-06",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Binomial tree vs Monte Carlo",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-04",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Rates used for an N-year bond",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-03",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Option-free bond: tree vs spot curve",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-10",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Volatility and bond values",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-11",
+          "module": "Module 2 – Arbitrage-Free Valuation Framework",
+          "concept": "Pathwise valuation paths",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
         }
       ],
       "moduleAccuracy": {
-        "Module 1 – Term Structure & Interest Rate Dynamics": {
-          "total": 7,
-          "answered": 2,
-          "correct": 2,
-          "accuracy": 1
+        "Module 2 – Arbitrage-Free Valuation Framework": {
+          "total": 14,
+          "answered": 9,
+          "correct": 8,
+          "accuracy": 0.8889
         }
       },
-      "weakConcepts": []
+      "weakConcepts": [
+        {
+          "concept": "Module 2 – Arbitrage-Free Valuation Framework / Sequence from benchmark prices to the tree",
+          "wrong": 1
+        }
+      ]
     }
   ]
 }
