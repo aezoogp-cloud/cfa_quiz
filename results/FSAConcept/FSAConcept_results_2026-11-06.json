@@ -1,0 +1,63 @@
+{
+  "subject": "FSAConcept",
+  "date": "2026-11-06",
+  "latest": {
+    "totalQuestions": 3,
+    "answered": 3,
+    "correct": 3,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-06T03:46:17.517Z",
+      "mode": "all",
+      "startedAt": "2026-11-06T03:45:16.981Z",
+      "totalQuestions": 3,
+      "answered": 3,
+      "correct": 3,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "CON-M6-01",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Judging accruals ratio improvement",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M6-02",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "When restatement is required",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M6-03",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Core earnings",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 6 – Integration of FSA Techniques": {
+          "total": 3,
+          "answered": 3,
+          "correct": 3,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": []
+    }
+  ]
+}

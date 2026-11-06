@@ -1,139 +1,59 @@
 {
   "subject": "FSAConcept",
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "latest": {
-    "totalQuestions": 11,
-    "answered": 5,
-    "correct": 5,
+    "totalQuestions": 3,
+    "answered": 3,
+    "correct": 3,
     "wrong": 0
   },
   "attempts": [
     {
-      "exportedAt": "2026-11-05T09:09:51.917Z",
-      "mode": "review",
-      "startedAt": "2026-11-05T08:42:25.700Z",
-      "totalQuestions": 11,
-      "answered": 5,
-      "correct": 5,
+      "exportedAt": "2026-11-06T03:46:17.517Z",
+      "mode": "all",
+      "startedAt": "2026-11-06T03:45:16.981Z",
+      "totalQuestions": 3,
+      "answered": 3,
+      "correct": 3,
       "wrong": 0,
       "accuracy": 1,
       "questions": [
         {
-          "id": "CON-M2-06",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Forecasting share-based compensation",
-          "source": "개념",
-          "selected": "B",
-          "correctAnswer": "B",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "CON-M2-03",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Pension – actual cash outflow",
+          "id": "CON-M6-01",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Judging accruals ratio improvement",
           "source": "개념",
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "CON-M2-17",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "IFRS remeasurements",
+          "id": "CON-M6-02",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "When restatement is required",
           "source": "개념",
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 1
         },
         {
-          "id": "CON-M2-32",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Restricted stock unit dilution – calculation",
+          "id": "CON-M6-03",
+          "module": "Module 6 – Integration of FSA Techniques",
+          "concept": "Core earnings",
           "source": "개념",
-          "selected": "C",
-          "correctAnswer": "C",
+          "selected": "B",
+          "correctAnswer": "B",
           "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "CON-M2-14",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Discount rate ↓ – bond-heavy plan assets",
-          "source": "개념",
-          "selected": "C",
-          "correctAnswer": "C",
-          "isCorrect": true,
-          "attempts": 2
-        },
-        {
-          "id": "CON-M2-04",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Payments by the plan",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M2-25",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "US GAAP periodic pension cost",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M2-09",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Tax windfall – IFRS vs US GAAP effective tax rate",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M2-24",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Plan asset roll-forward",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M2-01",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Discounted cash flow – net interest expense",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 1
-        },
-        {
-          "id": "CON-M2-30",
-          "module": "Module 2 – Employee Compensation",
-          "concept": "Other comprehensive income and funded status",
-          "source": "개념",
-          "selected": null,
-          "correctAnswer": "B",
-          "isCorrect": null,
           "attempts": 1
         }
       ],
       "moduleAccuracy": {
-        "Module 2 – Employee Compensation": {
-          "total": 11,
-          "answered": 5,
-          "correct": 5,
+        "Module 6 – Integration of FSA Techniques": {
+          "total": 3,
+          "answered": 3,
+          "correct": 3,
           "accuracy": 1
         }
       },
