@@ -89,6 +89,10 @@ details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
 .enbody{margin-top:6px;color:#2D3748}
 .why{background:#fff;border-radius:6px;padding:9px 12px;font-size:14.5px;border:1px solid #F0C7C7}
 .nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.jump{display:flex;gap:6px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.jump select,.jump input{font-family:inherit;font-size:14px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--sheet);color:inherit}
+.jump select{flex:1;min-width:0;max-width:100%}
+.jump input{width:72px}
 .result h2{margin:0 0 4px;font-size:24px}
 .big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0}
 .mrow{display:grid;grid-template-columns:minmax(150px,260px) 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
@@ -298,14 +302,28 @@ function study(){
     '<details class="en"><summary>English explanation (원문 해설)</summary><div class="enbody">'+rich(q.en)+'</div></details></div>'+
     '<div class="nav"><button class="btn" id="sPrev" '+(T.i===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+(T.i+1)+' / '+T.ids.length+'</span>'+
-    '<button class="btn primary" id="sNext" '+(T.i===T.ids.length-1?'disabled':'')+'>다음 →</button></div>'+
+    '<button class="btn primary" id="sNext" '+(T.i===T.ids.length-1?'disabled':'')+'>다음 →</button></div>'+jumpBar(T.ids,T.i)+
     '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap;margin-top:8px"><button class="btn" id="sQuiz">이 목록 풀기 ('+T.ids.length+')</button><button class="btn" id="sHome">처음 화면</button></div></section>');
   $("sPrev").onclick=function(){ studyGo(T.i-1); };
   $("sNext").onclick=function(){ studyGo(T.i+1); };
   $("sQuiz").onclick=function(){ UI.view=null; saveUI(); S=fresh(T.ids.slice(),"list"); save(); render(); };
   $("sHome").onclick=setup;
+  bindJump(T.ids.length, studyGo);
   $("bConf").onclick=function(){ toggleConf(id); study(); };
   header();
+}
+/* ---------- 번호로 이동: 목록에서 고르거나 순서 번호 입력 ---------- */
+function jumpBar(ids, cur, done){
+  var o=ids.map(function(id,i){ var q=BYID[id], r=done&&done[id], mk=r?(r.correct?"✓ ":"✗ "):"";
+    return '<option value="'+i+'"'+(i===cur?' selected':'')+'>'+mk+(i+1)+'. '+esc(q.orig)+' · '+esc(q.tag)+'</option>'; }).join("");
+  return '<div class="jump"><select id="jSel" aria-label="문제 목록에서 이동">'+o+'</select>'+
+    '<input id="jIn" type="text" inputmode="numeric" placeholder="1~'+ids.length+'" aria-label="이동할 번호"><button class="btn" id="jGo">이동</button></div>';
+}
+function bindJump(n, go){
+  $("jSel").onchange=function(){ go(+this.value); };
+  function typed(){ var v=parseInt($("jIn").value,10); if(!(v>=1&&v<=n)){ alert("1부터 "+n+" 사이 번호를 입력하세요."); return; } go(v-1); }
+  $("jGo").onclick=typed;
+  $("jIn").onkeydown=function(e){ if(e.key==="Enter"){ e.preventDefault(); typed(); } };
 }
 function studyGo(i){ var T=UI.study; if(i<0||i>=T.ids.length) return; T.i=i; saveUI(); study(); window.scrollTo(0,0); }
 
@@ -322,10 +340,11 @@ function quiz(){
     vig+'<div class="stem">'+rich(q.stem)+'</div><div class="opts">'+optsHtml+'</div><div id="fb">'+(r?feedback(q,r):'')+'</div>'+
     '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
-    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+    (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div>'+jumpBar(S.order,S.idx,S.round)+'</section>';
   $("view").innerHTML=split(q, html);
   Array.prototype.forEach.call(document.querySelectorAll("button.opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
   $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
+  bindJump(S.order.length, quizGo);
   $("bConf").onclick=function(){ toggleConf(id); quiz(); };
   header();
 }
@@ -352,6 +371,7 @@ function answer(L){
   var fb=$("fb"); if(fb && fb.scrollIntoView) fb.scrollIntoView({block:"nearest",behavior:"smooth"});
 }
 function next(){ var id=S.order[S.idx]; if(!S.round[id]) return; if(S.idx<S.order.length-1){ S.idx++; save(); quiz(); window.scrollTo(0,0);} else { S.finished=true; S.view="result"; save(); result(); } }
+function quizGo(i){ if(i<0||i>=S.order.length) return; S.idx=i; save(); quiz(); window.scrollTo(0,0); }
 function prev(){ if(S.idx>0){ S.idx--; save(); quiz(); window.scrollTo(0,0);} }
 // 패스: 풀지 않고 다음 문제로. 마지막 문제면 앞에서 건너뛴 문제로, 남은 게 없으면 결과로.
 function firstOpen(except){ for(var i=0;i<S.order.length;i++){ var x=S.order[i]; if(!S.round[x] && x!==except) return i; } return -1; }
