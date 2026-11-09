@@ -1,0 +1,263 @@
+{
+ "subject": "cmock2",
+ "date": "2026-11-09",
+ "latest": {
+  "phase": "s1",
+  "totalQuestions": 88,
+  "answered": 31,
+  "correct": null,
+  "wrong": null
+ },
+ "attempts": [
+  {
+   "exportedAt": "2026-11-09T04:04:45.237Z",
+   "exportedFrom": "cmock-2.html",
+   "phase": "s1",
+   "totalQuestions": 88,
+   "answered": 31,
+   "correct": null,
+   "wrong": null,
+   "state": {
+    "answers": {
+     "m2-s01-q1": {
+      "selected": "B",
+      "correct": null,
+      "time": 177.326
+     },
+     "m2-s01-q2": {
+      "selected": "C",
+      "correct": null,
+      "time": 74.998
+     },
+     "m2-s01-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 153
+     },
+     "m2-s01-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 90.284
+     },
+     "m2-s02-q1": {
+      "selected": "A",
+      "correct": null,
+      "time": 89
+     },
+     "m2-s02-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 103
+     },
+     "m2-s02-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 75.001
+     },
+     "m2-s02-q4": {
+      "selected": "C",
+      "correct": null,
+      "time": 101
+     },
+     "m2-s03-q1": {
+      "selected": "B",
+      "correct": null,
+      "time": 86.998
+     },
+     "m2-s03-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 477.866
+     },
+     "m2-s03-q3": {
+      "selected": "B",
+      "correct": null,
+      "time": 440.998
+     },
+     "m2-s03-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 88.999
+     },
+     "m2-s04-q1": {
+      "selected": "A",
+      "correct": null,
+      "time": 117.001
+     },
+     "m2-s04-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 288.999
+     },
+     "m2-s04-q3": {
+      "selected": "B",
+      "correct": null,
+      "time": 19.001
+     },
+     "m2-s04-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 61.999
+     },
+     "m2-s05-q1": {
+      "selected": null,
+      "correct": null,
+      "time": 57
+     },
+     "m2-s05-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 59
+     },
+     "m2-s05-q3": {
+      "selected": "A",
+      "correct": null,
+      "time": 55.574
+     },
+     "m2-s05-q4": {
+      "selected": "A",
+      "correct": null,
+      "time": 67.001
+     },
+     "m2-s06-q1": {
+      "selected": "A",
+      "correct": null,
+      "time": 286.993
+     },
+     "m2-s06-q2": {
+      "selected": "C",
+      "correct": null,
+      "time": 80.001
+     },
+     "m2-s06-q3": {
+      "selected": "B",
+      "correct": null,
+      "time": 88
+     },
+     "m2-s06-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 55.999
+     },
+     "m2-s07-q1": {
+      "selected": "B",
+      "correct": null,
+      "time": 137
+     },
+     "m2-s07-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 346.998
+     },
+     "m2-s07-q3": {
+      "selected": "A",
+      "correct": null,
+      "time": 237.782
+     },
+     "m2-s07-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 84
+     },
+     "m2-s08-q1": {
+      "selected": "A",
+      "correct": null,
+      "time": 49.998
+     },
+     "m2-s08-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 107.002
+     },
+     "m2-s08-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 133.968
+     },
+     "m2-s08-q4": {
+      "selected": "C",
+      "correct": null,
+      "time": 208.003
+     }
+    },
+    "timeSpentSec": 4500,
+    "flagged": {
+     "m2-s02-q2": 1,
+     "m2-s02-q3": 1,
+     "m2-s02-q4": 1,
+     "m2-s03-q3": 1,
+     "m2-s03-q4": 1,
+     "m2-s04-q1": 1,
+     "m2-s05-q2": 1,
+     "m2-s06-q1": 1,
+     "m2-s06-q2": 1,
+     "m2-s07-q3": 1,
+     "m2-s08-q3": 1,
+     "m2-s08-q4": 1
+    },
+    "struck": {},
+    "dispute": {},
+    "phase": "s1",
+    "submitted": {
+     "1": false,
+     "2": false
+    },
+    "last": {},
+    "sview": 0,
+    "unlimited": false,
+    "remaining": {
+     "1": 3420.211,
+     "2": 7920
+    },
+    "cur": 31,
+    "startedAt": "2026-11-09T02:38:25.686Z",
+    "finishedAt": null,
+    "paused": false,
+    "pausedAt": null,
+    "pauseLog": [
+     {
+      "start": "2026-11-09T02:41:00.798Z",
+      "end": "2026-11-09T02:41:06.718Z",
+      "sec": 5.92,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-09T02:45:58.049Z",
+      "end": "2026-11-09T02:52:14.079Z",
+      "sec": 376.03,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-11-09T03:02:53.947Z",
+      "end": "2026-11-09T03:06:33.399Z",
+      "sec": 219.452,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-09T03:32:03.990Z",
+      "end": "2026-11-09T03:32:28.686Z",
+      "sec": 24.696,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-09T03:53:49.092Z",
+      "end": "2026-11-09T03:54:32.470Z",
+      "sec": 43.378,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-09T03:59:51.279Z",
+      "end": "2026-11-09T03:59:57.283Z",
+      "sec": 6.004,
+      "reason": "hidden"
+     }
+    ],
+    "pauseSummary": {
+     "count": 6,
+     "totalSec": 675
+    },
+    "retry": null
+   }
+  }
+ ]
+}
