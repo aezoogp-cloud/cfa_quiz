@@ -4,17 +4,17 @@
  "latest": {
   "phase": "s2",
   "totalQuestions": 88,
-  "answered": 56,
+  "answered": 70,
   "correct": 34,
   "wrong": 10
  },
  "attempts": [
   {
-   "exportedAt": "2026-11-09T22:54:58.270Z",
+   "exportedAt": "2026-11-10T09:38:15.276Z",
    "exportedFrom": "cmock-2.html",
    "phase": "s2",
    "totalQuestions": 88,
-   "answered": 56,
+   "answered": 70,
    "correct": 34,
    "wrong": 10,
    "state": {
@@ -302,10 +302,115 @@
      "m2-s15-q1": {
       "selected": null,
       "correct": null,
-      "time": 3.238
+      "time": 358.577
+     },
+     "m2-s15-q2": {
+      "selected": null,
+      "correct": null,
+      "time": 23
+     },
+     "m2-s15-q3": {
+      "selected": null,
+      "correct": null,
+      "time": 12.001
+     },
+     "m2-s15-q4": {
+      "selected": null,
+      "correct": null,
+      "time": 1.999
+     },
+     "m2-s16-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 643.758
+     },
+     "m2-s16-q2": {
+      "selected": null,
+      "correct": null,
+      "time": 10
+     },
+     "m2-s17-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 192.008
+     },
+     "m2-s17-q2": {
+      "selected": "B",
+      "correct": null,
+      "time": 170.003
+     },
+     "m2-s17-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 109.039
+     },
+     "m2-s17-q4": {
+      "selected": "A",
+      "correct": null,
+      "time": 192.323
+     },
+     "m2-s18-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 1174.935
+     },
+     "m2-s18-q2": {
+      "selected": "A",
+      "correct": null,
+      "time": 274.01
+     },
+     "m2-s18-q3": {
+      "selected": "C",
+      "correct": null,
+      "time": 76.969
+     },
+     "m2-s18-q4": {
+      "selected": "C",
+      "correct": null,
+      "time": 80.004
+     },
+     "m2-s19-q1": {
+      "selected": "A",
+      "correct": null,
+      "time": 135.236
+     },
+     "m2-s19-q2": {
+      "selected": null,
+      "correct": null,
+      "time": 166.004
+     },
+     "m2-s19-q3": {
+      "selected": "B",
+      "correct": null,
+      "time": 325.01
+     },
+     "m2-s19-q4": {
+      "selected": "B",
+      "correct": null,
+      "time": 64.188
+     },
+     "m2-s20-q1": {
+      "selected": "C",
+      "correct": null,
+      "time": 368.011
+     },
+     "m2-s20-q2": {
+      "selected": "C",
+      "correct": null,
+      "time": 56.002
+     },
+     "m2-s20-q3": {
+      "selected": null,
+      "correct": null,
+      "time": 142.003
+     },
+     "m2-s20-q4": {
+      "selected": null,
+      "correct": null,
+      "time": 36.445
      }
     },
-    "timeSpentSec": 8734,
+    "timeSpentSec": 13343,
     "flagged": {
      "m2-s02-q2": 1,
      "m2-s02-q3": 1,
@@ -328,7 +433,12 @@
      "m2-s13-q3": 1,
      "m2-s13-q4": 1,
      "m2-s14-q2": 1,
-     "m2-s14-q3": 1
+     "m2-s14-q3": 1,
+     "m2-s17-q4": 1,
+     "m2-s18-q2": 1,
+     "m2-s19-q1": 1,
+     "m2-s19-q3": 1,
+     "m2-s20-q3": 1
     },
     "struck": {},
     "dispute": {},
@@ -344,9 +454,9 @@
     "unlimited": false,
     "remaining": {
      "1": 1476.312,
-     "2": 5627.239
+     "2": 1018.952
     },
-    "cur": 56,
+    "cur": 79,
     "startedAt": "2026-11-09T02:38:25.686Z",
     "finishedAt": null,
     "paused": false,
@@ -453,11 +563,95 @@
       "end": "2026-11-09T22:54:57.469Z",
       "sec": 1.05,
       "reason": "manual"
+     },
+     {
+      "start": "2026-11-10T01:04:59.046Z",
+      "end": "2026-11-10T01:11:30.065Z",
+      "sec": 391.019,
+      "reason": "import"
+     },
+     {
+      "start": "2026-11-10T01:11:55.469Z",
+      "end": "2026-11-10T01:14:22.534Z",
+      "sec": 147.065,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T01:16:45.182Z",
+      "end": "2026-11-10T01:17:07.594Z",
+      "sec": 22.412,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T01:28:02.651Z",
+      "end": "2026-11-10T01:28:23.251Z",
+      "sec": 20.6,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T01:29:19.361Z",
+      "end": "2026-11-10T01:29:31.233Z",
+      "sec": 11.872,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T01:30:41.497Z",
+      "end": "2026-11-10T01:37:07.830Z",
+      "sec": 386.333,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-11-10T01:48:33.350Z",
+      "end": "2026-11-10T05:08:00.882Z",
+      "sec": 11967.532,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T05:13:38.883Z",
+      "end": "2026-11-10T05:13:44.410Z",
+      "sec": 5.527,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T05:13:50.243Z",
+      "end": "2026-11-10T05:14:20.287Z",
+      "sec": 30.044,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T05:23:19.306Z",
+      "end": "2026-11-10T05:23:43.787Z",
+      "sec": 24.481,
+      "reason": "hidden"
+     },
+     {
+      "start": "2026-11-10T05:35:11.526Z",
+      "end": "2026-11-10T05:41:17.049Z",
+      "sec": 365.523,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-11-10T05:43:43.332Z",
+      "end": "2026-11-10T07:13:22.867Z",
+      "sec": 5379.535,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-11-10T07:23:32.492Z",
+      "end": "2026-11-10T07:36:09.657Z",
+      "sec": 757.165,
+      "reason": "manual"
+     },
+     {
+      "start": "2026-11-10T07:47:03.303Z",
+      "end": "2026-11-10T09:38:14.126Z",
+      "sec": 6670.823,
+      "reason": "manual"
      }
     ],
     "pauseSummary": {
-     "count": 17,
-     "totalSec": 64164
+     "count": 31,
+     "totalSec": 90344
     },
     "retry": null
    }
