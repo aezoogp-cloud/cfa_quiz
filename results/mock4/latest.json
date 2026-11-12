@@ -1,0 +1,648 @@
+{
+  "subject": "mock4",
+  "date": "2026-11-13",
+  "latest": {
+    "totalQuestions": 46,
+    "answered": 24,
+    "correct": 21,
+    "wrong": 3
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-12T22:52:18.765Z",
+      "mode": "wc",
+      "startedAt": "2026-11-12T22:30:40.958Z",
+      "totalQuestions": 46,
+      "answered": 24,
+      "correct": 21,
+      "wrong": 3,
+      "accuracy": 0.875,
+      "questions": [
+        {
+          "id": "mock4-Q5",
+          "module": "Fixed Income",
+          "concept": "spot rate로 YTM 구하기",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q7",
+          "module": "Fixed Income",
+          "concept": "bear steepener 대응",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q8",
+          "module": "Fixed Income",
+          "concept": "swap spread = on-the-run 국채",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q9",
+          "module": "Equity Valuation",
+          "concept": "잔여이익 모형을 쓰는 이유",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q10",
+          "module": "Equity Valuation",
+          "concept": "single-stage RI 내재 성장률",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q14",
+          "module": "Ethical and Professional Standards",
+          "concept": "III(B) IPO 배분 정책 공개",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q16",
+          "module": "Ethical and Professional Standards",
+          "concept": "IV(B) 추가 보상 서면 동의",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q17",
+          "module": "Equity Valuation",
+          "concept": "average ROE로 정상화 EPS",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q19",
+          "module": "Equity Valuation",
+          "concept": "비상장사 EBITDA 정상화",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q21",
+          "module": "Portfolio Management",
+          "concept": "Carhart 4요인 스타일 해석",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q24",
+          "module": "Portfolio Management",
+          "concept": "ETN 거래상대방 위험",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q26",
+          "module": "Ethical and Professional Standards",
+          "concept": "V(B) 위험 공개·사실과 의견",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q27",
+          "module": "Ethical and Professional Standards",
+          "concept": "III(C) 고객의 비적합 주문",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q28",
+          "module": "Ethical and Professional Standards",
+          "concept": "I(A) 더 엄격한 법 적용",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q30",
+          "module": "Quantitative Methods",
+          "concept": "AR(2) 2기 앞 예측 (chain rule)",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q31",
+          "module": "Quantitative Methods",
+          "concept": "표본 외 예측력 = RMSE",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q32",
+          "module": "Quantitative Methods",
+          "concept": "혼동행렬 accuracy",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q34",
+          "module": "Economics",
+          "concept": "1인당 GDP와 노동 참여율",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q36",
+          "module": "Economics",
+          "concept": "조건부 수렴 – 자본/노동 비율",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock4-Q38",
+          "module": "Corporate Issuers",
+          "concept": "배당 축소에 대한 주가 반응",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "mock4-Q40",
+          "module": "Corporate Issuers",
+          "concept": "voting cap – 집중 소유·분산 지배",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "mock4-Q41",
+          "module": "Financial Statement Analysis",
+          "concept": "지분법 투자 장부가 (초과액 상각)",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "mock4-Q47",
+          "module": "Portfolio Management",
+          "concept": "왜도·첨도와 꼬리 위험",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "mock4-Q48",
+          "module": "Portfolio Management",
+          "concept": "몬테카를로 – 추정 오차",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "mock4-Q49",
+          "module": "Economics",
+          "concept": "커버드 금리평가 – 헤지 수익률",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q50",
+          "module": "Economics",
+          "concept": "캐리 트레이드 수익률",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q52",
+          "module": "Economics",
+          "concept": "Mundell–Fleming (낮은 자본이동성)",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q53",
+          "module": "Fixed Income",
+          "concept": "신용 스프레드 기간구조 모양",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q55",
+          "module": "Fixed Income",
+          "concept": "CDS 손익 근사",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q58",
+          "module": "Equity Valuation",
+          "concept": "IFRS 이자 분류와 FCFF",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q59",
+          "module": "Equity Valuation",
+          "concept": "2단계 FCFF 주당 가치",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q60",
+          "module": "Equity Valuation",
+          "concept": "부채 발행·자사주 매입과 FCFF·FCFE",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q62",
+          "module": "Ethical and Professional Standards",
+          "concept": "I(C) 표절 – 출처 미표기",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q63",
+          "module": "Ethical and Professional Standards",
+          "concept": "V(A) 사내 모형·제3자 데이터",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q65",
+          "module": "Financial Statement Analysis",
+          "concept": "LCR 계산",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q68",
+          "module": "Financial Statement Analysis",
+          "concept": "순손실 시 희석 EPS",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q69",
+          "module": "Derivatives",
+          "concept": "선도 만기 후 배당",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q72",
+          "module": "Derivatives",
+          "concept": "금리 스왑 가치 (잔존 3년)",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q74",
+          "module": "Financial Statement Analysis",
+          "concept": "현행환율법 매출총이익률",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q75",
+          "module": "Financial Statement Analysis",
+          "concept": "환산 이익잉여금 증가",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q77",
+          "module": "Quantitative Methods",
+          "concept": "회귀 F-검정",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q78",
+          "module": "Quantitative Methods",
+          "concept": "VIF·Breusch–Godfrey 해석",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q79",
+          "module": "Quantitative Methods",
+          "concept": "AIC vs BIC 모형 선택",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q81",
+          "module": "Portfolio Management",
+          "concept": "주식 위험 프리미엄과 소비",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q82",
+          "module": "Portfolio Management",
+          "concept": "breakeven inflation rate",
+          "source": "오답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "mock4-Q87",
+          "module": "Fixed Income",
+          "concept": "몬테카를로 drift 조정",
+          "source": "정답",
+          "confused": true,
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Fixed Income": {
+          "total": 6,
+          "answered": 3,
+          "correct": 2,
+          "accuracy": 0.6667
+        },
+        "Equity Valuation": {
+          "total": 7,
+          "answered": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "Ethical and Professional Standards": {
+          "total": 7,
+          "answered": 5,
+          "correct": 5,
+          "accuracy": 1
+        },
+        "Portfolio Management": {
+          "total": 6,
+          "answered": 4,
+          "correct": 4,
+          "accuracy": 1
+        },
+        "Quantitative Methods": {
+          "total": 6,
+          "answered": 3,
+          "correct": 3,
+          "accuracy": 1
+        },
+        "Economics": {
+          "total": 5,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "Corporate Issuers": {
+          "total": 2,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "Financial Statement Analysis": {
+          "total": 5,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Derivatives": {
+          "total": 2,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Fixed Income / spot rate로 YTM 구하기",
+          "wrong": 1
+        },
+        {
+          "concept": "Economics / 1인당 GDP와 노동 참여율",
+          "wrong": 1
+        },
+        {
+          "concept": "Corporate Issuers / 배당 축소에 대한 주가 반응",
+          "wrong": 1
+        }
+      ],
+      "confusedOverrides": {},
+      "flagged": []
+    }
+  ]
+}
