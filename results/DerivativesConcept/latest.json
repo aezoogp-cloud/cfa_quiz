@@ -1,0 +1,440 @@
+{
+  "subject": "DerivativesConcept",
+  "date": "2026-11-06",
+  "latest": {
+    "totalQuestions": 38,
+    "answered": 17,
+    "correct": 12,
+    "wrong": 5
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-06T11:49:39.169Z",
+      "mode": "all",
+      "startedAt": "2026-11-06T11:38:34.535Z",
+      "totalQuestions": 38,
+      "answered": 17,
+      "correct": 12,
+      "wrong": 5,
+      "accuracy": 0.7059,
+      "questions": [
+        {
+          "id": "CON-M1-12",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Futures value after daily settlement",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-06",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Vega by moneyness",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-01",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Clean vs full price",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-11",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "FRA positions",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-05",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Cash-and-carry arbitrage profit",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-18",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Currency swap value",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-10",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Rules of arbitrage",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-18",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Delta hedge and large moves",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-15",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Equity swap value",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-20",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Rho",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-11",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Black model for options on futures",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M1-06",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "FRA settlement",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-14",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Theta near expiration",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-13",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Standard market model",
+          "source": "개념",
+          "selected": "B",
+          "correctAnswer": "C",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-02",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Put replication",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-09",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "BSM assumptions",
+          "source": "개념",
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-03",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Gamma of puts",
+          "source": "개념",
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CON-M2-07",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Delta–gamma approximation",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-08",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Interest rate swap value",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-07",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "FRA rate",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-14",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Equity swap fixed rate",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-10",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Option valuation probabilities",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-17",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Swap payment timing",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-04",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Conversion factor and accrued interest",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-09",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Carry vs reverse carry arbitrage",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-19",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Greek signs for a long option",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-16",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Carry costs",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-12",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Swaptions under the Black model",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-03",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Treasury futures price",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-17",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Dynamic replication",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-04",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Implied vs historical volatility",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-02",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Accrued interest",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-01",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Call replication and mispricing",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-08",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "American vs European calls",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M1-13",
+          "module": "Module 1 – Pricing and Valuation of Forward Commitments",
+          "concept": "Floating-rate bond at reset",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-16",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Delta-neutral with the hedge-ratio formula",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-15",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Delta hedging",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "CON-M2-05",
+          "module": "Module 2 – Valuation of Contingent Claims",
+          "concept": "Volatility skew",
+          "source": "개념",
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "moduleAccuracy": {
+        "Module 1 – Pricing and Valuation of Forward Commitments": {
+          "total": 18,
+          "answered": 8,
+          "correct": 6,
+          "accuracy": 0.75
+        },
+        "Module 2 – Valuation of Contingent Claims": {
+          "total": 20,
+          "answered": 9,
+          "correct": 6,
+          "accuracy": 0.6667
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Module 1 – Pricing and Valuation of Forward Commitments / Cash-and-carry arbitrage profit",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 1 – Pricing and Valuation of Forward Commitments / Currency swap value",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Valuation of Contingent Claims / Delta hedge and large moves",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Valuation of Contingent Claims / Rho",
+          "wrong": 1
+        },
+        {
+          "concept": "Module 2 – Valuation of Contingent Claims / Standard market model",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
