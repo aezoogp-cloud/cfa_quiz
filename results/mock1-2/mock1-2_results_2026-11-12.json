@@ -1,0 +1,96 @@
+{
+  "subject": "mock1-2",
+  "date": "2026-11-12",
+  "latest": {
+    "totalQuestions": 4,
+    "answered": 4,
+    "correct": 4,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-12T03:49:24.223Z",
+      "mode": "review",
+      "startedAt": "2026-11-12T02:42:13.152Z",
+      "totalQuestions": 4,
+      "answered": 4,
+      "correct": 4,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "mock1-2-Q3",
+          "module": "Equity Valuation",
+          "concept": "RI: OCI(clean surplus 위반) 조정",
+          "source": "오답",
+          "confused": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock1-2-Q9",
+          "module": "Fixed Income",
+          "concept": "부도 시 채권 수익률(IRR)",
+          "source": "오답",
+          "confused": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock1-2-Q35",
+          "module": "Derivatives",
+          "concept": "선물옵션 put-call parity (Black)",
+          "source": "오답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock1-2-Q42",
+          "module": "Ethical and Professional Standards",
+          "concept": "공개된 리포트로 매매: II(A)",
+          "source": "오답",
+          "confused": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Equity Valuation": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Fixed Income": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Derivatives": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Ethical and Professional Standards": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": [],
+      "confusedOverrides": {}
+    }
+  ]
+}
