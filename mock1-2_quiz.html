@@ -110,6 +110,9 @@ details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
 .btn.on{background:var(--cobalt-soft);border-color:var(--cobalt);color:var(--cobalt);font-weight:600}
 .btn.conf{padding:3px 10px;font-size:13px}
 .btn.conf.on{background:var(--amber-soft);border-color:#E3A33A;color:var(--amber);font-weight:600}
+.btn.flag{padding:3px 10px;font-size:13px}
+.btn.flag.on{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:600}
+.pill.src-flag{background:var(--bad-soft);color:var(--bad)}
 .whyl{display:block;margin-top:6px;font-size:13.5px;color:var(--bad)}
 img.exh{max-width:100%;height:auto;background:#fff}
 /* 지문 왼쪽 · 문제/해설 오른쪽 (cmock처럼) */
@@ -149,7 +152,7 @@ body.wide .wrap{max-width:1440px}
 var DATA = JSON.parse(document.getElementById('quizdata').textContent);
 var Q = DATA.questions, VIG = DATA.vignettes, MN = DATA.modules, IMG = DATA.images || {};
 var BYID = {}; Q.forEach(function(q){BYID[q.id]=q;});
-var SUBJECT = DATA.meta.subject, KEY = SUBJECT+"_quiz_state_v1", EXPKEY = SUBJECT+"_quiz_exports_v1", CONFKEY = SUBJECT+"_confused_v1", UIKEY = SUBJECT+"_ui_v1";
+var SUBJECT = DATA.meta.subject, KEY = SUBJECT+"_quiz_state_v1", EXPKEY = SUBJECT+"_quiz_exports_v1", CONFKEY = SUBJECT+"_confused_v1", UIKEY = SUBJECT+"_ui_v1", FLAGKEY = SUBJECT+"_flag_v1";
 
 /* ---------- storage with memory fallback ---------- */
 var mem = {};
@@ -162,6 +165,8 @@ var S = store.get(KEY);
 var CONF = store.get(CONFKEY) || {ids:{}, at:""};
 // 학습 화면(문제+정답+해설) 상태는 풀이 기록(S)과 따로 둔다
 var UI = store.get(UIKEY) || {view:null};
+// Flag: 중요하다고 표시한 문제(헷갈림과 별개). ids[id]=true
+var FLAG = store.get(FLAGKEY) || {ids:{}, at:""};
 function fresh(order, mode){
   return {order:order, idx:0, mode:mode, round:{}, all:(S&&S.all)||{}, started:new Date().toISOString(), finished:false, view:"quiz"};
 }
@@ -209,15 +214,21 @@ function toggleConf(id){
   if(CONF.ids[id]===!!q.conf) delete CONF.ids[id]; // 원래 값으로 돌아오면 덮어쓴 기록 삭제
   CONF.at=new Date().toISOString(); store.set(CONFKEY,CONF);
 }
+function isFlag(q){ return !!FLAG.ids[q.id]; }
+function toggleFlag(id){
+  if(FLAG.ids[id]) delete FLAG.ids[id]; else FLAG.ids[id]=true;
+  FLAG.at=new Date().toISOString(); store.set(FLAGKEY,FLAG);
+}
+function flagBtn(q){ return '<button class="btn flag'+(isFlag(q)?' on':'')+'" id="bFlag" title="중요 문제로 Flag 표시/해제 (F 키)">'+(isFlag(q)?'🚩 Flag':'⚑ Flag')+'</button>'; }
 function confBtn(q){ return '<button class="btn conf'+(isConf(q)?' on':'')+'" id="bConf" title="헷갈린 문제로 표시/해제">'+(isConf(q)?'★ 헷갈림':'☆ 헷갈림')+'</button>'; }
 function metaHtml(q, no, showMy){
   return '<div class="meta"><span class="qno">'+no+'</span><span class="pill">'+esc(mname(q.module))+'</span><span class="pill '+srcClass(q.src)+'">'+esc(q.src)+(showMy && q.my ? ' · 내 답 '+esc(q.my) : '')+'</span>'+
-    (isConf(q)?'<span class="pill src-var">헷갈림</span>':'')+'<span class="tagline">'+esc(q.tag)+'</span><span style="flex:1"></span>'+confBtn(q)+'</div>';
+    (isConf(q)?'<span class="pill src-var">헷갈림</span>':'')+(isFlag(q)?'<span class="pill src-flag">🚩 Flag</span>':'')+'<span class="tagline">'+esc(q.tag)+'</span><span style="flex:1"></span>'+flagBtn(q)+confBtn(q)+'</div>';
 }
 // 범위: wrong = 오답만, wc = 오답+헷갈림, all = 전체
-var FILT = {wrong:"오답만", wc:"오답+헷갈림", all:"전체"};
+var FILT = {wrong:"오답만", wc:"오답+헷갈림", flag:"🚩 Flag만", all:"전체"};
 function pick(f, m){
-  return Q.filter(function(q){ return (m==="all"||String(q.module)===m) && (f==="all" || isWrong(q) || (f==="wc" && isConf(q))); }).map(function(q){return q.id;});
+  return Q.filter(function(q){ return (m==="all"||String(q.module)===m) && (f==="all" || (f==="flag" ? isFlag(q) : (isWrong(q) || (f==="wc" && isConf(q))))); }).map(function(q){return q.id;});
 }
 
 /* ---------- stats ---------- */
@@ -225,7 +236,7 @@ function roundStats(){
   var ok=0,bad=0; S.order.forEach(function(id){ var r=S.round[id]; if(r){ if(r.correct) ok++; else bad++; } });
   return {ok:ok,bad:bad,answered:ok+bad,total:S.order.length};
 }
-var MODE = {all:"전체 풀기", list:"학습한 목록 풀기", wrong:"오답만 풀기", wc:"오답+헷갈림 풀기", review:"틀린 문제 다시 풀기", rwc:"틀린+헷갈림 다시 풀기"};
+var MODE = {all:"전체 풀기", list:"학습한 목록 풀기", wrong:"오답만 풀기", wc:"오답+헷갈림 풀기", review:"틀린 문제 다시 풀기", rwc:"틀린+헷갈림 다시 풀기", flag:"Flag만 풀기", rflag:"Flag 다시 풀기"};
 function header(){
   if(UI.view==="study"){ var T=UI.study; $("nOk").textContent="-"; $("nBad").textContent="-"; $("pbar").style.width=((T.i+1)/T.ids.length*100)+"%"; $("ptxt").textContent=(T.i+1)+" / "+T.ids.length; $("pmode").textContent="해설 보며 학습 · "+T.label; return; }
   if(!S || !S.order){ $("nOk").textContent=0; $("nBad").textContent=0; $("pbar").style.width="0"; $("ptxt").textContent="시작 전"; $("pmode").textContent=""; return; }
@@ -240,7 +251,7 @@ function header(){
 function setup(){
   UI.view=null; saveUI();
   S && (S.view="setup", save());
-  var wrongAll=Q.filter(isWrong).length, confAll=Q.filter(isConf).length;
+  var wrongAll=Q.filter(isWrong).length, confAll=Q.filter(isConf).length, flagAll=Q.filter(isFlag).length;
   var counts={}; Q.forEach(function(q){counts[q.module]=(counts[q.module]||0)+1;});
   var opts='<option value="all">전체 토픽 ('+Q.length+')</option>'+Object.keys(MN).filter(function(m){return counts[m];}).map(function(m){return '<option value="'+m+'">'+esc(mname(m))+' ('+counts[m]+')</option>';}).join("");
   var resume = S && !S.finished && S.order && S.order.length ? '<button class="btn primary" id="bResume">이어서 풀기 ('+roundStats().answered+'/'+S.order.length+')</button> ' : '';
@@ -249,10 +260,10 @@ function setup(){
   document.body.classList.remove("wide");
   $("view").innerHTML =
    '<section class="card setup"><h2 style="margin:0 0 6px;font-size:22px">'+esc(DATA.meta.title)+' 오답 퀴즈</h2>'+
-   '<p class="muted">전체 '+Q.length+'문제 · 내가 틀린 문제 '+wrongAll+' · 헷갈린 문제 '+confAll+'. 정답과 영어 해설은 CFA Institute 원문, 한국어 해설은 원문을 바탕으로 작성했습니다. 헷갈림 표시는 문제 화면의 ☆ 버튼으로 켜고 끌 수 있습니다.</p>'+
+   '<p class="muted">전체 '+Q.length+'문제 · 내가 틀린 문제 '+wrongAll+' · 헷갈린 문제 '+confAll+' · Flag '+flagAll+'. 정답과 영어 해설은 CFA Institute 원문, 한국어 해설은 원문을 바탕으로 작성했습니다. 헷갈림 표시는 문제 화면의 ☆ 버튼, 중요 문제 Flag는 ⚑ 버튼(또는 F 키)으로 켜고 끌 수 있습니다.</p>'+
    '<label>토픽 <select id="selMod">'+opts+'</select></label>'+
    '<div class="seg" id="segF">'+Object.keys(FILT).map(function(k){return '<button class="btn'+(k===f?' on':'')+'" data-f="'+k+'">'+FILT[k]+' <span id="n_'+k+'"></span></button>';}).join("")+'</div>'+
-   '<p class="kbd">풀기: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제 / 학습: ← → 이동</p>'+
+   '<p class="kbd">풀기: A/B/C 또는 1/2/3 선택 · Enter 다음 문제 · → 패스 · ← 이전 문제 / 학습: ← → 이동 / F: Flag</p>'+
    '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+resume+remote+'<button class="btn '+(resume?'':'primary')+'" id="bStart">풀기</button> <button class="btn" id="bStudy">해설 보며 학습</button></div></section>';
   if($("bResume")) $("bResume").onclick=function(){ S.view="quiz"; save(); render(); };
   if($("bRemote")) $("bRemote").onclick=function(){ applyResults(REMOTE.data,false); };
@@ -310,11 +321,12 @@ function study(){
   $("sHome").onclick=setup;
   bindJump(T.ids.length, studyGo);
   $("bConf").onclick=function(){ toggleConf(id); study(); };
+  $("bFlag").onclick=function(){ toggleFlag(id); study(); };
   header();
 }
 /* ---------- 번호로 이동: 목록에서 고르거나 순서 번호 입력 ---------- */
 function jumpBar(ids, cur, done){
-  var o=ids.map(function(id,i){ var q=BYID[id], r=done&&done[id], mk=r?(r.correct?"✓ ":"✗ "):"";
+  var o=ids.map(function(id,i){ var q=BYID[id], r=done&&done[id], mk=(r?(r.correct?"✓ ":"✗ "):"")+(isFlag(q)?"🚩 ":"");
     return '<option value="'+i+'"'+(i===cur?' selected':'')+'>'+mk+(i+1)+'. '+esc(q.orig)+' · '+esc(q.tag)+'</option>'; }).join("");
   return '<div class="jump"><select id="jSel" aria-label="문제 목록에서 이동">'+o+'</select>'+
     '<input id="jIn" type="text" inputmode="numeric" placeholder="1~'+ids.length+'" aria-label="이동할 번호"><button class="btn" id="jGo">이동</button></div>';
@@ -346,6 +358,7 @@ function quiz(){
   $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
   bindJump(S.order.length, quizGo);
   $("bConf").onclick=function(){ toggleConf(id); quiz(); };
+  $("bFlag").onclick=function(){ toggleFlag(id); quiz(); };
   header();
 }
 function feedback(q,r){
@@ -404,8 +417,9 @@ function result(){
   var weak=sm.weak.length? '<ol class="weak">'+sm.weak.slice(0,15).map(function(w){return '<li>'+esc(w.concept)+' <span class="muted">(오답 '+w.wrong+')</span></li>';}).join("")+'</ol>' : '<p class="muted">이번 라운드에 틀린 개념이 없습니다.</p>';
   var wrongIds=S.order.filter(function(id){var r=S.round[id];return r&&!r.correct;});
   var wcIds=S.order.filter(function(id){var r=S.round[id];return (r&&!r.correct) || isConf(BYID[id]);});
+  var flagIds=S.order.filter(function(id){return isFlag(BYID[id]);});
   document.body.classList.remove("wide");
-  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"||S.mode==="rwc"?"다시 풀기 결과":"라운드 결과")+'</h2>'+
+  $("view").innerHTML='<section class="card result"><h2>'+(S.mode==="review"||S.mode==="rwc"||S.mode==="rflag"?"다시 풀기 결과":"라운드 결과")+'</h2>'+
     '<div class="big">'+st.ok+' / '+st.answered+' <span style="font-size:20px;font-weight:600;color:var(--ink2)">('+pct+'%)</span></div>'+
     (st.answered<st.total?'<p class="muted">아직 '+(st.total-st.answered)+'문제를 풀지 않았습니다.</p>':'')+
     '<h3 style="margin:18px 0 6px">토픽별 정답률</h3>'+rows+
@@ -413,12 +427,14 @@ function result(){
     '<div class="nav" style="justify-content:flex-start;flex-wrap:wrap">'+
     '<button class="btn primary" id="bRetry" '+(wrongIds.length?'':'disabled')+'>틀린 문제만 다시 풀기 ('+wrongIds.length+')</button>'+
     '<button class="btn" id="bRetryWC" '+(wcIds.length?'':'disabled')+'>틀린 문제 + 헷갈림 다시 풀기 ('+wcIds.length+')</button>'+
+    '<button class="btn" id="bRetryF" '+(flagIds.length?'':'disabled')+'>🚩 Flag 다시 풀기 ('+flagIds.length+')</button>'+
     (st.answered<st.total?'<button class="btn" id="bOpen">안 푼 문제 풀기 ('+(st.total-st.answered)+')</button>':'')+
     '<button class="btn" id="bBack">문제로 돌아가기</button>'+
     '<button class="btn" id="bExport2">결과 내보내기</button></div></section>';
   function retry(ids, mode){ if(!ids.length) return; S.order=ids; S.idx=0; S.mode=mode; S.round={}; S.finished=false; S.view="quiz"; save(); render(); }
   $("bRetry").onclick=function(){ retry(wrongIds,"review"); };
   $("bRetryWC").onclick=function(){ retry(wcIds,"rwc"); };
+  $("bRetryF").onclick=function(){ retry(flagIds,"rflag"); };
   $("bBack").onclick=function(){ S.view="quiz"; save(); quiz(); };
   if($("bOpen")) $("bOpen").onclick=function(){ var j=firstOpen(); if(j<0) return; S.idx=j; S.finished=false; S.view="quiz"; save(); quiz(); window.scrollTo(0,0); };
   $("bExport2").onclick=exportResults;
@@ -435,10 +451,11 @@ function exportResults(){
     totalQuestions:st.total, answered:st.answered, correct:st.ok, wrong:st.bad,
     accuracy:st.answered?+(st.ok/st.answered).toFixed(4):null,
     questions:S.order.map(function(id){ var q=BYID[id], r=S.round[id], a=S.all[id]||{attempts:0};
-      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, confused:isConf(q), selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
+      return {id:id, module:mname(q.module), concept:q.tag, source:q.src, confused:isConf(q), flagged:isFlag(q), selected:r?r.sel:null, correctAnswer:q.ans, isCorrect:r?r.correct:null, attempts:a.attempts}; }),
     moduleAccuracy:modAcc,
     weakConcepts:sm.weak,
-    confusedOverrides:CONF.ids
+    confusedOverrides:CONF.ids,
+    flagged:Object.keys(FLAG.ids)
   };
   var all=store.get(EXPKEY)||{};
   all[d]=all[d]||[]; all[d].push(attempt); store.set(EXPKEY,all);
@@ -468,6 +485,7 @@ function applyResults(d, quiet){
     all[x.id]={attempts:x.attempts||1, correctCount:ok?1:0, history:[{sel:x.selected,correct:ok,at:at.exportedAt}], last:x.selected, lastCorrect:ok};
   });
   if(at.confusedOverrides){ CONF={ids:at.confusedOverrides, at:at.exportedAt||""}; store.set(CONFKEY,CONF); }
+  if(at.flagged){ var fi={}; at.flagged.forEach(function(x){ if(BYID[x]) fi[x]=true; }); FLAG={ids:fi, at:at.exportedAt||""}; store.set(FLAGKEY,FLAG); }
   var idx=0; while(idx<order.length && round[order[idx]]) idx++;
   var done=idx>=order.length;
   S={order:order, idx:done?order.length-1:idx, mode:MODE[at.mode]?at.mode:"all", round:round, all:all,
@@ -493,6 +511,7 @@ var REMOTE=null;
 function localTime(){
   var t=(S&&S.updatedAt)||"";
   if(CONF.at>t) t=CONF.at;
+  if(FLAG.at>t) t=FLAG.at;
   if(S&&S.all) Object.keys(S.all).forEach(function(id){ (S.all[id].history||[]).forEach(function(h){ if(h.at&&h.at>t) t=h.at; }); });
   return t;
 }
@@ -520,6 +539,7 @@ $("bResult").onclick=function(){ if(!S||!S.order){ setup(); return;} UI.view=nul
 $("bExport").onclick=exportResults;
 document.addEventListener("keydown",function(e){
   if(e.target && /SELECT|INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if((e.key==="f"||e.key==="F") && !e.metaKey && !e.ctrlKey && !e.altKey && $("bFlag")){ $("bFlag").click(); return; }
   if(UI.view==="study"){ if(e.key==="ArrowRight") studyGo(UI.study.i+1); else if(e.key==="ArrowLeft") studyGo(UI.study.i-1); return; }
   if(!S||S.view!=="quiz"||!document.querySelector("button.opt")) return;
   var k=e.key.toUpperCase(), map={"1":"A","2":"B","3":"C","A":"A","B":"B","C":"C"};
