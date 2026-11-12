@@ -1,0 +1,377 @@
+{
+  "subject": "mock2",
+  "date": "2026-11-12",
+  "latest": {
+    "totalQuestions": 26,
+    "answered": 12,
+    "correct": 10,
+    "wrong": 2
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-12T04:02:46.575Z",
+      "mode": "wc",
+      "startedAt": "2026-11-12T03:42:35.414Z",
+      "totalQuestions": 26,
+      "answered": 12,
+      "correct": 10,
+      "wrong": 2,
+      "accuracy": 0.8333,
+      "questions": [
+        {
+          "id": "mock2-Q2",
+          "module": "Derivatives",
+          "concept": "receive-fixed 스왑 가치",
+          "source": "오답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q7",
+          "module": "Equity Valuation",
+          "concept": "인수 대상 기업 가치평가 모형",
+          "source": "오답",
+          "confused": true,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q8",
+          "module": "Equity Valuation",
+          "concept": "가치의 정의: investment value",
+          "source": "정답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q12",
+          "module": "Portfolio Management",
+          "concept": "VaR의 한계: correlation risk",
+          "source": "정답",
+          "confused": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q14",
+          "module": "Alternative Investments",
+          "concept": "선물 곡선 이론 (backwardation)",
+          "source": "오답",
+          "confused": false,
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q16",
+          "module": "Alternative Investments",
+          "concept": "상품 지수 선택: 리밸런싱·backwardation",
+          "source": "오답",
+          "confused": true,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q20",
+          "module": "Equity Valuation",
+          "concept": "PEG ratio의 한계",
+          "source": "정답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q22",
+          "module": "Financial Statement Analysis",
+          "concept": "IFRS 손상차손 (CGU)",
+          "source": "오답",
+          "confused": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q24",
+          "module": "Financial Statement Analysis",
+          "concept": "이자 현금흐름 분류: IFRS vs US GAAP",
+          "source": "정답",
+          "confused": true,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q25",
+          "module": "Ethical and Professional Standards",
+          "concept": "Standard I(C): 원출처 인용",
+          "source": "오답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q27",
+          "module": "Ethical and Professional Standards",
+          "concept": "Standard IV(C) 권장: 윤리강령 내용",
+          "source": "오답",
+          "confused": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q34",
+          "module": "Economics",
+          "concept": "선도 포인트 (540일)",
+          "source": "정답",
+          "confused": true,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 2
+        },
+        {
+          "id": "mock2-Q36",
+          "module": "Economics",
+          "concept": "carry trade 성공 조건",
+          "source": "오답",
+          "confused": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q38",
+          "module": "Fixed Income",
+          "concept": "회수율과 implied PD",
+          "source": "오답",
+          "confused": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q40",
+          "module": "Fixed Income",
+          "concept": "CDS basis trade",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q46",
+          "module": "Quantitative Methods",
+          "concept": "AR(1) 평균회귀 수준",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q51",
+          "module": "Fixed Income",
+          "concept": "수익률곡선 평탄화와 내재 옵션",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q56",
+          "module": "Ethical and Professional Standards",
+          "concept": "Standard VI(A): 이해상충 공시",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q62",
+          "module": "Fixed Income",
+          "concept": "spot rate로 선도금리 f(1,1)",
+          "source": "오답",
+          "confused": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q64",
+          "module": "Fixed Income",
+          "concept": "key rate duration으로 가치 변화",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q68",
+          "module": "Financial Statement Analysis",
+          "concept": "환산 조정: current rate method",
+          "source": "오답",
+          "confused": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q69",
+          "module": "Alternative Investments",
+          "concept": "equity market neutral 전략",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q75",
+          "module": "Derivatives",
+          "concept": "감마가 가장 큰 옵션",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q85",
+          "module": "Financial Statement Analysis",
+          "concept": "CET1 비율",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q86",
+          "module": "Financial Statement Analysis",
+          "concept": "대손충당금 / 부실채권 비율",
+          "source": "오답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        },
+        {
+          "id": "mock2-Q88",
+          "module": "Financial Statement Analysis",
+          "concept": "스톡옵션 행사와 납입자본",
+          "source": "정답",
+          "confused": true,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 1
+        }
+      ],
+      "moduleAccuracy": {
+        "Derivatives": {
+          "total": 2,
+          "answered": 1,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "Equity Valuation": {
+          "total": 3,
+          "answered": 3,
+          "correct": 3,
+          "accuracy": 1
+        },
+        "Portfolio Management": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Alternative Investments": {
+          "total": 3,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "Financial Statement Analysis": {
+          "total": 6,
+          "answered": 2,
+          "correct": 2,
+          "accuracy": 1
+        },
+        "Ethical and Professional Standards": {
+          "total": 3,
+          "answered": 2,
+          "correct": 2,
+          "accuracy": 1
+        },
+        "Economics": {
+          "total": 2,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Fixed Income": {
+          "total": 5,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Quantitative Methods": {
+          "total": 1,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Derivatives / receive-fixed 스왑 가치",
+          "wrong": 1
+        },
+        {
+          "concept": "Alternative Investments / 선물 곡선 이론 (backwardation)",
+          "wrong": 1
+        }
+      ],
+      "confusedOverrides": {}
+    }
+  ]
+}
