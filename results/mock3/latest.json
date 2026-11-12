@@ -1,0 +1,105 @@
+{
+  "subject": "mock3",
+  "date": "2026-11-13",
+  "latest": {
+    "totalQuestions": 4,
+    "answered": 4,
+    "correct": 4,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-12T22:30:11.375Z",
+      "mode": "review",
+      "startedAt": "2026-11-12T12:18:08.998Z",
+      "totalQuestions": 4,
+      "answered": 4,
+      "correct": 4,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "mock3-Q9",
+          "module": "Financial Statement Analysis",
+          "concept": "CET1 비율",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 3
+        },
+        {
+          "id": "mock3-Q57",
+          "module": "Alternative Investments",
+          "concept": "위기 시 헤지펀드 팩터 노출",
+          "source": "오답",
+          "confused": false,
+          "flagged": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 3
+        },
+        {
+          "id": "mock3-Q80",
+          "module": "Corporate Issuers",
+          "concept": "FCFE 커버리지 비율",
+          "source": "오답",
+          "confused": true,
+          "flagged": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 3
+        },
+        {
+          "id": "mock3-Q85",
+          "module": "Equity Valuation",
+          "concept": "비상장사 정상화 EBIT",
+          "source": "오답",
+          "confused": false,
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 3
+        }
+      ],
+      "moduleAccuracy": {
+        "Financial Statement Analysis": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Alternative Investments": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Corporate Issuers": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        },
+        "Equity Valuation": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": [],
+      "confusedOverrides": {},
+      "flagged": [
+        "mock3-Q57",
+        "mock3-Q75",
+        "mock3-Q80"
+      ]
+    }
+  ]
+}
