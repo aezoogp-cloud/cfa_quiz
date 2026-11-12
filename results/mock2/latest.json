@@ -3,20 +3,20 @@
   "date": "2026-11-12",
   "latest": {
     "totalQuestions": 26,
-    "answered": 12,
-    "correct": 10,
-    "wrong": 2
+    "answered": 26,
+    "correct": 19,
+    "wrong": 7
   },
   "attempts": [
     {
-      "exportedAt": "2026-11-12T04:02:46.575Z",
+      "exportedAt": "2026-11-12T12:14:58.507Z",
       "mode": "wc",
       "startedAt": "2026-11-12T03:42:35.414Z",
       "totalQuestions": 26,
-      "answered": 12,
-      "correct": 10,
-      "wrong": 2,
-      "accuracy": 0.8333,
+      "answered": 26,
+      "correct": 19,
+      "wrong": 7,
+      "accuracy": 0.7308,
       "questions": [
         {
           "id": "mock2-Q2",
@@ -24,6 +24,7 @@
           "concept": "receive-fixed 스왑 가치",
           "source": "오답",
           "confused": true,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "A",
           "isCorrect": false,
@@ -35,6 +36,7 @@
           "concept": "인수 대상 기업 가치평가 모형",
           "source": "오답",
           "confused": true,
+          "flagged": false,
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
@@ -46,6 +48,7 @@
           "concept": "가치의 정의: investment value",
           "source": "정답",
           "confused": true,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
@@ -57,6 +60,7 @@
           "concept": "VaR의 한계: correlation risk",
           "source": "정답",
           "confused": true,
+          "flagged": false,
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
@@ -68,6 +72,7 @@
           "concept": "선물 곡선 이론 (backwardation)",
           "source": "오답",
           "confused": false,
+          "flagged": false,
           "selected": "C",
           "correctAnswer": "B",
           "isCorrect": false,
@@ -79,6 +84,7 @@
           "concept": "상품 지수 선택: 리밸런싱·backwardation",
           "source": "오답",
           "confused": true,
+          "flagged": false,
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
@@ -90,6 +96,7 @@
           "concept": "PEG ratio의 한계",
           "source": "정답",
           "confused": true,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
@@ -101,6 +108,7 @@
           "concept": "IFRS 손상차손 (CGU)",
           "source": "오답",
           "confused": false,
+          "flagged": false,
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
@@ -112,6 +120,7 @@
           "concept": "이자 현금흐름 분류: IFRS vs US GAAP",
           "source": "정답",
           "confused": true,
+          "flagged": false,
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
@@ -123,6 +132,7 @@
           "concept": "Standard I(C): 원출처 인용",
           "source": "오답",
           "confused": true,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
@@ -134,6 +144,7 @@
           "concept": "Standard IV(C) 권장: 윤리강령 내용",
           "source": "오답",
           "confused": false,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
@@ -145,6 +156,7 @@
           "concept": "선도 포인트 (540일)",
           "source": "정답",
           "confused": true,
+          "flagged": false,
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
@@ -156,9 +168,10 @@
           "concept": "carry trade 성공 조건",
           "source": "오답",
           "confused": false,
-          "selected": null,
+          "flagged": true,
+          "selected": "C",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -167,9 +180,10 @@
           "concept": "회수율과 implied PD",
           "source": "오답",
           "confused": false,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -178,9 +192,10 @@
           "concept": "CDS basis trade",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -189,9 +204,10 @@
           "concept": "AR(1) 평균회귀 수준",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -200,9 +216,10 @@
           "concept": "수익률곡선 평탄화와 내재 옵션",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -211,9 +228,10 @@
           "concept": "Standard VI(A): 이해상충 공시",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "C",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -222,9 +240,10 @@
           "concept": "spot rate로 선도금리 f(1,1)",
           "source": "오답",
           "confused": false,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -233,9 +252,10 @@
           "concept": "key rate duration으로 가치 변화",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -244,9 +264,10 @@
           "concept": "환산 조정: current rate method",
           "source": "오답",
           "confused": false,
-          "selected": null,
+          "flagged": false,
+          "selected": "B",
           "correctAnswer": "C",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -255,9 +276,10 @@
           "concept": "equity market neutral 전략",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -266,9 +288,10 @@
           "concept": "감마가 가장 큰 옵션",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         },
         {
@@ -277,9 +300,10 @@
           "concept": "CET1 비율",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "B",
           "correctAnswer": "A",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -288,9 +312,10 @@
           "concept": "대손충당금 / 부실채권 비율",
           "source": "오답",
           "confused": true,
-          "selected": null,
+          "flagged": false,
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": false,
           "attempts": 1
         },
         {
@@ -299,18 +324,19 @@
           "concept": "스톡옵션 행사와 납입자본",
           "source": "정답",
           "confused": true,
-          "selected": null,
+          "flagged": true,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
+          "isCorrect": true,
           "attempts": 1
         }
       ],
       "moduleAccuracy": {
         "Derivatives": {
           "total": 2,
-          "answered": 1,
-          "correct": 0,
-          "accuracy": 0
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
         },
         "Equity Valuation": {
           "total": 3,
@@ -326,39 +352,39 @@
         },
         "Alternative Investments": {
           "total": 3,
-          "answered": 2,
-          "correct": 1,
-          "accuracy": 0.5
+          "answered": 3,
+          "correct": 2,
+          "accuracy": 0.6667
         },
         "Financial Statement Analysis": {
           "total": 6,
-          "answered": 2,
-          "correct": 2,
-          "accuracy": 1
+          "answered": 6,
+          "correct": 3,
+          "accuracy": 0.5
         },
         "Ethical and Professional Standards": {
           "total": 3,
-          "answered": 2,
-          "correct": 2,
+          "answered": 3,
+          "correct": 3,
           "accuracy": 1
         },
         "Economics": {
           "total": 2,
-          "answered": 1,
+          "answered": 2,
           "correct": 1,
-          "accuracy": 1
+          "accuracy": 0.5
         },
         "Fixed Income": {
           "total": 5,
-          "answered": 0,
-          "correct": 0,
-          "accuracy": null
+          "answered": 5,
+          "correct": 5,
+          "accuracy": 1
         },
         "Quantitative Methods": {
           "total": 1,
-          "answered": 0,
+          "answered": 1,
           "correct": 0,
-          "accuracy": null
+          "accuracy": 0
         }
       },
       "weakConcepts": [
@@ -369,9 +395,33 @@
         {
           "concept": "Alternative Investments / 선물 곡선 이론 (backwardation)",
           "wrong": 1
+        },
+        {
+          "concept": "Economics / carry trade 성공 조건",
+          "wrong": 1
+        },
+        {
+          "concept": "Quantitative Methods / AR(1) 평균회귀 수준",
+          "wrong": 1
+        },
+        {
+          "concept": "Financial Statement Analysis / 환산 조정: current rate method",
+          "wrong": 1
+        },
+        {
+          "concept": "Financial Statement Analysis / CET1 비율",
+          "wrong": 1
+        },
+        {
+          "concept": "Financial Statement Analysis / 대손충당금 / 부실채권 비율",
+          "wrong": 1
         }
       ],
-      "confusedOverrides": {}
+      "confusedOverrides": {},
+      "flagged": [
+        "mock2-Q36",
+        "mock2-Q88"
+      ]
     }
   ]
 }
