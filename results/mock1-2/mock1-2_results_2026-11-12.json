@@ -9,7 +9,7 @@
   },
   "attempts": [
     {
-      "exportedAt": "2026-11-12T03:49:24.223Z",
+      "exportedAt": "2026-11-12T07:54:25.000Z",
       "mode": "review",
       "startedAt": "2026-11-12T02:42:13.152Z",
       "totalQuestions": 4,
@@ -27,7 +27,8 @@
           "selected": "C",
           "correctAnswer": "C",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 2,
+          "flagged": true
         },
         {
           "id": "mock1-2-Q9",
@@ -38,7 +39,8 @@
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 2,
+          "flagged": true
         },
         {
           "id": "mock1-2-Q35",
@@ -49,7 +51,8 @@
           "selected": "B",
           "correctAnswer": "B",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 2,
+          "flagged": true
         },
         {
           "id": "mock1-2-Q42",
@@ -60,7 +63,8 @@
           "selected": "A",
           "correctAnswer": "A",
           "isCorrect": true,
-          "attempts": 2
+          "attempts": 2,
+          "flagged": true
         }
       ],
       "moduleAccuracy": {
@@ -90,7 +94,13 @@
         }
       },
       "weakConcepts": [],
-      "confusedOverrides": {}
+      "confusedOverrides": {},
+      "flagged": [
+        "mock1-2-Q3",
+        "mock1-2-Q9",
+        "mock1-2-Q35",
+        "mock1-2-Q42"
+      ]
     }
   ]
 }
