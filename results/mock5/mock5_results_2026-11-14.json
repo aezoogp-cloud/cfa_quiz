@@ -1,0 +1,61 @@
+{
+  "subject": "mock5",
+  "date": "2026-11-14",
+  "latest": {
+    "totalQuestions": 1,
+    "answered": 1,
+    "correct": 1,
+    "wrong": 0
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-14T06:16:27.387Z",
+      "mode": "review",
+      "startedAt": "2026-11-14T05:49:28.871Z",
+      "totalQuestions": 1,
+      "answered": 1,
+      "correct": 1,
+      "wrong": 0,
+      "accuracy": 1,
+      "questions": [
+        {
+          "id": "mock5-Q28",
+          "module": "Equity Valuation",
+          "concept": "finite-horizon RI 모델 가치",
+          "source": "정답",
+          "confused": true,
+          "flagged": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 2
+        }
+      ],
+      "moduleAccuracy": {
+        "Equity Valuation": {
+          "total": 1,
+          "answered": 1,
+          "correct": 1,
+          "accuracy": 1
+        }
+      },
+      "weakConcepts": [],
+      "confusedOverrides": {
+        "mock5-Q19": false,
+        "mock5-Q42": false,
+        "mock5-Q44": false,
+        "mock5-Q51": false,
+        "mock5-Q59": false,
+        "mock5-Q70": false
+      },
+      "flagged": [
+        "mock5-Q69",
+        "mock5-Q68",
+        "mock5-Q67",
+        "mock5-Q54",
+        "mock5-Q34",
+        "mock5-Q28"
+      ]
+    }
+  ]
+}
