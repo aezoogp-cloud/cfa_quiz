@@ -1,0 +1,600 @@
+{
+  "subject": "ecopick",
+  "date": "2026-11-18",
+  "latest": {
+    "totalQuestions": 45,
+    "answered": 14,
+    "correct": 11,
+    "wrong": 3
+  },
+  "attempts": [
+    {
+      "exportedAt": "2026-11-17T22:55:10.386Z",
+      "mode": "all",
+      "startedAt": "2026-11-17T21:39:31.211Z",
+      "totalQuestions": 45,
+      "answered": 14,
+      "correct": 11,
+      "wrong": 3,
+      "accuracy": 0.7857,
+      "questions": [
+        {
+          "id": "Economics-ECO-M1-Q36",
+          "module": "Economics",
+          "concept": "MTM – base 매도 포지션 청산은 offer, 음수 points",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "Economics-ECO-M1-Q64",
+          "module": "Economics",
+          "concept": "MTM – base 매수 포지션 청산은 bid, 남은 기간 금리",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Economics-ECO-M1-Q9",
+          "module": "Economics",
+          "concept": "Forward mark-to-market – 남은 기간·price 통화 금리로 할인",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Economics-ECO-M1-Q25",
+          "module": "Economics",
+          "concept": "Carry trade 수익률 – offer 환전 + 차입비용 차감",
+          "source": "ECO",
+          "flagged": true,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Economics-ECO-M2-Q9",
+          "module": "Economics",
+          "concept": "제도 개혁해야 수렴 → Club convergence",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Quant-ECO-M5-Q2",
+          "module": "Quant",
+          "concept": "로그-선형 추세 예측 (e^ 변환)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "C",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Quant-ECO-M5-Q93",
+          "module": "Quant",
+          "concept": "ARCH(1) 다음 기 분산 예측",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "C",
+          "correctAnswer": "B",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "Quant-ECO-M4-Q13",
+          "module": "Quant",
+          "concept": "로지스틱 회귀 – log odds 변화로 확률 계산",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "Quant-ECO-M5-Q74",
+          "module": "Quant",
+          "concept": "두 시계열 모두 단위근 → 공적분이면 유효",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CorpIssuer-ECO-M1-Q51",
+          "module": "CorpIssuer",
+          "concept": "Target payout adjustment model",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CorpIssuer-ECO-M1-Q57",
+          "module": "CorpIssuer",
+          "concept": "Agency 문제(과잉투자) 완화 → 현금배당",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "CorpIssuer-ECO-M4-Q13",
+          "module": "CorpIssuer",
+          "concept": "CTA: 중앙값 P/E로 적정 인수가",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "A",
+          "correctAnswer": "A",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "FSA-ECO-M1-Q26",
+          "module": "FSA",
+          "concept": "Equity method – 기말 장부가",
+          "source": "ECO",
+          "flagged": false,
+          "selected": "B",
+          "correctAnswer": "B",
+          "isCorrect": true,
+          "attempts": 1
+        },
+        {
+          "id": "FSA-ECO-M1-Q33",
+          "module": "FSA",
+          "concept": "Equity vs Consolidation – ROE(기초자본)",
+          "source": "ECO",
+          "flagged": true,
+          "selected": "C",
+          "correctAnswer": "A",
+          "isCorrect": false,
+          "attempts": 1
+        },
+        {
+          "id": "FSA-ECO-M3-Q24",
+          "module": "FSA",
+          "concept": "Temporal method – RE 환산",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FSA-ECO-M3-Q25",
+          "module": "FSA",
+          "concept": "기능통화 변경 근거",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FSA-ECO-M3-Q58",
+          "module": "FSA",
+          "concept": "FX가 매출 증가에 미친 영향",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FSA-ECO-M2-Q8",
+          "module": "FSA",
+          "concept": "IFRS service cost = current + past",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FSA-ECO-M2-Q17",
+          "module": "FSA",
+          "concept": "RSU 희석 – Treasury stock method",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M3-Q65",
+          "module": "Equity",
+          "concept": "FCFF → FCFE (net borrowing 음수)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M3-Q63",
+          "module": "Equity",
+          "concept": "2-stage FCFE – 시점 처리",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M3-Q69",
+          "module": "Equity",
+          "concept": "FCF vs DDM, FCFF vs FCFE 선택",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M5-Q84",
+          "module": "Equity",
+          "concept": "Single-stage RI – 내재 성장률",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M6-Q24",
+          "module": "Equity",
+          "concept": "Normalized earnings 조정 (세후)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Equity-ECO-M6-Q48",
+          "module": "Equity",
+          "concept": "DLOC + DLOM 결합 (곱셈)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M4-Q34",
+          "module": "FixedIncome",
+          "concept": "Rating migration → 1년 기대수익률",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M4-Q12",
+          "module": "FixedIncome",
+          "concept": "부도 시나리오 실현수익률 (IRR)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M5-Q6",
+          "module": "FixedIncome",
+          "concept": "Basis trade – 이익 크기",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M4-Q7",
+          "module": "FixedIncome",
+          "concept": "Reduced-form vs Structural model",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M3-Q72",
+          "module": "FixedIncome",
+          "concept": "변동성↑ → Callable OAS↓",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "FixedIncome-ECO-M3-Q62",
+          "module": "FixedIncome",
+          "concept": "Convertible 지표 – 전환가격·전환가치·시장전환프리미엄",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Derivatives-ECO-M1-Q44",
+          "module": "Derivatives",
+          "concept": "Receive-fixed swap 90일 뒤 가치",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Derivatives-ECO-M1-Q34",
+          "module": "Derivatives",
+          "concept": "FRA 중도 가치 – 새 FRA rate와 할인",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Derivatives-ECO-M2-Q50",
+          "module": "Derivatives",
+          "concept": "금리 call option – 노드별 할인계수",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Derivatives-ECO-M2-Q94",
+          "module": "Derivatives",
+          "concept": "Delta hedge된 long call – 큰 변동 시 가치 ↑",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "AlternativeInvestments-ECO-M1-Q14",
+          "module": "AlternativeInvestments",
+          "concept": "Total return 계산(천연가스, contango)",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "AlternativeInvestments-ECO-M3-Q19",
+          "module": "AlternativeInvestments",
+          "concept": "NAV: 다음 12개월 현금 NOI / cap rate",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "AlternativeInvestments-ECO-M4-Q52",
+          "module": "AlternativeInvestments",
+          "concept": "Multi-strategy vs FoF 성과",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "PM-ECO-M1-Q60",
+          "module": "PM",
+          "concept": "실질금리 ∝ GDP 성장률 & 변동성",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "C",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "PM-ECO-M1-Q3",
+          "module": "PM",
+          "concept": "인플레이션 불확실성 프리미엄 계산",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "PM-ECO-M2-Q7",
+          "module": "PM",
+          "concept": "SR_P² = SR_B² + IR²",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "PM-ECO-M2-Q19",
+          "module": "PM",
+          "concept": "최적 active risk와 비중",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "PM-ECO-M4-Q6",
+          "module": "PM",
+          "concept": "Macro 모형 수익률 = a + b × surprise",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Ethics-ECO-M3-Q3",
+          "module": "Ethics",
+          "concept": "VI(B) Priority of Transactions — firm proprietary account",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "B",
+          "isCorrect": null,
+          "attempts": 0
+        },
+        {
+          "id": "Ethics-ECO-M3-Q10",
+          "module": "Ethics",
+          "concept": "III(B) Fair Dealing — premium service levels",
+          "source": "ECO",
+          "flagged": false,
+          "selected": null,
+          "correctAnswer": "A",
+          "isCorrect": null,
+          "attempts": 0
+        }
+      ],
+      "flags": [
+        "Economics-ECO-M1-Q25",
+        "FSA-ECO-M1-Q33"
+      ],
+      "label": "ECO 45 풀기",
+      "moduleAccuracy": {
+        "Quant": {
+          "total": 4,
+          "answered": 4,
+          "correct": 3,
+          "accuracy": 0.75
+        },
+        "Economics": {
+          "total": 5,
+          "answered": 5,
+          "correct": 4,
+          "accuracy": 0.8
+        },
+        "CorpIssuer": {
+          "total": 3,
+          "answered": 3,
+          "correct": 3,
+          "accuracy": 1
+        },
+        "FSA": {
+          "total": 7,
+          "answered": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "Equity": {
+          "total": 6,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "FixedIncome": {
+          "total": 6,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Derivatives": {
+          "total": 4,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "AlternativeInvestments": {
+          "total": 3,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "PM": {
+          "total": 5,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Ethics": {
+          "total": 2,
+          "answered": 0,
+          "correct": 0,
+          "accuracy": null
+        }
+      },
+      "weakConcepts": [
+        {
+          "concept": "Economics / MTM – base 매도 포지션 청산은 offer, 음수 points",
+          "wrong": 1
+        },
+        {
+          "concept": "Quant / ARCH(1) 다음 기 분산 예측",
+          "wrong": 1
+        },
+        {
+          "concept": "FSA / Equity vs Consolidation – ROE(기초자본)",
+          "wrong": 1
+        }
+      ]
+    }
+  ]
+}
