@@ -107,6 +107,16 @@ details.en summary{cursor:pointer;color:var(--ink2);font-weight:600}
 .kbd{font-size:12px;color:var(--ink2)}
 @media (max-width:560px){.card{padding:16px}.stem{font-size:16px}.mrow{grid-template-columns:1fr 54px}.mrow .mbar{grid-column:1/3;grid-row:2}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* split: vignette left, question right */
+body.wide .wrap{max-width:1400px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.split>.card{margin:0}
+.split .nav .btn{white-space:nowrap}
+.vpane{position:sticky;top:104px;max-height:calc(100vh - 120px);display:flex;flex-direction:column;background:var(--case);border:1px solid var(--line);border-left:4px solid var(--ink2);border-radius:10px;overflow:hidden}
+.vhead{padding:9px 14px;font-weight:600;font-size:14px;color:var(--ink2);border-bottom:1px solid var(--line)}
+.vbody{padding:4px 16px 16px;font-size:14.5px;overflow:auto}
+.vbody p{margin:.5em 0}
+@media (max-width:900px){.split{grid-template-columns:1fr}.vpane{position:static;max-height:46vh}}
 </style>
 </head>
 <body>
@@ -239,7 +249,9 @@ function setup(){
 /* ---------- quiz screen ---------- */
 function quiz(){
   var id=S.order[S.idx], q=BYID[id], r=S.round[id];
-  var vig = q.vig!==null && q.vig!==undefined ? '<details class="case" '+(r?'':'open')+'><summary>케이스 지문 (Vignette)</summary><div class="casebody">'+rich(VIG[q.vig])+'</div></details>' : '';
+  var hasVig = q.vig!==null && q.vig!==undefined;
+  var vigPane = hasVig ? '<aside class="vpane"><div class="vhead">케이스 지문 (Vignette)</div><div class="vbody">'+rich(VIG[q.vig])+'</div></aside>' : '';
+  var vig = '';
   var optsHtml = ["A","B","C"].map(function(L){
     var cls="opt";
     if(r){ if(L===r.sel) cls+= r.correct?" sel-ok":" sel-bad"; if(L===q.ans && !r.correct) cls+=" is-ans"; }
@@ -250,6 +262,8 @@ function quiz(){
     '<div class="nav"><button class="btn" id="bPrev" '+(S.idx===0?'disabled':'')+'>← 이전</button>'+
     '<span class="muted" style="align-self:center">'+esc(q.orig)+'</span>'+
     (r?'<button class="btn primary" id="bNext">'+(S.idx===S.order.length-1?'결과 보기':'다음 문제 →')+'</button>':'<button class="btn" id="bNext" title="풀지 않고 넘어갑니다">패스 →</button>')+'</div></section>';
+  if(hasVig) html='<div class="split">'+vigPane+html+'</div>';
+  document.body.classList.toggle("wide",hasVig);
   $("view").innerHTML=html;
   Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){ b.onclick=function(){ answer(b.getAttribute("data-l")); }; });
   $("bPrev").onclick=prev; $("bNext").onclick=r?next:skip;
@@ -426,6 +440,7 @@ function loadRemote(){
 
 /* ---------- routing ---------- */
 function render(){
+  document.body.classList.remove("wide");
   if(!S || !S.order || !S.order.length || S.view==="setup") return setup();
   if(S.view==="result") return result();
   if(S.idx>=S.order.length) S.idx=S.order.length-1;
