@@ -3,20 +3,20 @@
   "date": "2026-11-18",
   "latest": {
     "totalQuestions": 45,
-    "answered": 14,
-    "correct": 11,
-    "wrong": 3
+    "answered": 24,
+    "correct": 18,
+    "wrong": 6
   },
   "attempts": [
     {
-      "exportedAt": "2026-11-17T22:55:10.386Z",
+      "exportedAt": "2026-11-18T08:35:57.594Z",
       "mode": "all",
       "startedAt": "2026-11-17T21:39:31.211Z",
       "totalQuestions": 45,
-      "answered": 14,
-      "correct": 11,
-      "wrong": 3,
-      "accuracy": 0.7857,
+      "answered": 24,
+      "correct": 18,
+      "wrong": 6,
+      "accuracy": 0.75,
       "questions": [
         {
           "id": "Economics-ECO-M1-Q36",
@@ -178,10 +178,10 @@
           "concept": "Temporal method – RE 환산",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "FSA-ECO-M3-Q25",
@@ -189,10 +189,10 @@
           "concept": "기능통화 변경 근거",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "C",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "FSA-ECO-M3-Q58",
@@ -211,21 +211,21 @@
           "concept": "IFRS service cost = current + past",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "FSA-ECO-M2-Q17",
           "module": "FSA",
           "concept": "RSU 희석 – Treasury stock method",
           "source": "ECO",
-          "flagged": false,
-          "selected": null,
+          "flagged": true,
+          "selected": "A",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": false,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M3-Q65",
@@ -233,10 +233,10 @@
           "concept": "FCFF → FCFE (net borrowing 음수)",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M3-Q63",
@@ -244,10 +244,10 @@
           "concept": "2-stage FCFE – 시점 처리",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "B",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M3-Q69",
@@ -255,10 +255,10 @@
           "concept": "FCF vs DDM, FCFF vs FCFE 선택",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M5-Q84",
@@ -266,10 +266,10 @@
           "concept": "Single-stage RI – 내재 성장률",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "A",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": true,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M6-Q24",
@@ -277,10 +277,10 @@
           "concept": "Normalized earnings 조정 (세후)",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "B",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": false,
+          "attempts": 1
         },
         {
           "id": "Equity-ECO-M6-Q48",
@@ -288,10 +288,10 @@
           "concept": "DLOC + DLOM 결합 (곱셈)",
           "source": "ECO",
           "flagged": false,
-          "selected": null,
+          "selected": "C",
           "correctAnswer": "A",
-          "isCorrect": null,
-          "attempts": 0
+          "isCorrect": false,
+          "attempts": 1
         },
         {
           "id": "FixedIncome-ECO-M4-Q34",
@@ -516,7 +516,8 @@
       ],
       "flags": [
         "Economics-ECO-M1-Q25",
-        "FSA-ECO-M1-Q33"
+        "FSA-ECO-M1-Q33",
+        "FSA-ECO-M2-Q17"
       ],
       "label": "ECO 45 풀기",
       "moduleAccuracy": {
@@ -540,15 +541,15 @@
         },
         "FSA": {
           "total": 7,
-          "answered": 2,
-          "correct": 1,
-          "accuracy": 0.5
+          "answered": 6,
+          "correct": 4,
+          "accuracy": 0.6667
         },
         "Equity": {
           "total": 6,
-          "answered": 0,
-          "correct": 0,
-          "accuracy": null
+          "answered": 6,
+          "correct": 4,
+          "accuracy": 0.6667
         },
         "FixedIncome": {
           "total": 6,
@@ -592,6 +593,18 @@
         },
         {
           "concept": "FSA / Equity vs Consolidation – ROE(기초자본)",
+          "wrong": 1
+        },
+        {
+          "concept": "FSA / RSU 희석 – Treasury stock method",
+          "wrong": 1
+        },
+        {
+          "concept": "Equity / Normalized earnings 조정 (세후)",
+          "wrong": 1
+        },
+        {
+          "concept": "Equity / DLOC + DLOM 결합 (곱셈)",
           "wrong": 1
         }
       ]
