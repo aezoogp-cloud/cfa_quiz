@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>QFP 계산 모음 — CFA Level II</title>
+<style>
+:root{
+  --paper:#EDF1F6; --sheet:#FFFFFF; --ink:#172033; --ink2:#4A5568; --line:#D5DCE6;
+  --cobalt:#2B50C8; --cobalt-soft:#E7ECFB; --ok:#157F55; --ok-soft:#E3F4EC;
+  --bad:#C23B3B; --bad-soft:#FBE9E9; --amber:#9A6412; --amber-soft:#FFF4DF; --case:#F6F8FB;
+  --hl:#FFE58A; --hl-line:#E0B400;
+  --font:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;font-variant-numeric:tabular-nums}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+header.bar{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:10px 0 12px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700}
+.brand h1 span{font-weight:400;opacity:.7;margin-left:6px;font-size:14px}
+.stats{display:flex;gap:14px;font-size:14px}
+.stats b{font-size:16px}.s-ok b{color:#7BE0B0}.s-bad b{color:#FF9C9C}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.nav button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:8px;padding:3px 11px;font-size:13.5px}
+.nav button.cur{background:#fff;color:var(--ink);font-weight:700}
+.nav button.ok{border-color:#7BE0B0}.nav button.bad{border-color:#FF9C9C}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+.btn{border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:7px 13px;border-radius:8px;font-size:14px}
+.btn:hover{border-color:var(--cobalt)}
+.btn.primary{background:var(--cobalt);border-color:var(--cobalt);color:#fff;font-weight:600}
+.btn[disabled]{opacity:.45;cursor:default}
+details.formula{background:var(--sheet);border:1px solid var(--line);border-radius:12px;margin-top:12px}
+details.formula summary{padding:10px 16px;font-weight:700;cursor:pointer}
+.fbody{padding:0 18px 14px;font-size:14.5px}
+.fbody code{background:var(--case);padding:2px 6px;border-radius:5px;font-family:inherit;font-weight:600}
+.fbody ol{margin:.3em 0;padding-left:1.3em}
+.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;margin-top:12px;padding-bottom:64px}
+.layout.novig{grid-template-columns:minmax(0,1fr);max-width:860px}
+.pane{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.vigpane{position:sticky;top:96px;align-self:start;max-height:calc(100vh - 110px);overflow:auto}
+.look{background:var(--amber-soft);border:1px solid #F0D49B;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:14.5px}
+.look b{color:var(--amber)}
+.look ul{margin:.3em 0 0;padding-left:1.2em}
+.blk{border-radius:8px;padding:4px 10px;margin:6px 0;font-size:14.5px}
+.blk h4{margin:0;font-size:14px;color:var(--ink2)}
+.blk p{margin:.2em 0}
+.blk.focus{background:#FFFBEA;border-left:4px solid var(--hl-line)}
+mark{background:var(--hl);color:inherit;padding:0 2px;border-radius:3px;font-weight:700}
+mark.trap{background:var(--bad-soft);color:var(--bad);text-decoration:line-through;text-decoration-thickness:1.5px}
+details.rest{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+details.rest summary{font-size:13.5px;color:var(--ink2);cursor:pointer}
+details.rest .blk{color:var(--ink2)}
+.tbl{overflow-x:auto;margin:.4em 0}
+.tbl table{border-collapse:collapse;font-size:13.5px}
+.tbl td{border:1px solid var(--line);padding:4px 9px;vertical-align:top;background:#fff}
+.tbl tr:first-child td{background:#F0F3F8;font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:10px;font-size:13px}
+.pill{border-radius:999px;padding:2px 10px;background:var(--cobalt-soft);color:var(--cobalt);font-weight:600}
+.pill.grey{background:#EEF0F4;color:var(--ink2)}
+.stem{font-size:17px;font-weight:600;margin:4px 0 14px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--cobalt);background:#FAFBFF}
+.bubble{flex:0 0 30px;height:30px;border-radius:50%;border:2px solid var(--ink2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--ink2);background:#fff}
+.opt .txt{padding-top:3px}
+.opt.sel-ok{border-color:var(--ok);background:var(--ok-soft)}.opt.sel-ok .bubble{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.sel-bad{border-color:var(--bad);background:var(--bad-soft)}.opt.sel-bad .bubble{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.is-ans{border-color:var(--ok)}.opt.is-ans .bubble{border-color:var(--ok);color:var(--ok)}
+.opt[disabled]{cursor:default}
+.exp{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;font-size:15px}
+.verdict{font-weight:700;font-size:16px;margin-bottom:8px}
+.verdict.ok{color:var(--ok)}.verdict.bad{color:var(--bad)}
+.exp h5{margin:12px 0 4px;font-size:13px;color:var(--ink2);text-transform:uppercase;letter-spacing:.04em}
+.exp .steps{white-space:pre-wrap;background:var(--case);border-radius:8px;padding:10px 12px;font-size:14px}
+.exp .f{background:var(--cobalt-soft);color:var(--cobalt);border-radius:8px;padding:8px 12px;font-weight:600}
+.exp .trap{background:var(--amber-soft);border-radius:8px;padding:8px 12px}
+.exp ul{margin:.2em 0;padding-left:1.2em}
+.navbtns{display:flex;justify-content:space-between;gap:8px;margin-top:16px}
+.result{max-width:860px}
+.result table{border-collapse:collapse;width:100%;font-size:14.5px;margin-top:10px}
+.result td{border-bottom:1px solid var(--line);padding:7px 6px}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .vigpane{position:static;max-height:none}
+}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <div class="brand"><h1>QFP 계산 모음<span>Quoted futures price · Mock + ECO Derivatives</span></h1>
+    <div class="stats"><span class="s-ok">정답 <b id="nOk">0</b></span><span class="s-bad">오답 <b id="nBad">0</b></span><span>남음 <b id="nLeft">5</b></span></div></div>
+  <div class="nav" id="nav"></div>
+</div></header>
+
+<div class="wrap">
+  <div class="tools">
+    <button class="btn" id="bReset">처음부터</button>
+    <button class="btn" id="bExport">결과 내보내기</button>
+    <button class="btn" id="bImport">결과 불러오기</button>
+    <input type="file" id="fImport" accept="application/json,.json" hidden>
+  </div>
+  <details class="formula">
+    <summary>공식 한 장 (펼치기)</summary>
+    <div class="fbody">
+      <ol>
+        <li>Full (dirty) spot price: <code>S0 = B0 + AI0</code>, <code>AI = (days since last coupon / days in coupon period) × coupon</code></li>
+        <li>Adjusted futures price (Schweser "F0"): <code>F0 = FV(B0 + AI0) − AIT − FVCI</code>. FV uses <code>(1 + r)^(T)</code> with T = days / 360</li>
+        <li>Quoted futures price: <code>QFP = F0 / CF = [FV(B0 + AI0) − AIT − FVCI] / CF</code></li>
+        <li>AIT is accrued interest at futures expiration: <code>(days since last coupon + days to expiry) / coupon period × coupon</code></li>
+        <li>Mispricing: market QFP &gt; equilibrium → futures overvalued → sell futures, buy bond. Profit at T = <code>CF × QFP(market) + AIT − FV(B0 + AI0 − PVCI)</code>, then discount to today.</li>
+      </ol>
+    </div>
+  </details>
+  <div id="main"></div>
+</div>
+
+<script id="quizdata" type="application/json">
+{"vignettes":[
+ {"title":"Doyle / Kemper (BestFutures)","blocks":[
+  {"t":"p","x":"Tim Doyle is a portfolio manager at BestFutures Group, a hedge fund that frequently enters into derivative contracts either to hedge the risk of investments it holds or to speculate outside of those investments. Doyle works alongside Diane Kemper, a junior analyst at the hedge fund. They meet to evaluate new investment ideas and to review several of the firm's existing investments."},
+  {"t":"h","x":"Carry Arbitrage Model"},
+  {"t":"p","x":"Doyle and Kemper discuss the carry arbitrage model and how they can take advantage of mispricing in bond markets. Specifically, they would like to execute an arbitrage transaction on a Eurodollar futures contract in which the underlying Eurodollar bond is expected to make an interest payment in two months. Doyle makes the following statements:"},
+  {"t":"p","x":"Statement 1: If the Eurodollar futures price is less than the price suggested by the carry arbitrage model, the futures contract should be purchased."},
+  {"t":"p","x":"Statement 2: Based on the cost of carry model, the futures price would be higher if the underlying Eurodollar bond's upcoming interest payment was expected in five months instead of two."},
+  {"t":"h","x":"Three-Year Treasury Note Futures Contract"},
+  {"t":"p","x":"Kemper then presents two investment ideas to Doyle. Kemper's first investment idea is to purchase a three-year Treasury note futures contract. The underlying 1.5%, semi-annual three-year Treasury note is quoted at a clean price of 101. It has been 60 days since the three-year Treasury note's last coupon payment, and the next coupon payment is payable in 120 days. Doyle asks Kemper to calculate the full spot price of the underlying three-year Treasury note."},
+  {"t":"h","x":"10-Year Treasury Note Futures Contract"},
+  {"t":"p","x":"Kemper's second investment idea is to purchase a 10-year Treasury note futures contract. The underlying 2%, semi-annual 10-year Treasury note has a dirty price of 104.17. It has been 30 days since the 10-year Treasury note's last coupon payment. The futures contract expires in 90 days. The quoted futures contract price is 129. The current annualized three-month risk-free rate is 1.65%. The conversion factor is 0.7025. Doyle asks Kemper to calculate the equilibrium quoted futures contract price based on the carry arbitrage model."},
+  {"t":"h","x":"Japanese Government Bonds"},
+  {"t":"p","x":"After discussing Kemper's new investment ideas, Doyle and Kemper evaluate one of their existing forward contract positions. Three months ago, BestFutures took a long position in eight 10-year Japanese government bond (JGB) forward contracts, with each contract having a contract notional value of 100 million yen. The contracts had a price of JPY153 (quoted as a percentage of par) when the contracts were purchased. Now, the contracts have six months left to expiration and have a price of JPY155. The annualized six-month interest rate is 0.12%. Doyle asks Kemper to value the JGB forward position."},
+  {"t":"h","x":"Interest Rate Swaps"},
+  {"t":"p","x":"Additionally, Doyle asks Kemper to price a one-year plain vanilla swap. The spot rates and days to maturity at each payment date are presented in Exhibit 1."},
+  {"t":"table","cap":"Exhibit 1 – Selected US Spot Rate Data","rows":[["Days to Maturity","Spot Interest Rates (%)"],["90","1.90"],["180","2.00"],["270","2.10"],["360","2.20"]]},
+  {"t":"p","x":"Finally, Doyle and Kemper review one of BestFutures's pay-fixed interest rate swap positions. Two years ago, the firm entered into a JPY5 billion five-year interest rate swap, paying the fixed rate. The fixed rate when BestFutures entered into the swap two years ago was 0.10%. The current term structure of interest rates for JPY cash flows, which are relevant to the interest rate swap position, is presented in Exhibit 2."},
+  {"t":"table","cap":"Exhibit 2 – Selected Japanese Interest Rate Data","rows":[["Maturity (Years)","Yen Spot Interest Rates (%)","Present Value Factors"],["1","0.03","0.9997"],["2","0.06","0.9988"],["3","0.08","0.9976"],["Sum","","2.9961"]]},
+  {"t":"p","x":"Doyle asks Kemper to calculate the value of the pay-fixed interest rate swap."}
+ ]},
+ {"title":"Lucy Wang (South African broker-dealer)","blocks":[
+  {"t":"p","x":"Lucy Wang is a derivatives trader for a South African broker-dealer. All of her firm's trades are in South African rand (ZAR) and use a 30/360 day count convention."},
+  {"t":"p","x":"Wang wants to hedge a floating-rate note held by her firm against a decline in interest rates. She uses data from Exhibit 1 to price a 3 × 12 forward rate agreement (FRA)."},
+  {"t":"table","cap":"Exhibit 1","rows":[["Maturity","Spot Market Reference Rate","Present Value Factor"],["3-month","3.67%","0.9909"],["6-month","3.79%","0.9814"],["12-month","4.15%","0.9602"]]},
+  {"t":"p","x":"Wang analyzes a receive-fixed, pay-floating interest rate swap with a fixed rate of 7.38% with a 1-year remaining maturity. The notional amount of the swap is ZAR 10,000,000 which resets semiannually. She values the swap position using the current 1-year fixed rate of 4.10% and data from Exhibit 1."},
+  {"t":"p","x":"Next, Wang determines the no-arbitrage price of a bond forward contract. She uses information from Exhibit 2 and an annualized risk-free rate of 3.7%."},
+  {"t":"table","cap":"Exhibit 2","rows":[["Item","Value"],["Quoted bond price without accrued interest (% of par)","105.0"],["Future value of coupon interest (% of par)","4.51"],["Accrued interest at contract initiation (% of par)","3.00"],["Accrued interest at contract expiration (% of par)","0.75"],["Time to forward contract expiration","90 days"],["Conversion factor","1.0"]]},
+  {"t":"p","x":"Wang then evaluates whether an arbitrage opportunity exists in 9-month forward contracts on the shares of Pintel Electronics. She is quoted a 9-month forward price of ZAR 816 by a dealer. Pintel shares currently trade at ZAR 850 and will pay a dividend of ZAR 34 in six months."}
+ ]},
+ {"title":"Donald Troubadour (Southern Shores Investments)","blocks":[
+  {"t":"p","x":"Donald Troubadour is a derivatives trader for Southern Shores Investments. The firm seeks arbitrage opportunities in the forward and futures markets using the carry arbitrage model."},
+  {"t":"p","x":"Troubadour identifies an arbitrage opportunity relating to a fixed-income futures contract and its underlying bond. Current data on the futures contract and underlying bond are presented in Exhibit 1. The current annual compounded risk-free rate is 0.30%."},
+  {"t":"table","cap":"Exhibit 1 – Current Data for Futures and Underlying Bond","rows":[["Futures Contract","","Underlying Bond",""],["Quoted futures price","125.00","Quoted bond price","112.00"],["Conversion factor","0.90","Accrued interest since last coupon payment","0.08"],["Time remaining to contract expiration","Three months","Accrued interest at futures contract expiration","0.20"],["","","Accrued interest over life of futures contract","0.00"]]},
+  {"t":"p","x":"Troubadour next gathers information on a Japanese equity index futures contract, the Nikkei 225 Futures Contract:"},
+  {"t":"p","x":"Troubadour holds a long position in a Nikkei 225 futures contract that has a remaining maturity of three months. The continuously compounded dividend yield on the Nikkei 225 Stock Index is 1.1%, and the current stock index level is 16,080. The continuously compounded annual interest rate is 0.2996%."},
+  {"t":"p","x":"Troubadour next considers an equity forward contract for Texas Steel, Inc. (TSI). Information regarding TSI common shares and a TSI equity forward contract is presented in Exhibit 2."},
+  {"t":"p","x":"Exhibit 2 – Selected Information for TSI: The price per share of TSI's common shares is $250. The forward price per share for a nine-month TSI equity forward contract is $250.562289. Assume annual compounding."},
+  {"t":"p","x":"Troubadour takes a short position in the TSI equity forward contract. His supervisor asks, \"Under which scenario would our position experience a loss?\""},
+  {"t":"p","x":"Exhibit 3 – Selected Data on TSI and the Risk-Free Rate (Three Months Later): The price per share of TSI's common shares is $245. The risk-free rate is 0.325% (quoted on an annual compounding basis). TSI recently announced its regular semiannual dividend of $1.50 per share that will be paid exactly three months before contract expiration. The market price of the TSI equity forward contract is equal to the no-arbitrage forward price."}
+ ]}
+],
+"questions":[
+ {"id":"Derivatives-ECO-M1-Q2","orig":"ECO Derivatives Module 1 Q2","step":"1단계 · full price","vig":0,
+  "focus":[5,6],"marks":["1.5%, semi-annual","clean price of 101","60 days","120 days"],"traps":[],
+  "look":["‘Three-Year Treasury Note’ 단락 하나만 보면 됨","쿠폰 1.5% 반기 → 한 번 쿠폰 0.75","지난 날수 60일, 쿠폰기간 60 + 120 = 180일","120일(다음 쿠폰까지)은 쿠폰기간(180일) 구하는 데만 씀 → AI에 120일을 직접 쓰면 함정"],
+  "stem":"The full spot price of the three-year Treasury note is:",
+  "opts":{"A":"101.00.","B":"101.25.","C":"101.50."},"ans":"B",
+  "steps":"AI0 = (60 / 180) × (1.5% / 2 × 100) = (1/3) × 0.75 = 0.25\nS0 = B0 + AI0 = 101 + 0.25 = 101.25",
+  "f":"Full price = Clean price + AI,  AI = (days since last coupon / days in coupon period) × coupon",
+  "trap":"AI는 '지난 날수'로 계산한다. 다음 쿠폰까지 남은 날수(120일)를 쓰면 0.50 → 101.50이 된다.",
+  "why":{"A":"101 is the clean (quoted) price. The full price adds accrued interest.","C":"Uses the 120 days until the next coupon (AI = 0.50). Accrued interest uses the 60 days already passed."}},
+ {"id":"mock2-Q3","orig":"Mock 2 Session 1 Q3","step":"2단계 · F0 (CF = 1)","vig":1,
+  "focus":[4,5],"marks":["3.7%","105.0","4.51","3.00","0.75","90 days","1.0"],"traps":[],
+  "look":["‘Next, Wang determines…bond forward’ 문장 + Exhibit 2만 보면 됨 (FRA·swap·Pintel은 다른 문제)","Exhibit 2에 AI0 3.00, AIT 0.75, FVCI 4.51이 이미 주어짐 → 계산할 것 없이 넣기만","CF = 1.0이라 F0 = QFP"],
+  "stem":"The no-arbitrage bond forward price (as a percentage of par) is closest to:",
+  "opts":{"A":"99.2.","B":"103.7.","C":"108.4."},"ans":"B",
+  "steps":"S0 = B0 + AI0 = 105.0 + 3.00 = 108.00\nFV(S0) = 108.00 × 1.037^(90/360) = 108.00 × 1.00912 = 108.99\nF0 = FV(S0) − AIT − FVCI = 108.99 − 0.75 − 4.51 = 103.73 ≈ 103.7\n(CF = 1.0, so the quoted price is also 103.7)",
+  "f":"F0 = FV(B0 + AI0) − AIT − FVCI,  QFP = F0 / CF",
+  "trap":"AI0는 더하고 AIT는 뺀다. 기간 중 받는 coupon의 FV(FVCI)도 뺀다.",
+  "why":{"A":"Uses the wrong signs: subtracts AI0 and adds AIT. 1.00912 × (105 − 3) + 0.75 − 4.51 = 99.2.","C":"Forgets to subtract FVCI (4.51). 108.99 − 0.75 = 108.24 (the CFAI feedback shows this as ≈ 108.4)."}},
+ {"id":"Derivatives-ECO-M1-Q3","orig":"ECO Derivatives Module 1 Q3","step":"3단계 · QFP (CF ≠ 1)","vig":0,
+  "focus":[7,8],"marks":["2%, semi-annual","dirty price of 104.17","30 days","expires in 90 days","1.65%","0.7025"],"traps":["quoted futures contract price is 129"],
+  "look":["‘10-Year Treasury Note Futures Contract’ 단락 하나만 보면 됨","dirty price 104.17 = 이미 B0 + AI0 → AI0를 또 더하지 않음","AIT = (30 + 90) / 180 × 1 (쿠폰 2% 반기 → 1.00)","시장 quoted price 129는 계산에 안 씀 (함정)"],
+  "stem":"The equilibrium 10-year Treasury note quoted futures contract price is closest to:",
+  "opts":{"A":"147.94.","B":"148.89.","C":"149.78."},"ans":"A",
+  "steps":"B0 + AI0 = dirty price = 104.17  (AI0 = 30/180 × 1.00 = 0.17, B0 = 104.00)\nFV = 104.17 × 1.0165^(90/360) = 104.17 × 1.00410 = 104.597\nAIT = (30 + 90) / 180 × 1.00 = 0.667\nFVCI = 0 (no coupon before expiry: next coupon in 150 days)\nQ0 = (104.597 − 0.667 − 0) / 0.7025 = 103.930 / 0.7025 = 147.94",
+  "f":"QFP = [FV(B0 + AI0) − AIT − FVCI] / CF",
+  "trap":"Dirty price는 이미 B0 + AI0. AIT 빼는 걸 잊지 말 것. 지문의 quoted price 129는 비교용일 뿐 입력값이 아님.",
+  "why":{"B":"Does not subtract AIT: 104.597 / 0.7025 = 148.89.","C":"Compounds for a full year instead of 90/360: (104.17 × 1.0165 − 0.667) / 0.7025 = 149.78."}},
+ {"id":"Derivatives-ECO-M1-Q59","orig":"ECO Derivatives Module 1 Q59","step":"4단계 · QFP로 고평가/저평가","vig":null,
+  "data":[["Clean bond price","103"],["Coupon rate","3.00% (semiannual)"],["Days since last coupon","55"],["Days until next coupon","125"],["Conversion factor","0.75"],["Days until futures contract expiry","30"],["Annualized 1-month risk-free rate","3.25%"]],
+  "look":["지문 없음, 표만 보면 됨","쿠폰기간 = 55 + 125 = 180일, 한 번 쿠폰 = 1.5","AIT의 날수 = 55 + 30 = 85일","만기(30일)가 다음 쿠폰(125일)보다 먼저 → FVCI = 0"],
+  "stem":"An analyst gathers the following information about a bond futures contract and the underlying semiannual pay bond. If the quoted futures price is 138, based on the carry arbitrage model this futures contract is:",
+  "opts":{"A":"undervalued.","B":"fairly valued.","C":"overvalued."},"ans":"C",
+  "steps":"AI0 = 55/180 × 1.5 = 0.458\nAIT = (55 + 30)/180 × 1.5 = 0.708\nFV(B0 + AI0) = 103.458 × 1.0325^(30/360) = 103.734\nFVCI = 0\nQ0 = (103.734 − 0.708) / 0.75 = 137.37\nMarket 138 > 137.37 → overvalued (sell futures, buy bond)",
+  "f":"QFP = [FV(B0 + AI0) − AIT − FVCI] / CF",
+  "trap":"Days until next coupon(125)은 쿠폰기간(180)을 구하는 데만 쓴다. AIT는 지난 날수 + 만기까지 날수.",
+  "why":{"A":"The quoted price (138) is above the equilibrium price (137.37), so the futures is overvalued, not undervalued.","B":"138 ≠ 137.37; the futures trades above its equilibrium price."}},
+ {"id":"Derivatives-ECO-M1-Q7","orig":"ECO Derivatives Module 1 Q7","step":"5단계 · arbitrage profit","vig":2,
+  "focus":[1,2],"marks":["0.30%","125.00","112.00","0.90","0.08","Three months","0.20","0.00"],"traps":[],
+  "look":["두 번째 문단(무위험이자 0.30%) + Exhibit 1만 보면 됨 (Nikkei·TSI는 다른 문제)","bond 쪽: B0 112.00 + AI0 0.08, PVCI 0 → 3개월 FV","futures 쪽: CF 0.90 × 125 + AIT 0.20 = 받는 돈","차이를 PV로 할인"],
+  "stem":"Based on Exhibit 1 and assuming annual compounding, the arbitrage profit on the bond futures contract is closest to:",
+  "opts":{"A":"0.4158.","B":"0.5356.","C":"0.6195."},"ans":"B",
+  "steps":"Cost of carrying the bond to T: FV(B0 + AI0 − PVCI) = (112.00 + 0.08 − 0) × 1.003^0.25 = 112.164\nReceived at delivery: CF × Q0 + AIT = 0.90 × 125 + 0.20 = 112.50 + 0.20 = 112.70\nProfit at T = 112.70 − 112.164 = 0.536 (futures overpriced → sell futures, buy bond)\nPV = 0.536 / 1.003^0.25 = 0.5356",
+  "f":"Arbitrage profit (PV) = [CF × Q0 + AIT − FV(B0 + AI0 − PVCI)] / (1 + r)^T",
+  "trap":"Futures 쪽에 AIT(0.20), bond 쪽에 AI0(0.08)를 각각 더한다. 마지막에 PV로 할인하는 것도 잊지 말 것.",
+  "why":{"A":"Leaves out accrued interest on both sides: (112.50 − 112.00 × 1.003^0.25) / 1.003^0.25 = 0.4158.","C":"Does not compound the bond cost: (112.70 − 112.08) / 1.003^0.25 = 0.6195."}}
+]}
+</script>
+
+<script>
+(function(){
+var SUBJECT="QFP", KEY="cfa2_qfp_quiz_v1";
+var D=JSON.parse(document.getElementById("quizdata").textContent);
+var Q=D.questions, BYID={}; Q.forEach(function(q){BYID[q.id]=q;});
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+var S=null;
+try{ S=JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){}
+if(!S||!S.ans) S={idx:0, ans:{}, started:new Date().toISOString(), updatedAt:"", view:"quiz"};
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+
+function markText(text, marks, traps){
+  var h=esc(text), list=[];
+  (marks||[]).forEach(function(m){list.push({m:esc(m),c:""});});
+  (traps||[]).forEach(function(m){list.push({m:esc(m),c:"trap"});});
+  list.sort(function(a,b){return b.m.length-a.m.length;});
+  var tokens=[];
+  list.forEach(function(o){
+    var i=h.indexOf(o.m); if(i<0) return;
+    var tk="\u0001"+tokens.length+"\u0002";
+    tokens.push('<mark'+(o.c?' class="'+o.c+'" title="계산에 안 씀"':'')+'>'+o.m+'</mark>');
+    h=h.slice(0,i)+tk+h.slice(i+o.m.length);
+  });
+  return h.replace(/\u0001(\d+)\u0002/g,function(_,n){return tokens[+n];});
+}
+function blockHtml(b, q, focus){
+  var mk=focus?q.marks:null, tr=focus?q.traps:null;
+  var cls="blk"+(focus?" focus":"");
+  if(b.t==="h") return '<div class="'+cls+'"><h4>'+esc(b.x)+'</h4></div>';
+  if(b.t==="table"){
+    var r='<div class="'+cls+'"><h4>'+esc(b.cap||"")+'</h4><div class="tbl"><table>';
+    b.rows.forEach(function(row){ r+="<tr>"+row.map(function(c){return "<td>"+(focus?markText(c,exact(mk,c),[]):esc(c))+"</td>";}).join("")+"</tr>"; });
+    return r+"</table></div></div>";
+  }
+  return '<div class="'+cls+'"><p>'+(focus?markText(b.x,mk,tr):esc(b.x))+'</p></div>';
+}
+function exact(marks,c){ return (marks||[]).filter(function(m){return m===c;}); }
+
+function vigHtml(q){
+  var v=D.vignettes[q.vig], on={}, h="", rest="";
+  q.focus.forEach(function(i){on[i]=1;});
+  h+='<div class="look"><b>여기만 보면 됨</b><ul>'+q.look.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';
+  h+='<div class="meta"><span class="pill grey">지문</span><span>'+esc(v.title)+'</span></div>';
+  v.blocks.forEach(function(b,i){ if(on[i]) h+=blockHtml(b,q,true); else rest+=blockHtml(b,q,false); });
+  h+='<details class="rest"><summary>나머지 지문 보기 (이 문제와 관계없음)</summary>'+rest+'</details>';
+  return h;
+}
+
+function counts(){
+  var ok=0,bad=0; Q.forEach(function(q){var a=S.ans[q.id]; if(a){ if(a.sel===q.ans) ok++; else bad++; }});
+  return {ok:ok,bad:bad,left:Q.length-ok-bad};
+}
+function header(){
+  var c=counts(); $("nOk").textContent=c.ok; $("nBad").textContent=c.bad; $("nLeft").textContent=c.left;
+  $("nav").innerHTML=Q.map(function(q,i){
+    var a=S.ans[q.id], cl=(S.view==="quiz"&&i===S.idx?"cur ":"")+(a?(a.sel===q.ans?"ok":"bad"):"");
+    return '<button data-i="'+i+'" class="'+cl+'">'+(i+1)+'. '+esc(q.step.split(" · ")[1])+'</button>';
+  }).join("")+'<button data-i="r" class="'+(S.view==="result"?"cur":"")+'">결과</button>';
+  Array.prototype.forEach.call($("nav").querySelectorAll("button"),function(b){
+    b.onclick=function(){ var i=b.getAttribute("data-i"); if(i==="r"){S.view="result";} else {S.view="quiz"; S.idx=+i;} save(); render(); window.scrollTo(0,0); };
+  });
+}
+
+function quiz(){
+  var q=Q[S.idx], a=S.ans[q.id], h="";
+  var qh='<div class="meta"><span class="pill">'+(S.idx+1)+' / '+Q.length+'</span><span class="pill grey">'+esc(q.step)+'</span><span>'+esc(q.orig)+'</span></div>';
+  if(q.vig===null){
+    qh+='<div class="look"><b>여기만 보면 됨</b><ul>'+q.look.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';
+  }
+  qh+='<div class="stem">'+esc(q.stem)+'</div>';
+  if(q.data){
+    qh+='<div class="tbl" style="margin:-4px 0 14px"><table>'+q.data.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td><mark>'+esc(r[1])+'</mark></td></tr>';}).join("")+'</table></div>';
+  }
+  qh+='<div class="opts">'+["A","B","C"].map(function(k){
+    var cl="opt";
+    if(a){ if(k===a.sel) cl+=(k===q.ans?" sel-ok":" sel-bad"); else if(k===q.ans) cl+=" is-ans"; }
+    return '<button class="'+cl+'" data-k="'+k+'"'+(a?" disabled":"")+'><span class="bubble">'+k+'</span><span class="txt">'+esc(q.opts[k])+'</span></button>';
+  }).join("")+'</div>';
+  if(a){
+    var ok=a.sel===q.ans;
+    qh+='<div class="exp"><div class="verdict '+(ok?"ok":"bad")+'">'+(ok?"정답":"오답 · 정답 "+q.ans)+'</div>';
+    qh+='<h5>Formula</h5><div class="f">'+esc(q.f)+'</div>';
+    qh+='<h5>Steps</h5><div class="steps">'+esc(q.steps)+'</div>';
+    qh+='<h5>Wrong choices</h5><ul>'+Object.keys(q.why).map(function(k){return "<li><b>"+k+".</b> "+esc(q.why[k])+"</li>";}).join("")+'</ul>';
+    qh+='<h5>함정</h5><div class="trap">'+esc(q.trap)+'</div></div>';
+  }
+  qh+='<div class="navbtns"><button class="btn" id="bPrev"'+(S.idx===0?" disabled":"")+'>◀ 이전</button>'+
+      (a?'<button class="btn" id="bRetry">이 문제 다시</button>':'')+
+      '<button class="btn primary" id="bNext">'+(S.idx===Q.length-1?"결과 보기":"다음 ▶")+'</button></div>';
+  if(q.vig===null) h='<div class="layout novig"><div class="pane">'+qh+'</div></div>';
+  else h='<div class="layout"><div class="pane vigpane">'+vigHtml(q)+'</div><div class="pane">'+qh+'</div></div>';
+  $("main").innerHTML=h;
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){
+    b.onclick=function(){ if(S.ans[q.id]) return; var now=new Date().toISOString();
+      var prev=S.tries&&S.tries[q.id]||0; S.tries=S.tries||{}; S.tries[q.id]=prev+1;
+      S.ans[q.id]={sel:b.getAttribute("data-k"),at:now}; S.updatedAt=now; save(); render(); };
+  });
+  $("bPrev").onclick=function(){ if(S.idx>0){S.idx--; save(); render(); window.scrollTo(0,0);} };
+  $("bNext").onclick=function(){ if(S.idx<Q.length-1){S.idx++;} else {S.view="result";} save(); render(); window.scrollTo(0,0); };
+  if($("bRetry")) $("bRetry").onclick=function(){ delete S.ans[q.id]; save(); render(); };
+}
+function result(){
+  var c=counts();
+  var h='<div class="pane result" style="margin-top:12px"><h2 style="margin:0 0 4px">결과</h2><div>정답 '+c.ok+' · 오답 '+c.bad+' · 안 푼 문제 '+c.left+'</div><table>';
+  Q.forEach(function(q,i){ var a=S.ans[q.id];
+    h+='<tr><td>'+(i+1)+'</td><td>'+esc(q.step)+'</td><td>'+esc(q.orig)+'</td><td style="font-weight:700;color:'+(a?(a.sel===q.ans?"var(--ok)":"var(--bad)"):"var(--ink2)")+'">'+(a?(a.sel===q.ans?"정답":"오답 ("+a.sel+")"):"—")+'</td></tr>'; });
+  h+='</table><div class="navbtns"><button class="btn" id="bWrong"'+(c.bad?"":" disabled")+'>틀린 문제 다시</button><button class="btn primary" id="bAgain">처음부터 다시</button></div></div>';
+  $("main").innerHTML=h;
+  $("bAgain").onclick=reset;
+  $("bWrong").onclick=function(){ var first=-1; Q.forEach(function(q,i){ var a=S.ans[q.id]; if(a&&a.sel!==q.ans){ delete S.ans[q.id]; if(first<0) first=i; } }); S.idx=first<0?0:first; S.view="quiz"; save(); render(); };
+}
+function render(){ header(); if(S.view==="result") result(); else quiz(); }
+function reset(){ if(Object.keys(S.ans).length && !confirm("진행 기록을 지우고 처음부터 할까요?")) return;
+  S={idx:0,ans:{},started:new Date().toISOString(),updatedAt:new Date().toISOString(),view:"quiz"}; save(); render(); window.scrollTo(0,0); }
+$("bReset").onclick=reset;
+
+/* ---------- export ---------- */
+$("bExport").onclick=function(){
+  var now=new Date(), iso=now.toISOString(), date=iso.slice(0,10), c=counts();
+  var out={subject:SUBJECT, date:date, attempts:[{startedAt:S.started, exportedAt:iso, mode:"all", totalQuestions:Q.length, answered:c.ok+c.bad, correct:c.ok,
+    questions:Q.map(function(q){ var a=S.ans[q.id]; return {id:q.id, selected:a?a.sel:null, correct:a?a.sel===q.ans:null, attempts:(S.tries&&S.tries[q.id])||0}; })}]};
+  var blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"}), u=URL.createObjectURL(blob), el=document.createElement("a");
+  el.href=u; el.download=SUBJECT+"_results_"+date+".json"; document.body.appendChild(el); el.click(); el.remove(); setTimeout(function(){URL.revokeObjectURL(u);},1000);
+  S.updatedAt=iso; save();
+};
+
+/* ---------- import ---------- */
+function applyResults(d, quiet){
+  if(!d||d.subject!==SUBJECT||!d.attempts||!d.attempts.length){ if(!quiet) alert(SUBJECT+" 결과 파일이 아닙니다."); return false; }
+  var at=d.attempts[d.attempts.length-1], ans={}, tries={};
+  (at.questions||[]).forEach(function(x){ if(!BYID[x.id]) return; if(x.selected) ans[x.id]={sel:x.selected,at:at.exportedAt}; if(x.attempts) tries[x.id]=x.attempts; });
+  if(!quiet && Object.keys(S.ans).length && !confirm("현재 진행 기록을 불러온 결과로 바꿉니다. 계속할까요?")) return false;
+  var idx=0; while(idx<Q.length && ans[Q[idx].id]) idx++;
+  S={idx:idx>=Q.length?0:idx, ans:ans, tries:tries, started:at.startedAt||new Date().toISOString(), updatedAt:at.exportedAt||"", view:idx>=Q.length?"result":"quiz"};
+  save(); render(); return true;
+}
+$("bImport").onclick=function(){ $("fImport").value=""; $("fImport").click(); };
+$("fImport").onchange=function(){ var f=this.files&&this.files[0]; if(!f) return; var rd=new FileReader();
+  rd.onload=function(){ var d; try{ d=JSON.parse(rd.result); }catch(e){ alert("JSON 파일을 읽을 수 없습니다."); return; } applyResults(d,false); }; rd.readAsText(f); };
+function localTime(){ var t=S.updatedAt||""; Object.keys(S.ans).forEach(function(id){ var x=S.ans[id].at||""; if(x>t) t=x; }); return t; }
+function loadRemote(){
+  if(!window.fetch) return;
+  fetch("results/"+SUBJECT+"/latest.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d||d.subject!==SUBJECT||!d.attempts||!d.attempts.length) return;
+    var at=d.attempts[d.attempts.length-1];
+    if((at.exportedAt||"")>localTime()) applyResults(d,true);
+  })["catch"](function(){});
+}
+render(); loadRemote();
+})();
+</script>
+</body>
+</html>
